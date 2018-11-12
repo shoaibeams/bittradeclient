@@ -1,0 +1,76 @@
+<div class="mainpage clearfix">
+    <lib-ngx-notification></lib-ngx-notification>
+    <!-- Signup Start -->
+    <section class="signupwrap clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-sm-12">
+                    <h3 [innerHTML]="lang.Login"></h3>
+                    <div class="signupbox clearfix">
+                        <ul class=" nav nav-tabs" style="border:none;">
+                            <li class="active">
+                                <a data-toggle="tab">
+                                    <img src="src/assets/images/u-icon.png" alt="Individual">
+                                    <span [innerHTML]="lang.Credentials"></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active">
+                                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="{{lang.UserName}}"
+                                                    formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                                                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.username.errors.required" [innerHtml]="errors.usernameRequired"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="{{lang.Password}}"
+                                                    formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.password.errors.required" [innerHtml]="errors.passwordRequired"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12" *ngIf="!globals.isDev">
+                                            <div class="form-group">
+                                                <recaptcha class="no-form-control" formControlName="captcha"
+                                                    (scriptLoad)="onScriptLoad()" (scriptError)="onScriptError()"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.captcha.status != 'VALID' }">
+                                                </recaptcha>
+                                                <div *ngIf="submitted && f.captcha.status != 'VALID'" class="invalid-feedback">
+                                                    <div [innerHtml]="errors.capitchaErrorMessage"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <button class="signup-btn btn btn-primary" [innerHTML]="lang.Login"></button>
+                                        </div>
+                                        <div class="col-sm-12">
+                                          <strong>
+                                            <div class="{{submitRequestResposneClass}} text-bold" *ngIf="showsubmitResponse" [innerHtml]="submitResponseMessage"></div>
+                                          </strong>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 pstylish color-white">
+                        <a class="f-fl hyperlink-color" [routerLink]="'/' + const.RoutePaths.AccountForgotPassword"
+                            [innerHTML]="lang.ForgotPassword"></a>
+                        <span class="f-fr">
+                            <span [innerHTML]="lang.NotJoinedBitvelocityYet"></span>
+                            <a class="hyperlink-color" [routerLink]="'/' + const.RoutePaths.SignUp" [innerHTML]="lang.JoinNow"></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

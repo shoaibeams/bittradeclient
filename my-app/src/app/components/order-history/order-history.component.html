@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs openorder">
+            <li class="active"><a data-toggle="tab" href="#pending">Pending Orders</a></li>
+            <li><a data-toggle="tab" href="#all">Previous History</a></li>
+            <!-- <li><a data-toggle="tab" href="#trade">Trade History </a></li>
+            <li><a data-toggle="tab" href="#fund">Available Balance</a></li> -->
+        </ul>
+        <div class="tab-content">
+            <div id="pending" class="tab-pane fade in active">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-responsive orderhis cell-center">
+                    <thead>
+                        <th class="white-txt">Date</th>
+                        <th class="white-txt">Type</th>
+                        <th class="white-txt">Price</th>
+                        <th class="white-txt">Amount</th>
+                        <th class="white-txt">Total</th>
+                        <th class="white-txt">Fee</th>
+                        <th class="white-txt">Status</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let o of pendingOrders;" [class]="((orders.indexOf(o) + 1) % 2) == 0 ? '' : 'alternet'">
+                            <td class="white-txt">
+                                <!-- <i class="fa fa-star" aria-hidden="true"></i> -->
+                                {{sHelper.toLocalDate(o.created_timestamp).toDateString()}}</td>
+                            <td class="white-txt">{{o.typeS}}</td>
+                            <td class="white-txt">{{o.price}}</td>
+                            <td class="white-txt">{{o.amount}}</td>
+                            <td class="white-txt">{{o.total_amount}}</td>
+                            <td class="white-txt">{{o.fee_percentage}}%</td>
+                            <td class="white-txt">{{o.record_statusS}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="all" class="tab-pane fade">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-responsive orderhis cell-center">
+                    <thead>
+                        <th class="white-txt">Date</th>
+                        <th class="white-txt">Type</th>
+                        <th class="white-txt">Price</th>
+                        <th class="white-txt">Amount</th>
+                        <th class="white-txt">Total</th>
+                        <th class="white-txt">Fee</th>
+                        <th class="white-txt">Status</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let o of orders;" [class]="((orders.indexOf(o) + 1) % 2) == 0 ? '' : 'alternet'">
+                            <td class="white-txt">
+                                <!-- <i class="fa fa-star" aria-hidden="true"></i> -->
+                                {{sHelper.toLocalDate(o.created_timestamp).toDateString()}}</td>
+                            <td class="white-txt">{{o.typeS}}</td>
+                            <td class="white-txt">{{o.price}}</td>
+                            <td class="white-txt">{{o.amount}}</td>
+                            <td class="white-txt">{{o.total_amount}}</td>
+                            <td class="white-txt">{{o.fee_percentage}}%</td>
+                            <td class="white-txt">{{o.record_statusS}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

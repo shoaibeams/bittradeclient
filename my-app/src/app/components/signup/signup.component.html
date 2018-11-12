@@ -1,0 +1,146 @@
+
+<div class="mainpage clearfix">
+  <!-- Signup Start -->
+  <section class="signupwrap clearfix">
+    <div class="container">
+      <!-- <h2>
+        "As per the regulations all customers must have KYC verifications before buying selling can be enabled on
+        their account"
+      </h2> -->
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-12">
+          <h3>Create your account</h3>
+          <div class="signupbox clearfix">
+            <ul class="nav nav-tabs">
+              <li class="active">
+                <a data-toggle="tab" href="#Individual" (click)="signupType(1)">
+                  <img src="src/assets/images/u-icon.png" alt="Individual"> Individual
+                </a>
+              </li>
+              <li>
+                <a data-toggle="tab" href="#Individual" (click)="signupType(2)">
+                  <img src="src/assets/images/b-icon.png" alt="Business"> Business <i></i>
+                </a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div id="Individual" class="tab-pane fade in active">
+                <form [formGroup]="personalForm" (ngSubmit)="onSubmit()">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input class="form-control" placeholder="{{lang.FirstName}}" formControlName="first_name"
+                          [ngClass]="{ 'is-invalid': submitted && pf.first_name.errors }" />
+                        <div *ngIf="submitted && pf.first_name.errors" class="invalid-feedback">
+                          <div *ngIf="pf.first_name.errors.required" [innerHtml]="errors.first_nameRequired"></div>
+                          <div *ngIf="pf.first_name.errors.maxlength" [innerHtml]="errors.first_nameMaxLength"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input class="form-control" placeholder="{{lang.LastName}}" formControlName="last_name"
+                          [ngClass]="{ 'is-invalid': submitted && pf.last_name.errors }" />
+                        <div *ngIf="submitted && pf.last_name.errors" class="invalid-feedback">
+                          <div *ngIf="pf.last_name.errors.required" [innerHtml]="errors.last_nameRequired"></div>
+                          <div *ngIf="pf.last_name.errors.maxlength" [innerHtml]="errors.last_nameMaxLength"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12" *ngIf="account_type==2">
+                      <div class="form-group">
+                        <input class="form-control" placeholder="{{lang.CompanyName}}" formControlName="company_name"
+                          [ngClass]="{ 'is-invalid': submitted && pf.company_name.errors }" />
+                        <div *ngIf="submitted && pf.company_name.errors" class="invalid-feedback">
+                          <div *ngIf="pf.company_name.errors.required" [innerHtml]="errors.company_nameRequired"></div>
+                          <div *ngIf="pf.company_name.errors.maxlength" [innerHtml]="errors.company_nameMaxLength"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-sm-12">
+                      <div class="form-group">
+                        <input class="form-control" placeholder="{{lang.UserName}}" formControlName="username"
+                          [ngClass]="{ 'is-invalid': submitted && pf.username.errors }" />
+                        <div *ngIf="submitted && pf.username.errors" class="invalid-feedback">
+                          <div *ngIf="pf.username.errors.required" [innerHtml]="errors.usernameRequired"></div>
+                          <div *ngIf="pf.username.errors.maxlength" [innerHtml]="errors.usernameRange"></div>
+                          <div *ngIf="pf.username.errors.minlength" [innerHtml]="errors.usernameRange"></div>
+                          <div *ngIf="pf.username.errors.pattern" [innerHtml]="errors.usernamePattern"></div>
+                        </div>
+                      </div>
+                    </div> -->
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input class="form-control" (keyup)="onEmailKeyUp($event)" placeholder="{{lang.Email}}"
+                          formControlName="email" [ngClass]="{ 'is-invalid': (submitted && pf.email.errors) || invalidEmail }">
+                        <div *ngIf="submitted && pf.email.errors" class="invalid-feedback">
+                          <div *ngIf="pf.email.errors.required" [innerHtml]="errors.emailRequired"></div>
+                          <div *ngIf="pf.email.errors.maxlength" [innerHtml]="errors.emailMaxLength"></div>
+                        </div>
+                        <div *ngIf="submitted && (invalidEmail || pf.email.errors)" class="invalid-feedback">
+                          <div *ngIf="!pf.email.errors; else autoEmailInvalid" [innerHtml]="errors.emailInvalid"></div>
+                          <ng-template #autoEmailInvalid>
+                            <div *ngIf="pf.email.errors.email" [innerHtml]="errors.emailInvalid"></div>
+                          </ng-template>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input type="password" class="form-control" (keyup)="matchPassword($event)" placeholder="{{lang.Password}}"
+                          formControlName="password" [ngClass]="{ 'is-invalid': submitted && pf.password.errors }" />
+                        <div *ngIf="submitted && pf.password.errors" class="invalid-feedback">
+                          <div *ngIf="pf.password.errors.required" [innerHtml]="errors.passwordRequired"></div>
+                          <div *ngIf="pf.password.errors.pattern" [innerHtml]="errors.passwordPattern"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input type="password" class="form-control" (keyup)="matchPassword($event)" placeholder="{{lang.ConfirmPassword}}"
+                          formControlName="confirm_password" [ngClass]="{ 'is-invalid': submitted && pf.confirm_password.errors }" />
+                        <div *ngIf="submitted && pf.confirm_password.errors" class="invalid-feedback">
+                          <div [innerHtml]="errors.passwordDidNotMatch"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12" *ngIf="!this.globals.isDev">
+                      <div class="form-group">
+                        <recaptcha class="no-form-control" formControlName="personal_capitcha" (scriptLoad)="onScriptLoad()" (scriptError)="onScriptError()"
+                        [ngClass]="{ 'is-invalid': submitted && pf.personal_capitcha.status != 'VALID' }">
+                        </recaptcha>
+                        <div *ngIf="submitted && pf.personal_capitcha.status != 'VALID'" class="invalid-feedback">
+                          <div [innerHtml]="errors.capitchaErrorMessage"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 order-txt">
+                      "In order to be GDPR compliant, you give permission to us for using
+                      your
+                      personal data on our servers."
+                    </div>
+                    <div class="col-sm-12 form-group">
+                      <button class="signup-btn btn-primary" [disabled]="diableSubmitButton">CREATE ACCOUNT</button>
+                    </div>
+                    <div class="col-sm-12">
+                      <strong>
+                        <div class="{{submitRequestResposneClass}} text-bold" *ngIf="showsubmitResponse" [innerHtml]="submitResponseMessage"></div>
+                      </strong>
+                    </div>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="pstylish color-white">
+              <span [innerHTML]="lang.AlreadyHaveAnAccount"></span>
+              <a class="hyperlink-color" [routerLink]="'/' + const.RoutePaths.Login" [innerHTML]="lang.Login"></a> 
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>

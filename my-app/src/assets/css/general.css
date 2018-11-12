@@ -1,0 +1,39 @@
+ul.bullet-dot
+{
+    /* list-style-type: armenian; */
+    list-style: none;
+}
+ul.bullet-dot li:before
+{
+    content: "• ";
+}
+.pstylish {
+    margin: 0 0 15px 0;
+    word-spacing: 2px;
+    line-height: 25px;
+}
+.color-white{
+    color:white;
+}
+.f-fr{
+    float: right;
+}
+.f-fl{
+    float: left;
+}
+.hyperlink-color{
+    /* color: #0a2d42; */
+    /* color:rgba(8, 45, 62, 0.90); */
+    color:#f5675d;
+}
+.hyperlink-color:hover{
+    color:#f5675d;
+    text-decoration: underline;
+}
+a:hover{
+    cursor: pointer;
+}
+table.cell-center td, table.cell-center th{
+    text-align: center;
+    vertical-align: middle;
+}

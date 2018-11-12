@@ -1,0 +1,157 @@
+<div class="row">
+    <div class=" col-md-12">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#star-tab">{{lang.Limit}}</a></li>
+            <li><a data-toggle="tab" href="#usd-tab">{{lang.Market}}</a></li>
+            <!-- <li><a data-toggle="tab" href="#eur-tab">Stop-Loss</a></li> -->
+        </ul>
+        <div class="tab-content">
+            <div id="star-tab" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="tabs_das">
+                            <h3>{{lang.AvailableBalance}}<span [innerHTML]="buyBalance"></span></h3>
+                            <form [formGroup]="bform" (ngSubmit)="onSubmit(const.Order.Action.Buy)">
+                                <div class="input_elment">
+                                    <label [innerHTML]="lang.Price"></label>
+                                    <input (input)="priceAmountKeyup(bf)" type="number" min="0" class="form-control"
+                                        [step]="priceStep" number-only placeholder="{{currencyPair.tc_name}}"
+                                        formControlName="price" [ngClass]="{ 'is-invalid': submitted && bf.price.errors }" />
+                                </div>
+                                <div class="input_elment">
+                                    <label [innerHTML]="lang.Amount"></label>
+                                    <input (input)=priceAmountKeyup(bf) type="number" [step]="amountStep" min="0" class="form-control"
+                                        number-only placeholder="{{currencyPair.fc_name}}" formControlName="amount"
+                                        [ngClass]="{ 'is-invalid': submitted && bf.amount.errors }" />
+                                </div>
+                                <div class="vin">
+                                    <span>25%</span>&nbsp;<span>50%</span>&nbsp;<span>75%</span>&nbsp;<span>100%</span>
+                                </div>
+                                <div class="to_amount">
+                                    <label [innerHTML]="lang.Gross"></label>
+                                    <span [innerHTML]="limitBuyGrossAmount"></span>
+                                </div>
+                                <div class="to_amount">
+                                    <label [innerHTML]="lang.Fee"></label>
+                                    <span [innerHTML]="limitBuyFeeAmount"></span>
+                                </div>
+                                <div class="to_amount">
+                                    <label [innerHTML]="lang.Total"></label>
+                                    <span [innerHTML]="limitBuyTotalAmount"></span>
+                                </div>
+                                <button class="buy_bt">
+                                    <img src="src/assets/images/buy-icon.png" style="width:20px; margin-right:10px;"
+                                        alt="lang.Buy">
+                                    <span [innerHTML]="lang.Buy"></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="tabs_das">
+                            <h3>{{lang.AvailableBalance}}<span [innerHTML]="sellBalance"></span></h3>
+                            <form [formGroup]="sform" (ngSubmit)="onSubmit(const.Order.Action.Sell)">
+                                <div class="input_elment">
+                                    <label [innerHTML]="lang.Price"></label>
+                                    <input (input)=priceAmountKeyup(sf) type="number" min="0" [step]="priceStep" class="form-control"
+                                        number-only placeholder="{{currencyPair.tc_name}}" formControlName="price"
+                                        [ngClass]="{ 'is-invalid': submitted && sf.price.errors }" />
+                                </div>
+                                <div class="input_elment">
+                                    <label [innerHTML]="lang.Amount"></label>
+                                    <input (input)=priceAmountKeyup(sf) type="number" [step]="amountStep" min="0" class="form-control"
+                                        number-only placeholder="{{currencyPair.fc_name}}" formControlName="amount"
+                                        [ngClass]="{ 'is-invalid': submitted && sf.amount.errors }" />
+                                </div>
+                                <div class="vin">
+                                    <span>25%</span>&nbsp;<span>50%</span>&nbsp;<span>75%</span>&nbsp;<span>100%</span>
+                                </div>
+                                <div class="to_amount">
+                                    <label [innerHTML]="lang.Gross"></label>
+                                    <span [innerHTML]="limitSellGrossAmount"></span>
+                                </div>
+                                <div class="to_amount">
+                                    <label [innerHTML]="lang.Fee"></label>
+                                    <span [innerHTML]="limitSellFeeAmount"></span>
+                                </div>
+                                <div class="to_amount">
+                                    <label [innerHTML]="lang.Total"></label>
+                                    <span [innerHTML]="limitSellTotalAmount"></span>
+                                </div>
+                                <button class="buy_bt bt_dark"><img src="src/assets/images/sell-icon.png" style="width:20px; margin-right:5px;"
+                                        alt="lang.Sell"> <span [innerHTML]="lang.Sell"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="usd-tab" class="tab-pane fade ">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="tabs_das">
+                            <h3>Buy APPC <span>0.000002019 BTC</span></h3>
+                            <form>
+                                <div class="input_elment">
+                                    <label>Price </label>
+                                    <select name="">
+                                    </select>
+                                </div>
+                                <div class="input_elment">
+                                    <label>Amount </label>
+                                    <input name="" type="text" value="APPC">
+                                </div>
+                                <div class="vin"> <span>25%</span> <span>50%</span> <span>75%</span> <span>100%</span></div>
+                                <div class="to_amount">
+                                    <label>Total</label>
+                                    <span>0.0000000BTC</span> </div>
+                                <button type="button" class="buy_bt bt_dark"><img src="src/assets/images/sell-icon.png"
+                                        style="width:20px; margin-right:5px;" alt="img"> Buy</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="eur-tab" class="tab-pane fade in">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-responsive">
+                    <tr>
+                        <td align="center" valign="middle" class="white-txt"><i class="fa fa-star" aria-hidden="true"></i>
+                            BTCUSD</td>
+                        <td align="center" valign="middle" class="white-txt">7,486.2</td>
+                        <td align="center" valign="middle" class="white-txt">-1.5%</td>
+                        <td align="center" valign="middle" class="white-txt">7,599.7</td>
+                        <td align="center" valign="middle" class="white-txt">7,413.8</td>
+                        <td align="center" valign="middle" class="white-txt">135,942,900 USD</td>
+                    </tr>
+                    <tr>
+                        <td align="center" valign="middle" class="white-txt"><i class="fa fa-star" aria-hidden="true"></i>
+                            BTCUSD</td>
+                        <td align="center" valign="middle" class="white-txt">988.82</td>
+                        <td align="center" valign="middle" class="white-txt">-3.6%</td>
+                        <td align="center" valign="middle" class="white-txt">1,030.0</td>
+                        <td align="center" valign="middle" class="white-txt">982.24 </td>
+                        <td align="center" valign="middle" class="white-txt">24,967,202 USD</td>
+                    </tr>
+                    <tr>
+                        <td align="center" valign="middle" class="white-txt"><i class="fa fa-star" aria-hidden="true"></i>
+                            BTCUSD</td>
+                        <td align="center" valign="middle" class="white-txt">7,486.2</td>
+                        <td align="center" valign="middle" class="white-txt">-1.5%</td>
+                        <td align="center" valign="middle" class="white-txt">7,599.7</td>
+                        <td align="center" valign="middle" class="white-txt">7,413.8</td>
+                        <td align="center" valign="middle" class="white-txt">135,942,900 USD</td>
+                    </tr>
+                    <tr>
+                        <td align="center" valign="middle" class="white-txt"><i class="fa fa-star" aria-hidden="true"></i>
+                            BTCUSD</td>
+                        <td align="center" valign="middle" class="white-txt">988.82</td>
+                        <td align="center" valign="middle" class="white-txt">-3.6%</td>
+                        <td align="center" valign="middle" class="white-txt">1,030.0</td>
+                        <td align="center" valign="middle" class="white-txt">982.24 </td>
+                        <td align="center" valign="middle" class="white-txt">24,967,202 USD</td>
+                    </tr>
+                </table>
+            </div>
+            <div *ngIf="displayAlert" [class]="alertClass" [innerHTML]="alertMessage"></div>
+        </div>
+    </div>
+</div>

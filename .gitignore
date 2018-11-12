@@ -1,0 +1,33 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+/.git
+# compiled output
+/my-app/dist
+/my-app/tmp
+/my-app/out-tsc
+
+# dependencies
+/my-app/node_modules
+
+# IDEs and editors
+/my-app/.idea
+/my-app/.project
+/my-app/.classpath
+/my-app/.c9/
+/my-app/*.launch
+/my-app/.settings/
+/my-app/*.sublime-workspace
+
+# misc
+/my-app/.sass-cache
+/my-app/connect.lock
+/my-app/coverage
+/my-app/libpeerconnection.log
+/my-app/npm-debug.log
+/my-app/yarn-error.log
+/my-app/testem.log
+/my-app/typings
+
+# System Files
+/my-app/.DS_Store
+/my-app/Thumbs.db
