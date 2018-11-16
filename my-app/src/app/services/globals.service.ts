@@ -5,6 +5,7 @@ import { LanguageBase } from '../shared/language';
 
 export class GlobalsService {
     public ip:string = "";
+    public username:string = "";
     public isLoggedIn = false;
     public isDev = true;
     public lang: LanguageBase;

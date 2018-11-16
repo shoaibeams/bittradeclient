@@ -113,6 +113,7 @@ export class LanguageBase {
     Date: string;
     Type: string;
     Status: string;
+    Trade: string;
 
     static getLanguage(lang: string): LanguageBase {
         if(!lang)
@@ -249,5 +250,6 @@ below to re-send`;
     Date = "Date";
     Type = "Type";
     Status = "Status";
+    Trade = "Trade";
 
 }

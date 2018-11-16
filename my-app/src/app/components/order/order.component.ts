@@ -142,6 +142,15 @@ export class OrderComponent implements OnInit {
                 this.log.debug(res);
                 this.displayAlertBox(res.isSuccess, res.message);
                 this.loadBalanceAndFee();
+                if (action == Constants.Order.Action.Buy) {
+                    this.bf.amount.setValue(0);
+                    this.priceAmountKeyup(this.bf);
+                }
+                else
+                    if (action == Constants.Order.Action.Sell) {
+                        this.sf.amount.setValue(0);
+                        this.priceAmountKeyup(this.sf);
+                    }
                 this.spinner.hide();
             });
     }

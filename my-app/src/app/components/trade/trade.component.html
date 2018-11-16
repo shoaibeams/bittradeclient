@@ -10,6 +10,63 @@
                     <app-trade-order
                     [currencyPair]="selectedCurrencyPair">
                     </app-trade-order>
+                    <order-history-order
+                    [currencyPair]="selectedCurrencyPair"></order-history-order>
+                    <div class="cryptosocialnetworking clearfix">
+                        <h3>Crypto Social Networking</h3>
+                        <div class="socialnetworkbox clearfix"> </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="price-show-box clearfix">
+                        <span class="last_price">
+                            <strong>Last Price</strong><br><i>0.00004122</i>
+                        </span>
+                        <span class="last_price">
+                            <strong>24 CHANGE</strong><br><i>0.00004122</i>
+                        </span>
+                        <span class="last_price">
+                            <strong>24 HIGH</strong><br><i>0.00004122</i>
+                        </span>
+                        <span class="last_price"><strong>24 H LOW</strong><br><i>0.00004122</i></span>
+                        <span class="last_price"><strong>24 H VOLUME</strong><br><i>0.00004122</i></span>
+                        <span class="last_price brdroup">
+                            <ul>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{selectedCurrencyPair.fc_name}} <b>{{selectedCurrencyPair.tc_name}}</b>
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </a>
+                                    <ul class="dropdown-menu mymenu">
+                                        <li *ngFor="let cp of currencyPairs;" (click)="setSelectedCurrencyPair(cp.id)">
+                                            <a>{{cp.fc_name}} <b>{{cp.tc_name}}</b></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </span> </div>
+                    <ul class="nav nav-tabs timebox">
+                        <li class="active"><a data-toggle="tab" href="#star">Time</a></li>
+                        <li><a data-toggle="tab" href="#Monthly">Monthly</a></li>
+                        <li><a data-toggle="tab" href="#Hourly">Hourly</a></li>
+                        <li><a data-toggle="tab" href="#Daily">Daily</a></li>
+                        <li><a data-toggle="tab" href="#Weekly">Weekly</a></li>
+                        <li><a data-toggle="tab" href="#Yearly">Yearly</a></li>
+                        <li><a data-toggle="tab" href="#tools">Tools</a></li>
+                        <li><a data-toggle="tab" href="#ind">Indicator</a></li>
+                        <li><a data-toggle="tab" href="#masd"> MACD</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="star" class="tab-pane fade in active"> <img src="src/assets/images/imgtab.png" alt="">
+                        </div>
+                        <div id="Monthly" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
+                        <div id="Hourly" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
+                        <div id="Daily" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
+                        <div id="Weekly" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
+                        <div id="Yearly" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
+                        <div id="Tools" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
+                        <div id="ind" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
+                        <div id="masd" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
+                    </div>
                     <div class="row bglight">
                         <div class="col-md-6">
                             <div class="groups_table">
@@ -188,63 +245,6 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="price-show-box clearfix">
-                        <span class="last_price">
-                            <strong>Last Price</strong><br><i>0.00004122</i>
-                        </span>
-                        <span class="last_price">
-                            <strong>24 CHANGE</strong><br><i>0.00004122</i>
-                        </span>
-                        <span class="last_price">
-                            <strong>24 HIGH</strong><br><i>0.00004122</i>
-                        </span>
-                        <span class="last_price"><strong>24 H LOW</strong><br><i>0.00004122</i></span>
-                        <span class="last_price"><strong>24 H VOLUME</strong><br><i>0.00004122</i></span>
-                        <span class="last_price brdroup">
-                            <ul>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{selectedCurrencyPair.fc_name}} <b>{{selectedCurrencyPair.tc_name}}</b>
-                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                    </a>
-                                    <ul class="dropdown-menu mymenu">
-                                        <li *ngFor="let cp of currencyPairs;" (click)="setSelectedCurrencyPair(cp.id)">
-                                            <a>{{cp.fc_name}} <b>{{cp.tc_name}}</b></a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </span> </div>
-                    <ul class="nav nav-tabs timebox">
-                        <li class="active"><a data-toggle="tab" href="#star">Time</a></li>
-                        <li><a data-toggle="tab" href="#Monthly">Monthly</a></li>
-                        <li><a data-toggle="tab" href="#Hourly">Hourly</a></li>
-                        <li><a data-toggle="tab" href="#Daily">Daily</a></li>
-                        <li><a data-toggle="tab" href="#Weekly">Weekly</a></li>
-                        <li><a data-toggle="tab" href="#Yearly">Yearly</a></li>
-                        <li><a data-toggle="tab" href="#tools">Tools</a></li>
-                        <li><a data-toggle="tab" href="#ind">Indicator</a></li>
-                        <li><a data-toggle="tab" href="#masd"> MACD</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div id="star" class="tab-pane fade in active"> <img src="src/assets/images/imgtab.png" alt="">
-                        </div>
-                        <div id="Monthly" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
-                        <div id="Hourly" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
-                        <div id="Daily" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
-                        <div id="Weekly" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
-                        <div id="Yearly" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
-                        <div id="Tools" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
-                        <div id="ind" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
-                        <div id="masd" class="tab-pane fade"> <img src="src/assets/images/imgtab.png" alt=""> </div>
-                    </div>
-                    <order-history-order
-                    [currencyPair]="selectedCurrencyPair"></order-history-order>
-                    <div class="cryptosocialnetworking clearfix">
-                        <h3>Crypto Social Networking</h3>
-                        <div class="socialnetworkbox clearfix"> </div>
                     </div>
                 </div>
             </div>

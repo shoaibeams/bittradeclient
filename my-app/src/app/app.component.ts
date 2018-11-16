@@ -75,10 +75,12 @@ export class AppComponent {
                     else {
                         this.globals.isLoggedIn = true;
                     }
+                    this.globals.username = res.extras.username;
                 }
                 else
                     if (res.extras == true) {
                         this.globals.isLoggedIn = false;
+                        this.globals.username = res.extras.username;
                         StaticHelper.navigateToLogin(this.router);
                         // this.router.navigateByUrl(Constants.RoutePaths.Login + "?" + Constants.QueryParams.redirectURI + "=" + window.location.href, { skipLocationChange: false });
                         // window.location.href = Constants.RoutePaths.Login + "?" + Constants.QueryParams.redirectURI + "=" + window.location.href;

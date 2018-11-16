@@ -17,6 +17,12 @@
                             <span [innerHTML]="lang.Home"></span>
                         </a>
                     </li>
+                    <li *ngIf="globals.isLoggedIn">
+                        <a [routerLink]="const.RoutePaths.Trade">
+                            <span><img src="src/assets/images/exchange-icon.png" alt="lang.Trade"></span>
+                            <span [innerHTML]="lang.Trade"></span>
+                        </a>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span><img src="src/assets/images/exchange-icon.png" alt="Blockchain"></span>
@@ -91,8 +97,9 @@
                         <a [routerLink]="const.RoutePaths.Login"><img src="src/assets/images/sign-icon.png" alt="lang.Login">
                             {{lang.Login}}</a>
                     </li>
-                    <li *ngIf="globals.isLoggedIn" class="dropdown fontsize">
+                    <li *ngIf="globals.isLoggedIn" class="dropdown ">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-user"></i>
+                            {{globals.username}}
                             <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="#" [innerHTML]="lang.Logout" (click)="logout()"></a></li>

@@ -10,8 +10,9 @@
             <div id="pending" class="tab-pane fade in active">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-responsive orderhis cell-center">
                     <thead>
+                        <th class="white-txt">Order #</th>
                         <th class="white-txt">Date</th>
-                        <th class="white-txt">Type</th>
+                        <th class="white-txt">Action</th>
                         <th class="white-txt">Price</th>
                         <th class="white-txt">Amount</th>
                         <th class="white-txt">Total</th>
@@ -20,10 +21,11 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let o of pendingOrders;" [class]="((orders.indexOf(o) + 1) % 2) == 0 ? '' : 'alternet'">
+                            <td class="white-txt">{{o.id}}</td>
                             <td class="white-txt">
                                 <!-- <i class="fa fa-star" aria-hidden="true"></i> -->
                                 {{sHelper.toLocalDate(o.created_timestamp).toDateString()}}</td>
-                            <td class="white-txt">{{o.typeS}}</td>
+                            <td class="white-txt">{{o.actionS}}</td>
                             <td class="white-txt">{{o.price}}</td>
                             <td class="white-txt">{{o.amount}}</td>
                             <td class="white-txt">{{o.total_amount}}</td>
@@ -36,8 +38,9 @@
             <div id="all" class="tab-pane fade">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-responsive orderhis cell-center">
                     <thead>
+                        <th class="white-txt">Order #</th>
                         <th class="white-txt">Date</th>
-                        <th class="white-txt">Type</th>
+                        <th class="white-txt">Action</th>
                         <th class="white-txt">Price</th>
                         <th class="white-txt">Amount</th>
                         <th class="white-txt">Total</th>
@@ -46,10 +49,11 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let o of orders;" [class]="((orders.indexOf(o) + 1) % 2) == 0 ? '' : 'alternet'">
+                            <td class="white-txt">{{o.id}}</td>
                             <td class="white-txt">
                                 <!-- <i class="fa fa-star" aria-hidden="true"></i> -->
                                 {{sHelper.toLocalDate(o.created_timestamp).toDateString()}}</td>
-                            <td class="white-txt">{{o.typeS}}</td>
+                            <td class="white-txt">{{o.actionS}}</td>
                             <td class="white-txt">{{o.price}}</td>
                             <td class="white-txt">{{o.amount}}</td>
                             <td class="white-txt">{{o.total_amount}}</td>

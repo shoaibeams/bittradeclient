@@ -8,7 +8,7 @@ export class NumberOnlyDirective {
     private regex: RegExp = new RegExp(/^-?[0-9]+(\.){0,1}([0-9]*){0,1}$/g);
     // Allow key codes for special events. Reflect :
     // Backspace, tab, end, home
-    private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', '-'];
+    private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', '-', "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Delete"];
 
     constructor(private el: ElementRef) {
     }
@@ -24,4 +24,5 @@ export class NumberOnlyDirective {
             event.preventDefault();
         }
     }
+
 }
