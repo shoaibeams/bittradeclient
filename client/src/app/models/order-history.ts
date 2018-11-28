@@ -7,7 +7,7 @@ export class mdOrderHistory {
     fee_percentage: number;
     total_amount: number;
     remaining_amount: number;
-    record_status: number
+    record_status: number | string;
     constructor()
     {
         

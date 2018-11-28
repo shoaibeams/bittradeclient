@@ -9,13 +9,13 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { LocalStorage, SharedStorage } from 'ngx-store';
 import { LanguageBase } from 'src/app/shared/language';
 import { Constants } from 'src/app/shared/constants';
-import { mdSignUp } from 'src/app/models/sign-up';
+import { mdSignUp, SignUpMetaData } from 'src/app/models/sign-up';
 import { HttpClientService } from 'src/app/services/http-client.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
-import { String } from 'src/app/shared/strings';
 import { mdCallResponse } from 'src/app/models/call-response';
 import { GlobalsService } from 'src/app/services/globals.service';
+import { StaticHelper } from 'src/app/shared/static-helper';
 
 declare var $: any;
 @Component({
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     redirectURI: string;
 
 
-    constructor(private formBuilder: FormBuilder, private http: HttpClientService, private spinner: SpinnerService, 
+    constructor(private formBuilder: FormBuilder, private http: HttpClientService, private spinner: SpinnerService,
         private router: Router, private log: LoggerService, private route: ActivatedRoute, private globals: GlobalsService) {
     }
 
@@ -58,17 +58,23 @@ export class LoginComponent implements OnInit {
         this.form = this.formBuilder.group({
             username: [
                 this.model.username,
-                Validators.compose([Validators.required])
+                Validators.compose([
+                    Validators.required,
+                    Validators.maxLength(SignUpMetaData.userNameMaxLength)
+                ])
             ],
             password: [
                 this.model.password,
-                Validators.compose([Validators.required])
+                Validators.compose([
+                    Validators.required,
+                    Validators.maxLength(SignUpMetaData.passwordMaxLength)
+                ])
             ],
             captcha: !this.globals.isDev ? null : new FormControl(false, null)
         });
         this.errors = {
-            usernameRequired: String.format(this.lang.RequiredFormat, this.lang.UserName),
-            passwordRequired: String.format(this.lang.RequiredFormat, this.lang.Password),
+            usernameRequired: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.UserName),
+            passwordRequired: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.Password),
             capitchaErrorMessage: this.lang.CapitchaErrorMessage,
         };
         this.spinner.hide();
@@ -123,9 +129,9 @@ export class LoginComponent implements OnInit {
                         if (res.extras) {
                             if (res.extras.status == Constants.RecordStatus.PendingVerification) {
                                 let emailConfirmationRout = "<a href='" + Constants.RoutePaths.EmailConfirmation + "?" + Constants.QueryParams.email + "=em'>" + this.lang.Here + "</a>"
-                                res.message = String.format(this.lang.EmailVerificationRequired, emailConfirmationRout);
+                                res.message = StaticHelper.formatString(this.lang.EmailVerificationRequired, emailConfirmationRout);
 
-                                this.hideSpinnerAndShowError(String.bulletList(res.message.split("\n")));
+                                this.hideSpinnerAndShowError(StaticHelper.bulletList(res.message.split("\n")));
                             }
                             else {
                                 window.location.href = this.redirectURI;
@@ -133,7 +139,7 @@ export class LoginComponent implements OnInit {
                         }
                     }
                     else {
-                        this.hideSpinnerAndShowError(String.bulletList(res.message.split("\n")));
+                        this.hideSpinnerAndShowError(StaticHelper.bulletList(res.message.split("\n")));
                     }
                 }
             });

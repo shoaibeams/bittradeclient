@@ -9,9 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //node_modules
-import { NgxCaptchaModule } from 'ngx-captcha';
+import { RECAPTCHA_SETTINGS, RecaptchaSettings, RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { NgxNotificationComponent } from 'ngx-notification';
-import { RecaptchaModule } from 'angular-google-recaptcha';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { WebStorageModule } from 'ngx-store';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -39,7 +39,7 @@ import { ConfirmationBoxService } from './services/confirmation-box.service';
 import { GlobalsService } from './services/globals.service';
 
 //directives
-import {NumberOnlyDirective} from './directives/number-only.directive';
+import { NumberOnlyDirective } from './directives/number-only.directive';
 
 //misc
 import { Constants } from './shared/constants';
@@ -109,9 +109,7 @@ const appRoutes: Routes = [
         WebStorageModule,
         GooglePlaceModule,
         ReactiveFormsModule,
-        RecaptchaModule.forRoot({
-            siteKey: Constants.RecaptchaSiteKey,
-        }),
+        RecaptchaModule,
         BrowserModule,
         FormsModule,
         HttpModule,
@@ -119,6 +117,7 @@ const appRoutes: Routes = [
         NgxSpinnerModule,
         RouterModule.forRoot(appRoutes),
         BrowserAnimationsModule,
+        RecaptchaFormsModule,
     ],
     providers: [
         HttpClientService,
@@ -126,6 +125,10 @@ const appRoutes: Routes = [
         LoggerService,
         ConfirmationBoxService,
         GlobalsService,
+        {
+            provide: RECAPTCHA_SETTINGS,
+            useValue: { siteKey: Constants.RecaptchaSiteKey } as RecaptchaSettings,
+        },
     ],
     bootstrap: [AppComponent]
 })

@@ -58,13 +58,13 @@
                     </div>
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <recaptcha 
+                        <re-captcha 
                         class="no-form-control" 
                         formControlName="contactus_capitcha" 
                         (scriptLoad)="onScriptLoad()" 
                         (scriptError)="onScriptError()"
                         [ngClass]="{ 'is-invalid': submitted && f.contactus_capitcha.status != 'VALID' }">
-                        </recaptcha>
+                        </re-captcha>
                         <div *ngIf="submitted && f.contactus_capitcha.status != 'VALID'" class="invalid-feedback">
                           <div [innerHtml]="errors.capitchaErrorMessage"></div>
                         </div>

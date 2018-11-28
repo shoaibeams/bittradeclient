@@ -17,6 +17,7 @@ export class LanguageBase {
     RangeLengthFormat2: string;
     RequiredFormat: string;
     ErrorOccured: string;
+    ErrorOccuredWhileValidationFormat: string;
     ErrorOccuredFormat: string;
     UUID: string;
     UUIDNotProvided: string;
@@ -99,12 +100,17 @@ export class LanguageBase {
     SignUp: string;
     Wallet: string;
     Logout: string;
+    CouldNotLoadConfig: string;
     Limit: string;
     Sell: string;
     Buy: string;
     Price: string;
     Amount: string;
     Total: string;
+    Action: string;
+    Currency: string;
+    Pair: string;
+    CurrencyPair: string;
     Market:string;
     AvailableBalance: string;
     Gross: string;
@@ -112,8 +118,43 @@ export class LanguageBase {
     Fee: string;
     Date: string;
     Type: string;
+    NonVerifiedUserCannotPlaceOrder: string;
+    ThisUserCannotPlaceOrder: string;
+    NotFound: string;
+    NotFoundFormat: string;
+    Min: string;
+    MinTotalOrderAmountFormat: string;
+    Order: string;
+    NotSupportFormat: string;
+    NotEnoughBalance: string;
+    MinTierRequriedForTransaction: string;
+    NoRecordFound: string;
+    OrderPlacedSuccessfully: string;
+    LangKey: string;
+    CouldNotBeginTransaction: string;
+    CouldNotCompleteTransaction: string;
+    CouldNotExecuteQuery: string;
+    OrderCompleted: string;
+    UserWalletNotFoundForOneOfThePairCurrencies: string;
+    CouldNotGetResponseFromKraken: string;
+    PairKrakenMinOrderVolumeNotDefined: string;
+    OrderLessThanMinKrakenOrderVolume: string;
+    PairMappingWithKraken: string;
+    UnableToVerifyFormat: string;
+    Request: string;
+    OrderStatusMustBeOpenOrPartiallyCompleted: string;
     Status: string;
     Trade: string;
+    UnableToCreateQueueTaskForUpdatingExchangeOrigin: string;
+    TaskId: string;
+    UnableToUpdateExchangeOrigin: string;
+    OrderPostedOnKrakenWithoutTxId: string;
+    OrderPostedOnThirdParty: string;
+    OrderPostedOnThirdPartyButCouldNotItsTxid: string;
+    OrderAlreadyPostedOnFormat: string;
+    ExternalOrderIdNotFound: string;
+    ChangeExchangeManually: string;
+    CaptchaNotVerified: string;
 
     static getLanguage(lang: string): LanguageBase {
         if(!lang)
@@ -128,6 +169,11 @@ export class LanguageBase {
 
         }
     }
+    
+    static default(): LanguageBase {
+        return new LangENUS();
+    }
+
 }
 
 export class LangENUS extends LanguageBase {
@@ -143,7 +189,8 @@ export class LangENUS extends LanguageBase {
     RangeLengthFormat2 = "{0} accpet minimum {1} and Maximum {2} character(s)";
     RequiredFormat = "{0} is required";
     ErrorOccured = "An error occured";
-    ErrorOccuredFormat = "An error occured while validating {0}";
+    ErrorOccuredWhileValidationFormat = "An error occured while validating {0}";
+    ErrorOccuredFormat = "An error occured {0}";
     UUID = "UUID";
     UUIDNotProvided = this.UUID + " not provided";
     AlreadyExistsFormat = "{0} already exists";
@@ -236,12 +283,17 @@ below to re-send`;
     SignUp = "Sign Up";
     Wallet = "Wallet";
     Logout = "Logout";
+    CouldNotLoadConfig = "Could Not Load Config";
     Limit = "Limit";
     Sell = "Sell";
     Buy = "Buy";
     Price = "Price";
     Amount = "Amount";
     Total = "Total";
+    Action = "Action";
+    Currency = "Currency";
+    Pair = "Pair";
+    CurrencyPair = this.Currency + " " + this.Pair;
     Market = "Market";
     AvailableBalance = "Available Balance";
     Gross = "Gross";
@@ -249,7 +301,42 @@ below to re-send`;
     Fee = "Fee";
     Date = "Date";
     Type = "Type";
+    NonVerifiedUserCannotPlaceOrder = "Non verified user cannot place the order";
+    ThisUserCannotPlaceOrder = "This user cannot place the order";
+    NotFound = "not found";
+    NotFoundFormat = "{0} not found";
+    Min = "Minimum";
+    Order = "Order";
+    MinTotalOrderAmountFormat = this.Min + " " + this.Total + " "  + this.Order + " " + this.Amount + " is {0} {1}";
+    NotSupportFormat = "{0} not supported";
+    NotEnoughBalance = "Not enough balance available";
+    MinTierRequriedForTransaction = "Minimum tier {0} is required for a transaction";
+    NoRecordFound = "No record found";
+    OrderPlacedSuccessfully = "Order placed successfully";
+    LangKey = Constants.LanguageKey.ENUS;
+    CouldNotBeginTransaction = "Could not begin trnsaction";
+    CouldNotCompleteTransaction = "Could not complete transaction";
+    CouldNotExecuteQuery = "Could not execute Query";
+    OrderCompleted = "Order Completed";
+    UserWalletNotFoundForOneOfThePairCurrencies = "User wallet for one of the pair currencie was not found";
+    CouldNotGetResponseFromKraken = "Could not get response from kraken";
+    PairKrakenMinOrderVolumeNotDefined = "Kraken minimum order volume not defined for this pair";
+    OrderLessThanMinKrakenOrderVolume = "Order amount is less than kraken minimum order volume";
+    PairMappingWithKraken = "pair mapping with kraken";
+    UnableToVerifyFormat = "Unable to verify {0}";
+    Request = "Request";
+    OrderStatusMustBeOpenOrPartiallyCompleted = "Order status must be open or partially completed";
     Status = "Status";
     Trade = "Trade";
+    UnableToCreateQueueTaskForUpdatingExchangeOrigin = "Unable to create queue task from updating exchange origin";
+    TaskId = "Task Id";
+    UnableToUpdateExchangeOrigin = "Unable to update exchange origin to {0}";
+    OrderPostedOnKrakenWithoutTxId = "Order posted on kraken without txid";
+    OrderPostedOnThirdParty = "Order posted on {0} Successfully";
+    OrderPostedOnThirdPartyButCouldNotItsTxid = this.OrderPostedOnThirdParty + " but could not save its txid";
+    OrderAlreadyPostedOnFormat = "Order already on {0}";
+    ExternalOrderIdNotFound = "Order Id for {0} not found";
+    ChangeExchangeManually = "Please change order exchange origin manually";
+    CaptchaNotVerified = "Captcha not verified. Please submit the form again";
 
 }

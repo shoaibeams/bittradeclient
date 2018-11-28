@@ -60,7 +60,9 @@ export class OrderHistoryComponent implements OnInit {
                 if (res.isSuccess) {
                     this.orders = res.extras as mdOrderHistory[];
                     this.pendingOrders = this.orders.filter(m => m.record_status == Constants.Order.RecordStatus.open || 
-                    m.record_status == Constants.Order.RecordStatus.partiallyCompleted);
+                        m.record_status == StaticHelper.getPropNameByValue(Constants.Order.RecordStatus, Constants.Order.RecordStatus.open) ||
+                    m.record_status == Constants.Order.RecordStatus.partially_completed || m.record_status ==
+                    StaticHelper.getPropNameByValue(Constants.Order.RecordStatus, Constants.Order.RecordStatus.partially_completed));
 
                 }
                 this.spinner.hide();

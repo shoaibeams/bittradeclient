@@ -107,9 +107,9 @@
 
                     <div class="col-sm-12" *ngIf="!this.globals.isDev">
                       <div class="form-group">
-                        <recaptcha class="no-form-control" formControlName="personal_capitcha" (scriptLoad)="onScriptLoad()" (scriptError)="onScriptError()"
+                        <re-captcha class="no-form-control" formControlName="personal_capitcha" (scriptLoad)="onScriptLoad()" (scriptError)="onScriptError()"
                         [ngClass]="{ 'is-invalid': submitted && pf.personal_capitcha.status != 'VALID' }">
-                        </recaptcha>
+                        </re-captcha>
                         <div *ngIf="submitted && pf.personal_capitcha.status != 'VALID'" class="invalid-feedback">
                           <div [innerHtml]="errors.capitchaErrorMessage"></div>
                         </div>

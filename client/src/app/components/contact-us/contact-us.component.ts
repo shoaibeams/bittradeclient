@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators, ValidationErrors, FormControl } fro
 import { mdContactUs, ContactUsMetaData } from '../../models/contact-us';
 import { Constants } from '../../shared/constants';
 import { LanguageBase } from '../../shared/language';
-import { String } from '../../shared/strings';
 import { HttpClientService } from '../../services/http-client.service';
 import { SpinnerService } from '../../services/spinner.service';
 import { mdCallResponse } from '../../models/call-response';
@@ -11,6 +10,7 @@ import * as EmailValidator from 'email-validator';
 import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router';
 import { GlobalsService } from 'src/app/services/globals.service';
+import { StaticHelper } from 'src/app/shared/static-helper';
 
 declare var $;
 
@@ -78,15 +78,15 @@ export class ContactUsComponent implements OnInit {
             contactus_capitcha: new FormControl(false, null)
         });
         this.errors = {
-            nameRequried: String.format(this.lang.RequiredFormat, this.lang.Name),
-            nameMaxLength: String.format(this.lang.MaxLengthFormat, ContactUsMetaData.nameMaxLength),
-            contactNoRequired: String.format(this.lang.RequiredFormat, this.lang.ContactNo),
-            contactNoMaxLength: String.format(this.lang.MaxLengthFormat, ContactUsMetaData.contactNoMaxLength),
-            emailRequried: String.format(this.lang.RequiredFormat, this.lang.Email),
-            emailMaxLength: String.format(this.lang.MaxLengthFormat, ContactUsMetaData.emailMaxLength),
+            nameRequried: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.Name),
+            nameMaxLength: StaticHelper.formatString(this.lang.MaxLengthFormat, ContactUsMetaData.nameMaxLength),
+            contactNoRequired: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.ContactNo),
+            contactNoMaxLength: StaticHelper.formatString(this.lang.MaxLengthFormat, ContactUsMetaData.contactNoMaxLength),
+            emailRequried: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.Email),
+            emailMaxLength: StaticHelper.formatString(this.lang.MaxLengthFormat, ContactUsMetaData.emailMaxLength),
             emailInvalid: this.lang.InvalidEmail,
-            messageRequried: String.format(this.lang.RequiredFormat, this.lang.Message),
-            messageRange: String.format(this.lang.RangeLengthFormat, ContactUsMetaData.messageMinLength, ContactUsMetaData.messageMaxLength),
+            messageRequried: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.Message),
+            messageRange: StaticHelper.formatString(this.lang.RangeLengthFormat, ContactUsMetaData.messageMinLength, ContactUsMetaData.messageMaxLength),
             capitchaErrorMessage: this.lang.CapitchaErrorMessage,
         };
     }

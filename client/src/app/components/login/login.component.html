@@ -39,10 +39,10 @@
                                         </div>
                                         <div class="col-sm-12" *ngIf="!globals.isDev">
                                             <div class="form-group">
-                                                <recaptcha class="no-form-control" formControlName="captcha"
+                                                <re-captcha class="no-form-control" formControlName="captcha"
                                                     (scriptLoad)="onScriptLoad()" (scriptError)="onScriptError()"
                                                     [ngClass]="{ 'is-invalid': submitted && f.captcha.status != 'VALID' }">
-                                                </recaptcha>
+                                                </re-captcha>
                                                 <div *ngIf="submitted && f.captcha.status != 'VALID'" class="invalid-feedback">
                                                     <div [innerHtml]="errors.capitchaErrorMessage"></div>
                                                 </div>

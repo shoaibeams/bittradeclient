@@ -22,7 +22,7 @@ export class Constants{
         CannotHaveSpace: '(?=^\\S*$)',
     }
     public static EndPoints = {
-        PostContactUs: "contactUs/postContactUs",
+        PostContactUs: "contactUs/contactUs",
         PostAccountRegister: "account/register",
         PostAuthLogin: "auth/login",
         GetSendSignUpVerificationEmail: "account/sendSignUpVerificationEmail",
@@ -63,17 +63,17 @@ export class Constants{
     }
     public static Order = {
         Type: {
-            Limit: 1,
-            Market: 2,
+            limit: 1,
+            market: 2,
         },
         Action: {
-            Buy: 1,
-            Sell: 2,
+            buy: 1,
+            sell: 2,
         },
         RecordStatus: {
             open: 1,
             cancelled: 2,
-            partiallyCompleted: 3,
+            partially_completed: 3,
             completed: 4,
         }
     }

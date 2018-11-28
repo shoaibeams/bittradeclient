@@ -1,5 +1,5 @@
 import { Constants } from "../shared/constants";
-import { String } from "../shared/strings";
+import { StaticHelper } from "../shared/static-helper";
 
 export class mdSignUp {
     public first_name: string;
@@ -37,13 +37,13 @@ export class SignUpMetaData {
     public static companyNameMaxLength: number = 50;
     public static userNameRegex: string = Constants.Regex.MustStartWithSmallLetter + 
                                         Constants.Regex.MustBeAlphaNumericSmallLetters + 
-                                        String.format(Constants.Regex.RangeLength, SignUpMetaData.userNameMinLength, SignUpMetaData.userNameMaxLength); 
+                                        StaticHelper.formatString(Constants.Regex.RangeLength, SignUpMetaData.userNameMinLength, SignUpMetaData.userNameMaxLength); 
                                         // `(?=^[a-z]+)(?=^[a-z0-9_]+$)(?=^.{${SignUpMetaData.userNameMinLength},${SignUpMetaData.userNameMaxLength}}$)`;
     public static passwordRegex: string = Constants.Regex.MustContainSmallLetter +
                                         Constants.Regex.MustContainCapitalLetter +
                                         Constants.Regex.MustContainNumber +
                                         Constants.Regex.MustContainSpecialChar +
-                                        String.format(Constants.Regex.RangeLength, SignUpMetaData.passwordMinLength, SignUpMetaData.passwordMaxLength);
+                                        StaticHelper.formatString(Constants.Regex.RangeLength, SignUpMetaData.passwordMinLength, SignUpMetaData.passwordMaxLength);
                                         //`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=^.{${SignUpMetaData.passwordMinLength},${SignUpMetaData.passwordMaxLength}}$)(?=^\\S*$)`;
     
 }

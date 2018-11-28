@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators, ValidationErrors, FormControl, Abst
 import { mdSignUp, SignUpMetaData } from '../../models/sign-up'
 import { Constants } from '../../shared/constants'
 import { LanguageBase } from '../../shared/language'
-import { String } from '../../shared/strings'
 import { HttpClientService } from '../../services/http-client.service';
 import { SpinnerService } from '../../services/spinner.service';
 import * as EmailValidator from 'email-validator'
@@ -12,6 +11,7 @@ import { Router } from '@angular/router'
 import { mdCallResponse } from '../../models/call-response';
 import { LoggerService } from '../../services/logger.service';
 import { GlobalsService } from 'src/app/services/globals.service';
+import { StaticHelper } from 'src/app/shared/static-helper';
 
 @Component({
     selector: 'app-signup',
@@ -99,24 +99,24 @@ export class SignupComponent implements OnInit {
             personal_capitcha: this.globals.isDev ? null : new FormControl(false, null)
         });
         this.errors = {
-            first_nameRequired: String.format(this.lang.RequiredFormat, this.lang.FirstName),
-            first_nameMaxLength: String.format(this.lang.MaxLengthFormat, SignUpMetaData.firstNameMaxLength),
-            last_nameRequired: String.format(this.lang.RequiredFormat, this.lang.LastName),
-            last_nameMaxLength: String.format(this.lang.MaxLengthFormat, SignUpMetaData.lastNameMaxLength),
-            usernameRequired: String.format(this.lang.RequiredFormat, this.lang.UserName),
-            usernameRange: String.format(this.lang.RangeLengthFormat, SignUpMetaData.userNameMinLength,
+            first_nameRequired: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.FirstName),
+            first_nameMaxLength: StaticHelper.formatString(this.lang.MaxLengthFormat, SignUpMetaData.firstNameMaxLength),
+            last_nameRequired: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.LastName),
+            last_nameMaxLength: StaticHelper.formatString(this.lang.MaxLengthFormat, SignUpMetaData.lastNameMaxLength),
+            usernameRequired: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.UserName),
+            usernameRange: StaticHelper.formatString(this.lang.RangeLengthFormat, SignUpMetaData.userNameMinLength,
                 SignUpMetaData.userNameMaxLength),
-            usernamePattern: String.bulletList(this.lang.UserNameRequirement, this.lang.UserName,
+            usernamePattern: StaticHelper.bulletList(this.lang.UserNameRequirement, this.lang.UserName,
                 SignUpMetaData.userNameMinLength, SignUpMetaData.userNameMaxLength),
-            passwordRequired: String.format(this.lang.RequiredFormat, this.lang.Password),
-            passwordPattern: String.bulletList(this.lang.PasswordRequirement, this.lang.Password, SignUpMetaData.passwordMinLength,
+            passwordRequired: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.Password),
+            passwordPattern: StaticHelper.bulletList(this.lang.PasswordRequirement, this.lang.Password, SignUpMetaData.passwordMinLength,
                 SignUpMetaData.passwordMaxLength),
-            emailRequired: String.format(this.lang.RequiredFormat, this.lang.Email),
+            emailRequired: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.Email),
             emailInvalid: this.lang.InvalidEmail,
-            passwordDidNotMatch: String.format(this.lang.DidNotMatchFormat, this.lang.Password, this.lang.ConfirmPassword),
+            passwordDidNotMatch: StaticHelper.formatString(this.lang.DidNotMatchFormat, this.lang.Password, this.lang.ConfirmPassword),
             capitchaErrorMessage: this.lang.CapitchaErrorMessage,
-            company_nameRequired: String.format(this.lang.RequiredFormat, this.lang.CompanyName),
-            company_nameMaxLength: String.format(this.lang.MaxLengthFormat, SignUpMetaData.companyNameMaxLength),
+            company_nameRequired: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.CompanyName),
+            company_nameMaxLength: StaticHelper.formatString(this.lang.MaxLengthFormat, SignUpMetaData.companyNameMaxLength),
         };
     }
 
@@ -264,12 +264,12 @@ export class SignupComponent implements OnInit {
                                     }
                                 }
                                 else {
-                                    this.hideSpinnerAndShowError(String.bulletList(res.message.split("\n")));
+                                    this.hideSpinnerAndShowError(StaticHelper.bulletList(res.message.split("\n")));
                                 }
                             });
                     }
                     else {
-                        this.hideSpinnerAndShowError(String.bulletList(res.message.split("\n")));
+                        this.hideSpinnerAndShowError(StaticHelper.bulletList(res.message.split("\n")));
                     }
                 }
             });

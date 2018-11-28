@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "client",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -35,7 +35,7 @@
     "ng-animate": "^0.3.4",
     "ng-bootstrap-form-validation": "^2.1.0",
     "ng-email-validation": "^1.0.2",
-    "ng-recaptcha": "^3.0.5",
+    "ng-recaptcha": "^4.2.1",
     "ng-snotify": "^4.3.1",
     "ngx-captcha": "^4.0.1",
     "ngx-google-places-autocomplete": "^2.0.1",

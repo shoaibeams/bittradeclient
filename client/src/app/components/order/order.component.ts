@@ -7,7 +7,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { mdOrder } from 'src/app/models/order';
 import { mdCallResponse } from 'src/app/models/call-response';
 import { HttpClientService } from 'src/app/services/http-client.service';
-import { String } from 'src/app/shared/strings';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { StaticHelper } from 'src/app/shared/static-helper';
 
@@ -119,16 +118,16 @@ export class OrderComponent implements OnInit {
     onSubmit(action: number) {
         //validate form locally
         let formData: mdOrder;
-        if (action == Constants.Order.Action.Buy) {
+        if (action == Constants.Order.Action.buy) {
             formData = this.bform.value;
         }
         else
-            if (action == Constants.Order.Action.Sell) {
+            if (action == Constants.Order.Action.sell) {
                 formData = this.sform.value;
             }
         formData.action = action;
         formData.currencyPair = this.currencyPair.id;
-        formData.type = Constants.Order.Type.Limit;
+        formData.type = Constants.Order.Type.limit;
         let res: mdCallResponse = new mdCallResponse();
         this.spinner.show();
         this.http.post<mdCallResponse>(Constants.EndPoints.PostOrder, formData).subscribe((data) => {
@@ -142,12 +141,12 @@ export class OrderComponent implements OnInit {
                 this.log.debug(res);
                 this.displayAlertBox(res.isSuccess, res.message);
                 this.loadBalanceAndFee();
-                if (action == Constants.Order.Action.Buy) {
+                if (action == Constants.Order.Action.buy) {
                     this.bf.amount.setValue(0);
                     this.priceAmountKeyup(this.bf);
                 }
                 else
-                    if (action == Constants.Order.Action.Sell) {
+                    if (action == Constants.Order.Action.sell) {
                         this.sf.amount.setValue(0);
                         this.priceAmountKeyup(this.sf);
                     }
@@ -163,7 +162,7 @@ export class OrderComponent implements OnInit {
             this.alertClass = "alert alert-danger";
         }
         if (message) {
-            message = String.bulletList(message.split("\n"));
+            message = StaticHelper.bulletList(message.split("\n"));
         }
         this.alertMessage = message;
         this.displayAlert = true;

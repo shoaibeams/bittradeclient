@@ -2,32 +2,32 @@
 
 /.git
 # compiled output
-/my-app/dist
-/my-app/tmp
-/my-app/out-tsc
+/client/dist
+/client/tmp
+/client/out-tsc
 
 # dependencies
-/my-app/node_modules
+/client/node_modules
 
 # IDEs and editors
-/my-app/.idea
-/my-app/.project
-/my-app/.classpath
-/my-app/.c9/
-/my-app/*.launch
-/my-app/.settings/
-/my-app/*.sublime-workspace
+/client/.idea
+/client/.project
+/client/.classpath
+/client/.c9/
+/client/*.launch
+/client/.settings/
+/client/*.sublime-workspace
 
 # misc
-/my-app/.sass-cache
-/my-app/connect.lock
-/my-app/coverage
-/my-app/libpeerconnection.log
-/my-app/npm-debug.log
-/my-app/yarn-error.log
-/my-app/testem.log
-/my-app/typings
+/client/.sass-cache
+/client/connect.lock
+/client/coverage
+/client/libpeerconnection.log
+/client/npm-debug.log
+/client/yarn-error.log
+/client/testem.log
+/client/typings
 
 # System Files
-/my-app/.DS_Store
-/my-app/Thumbs.db
+/client/.DS_Store
+/client/Thumbs.db
