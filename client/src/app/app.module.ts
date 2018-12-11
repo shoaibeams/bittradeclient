@@ -11,8 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //node_modules
 import { RECAPTCHA_SETTINGS, RecaptchaSettings, RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
-import { NgxNotificationComponent } from 'ngx-notification';
-import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { NgxNotificationModule } from 'ngx-notification';
+// import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { WebStorageModule } from 'ngx-store';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
@@ -42,19 +42,19 @@ import { GlobalsService } from './services/globals.service';
 import { NumberOnlyDirective } from './directives/number-only.directive';
 
 //misc
-import { Constants } from './shared/constants';
+import { Constants, StaticConstatns } from './shared/constants';
 
 const appRoutes: Routes = [
     {
-        path: Constants.RoutePaths.Login,
+        path: StaticConstatns.RoutePaths.Login,
         component: LoginComponent
     },
     {
-        path: Constants.RoutePaths.Home,
+        path: StaticConstatns.RoutePaths.Home,
         component: HomeComponent
     },
     {
-        path: Constants.RoutePaths.SignUp,
+        path: StaticConstatns.RoutePaths.SignUp,
         component: SignupComponent,
         // children:[
         //   {
@@ -65,23 +65,23 @@ const appRoutes: Routes = [
 
     },
     {
-        path: Constants.RoutePaths.ContactUs,
+        path: StaticConstatns.RoutePaths.ContactUs,
         component: ContactUsComponent
     },
     {
-        path: Constants.RoutePaths.EmailConfirmation,
+        path: StaticConstatns.RoutePaths.EmailConfirmation,
         component: EmailConfirmationComponent
     },
     {
-        path: Constants.RoutePaths.AccountVerify,
+        path: StaticConstatns.RoutePaths.AccountVerify,
         component: AccountVerificationComponent,
     },
     {
-        path: Constants.RoutePaths.AccountForgotPassword,
+        path: StaticConstatns.RoutePaths.AccountForgotPassword,
         component: ForgetpasswordComponent,
     },
     {
-        path: Constants.RoutePaths.Trade,
+        path: StaticConstatns.RoutePaths.Trade,
         component: TradeComponent,
     }
 
@@ -93,7 +93,6 @@ const appRoutes: Routes = [
         LoginComponent,
         SignupComponent,
         HomeComponent,
-        NgxNotificationComponent,
         ForgetpasswordComponent,
         ContactUsComponent,
         MainHeaderComponent,
@@ -107,7 +106,7 @@ const appRoutes: Routes = [
     ],
     imports: [
         WebStorageModule,
-        GooglePlaceModule,
+        // GooglePlaceModule,
         ReactiveFormsModule,
         RecaptchaModule,
         BrowserModule,
@@ -118,6 +117,7 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
         BrowserAnimationsModule,
         RecaptchaFormsModule,
+        NgxNotificationModule,
     ],
     providers: [
         HttpClientService,
@@ -127,7 +127,7 @@ const appRoutes: Routes = [
         GlobalsService,
         {
             provide: RECAPTCHA_SETTINGS,
-            useValue: { siteKey: Constants.RecaptchaSiteKey } as RecaptchaSettings,
+            useValue: { siteKey: StaticConstatns.RecaptchaSiteKey } as RecaptchaSettings,
         },
     ],
     bootstrap: [AppComponent]

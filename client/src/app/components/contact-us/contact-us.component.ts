@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidationErrors, FormControl } from '@angular/forms';
 import { mdContactUs, ContactUsMetaData } from '../../models/contact-us';
-import { Constants } from '../../shared/constants';
 import { LanguageBase } from '../../shared/language';
 import { HttpClientService } from '../../services/http-client.service';
 import { SpinnerService } from '../../services/spinner.service';
@@ -11,13 +10,14 @@ import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { StaticHelper } from 'src/app/shared/static-helper';
+import { Constants } from '../../shared/constants';
 
 declare var $;
 
 @Component({
     selector: 'app-contact-us',
     templateUrl: './contact-us.component.html',
-    styleUrls: ['./contact-us.component.css']
+    styleUrls: []
 })
 export class ContactUsComponent implements OnInit {
 
@@ -32,12 +32,17 @@ export class ContactUsComponent implements OnInit {
     submitRequestResposneClass: string;
     invalidEmail: boolean;
     diableSubmitButton: boolean;
+    constants: Constants;
 
-    constructor(private formBuilder: FormBuilder, private http: HttpClientService,
-        private spinner: SpinnerService, private router: Router, private globals: GlobalsService) {
+    constructor(private formBuilder: FormBuilder, 
+        private http: HttpClientService,
+        private spinner: SpinnerService, 
+        private router: Router, 
+        public globals: GlobalsService) {
     }
 
     ngOnInit() {
+        this.constants = this.globals.constants;
         this.lang = this.globals.lang;
         this.showsubmitResponse = false;
         this.submitResponseMessage = "";
@@ -141,7 +146,7 @@ export class ContactUsComponent implements OnInit {
         let res = new mdCallResponse();
         //var response = this.http.post(this.http.endpoints.postContactUs, formData);
         this.spinner.show();
-        this.http.post<mdCallResponse>(Constants.EndPoints.PostContactUs, formData).subscribe((data) => {
+        this.http.post<mdCallResponse>(this.constants.EndPoints.PostContactUs, formData).subscribe((data) => {
             res = data;
         }, (error) => {
             console.log(error);
@@ -162,7 +167,7 @@ export class ContactUsComponent implements OnInit {
                 // this.submitRequestResposneClass = "";
                 // this.submitResponseMessage = "";
                 this.router.navigateByUrl('');
-            }, Constants.ResponseMessageTimeout * 1000);
+            }, this.constants.ResponseMessageTimeout * 1000);
         });
     }
 

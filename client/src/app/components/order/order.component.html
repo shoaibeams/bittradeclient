@@ -11,7 +11,7 @@
                     <div class="col-md-6">
                         <div class="tabs_das">
                             <h3>{{lang.AvailableBalance}}<span [innerHTML]="buyBalance"></span></h3>
-                            <form [formGroup]="bform" (ngSubmit)="onSubmit(const.Order.Action.buy)">
+                            <form [formGroup]="bform" (ngSubmit)="onSubmit(constants.Order.Action.buy)">
                                 <div class="input_elment">
                                     <label [innerHTML]="lang.Price"></label>
                                     <input (input)="priceAmountKeyup(bf)" type="number" min="0" class="form-control"
@@ -40,7 +40,7 @@
                                     <span [innerHTML]="limitBuyTotalAmount"></span>
                                 </div>
                                 <button class="buy_bt">
-                                    <img src="src/assets/images/buy-icon.png" style="width:20px; margin-right:10px;"
+                                    <img src="assets/images/buy-icon.png" style="width:20px; margin-right:10px;"
                                         alt="lang.Buy">
                                     <span [innerHTML]="lang.Buy"></span>
                                 </button>
@@ -50,7 +50,7 @@
                     <div class="col-md-6">
                         <div class="tabs_das">
                             <h3>{{lang.AvailableBalance}}<span [innerHTML]="sellBalance"></span></h3>
-                            <form [formGroup]="sform" (ngSubmit)="onSubmit(const.Order.Action.sell)">
+                            <form [formGroup]="sform" (ngSubmit)="onSubmit(constants.Order.Action.sell)">
                                 <div class="input_elment">
                                     <label [innerHTML]="lang.Price"></label>
                                     <input (input)=priceAmountKeyup(sf) type="number" min="0" [step]="priceStep" class="form-control"
@@ -78,7 +78,7 @@
                                     <label [innerHTML]="lang.Total"></label>
                                     <span [innerHTML]="limitSellTotalAmount"></span>
                                 </div>
-                                <button class="buy_bt bt_dark"><img src="src/assets/images/sell-icon.png" style="width:20px; margin-right:5px;"
+                                <button class="buy_bt bt_dark"><img src="assets/images/sell-icon.png" style="width:20px; margin-right:5px;"
                                         alt="lang.Sell"> <span [innerHTML]="lang.Sell"></span></button>
                             </form>
                         </div>
@@ -104,7 +104,7 @@
                                 <div class="to_amount">
                                     <label>Total</label>
                                     <span>0.0000000BTC</span> </div>
-                                <button type="button" class="buy_bt bt_dark"><img src="src/assets/images/sell-icon.png"
+                                <button type="button" class="buy_bt bt_dark"><img src="assets/images/sell-icon.png"
                                         style="width:20px; margin-right:5px;" alt="img"> Buy</button>
                             </form>
                         </div>

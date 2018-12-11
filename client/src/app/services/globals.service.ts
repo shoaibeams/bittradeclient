@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { LanguageBase } from '../shared/language';
+import { Constants } from '../shared/constants';
 
 @Injectable()
 
 export class GlobalsService {
+    public constants: Constants;
     public ip:string = "";
     public username:string = "";
     public isLoggedIn = false;
@@ -24,6 +26,7 @@ export class GlobalsService {
         }
     }
     constructor() {
+        this.constants = Constants.Instance;
     }
 
 }

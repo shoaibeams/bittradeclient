@@ -35,15 +35,16 @@ export class SignUpMetaData {
     public static passwordMaxLength: number = 32;
     public static passwordMinLength: number = 8;
     public static companyNameMaxLength: number = 50;
-    public static userNameRegex: string = Constants.Regex.MustStartWithSmallLetter + 
-                                        Constants.Regex.MustBeAlphaNumericSmallLetters + 
-                                        StaticHelper.formatString(Constants.Regex.RangeLength, SignUpMetaData.userNameMinLength, SignUpMetaData.userNameMaxLength); 
-                                        // `(?=^[a-z]+)(?=^[a-z0-9_]+$)(?=^.{${SignUpMetaData.userNameMinLength},${SignUpMetaData.userNameMaxLength}}$)`;
-    public static passwordRegex: string = Constants.Regex.MustContainSmallLetter +
-                                        Constants.Regex.MustContainCapitalLetter +
-                                        Constants.Regex.MustContainNumber +
-                                        Constants.Regex.MustContainSpecialChar +
-                                        StaticHelper.formatString(Constants.Regex.RangeLength, SignUpMetaData.passwordMinLength, SignUpMetaData.passwordMaxLength);
-                                        //`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=^.{${SignUpMetaData.passwordMinLength},${SignUpMetaData.passwordMaxLength}}$)(?=^\\S*$)`;
-    
+    public static userNameRegex: string = Constants.Instance.Regex.MustStartWithSmallLetter +
+        Constants.Instance.Regex.MustBeAlphaNumericSmallLetters +
+        StaticHelper.formatString(Constants.Instance.Regex.RangeLength, SignUpMetaData.userNameMinLength, SignUpMetaData.userNameMaxLength);
+    // `(?=^[a-z]+)(?=^[a-z0-9_]+$)(?=^.{${SignUpMetaData.userNameMinLength},${SignUpMetaData.userNameMaxLength}}$)`;
+    public static passwordRegex: string =
+        Constants.Instance.Regex.MustContainSmallLetter +
+        Constants.Instance.Regex.MustContainCapitalLetter +
+        Constants.Instance.Regex.MustContainNumber +
+        Constants.Instance.Regex.MustContainSpecialChar +
+        StaticHelper.formatString(Constants.Instance.Regex.RangeLength, SignUpMetaData.passwordMinLength, SignUpMetaData.passwordMaxLength);
+    //`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=^.{${SignUpMetaData.passwordMinLength},${SignUpMetaData.passwordMaxLength}}$)(?=^\\S*$)`;
+
 }

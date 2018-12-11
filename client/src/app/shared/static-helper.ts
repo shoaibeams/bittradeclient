@@ -4,17 +4,23 @@ import { Router } from "@angular/router";
 export class StaticHelper {
 
     static navigateToLogin(router: Router) {
-        router.navigateByUrl(Constants.RoutePaths.Login +
-            "?" + Constants.QueryParams.redirectURI + "=" + window.location.href,
+        let cons = Constants.Instance;
+        let redirectURI =window.location.href;
+        if(window.location.href.indexOf(cons.RoutePaths.Login) > -1)
+        {
+            redirectURI = '';
+        }
+        router.navigateByUrl(cons.RoutePaths.Login +
+            "?" + cons.QueryParams.redirectURI + "=" + redirectURI,
             { skipLocationChange: false });
     }
 
     static floatAmount(amount: number): number {
-        return amount * Constants.Float;
+        return amount * Constants.Instance.Float;
     }
 
     static unfloatAmount(amount: number): number {
-        return amount / Constants.Float;
+        return amount / Constants.Instance.Float;
     }
 
     static bestScale(amount: number): string
@@ -45,9 +51,9 @@ export class StaticHelper {
       }
 
     static minScale(scale: number): number {
-        if(scale > Constants.MaxScaleToAvoidScientificNotation)
+        if(scale > Constants.Instance.MaxScaleToAvoidScientificNotation)
         {
-            return Constants.MaxScaleToAvoidScientificNotation;
+            return Constants.Instance.MaxScaleToAvoidScientificNotation;
         }
         // else
         // if (scale < Constants.MinScaleForClientInput) {

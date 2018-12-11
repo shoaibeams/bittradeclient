@@ -2,13 +2,13 @@ import { Component, OnInit, Input, EventEmitter, SimpleChanges } from '@angular/
 import { LoggerService } from 'src/app/services/logger.service';
 import { LanguageBase } from 'src/app/shared/language';
 import { GlobalsService } from 'src/app/services/globals.service';
-import { Constants } from 'src/app/shared/constants';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { mdOrder } from 'src/app/models/order';
 import { mdCallResponse } from 'src/app/models/call-response';
 import { HttpClientService } from 'src/app/services/http-client.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { StaticHelper } from 'src/app/shared/static-helper';
+import { Constants } from 'src/app/shared/constants';
 
 @Component({
     selector: 'app-trade-order',
@@ -27,7 +27,6 @@ export class OrderComponent implements OnInit {
     sform: FormGroup;
     model: mdOrder;
     sellTotalAmount: string;
-    const: Constants;
     alertClass: string;
     alertMessage: string;
     displayAlert: boolean;
@@ -39,16 +38,21 @@ export class OrderComponent implements OnInit {
     limitSellFeeAmount: string;
     priceStep: number;
     amountStep: number;
-    constructor(private log: LoggerService, private globals: GlobalsService, private formBuilder: FormBuilder,
-        private http: HttpClientService, private spinner: SpinnerService) {
+    submitted: boolean;
+    constants: Constants;
+    constructor(private log: LoggerService, 
+        public globals: GlobalsService, 
+        private formBuilder: FormBuilder,
+        private http: HttpClientService, 
+        private spinner: SpinnerService) {
 
     }
 
     ngOnInit() {
+        this.constants = this.globals.constants;
         this.displayAlert = false;
         this.alertClass = "";
         this.alertMessage = "";
-        this.const = Constants;
         this.lang = this.globals.lang;
         this.availableBalance;
         this.model = new mdOrder(true);
@@ -88,7 +92,7 @@ export class OrderComponent implements OnInit {
         
         if (this.currencyPair.id) {
             let res: mdCallResponse = new mdCallResponse();
-            this.http.post<mdCallResponse>(Constants.EndPoints.PostPairDetails, this.currencyPair.id).subscribe((data) => {
+            this.http.post<mdCallResponse>(this.constants.EndPoints.PostPairDetails, this.currencyPair.id).subscribe((data) => {
                 res = data;
             }, (error) => {
                 this.log.debug(error);
@@ -105,9 +109,9 @@ export class OrderComponent implements OnInit {
     }
 
     updateBalances() {
-        this.sellBalance = (this.currencyPair.fc_available_balance / Constants.Float)
+        this.sellBalance = (this.currencyPair.fc_available_balance / this.constants.Float)
             .toFixed(this.currencyPair.fc_scale) + " " + this.currencyPair.fc_name;
-        this.buyBalance = (this.currencyPair.tc_available_balance / Constants.Float)
+        this.buyBalance = (this.currencyPair.tc_available_balance / this.constants.Float)
             .toFixed(this.currencyPair.tc_scale) + " " + this.currencyPair.tc_name;
         this.limitBuyFeeAmount = StaticHelper.bestScale(StaticHelper.unfloatAmount(this.currencyPair.buy_fee)) + "%";
         this.limitSellFeeAmount = StaticHelper.bestScale(StaticHelper.unfloatAmount(this.currencyPair.sell_fee)) + "%";
@@ -118,19 +122,19 @@ export class OrderComponent implements OnInit {
     onSubmit(action: number) {
         //validate form locally
         let formData: mdOrder;
-        if (action == Constants.Order.Action.buy) {
+        if (action == this.constants.Order.Action.buy) {
             formData = this.bform.value;
         }
         else
-            if (action == Constants.Order.Action.sell) {
+            if (action == this.constants.Order.Action.sell) {
                 formData = this.sform.value;
             }
         formData.action = action;
         formData.currencyPair = this.currencyPair.id;
-        formData.type = Constants.Order.Type.limit;
+        formData.type = this.constants.Order.Type.limit;
         let res: mdCallResponse = new mdCallResponse();
         this.spinner.show();
-        this.http.post<mdCallResponse>(Constants.EndPoints.PostOrder, formData).subscribe((data) => {
+        this.http.post<mdCallResponse>(this.constants.EndPoints.PostOrder, formData).subscribe((data) => {
             res = data;
         },
             (error) => {
@@ -141,12 +145,12 @@ export class OrderComponent implements OnInit {
                 this.log.debug(res);
                 this.displayAlertBox(res.isSuccess, res.message);
                 this.loadBalanceAndFee();
-                if (action == Constants.Order.Action.buy) {
+                if (action == this.constants.Order.Action.buy) {
                     this.bf.amount.setValue(0);
                     this.priceAmountKeyup(this.bf);
                 }
                 else
-                    if (action == Constants.Order.Action.sell) {
+                    if (action == this.constants.Order.Action.sell) {
                         this.sf.amount.setValue(0);
                         this.priceAmountKeyup(this.sf);
                     }
@@ -168,7 +172,7 @@ export class OrderComponent implements OnInit {
         this.displayAlert = true;
         setTimeout(() => {
             this.displayAlert = false;
-        }, Constants.ResponseMessageTimeout * 1000);
+        }, this.constants.ResponseMessageTimeout * 1000);
     }
 
     priceAmountKeyup(f) {

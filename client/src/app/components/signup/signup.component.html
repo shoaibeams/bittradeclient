@@ -14,12 +14,12 @@
             <ul class="nav nav-tabs">
               <li class="active">
                 <a data-toggle="tab" href="#Individual" (click)="signupType(1)">
-                  <img src="src/assets/images/u-icon.png" alt="Individual"> Individual
+                  <img src="assets/images/u-icon.png" alt="Individual"> Individual
                 </a>
               </li>
               <li>
                 <a data-toggle="tab" href="#Individual" (click)="signupType(2)">
-                  <img src="src/assets/images/b-icon.png" alt="Business"> Business <i></i>
+                  <img src="assets/images/b-icon.png" alt="Business"> Business <i></i>
                 </a>
               </li>
             </ul>
@@ -105,7 +105,7 @@
                       </div>
                     </div>
 
-                    <div class="col-sm-12" *ngIf="!this.globals.isDev">
+                    <div class="col-sm-12" *ngIf="!globals.isDev">
                       <div class="form-group">
                         <re-captcha class="no-form-control" formControlName="personal_capitcha" (scriptLoad)="onScriptLoad()" (scriptError)="onScriptError()"
                         [ngClass]="{ 'is-invalid': submitted && pf.personal_capitcha.status != 'VALID' }">
@@ -136,7 +136,7 @@
           </div>
           <div class="pstylish color-white">
               <span [innerHTML]="lang.AlreadyHaveAnAccount"></span>
-              <a class="hyperlink-color" [routerLink]="'/' + const.RoutePaths.Login" [innerHTML]="lang.Login"></a> 
+              <a class="hyperlink-color" [routerLink]="'/' + constants.RoutePaths.Login" [innerHTML]="lang.Login"></a> 
             </div>
         </div>
 

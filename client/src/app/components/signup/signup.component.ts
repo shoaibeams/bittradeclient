@@ -1,27 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidationErrors, FormControl, AbstractControl } from '@angular/forms';
-import { mdSignUp, SignUpMetaData } from '../../models/sign-up'
-import { Constants } from '../../shared/constants'
-import { LanguageBase } from '../../shared/language'
+import { mdSignUp, SignUpMetaData } from '../../models/sign-up';
+import { LanguageBase } from '../../shared/language';
 import { HttpClientService } from '../../services/http-client.service';
 import { SpinnerService } from '../../services/spinner.service';
-import * as EmailValidator from 'email-validator'
+import * as EmailValidator from 'email-validator';
 import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router'
 import { mdCallResponse } from '../../models/call-response';
 import { LoggerService } from '../../services/logger.service';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { StaticHelper } from 'src/app/shared/static-helper';
+import { Constants } from 'src/app/shared/constants';
 
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
-    styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
     // constants: Constants = new Constants();
     lang: LanguageBase;
-    const:Constants;
     frmPersonal: mdSignUp;
     personalForm: FormGroup;
     submitted = false;
@@ -33,15 +31,20 @@ export class SignupComponent implements OnInit {
     diableSubmitButton: boolean;
     passwordDidNotMatch: boolean;
     account_type: number;//1 for inidividual 2 for business
+    constants: Constants;
 
 
-    constructor(private formBuilder: FormBuilder, private http: HttpClientService, private spinner: SpinnerService, 
-        private router: Router, private log: LoggerService, private globals:GlobalsService) {
+    constructor(private formBuilder: FormBuilder, 
+        private http: HttpClientService, 
+        private spinner: SpinnerService, 
+        private router: Router, 
+        private log: LoggerService, 
+        public globals:GlobalsService) {
     }
 
     ngOnInit() {
+        this.constants = this.globals.constants;
         this.lang = this.globals.lang;
-        this.const = Constants;
         this.account_type = 1;
         this.passwordDidNotMatch = true;
         this.showsubmitResponse = false;
@@ -218,7 +221,7 @@ export class SignupComponent implements OnInit {
 
         let res = new mdCallResponse();
         this.spinner.show();
-        this.http.post<mdCallResponse>(Constants.EndPoints.PostAccountRegister, formData).subscribe((data) => {
+        this.http.post<mdCallResponse>(this.constants.EndPoints.PostAccountRegister, formData).subscribe((data) => {
             this.log.debug(data);
             res = data;
         },
@@ -240,9 +243,9 @@ export class SignupComponent implements OnInit {
                         var newFormData = {
                             username: formData.email,
                             password: formData.password,
-                            grant_type: Constants.GrantTypes.Password,
+                            grant_type: this.constants.GrantTypes.Password,
                         }
-                        this.http.post<mdCallResponse>(Constants.EndPoints.PostAuthLogin, newFormData).subscribe((data) => {
+                        this.http.post<mdCallResponse>(this.constants.EndPoints.PostAuthLogin, newFormData).subscribe((data) => {
                             res = data;
                         },
                             (error) => {
@@ -256,11 +259,11 @@ export class SignupComponent implements OnInit {
                                     if (res.isSuccess) {
                                         //logged in successfully, now send email
                                         //navigate to /emailConfirmation we'll send email from there
-                                        window.location.href = Constants.RoutePaths.EmailConfirmation + "?" + Constants.QueryParams.email + "=em";//we just need to set something in this param if we want to send email on component load
+                                        window.location.replace(this.constants.RoutePaths.EmailConfirmation + "?" + this.constants.QueryParams.email + "=em");//we just need to set something in this param if we want to send email on component load
                                     }
                                     else {
                                         this.hideSpinnerAndShowError();
-                                        this.router.navigateByUrl(Constants.RoutePaths.Login, { skipLocationChange: false });
+                                        this.router.navigateByUrl(this.constants.RoutePaths.Login, { skipLocationChange: false });
                                     }
                                 }
                                 else {

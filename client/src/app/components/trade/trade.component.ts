@@ -1,11 +1,11 @@
 import { Inject, Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClientService } from 'src/app/services/http-client.service';
 import { mdCallResponse } from 'src/app/models/call-response';
-import { Constants } from 'src/app/shared/constants';
 import { LoggerService } from 'src/app/services/logger.service';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { StaticHelper } from 'src/app/shared/static-helper';
 import { Router } from '@angular/router';
+import { Constants } from 'src/app/shared/constants';
 
 @Component({
     selector: 'app-trade',
@@ -17,12 +17,16 @@ export class TradeComponent implements OnInit {
     currencyPairs: any[];
     defaultCurrencyPair: number;
     selectedCurrencyPair: any = {};
-    constructor(private http: HttpClientService, private log: LoggerService, private globals: GlobalsService,
+    constants:Constants;
+    constructor(private http: HttpClientService, 
+        private log: LoggerService, 
+        public globals: GlobalsService,
         private router: Router) {
 
     }
 
     ngOnInit() {
+        this.constants = this.globals.constants;
         if(!this.globals.isLoggedIn)
         {
             StaticHelper.navigateToLogin(this.router);
@@ -41,7 +45,7 @@ export class TradeComponent implements OnInit {
 
     loadCurrencyPairs() {
         let res: mdCallResponse = new mdCallResponse();
-        this.http.post<mdCallResponse>(Constants.EndPoints.PostTradeCurrencyPairs, {}).subscribe((data) => {
+        this.http.post<mdCallResponse>(this.constants.EndPoints.PostTradeCurrencyPairs, {}).subscribe((data) => {
             res = data;
         }, error => {
             this.log.debug(error);

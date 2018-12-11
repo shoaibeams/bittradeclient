@@ -8,7 +8,7 @@ import { NgxNotificationService } from 'ngx-notification';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LocalStorage, SharedStorage } from 'ngx-store';
 import { LanguageBase } from 'src/app/shared/language';
-import { Constants } from 'src/app/shared/constants';
+// import { Constants } from 'src/app/shared/constants';
 import { mdSignUp, SignUpMetaData } from 'src/app/models/sign-up';
 import { HttpClientService } from 'src/app/services/http-client.service';
 import { LoggerService } from 'src/app/services/logger.service';
@@ -16,16 +16,15 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 import { mdCallResponse } from 'src/app/models/call-response';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { StaticHelper } from 'src/app/shared/static-helper';
+import { Constants } from '../../shared/constants';
 
 declare var $: any;
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
     lang: LanguageBase;
-    const: Constants;
     model: mdSignUp;
     form: FormGroup;
     submitted = false;
@@ -35,21 +34,26 @@ export class LoginComponent implements OnInit {
     submitRequestResposneClass: string;
     diableSubmitButton: boolean;
     redirectURI: string;
+    constants: Constants;
 
-
-    constructor(private formBuilder: FormBuilder, private http: HttpClientService, private spinner: SpinnerService,
-        private router: Router, private log: LoggerService, private route: ActivatedRoute, private globals: GlobalsService) {
+    constructor(private formBuilder: FormBuilder,
+                private http: HttpClientService, 
+                private spinner: SpinnerService,
+                private router: Router, 
+                private log: LoggerService, 
+                private route: ActivatedRoute, 
+                public globals: GlobalsService) {
     }
 
     ngOnInit() {
+        this.constants = this.globals.constants;
         this.lang = this.globals.lang;
         this.route.queryParams.subscribe((params: ParamMap) => {
-            this.redirectURI = params[Constants.QueryParams.redirectURI];
+            this.redirectURI = params[this.constants.QueryParams.redirectURI];
         });
         if (!this.redirectURI) {
-            this.redirectURI = Constants.RoutePaths.Trade;
+            this.redirectURI = this.constants.RoutePaths.Trade;
         }
-        this.const = Constants;
         this.showsubmitResponse = false;
         this.submitResponseMessage = "";
         this.submitRequestResposneClass = "";
@@ -70,7 +74,7 @@ export class LoginComponent implements OnInit {
                     Validators.maxLength(SignUpMetaData.passwordMaxLength)
                 ])
             ],
-            captcha: !this.globals.isDev ? null : new FormControl(false, null)
+            captcha: this.globals.isDev ? null : new FormControl(null, Validators.required)
         });
         this.errors = {
             usernameRequired: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.UserName),
@@ -94,7 +98,6 @@ export class LoginComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
         if (this.form.controls.captcha.status != "VALID" && !this.globals.isDev) {
-            return;
         }
         // stop here if form is invalid
         if (this.form.invalid) {
@@ -108,7 +111,7 @@ export class LoginComponent implements OnInit {
 
         let res = new mdCallResponse();
         this.spinner.show();
-        this.http.post<mdCallResponse>(Constants.EndPoints.PostAuthLogin, formData).subscribe((data) => {
+        this.http.post<mdCallResponse>(this.constants.EndPoints.PostAuthLogin, formData).subscribe((data) => {
             this.log.debug(data);
             res = data;
         },
@@ -127,14 +130,15 @@ export class LoginComponent implements OnInit {
                     if (res.isSuccess) {
                         //signup completed, now sign in
                         if (res.extras) {
-                            if (res.extras.status == Constants.RecordStatus.PendingVerification) {
-                                let emailConfirmationRout = "<a href='" + Constants.RoutePaths.EmailConfirmation + "?" + Constants.QueryParams.email + "=em'>" + this.lang.Here + "</a>"
+                            if (res.extras.status == this.constants.RecordStatus.PendingVerification) {
+                                let emailConfirmationRout = "<a href='" + this.constants.RoutePaths.EmailConfirmation + "?" + this.constants.QueryParams.email + "=em'>" + this.lang.Here + "</a>"
                                 res.message = StaticHelper.formatString(this.lang.EmailVerificationRequired, emailConfirmationRout);
 
                                 this.hideSpinnerAndShowError(StaticHelper.bulletList(res.message.split("\n")));
                             }
                             else {
-                                window.location.href = this.redirectURI;
+                                this.globals.isLoggedIn = true;
+                                this.router.navigateByUrl(this.redirectURI, {skipLocationChange: false});
                             }
                         }
                     }

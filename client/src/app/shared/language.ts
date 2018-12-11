@@ -1,4 +1,4 @@
-import { Constants } from "./constants";
+import { Constants} from "../shared//constants";
 
 export class LanguageBase {
     NameRequired: string;
@@ -162,7 +162,7 @@ export class LanguageBase {
             return new LangENUS();
         }
         switch (lang) {
-            case Constants.LanguageKey.ENUS:
+            case Constants.Instance.LanguageKey.ENUS:
                 return new LangENUS();
             default:
                 return new LangENUS();
@@ -313,7 +313,7 @@ below to re-send`;
     MinTierRequriedForTransaction = "Minimum tier {0} is required for a transaction";
     NoRecordFound = "No record found";
     OrderPlacedSuccessfully = "Order placed successfully";
-    LangKey = Constants.LanguageKey.ENUS;
+    LangKey = Constants.Instance.LanguageKey.ENUS;
     CouldNotBeginTransaction = "Could not begin trnsaction";
     CouldNotCompleteTransaction = "Could not complete transaction";
     CouldNotExecuteQuery = "Could not execute Query";

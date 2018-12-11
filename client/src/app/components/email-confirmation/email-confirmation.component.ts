@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { LanguageBase } from '../../shared/language';
-import { Constants } from '../../shared/constants';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { mdCallResponse } from 'src/app/models/call-response';
 import { HttpClientService } from 'src/app/services/http-client.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { ConfirmationBoxService } from 'src/app/services/confirmation-box.service';
 import { GlobalsService } from 'src/app/services/globals.service';
+import { Constants } from '../../shared/constants';
 
 @Component({
     selector: 'app-email-confirmation',
@@ -20,13 +20,19 @@ export class EmailConfirmationComponent implements OnInit {
     verificationEmailDetail: string;
     verificationEmailHeader: string = "";
     disableResendEmailButton: boolean;
-    constructor(private router: Router, private route: ActivatedRoute, private spinner: SpinnerService,
-        private http: HttpClientService, private log: LoggerService, private alertBox: ConfirmationBoxService,
-        private globals: GlobalsService) {
+    public constants: Constants;
+    constructor(private router: Router, 
+        private route: ActivatedRoute, 
+        private spinner: SpinnerService,
+        private http: HttpClientService, 
+        private log: LoggerService, 
+        private alertBox: ConfirmationBoxService,
+        private globals: GlobalsService,) {
         spinner.show();
     }
 
     ngOnInit() {
+        this.constants = this.globals.constants;
         this.disableResendEmailButton = false;
         this.lang = this.globals.lang;
         this.verificationEmailDetail = this.lang.VerificationEmailSentDetail.replace(/\n/g, '<br />');
@@ -34,7 +40,7 @@ export class EmailConfirmationComponent implements OnInit {
         let email: string = "";
         this.route.queryParams
             .subscribe((params: ParamMap) => {
-                email = params[Constants.QueryParams.email];
+                email = params[this.constants.QueryParams.email];
             });
         if (!email) {
             this.spinner.hide();
@@ -47,7 +53,7 @@ export class EmailConfirmationComponent implements OnInit {
     sendSignupVerificatinEmail(ev) {
         this.spinner.show();
         let res: mdCallResponse = new mdCallResponse();
-        this.http.get<mdCallResponse>(Constants.EndPoints.GetSendSignUpVerificationEmail).subscribe((data) => {
+        this.http.get<mdCallResponse>(this.constants.EndPoints.GetSendSignUpVerificationEmail).subscribe((data) => {
             res = data;
         }, error => {
             this.spinner.hide();

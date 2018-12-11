@@ -1,12 +1,28 @@
 export class Constants{
-    static BaseURL:string = "http://localhost:1337/";
-    static ResponseMessageTimeout = 4;//in seconds
-    static RecaptchaSiteKey = "6Lfab3YUAAAAANbb2Lp1WYVMiwyUSCLyeZkbw5HK";
-    static MaxScale = 10;
-    static Float = Math.pow(10, Constants.MaxScale);
-    static MaxScaleToAvoidScientificNotation = 6;
-    static MinScaleForClientInput = 2;
-    public static Regex = {
+    private static _instance: Constants;
+    public static getInstance()
+    {
+        if(!this._instance)
+        {
+            this._instance = new Constants();
+        }
+        return this._instance;
+    }
+    private constructor()
+    {
+
+    }
+
+    static get Instance():Constants { return this.getInstance(); }
+
+    BaseURL:string = "https://api.bitvelocity.io/";//"http://localhost:1337/";
+    ResponseMessageTimeout = 4;//in seconds
+    RecaptchaSiteKey = StaticConstatns.RecaptchaSiteKey;
+    MaxScale = 10;
+    Float = Math.pow(10, this.MaxScale);
+    MaxScaleToAvoidScientificNotation = 6;
+    MinScaleForClientInput = 2;
+    public Regex = {
         MustStartWithSmallLetter: "(?=^[a-z]+)",
         MustStartWithCapitalLetter: "(?=^[A-Z]+)",
         MustStartWithLetter: "(?=^[a-zA-Z]+)",
@@ -21,7 +37,7 @@ export class Constants{
         MustContainSpecialChar: '(?=.*[!@#\$%\^&\*_])',
         CannotHaveSpace: '(?=^\\S*$)',
     }
-    public static EndPoints = {
+    public EndPoints = {
         PostContactUs: "contactUs/contactUs",
         PostAccountRegister: "account/register",
         PostAuthLogin: "auth/login",
@@ -34,34 +50,35 @@ export class Constants{
         PostPairDetails: "trade/pairDetails",
         PostOrderHistory: "trade/orderHistory",
     }
-    public static GrantTypes = {
+    public GrantTypes = {
         Password: "password",
         RefreshToken: "refresh_token",
     }
-    public static LanguageKey = {
+    public LanguageKey = {
         ENUS: 'en-us',
     }
-    public static RoutePaths = {
-        Login: "account/login",
-        Home: "",
-        Trade: "trade",
-        SignUp: "account/signUp",
-        ContactUs: "help/contactUs",
-        EmailConfirmation: "account/emailConfirmation",
-        AccountVerify: "account/verify",
-        AccountForgotPassword: "account/forgotPassword",
-    }
-    public static QueryParams = {
+    public RoutePaths = StaticConstatns.RoutePaths;
+    // {
+    //     Login: StaticConstatns.RoutePaths.Login,
+    //     Home: StaticConstatns.RoutePaths.Home,
+    //     Trade: StaticConstatns.RoutePaths.Trade,
+    //     SignUp: StaticConstatns.RoutePaths.SignUp,
+    //     ContactUs: StaticConstatns.RoutePaths.ContactUs,
+    //     EmailConfirmation: StaticConstatns.RoutePaths.EmailConfirmation,
+    //     AccountVerify: StaticConstatns.RoutePaths.AccountVerify,
+    //     AccountForgotPassword: StaticConstatns.RoutePaths.AccountForgotPassword,
+    // }
+    public QueryParams = {
         email: "email",
         redirectURI: "redirectURI",
         key: "key",
     }
-    public static RecordStatus = {
+    public RecordStatus = {
         Active: 1,
         Deleted: 2,
         PendingVerification: 3,
     }
-    public static Order = {
+    public Order = {
         Type: {
             limit: 1,
             market: 2,
@@ -77,4 +94,18 @@ export class Constants{
             completed: 4,
         }
     }
+}
+
+export class StaticConstatns {
+    public static RoutePaths = {
+        Login: "account/login",
+        Home: "",
+        Trade: "trade",
+        SignUp: "account/signUp",
+        ContactUs: "help/contactUs",
+        EmailConfirmation: "account/emailConfirmation",
+        AccountVerify: "account/verify",
+        AccountForgotPassword: "account/forgotPassword",
+    }
+    public static RecaptchaSiteKey = "6Lfab3YUAAAAANbb2Lp1WYVMiwyUSCLyeZkbw5HK";
 }

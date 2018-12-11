@@ -10,7 +10,7 @@
                         <ul class=" nav nav-tabs" style="border:none;">
                             <li class="active">
                                 <a data-toggle="tab">
-                                    <img src="src/assets/images/u-icon.png" alt="Individual">
+                                    <img src="assets/images/u-icon.png" alt="Individual">
                                     <span [innerHTML]="lang.Credentials"></span>
                                 </a>
                             </li>
@@ -62,11 +62,11 @@
                         </div>
                     </div>
                     <div class="col-sm-12 pstylish color-white">
-                        <a class="f-fl hyperlink-color" [routerLink]="'/' + const.RoutePaths.AccountForgotPassword"
+                        <a class="f-fl hyperlink-color" [routerLink]="'/' + constants.RoutePaths.AccountForgotPassword"
                             [innerHTML]="lang.ForgotPassword"></a>
                         <span class="f-fr">
                             <span [innerHTML]="lang.NotJoinedBitvelocityYet"></span>
-                            <a class="hyperlink-color" [routerLink]="'/' + const.RoutePaths.SignUp" [innerHTML]="lang.JoinNow"></a>
+                            <a class="hyperlink-color" [routerLink]="'/' + constants.RoutePaths.SignUp" [innerHTML]="lang.JoinNow"></a>
                         </span>
                     </div>
                 </div>
