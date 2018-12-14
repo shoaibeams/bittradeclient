@@ -15,34 +15,52 @@ import { NgxNotificationModule } from 'ngx-notification';
 // import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { WebStorageModule } from 'ngx-store';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {
+    NbAlertModule,
+    NbButtonModule,
+    NbCardModule,
+    NbCheckboxModule,
+    NbInputModule,
+    NbLayoutModule,
+    NbSpinnerModule,
+    NbDatepickerModule,
+    NbThemeModule,
+} from '@nebular/theme';
 
 //components
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
-import { HomeComponent } from './components/home/home.component';
-import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
-import { ContactUsComponent } from './components/contact-us/contact-us.component';
-import { MainHeaderComponent } from './components/main-header/main-header.component';
-import { EmailConfirmationComponent } from './components/email-confirmation/email-confirmation.component';
-import { AccountVerificationComponent } from './components/account-verification/account-verification.component';
-import { TradeComponent } from './components/trade/trade.component';
-import { MainFooterComponent } from './components/main-footer/main-footer.component';
-import { OrderComponent } from './components/order/order.component';
-import { OrderHistoryComponent } from './components/order-history/order-history.compononent';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { HomeComponent } from './home/home.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { MainHeaderComponent } from './main-header/main-header.component';
+import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
+import { AccountVerificationComponent } from './account-verification/account-verification.component';
+import { TradeComponent } from './trade/trade.component';
+import { MainFooterComponent } from './main-footer/main-footer.component';
+import { OrderComponent } from './order/order.component';
+import { OrderHistoryComponent } from './order-history/order-history.compononent';
+import { MyComponent } from './MyComponent/MyComponent';
+// import { ConsultingComponent } from './consulting/consulting.component';
+// import { CenterComponent } from './consulting/center.component';
 
 //services
-import { HttpClientService } from './services/http-client.service';
-import { SpinnerService } from './services/spinner.service';
-import { LoggerService } from './services/logger.service'
-import { ConfirmationBoxService } from './services/confirmation-box.service';
-import { GlobalsService } from './services/globals.service';
+import { HttpClientService } from '../services/http-client.service';
+import { SpinnerService } from '../services/spinner.service';
+import { LoggerService } from '../services/logger.service'
+import { ConfirmationBoxService } from '../services/confirmation-box.service';
+import { GlobalsService } from '../services/globals.service';
 
 //directives
-import { NumberOnlyDirective } from './directives/number-only.directive';
+import { NumberOnlyDirective } from '../directives/number-only.directive';
+import { NumberdOnlyDirective } from '../directives/numberd-only.directive';
+
+//modules
+import { AppRoutingModule } from './app-routing.module';
 
 //misc
-import { Constants, StaticConstatns } from './shared/constants';
+import { Constants, StaticConstatns } from '../shared/constants';
 
 const appRoutes: Routes = [
     {
@@ -83,7 +101,11 @@ const appRoutes: Routes = [
     {
         path: StaticConstatns.RoutePaths.Trade,
         component: TradeComponent,
-    }
+    },
+    // {
+    //     path: StaticConstatns.RoutePaths.Consulting,
+    //     component: ConsultingComponent,
+    // }
 
 ];
 @NgModule({
@@ -102,7 +124,11 @@ const appRoutes: Routes = [
         MainFooterComponent,
         OrderComponent,
         NumberOnlyDirective,
+        NumberdOnlyDirective,
         OrderHistoryComponent,
+        // ConsultingComponent,
+        // CenterComponent,
+        MyComponent,
     ],
     imports: [
         WebStorageModule,
@@ -118,6 +144,9 @@ const appRoutes: Routes = [
         BrowserAnimationsModule,
         RecaptchaFormsModule,
         NgxNotificationModule,
+        // ConsultingModule,
+        AppRoutingModule,
+        NbSpinnerModule
     ],
     providers: [
         HttpClientService,

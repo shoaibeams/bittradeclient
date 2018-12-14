@@ -5,9 +5,9 @@
 [type]="globals.spinnerConfig.main.type"></ngx-spinner>
 <!-- <perfect-scrollbar [config]="config"> -->
 <div *ngIf="checkedLogin" style="width:100%;min-height:100%;" class="page-wrap animated fadeIn">
-    <app-main-header></app-main-header>
+    <app-main-header *ngIf="showHeader"></app-main-header>
     <router-outlet>
     </router-outlet>
-    <app-main-footer></app-main-footer>
+    <app-main-footer *ngIf="showFooter"></app-main-footer>
 </div>
 <!-- </perfect-scrollbar> -->
