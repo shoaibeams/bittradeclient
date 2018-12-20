@@ -23,7 +23,6 @@ import {
     NbInputModule,
     NbLayoutModule,
     NbSpinnerModule,
-    NbDatepickerModule,
     NbThemeModule,
 } from '@nebular/theme';
 
@@ -42,6 +41,7 @@ import { MainFooterComponent } from './main-footer/main-footer.component';
 import { OrderComponent } from './order/order.component';
 import { OrderHistoryComponent } from './order-history/order-history.compononent';
 import { MyComponent } from './MyComponent/MyComponent';
+import { ChatComponent } from './chat/chat.component';
 // import { ConsultingComponent } from './consulting/consulting.component';
 // import { CenterComponent } from './consulting/center.component';
 
@@ -51,6 +51,7 @@ import { SpinnerService } from '../services/spinner.service';
 import { LoggerService } from '../services/logger.service'
 import { ConfirmationBoxService } from '../services/confirmation-box.service';
 import { GlobalsService } from '../services/globals.service';
+import { SocketService } from '../services/socket.service';
 
 //directives
 import { NumberOnlyDirective } from '../directives/number-only.directive';
@@ -102,6 +103,10 @@ const appRoutes: Routes = [
         path: StaticConstatns.RoutePaths.Trade,
         component: TradeComponent,
     },
+    {
+        path: 'chat',
+        component: ChatComponent,
+    },
     // {
     //     path: StaticConstatns.RoutePaths.Consulting,
     //     component: ConsultingComponent,
@@ -129,6 +134,7 @@ const appRoutes: Routes = [
         // ConsultingComponent,
         // CenterComponent,
         MyComponent,
+        ChatComponent,
     ],
     imports: [
         WebStorageModule,
@@ -146,7 +152,14 @@ const appRoutes: Routes = [
         NgxNotificationModule,
         // ConsultingModule,
         AppRoutingModule,
-        NbSpinnerModule
+        NbAlertModule,
+        NbButtonModule,
+        NbCardModule,
+        NbCheckboxModule,
+        NbInputModule,
+        NbLayoutModule,
+        NbSpinnerModule,
+        NbThemeModule,
     ],
     providers: [
         HttpClientService,
@@ -154,6 +167,7 @@ const appRoutes: Routes = [
         LoggerService,
         ConfirmationBoxService,
         GlobalsService,
+        SocketService,
         {
             provide: RECAPTCHA_SETTINGS,
             useValue: { siteKey: StaticConstatns.RecaptchaSiteKey } as RecaptchaSettings,

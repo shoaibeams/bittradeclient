@@ -45,7 +45,7 @@ export class TradeComponent implements OnInit {
 
     loadCurrencyPairs() {
         let res: mdCallResponse = new mdCallResponse();
-        this.http.post<mdCallResponse>(this.constants.EndPoints.PostTradeCurrencyPairs, {}).subscribe((data) => {
+        this.http.get<mdCallResponse>(this.constants.EndPoints.GetCurrenciesCurrencyPairs).subscribe((data) => {
             res = data;
         }, error => {
             this.log.debug(error);

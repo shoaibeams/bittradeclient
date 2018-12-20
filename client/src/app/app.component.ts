@@ -41,7 +41,7 @@ export class AppComponent {
         else {
             this.globals.isDev = false;
         }
-        this.globals.isDev = false;
+        // this.globals.isDev = this.globals.constants.IsDev;
 
         this.globals.spinnerConfig.main.bdColor = 'rgba(51, 51, 51, 0.8)';
         this.globals.spinnerConfig.main.size = 'medium';

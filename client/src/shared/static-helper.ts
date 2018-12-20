@@ -15,6 +15,33 @@ export class StaticHelper {
             { skipLocationChange: false });
     }
 
+    static roundNumber(num: number, scale: number): number {
+        if (scale > 0) {
+            let numS: string = StaticHelper.toFixedNSN(num).toString();
+            let splittedNumber = numS.split('.');
+            if (splittedNumber.length > 1) {
+                if (splittedNumber[1].length > scale) {
+                    let toRoundArray = splittedNumber[1].substr(0, scale + 1).split('');
+                    let toRoundLastDigit = Number(toRoundArray[toRoundArray.length - 1]);
+                    toRoundArray.pop();
+                    if (toRoundLastDigit >= 5) {
+                        toRoundArray[toRoundArray.length - 1] = (Number(toRoundArray[toRoundArray.length - 1]) + 1).toString()
+                    }
+                    return Number(splittedNumber[0] + "." + toRoundArray.join(""));
+                }
+                else {
+                    return num;
+                }
+            }
+            else {
+                return num;
+            }
+        }
+        else {
+            return Math.round(num);
+        }
+    }
+
     static floatAmount(amount: number): number {
         return amount * Constants.Instance.Float;
     }
@@ -119,6 +146,7 @@ export class StaticHelper {
 
         return theString;
     }
+
     static bulletList(array: string[], ...args): string// = function(...args) {
     {
         // The string containing the format items (e.g. "{0}")
@@ -135,4 +163,37 @@ export class StaticHelper {
         return response;
     }
     
+    static copyProp(fromObj: any, toObj:any): any// = function(...args) {
+    {
+        let keys = Object.keys(fromObj);
+        for(let j = 0; j < keys.length; j++)
+        {
+            toObj[keys[j]] = fromObj[keys[j]];
+        }
+        return toObj;
+    }
+    
+    static distinctArray(array:any[]): any// = function(...args) {
+    {
+        let newArray = [];
+        for(let i = 0; i < array.length; i++)
+        {
+            if(newArray.indexOf(array[i]) == -1)
+            {
+                newArray.push(array[i]);
+            }
+        }
+        return newArray;
+    }
+    
+    static arrayOfObjectToObjectOfObject(array:any[], key:string)
+    {
+        let obj = {};
+        for(let i = 0; i < array.length; i++)
+        {
+            obj[array[i][key]] = array[i];
+        }
+        return obj;
+    }
+
 }

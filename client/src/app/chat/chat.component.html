@@ -1,0 +1,14 @@
+<div>
+    <table>
+        <tbody>
+            <tr *ngFor="let m of messages;">
+                <td>{{m.username}}</td>
+                <td>{{m.content}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <form [formGroup]="form" (ngSubmit)="send()">
+        <textarea rows="5" cols="4" formControlName="message"></textarea>
+        <button [disabled]="f.message.value.length == 0">Send</button>
+    </form>
+</div>

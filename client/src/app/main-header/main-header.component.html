@@ -17,32 +17,26 @@
                             <span [innerHTML]="lang.Home"></span>
                         </a>
                     </li>
-                    <li>
-                        <a [href]="'/' + constants.RoutePaths.Consulting">
-                            <span><img width="40" height="34" src="assets/images/consult.png" alt="lang.Consulting"></span>
-                            <span [innerHTML]="lang.Consulting"></span>
-                        </a>
-                    </li>
                     <li *ngIf="globals.isLoggedIn">
                         <a [routerLink]="constants.RoutePaths.Trade">
                             <span><img src="assets/images/exchange-icon.png" alt="lang.Trade"></span>
                             <span [innerHTML]="lang.Trade"></span>
                         </a>
                     </li>
+                    <li>
+                        <a [routerLink]="constants.RoutePaths.Home">
+                            <span><img src="assets/images/seller-icon.png" alt="Charts"></span> <span [innerHTML]="lang.Charts"></span>
+                        </a>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span><img src="assets/images/exchange-icon.png" alt="Blockchain"></span>
+                            <span><img src="assets/images/exchange-icon.png" [alt]="lang.Blockchain"></span>
                             <span>{{lang.Blockchain}} <i class="fa fa-angle-down" aria-hidden="true"></i></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a [routerLink]="constants.RoutePaths.Home" [innerHTML]="lang.Travel"></a></li>
                             <li><a [routerLink]="constants.RoutePaths.Home" [innerHTML]="lang.RealEstate"></a></li>
                         </ul>
-                    </li>
-                    <li>
-                        <a [routerLink]="constants.RoutePaths.Home">
-                            <span><img src="assets/images/seller-icon.png" alt="Charts"></span> <span [innerHTML]="lang.Charts"></span>
-                        </a>
                     </li>
                     <li *ngIf="globals.isLoggedIn" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -53,6 +47,12 @@
                             <li><a [routerLink]="constants.RoutePaths.Home">Eng</a></li>
                             <li><a [routerLink]="constants.RoutePaths.Home">Hindi</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a [href]="'/' + constants.RoutePaths.Consulting">
+                            <span><img width="40" height="34" src="assets/images/consult.png" alt="lang.Consulting"></span>
+                            <span [innerHTML]="lang.Consulting"></span>
+                        </a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">

@@ -31,7 +31,9 @@
                             "src/assets/css/styles.css",
                             "src/assets/css/responsive.css",
                             "src/assets/css/bootstrap-validationv4.css",
-                            "src/assets/css/general.css"
+                            "src/assets/css/general.css",
+                            "src/assets/css/toggle-switch.css",
+                            "node_modules/@nebular/theme/styles/prebuilt/default.css"
                         ],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.min.js",

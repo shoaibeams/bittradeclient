@@ -27,6 +27,7 @@ a:active, a:focus, a:hover, input[type="image"], select:focus, input, input[type
 .select-wrapper:hover { background: rgba(255,255,255,.61) url("../images/dropdown-hover.png") no-repeat 85%; border-color: #d5d4d6; }
 .select-wrapper .holder { display: block; margin: 0 35px 0 5px; white-space: nowrap; overflow: hidden; cursor: pointer; position: relative; z-index: 0; font-size: 14px; color: #999999; height: 35px; padding-left: 5px; }
 .select-wrapper select { margin: 0; position: absolute; z-index: 2; cursor: pointer; outline: none; opacity: 0; }
+.select-wrapper span{height:100%;vertical-align: middle;}
 /* Checkbox */
 .checkbox-btn { display: block; position: relative; padding-left: 35px; margin-bottom: 12px; cursor: pointer; font-size: 22px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 .checkbox-btn input { position: absolute; opacity: 0; cursor: pointer; }
@@ -54,19 +55,22 @@ header .signup-header.navbar-nav > li > a { background: #f5675d; color: #fff; te
 header .signup-header.navbar-nav > li.lang .dropdown-menu li a:hover { background: rgba(8, 45, 62, 0.90); color: #fff; border-radius: 4px; border:1px solid #40b9cd; }
 /* Banner css */
 .banner { background: url(../images/bannerbg.png) center top no-repeat; background-size: cover; width: 100%; padding: 45px 0; }
-.banner h1 { color: #fff; font-size: 42px; line-height: 75px; text-align: center; font-weight: 600; margin-bottom: 25px; }
-.bannerb { padding: 25px 15px; background:#082d3f;}
+.banner h1 { color: #fff; font-size: 32px; text-align: center; font-weight: 600; margin-bottom: 25px; }
+.bannerb { 
+    padding: 25px 15px; 
+    /* background:#082d3f; */
+}
 .buy-txt { font-size: 26px; color: #fff; line-height: 30px; }
-.buy-txt span { font-size: 20px; color: #f5675d; }
-.buy-txt a { background: #f5675d; color: #fff; display: inline-block; width: 185px; text-align: center; padding: 15px 0; margin: 15px 0 0; border-radius:4px;}
+.buy-txt span { font-size: 20px; color: #40b9cd; }
+.buy-txt a { background: #40b9cd; color: #fff; display: inline-block; width: 185px; text-align: center; padding: 15px 0; margin: 15px 0 0; border-radius:4px;}
 .buy-txt a img { margin-bottom: 8px; }
 .sell-txt { font-size: 26px; color: #fff; line-height: 30px; }
-.sell-txt span { font-size: 20px; color: #40b9cd; }
-.sell-txt a { background: #40b9cd; color: #fff; display: inline-block; width: 185px; text-align: center; padding: 15px 0; margin: 15px 0 0; border-radius:4px; }
+.sell-txt span { font-size: 20px; color: #f5675d; }
+.sell-txt a { background: #f5675d; color: #fff; display: inline-block; width: 185px; text-align: center; padding: 15px 0; margin: 15px 0 0; border-radius:4px; }
 .sell-txt a img { margin-top: 8px; }
 .buysellwrap { background: #fff; }
-.von-form { width: 100%; margin-bottom: 1px; background: #fff; border-bottom: 1px solid #082f3f; }
-.von-form h4 { font-size: 22px; color: #4d4d4d; margin-bottom: 5px; }
+.von-form { width: 100%; display: flex; background: #fff; border-bottom: 1px solid #082f3f; }
+.von-form h4 { font-size: 22px; color: #4d4d4d; }
 .von-left { width: calc(100% - 170px); float: left; padding: 20px 15px 20px 25px; }
 .von-left .form-control { border: 0px; box-shadow: none; font-size: 35px; font-weight: 600; padding: 0; line-height: 55px; color: #4d4d4d; }
 .von-right { width: 170px; float: left; overflow: hidden; }
@@ -76,6 +80,7 @@ header .signup-header.navbar-nav > li.lang .dropdown-menu li a:hover { backgroun
 .buysellwrap .select-wrapper .holder { color: #fff; height: 66px; font-size: 24px; }
 .buysellwrap .select-wrapper, .buysellwrap .select-wrapper select { height: 104px; line-height: 100px; }
 .buysellwrap .sell-btn .select-wrapper { background-color: #f5675d !important}
+.buysellwrap .buy-btn .select-wrapper { background-color: #40b9cd !important}
 /* Wallet Css */
 .walletwrap { width: 100%; padding: 25px 0; background: #0a2d42; }
 .walletwrap h2 { font-size: 17px; color: #2d3e50; padding-bottom: 10px; font-weight: 600; }
@@ -110,6 +115,7 @@ header .signup-header.navbar-nav > li.lang .dropdown-menu li a:hover { backgroun
 .table-head img { vertical-align: -3px; margin-left: 4px; }
 .white-txt { color: #fff; font-size: 14px; padding: 20px 0; }
 .green-txt { color: #8dec1e; font-size: 15px; padding: 20px 0; }
+.red-txt { color: #f5675d; font-size: 15px; padding: 20px 0; }
 .trading-box { margin: 45px 0 0; }
 .trading-box a { background: #f5675d; padding: 35px 45px; color: #fff; font-size: 28px; font-weight: 600; display: inline-block; border-radius:4px;}
 /* Track Rate Css */
@@ -213,6 +219,7 @@ footer { background: #082837; width: 100%; }
 .last_price strong { font-size: 13px; font-weight: normal; text-transform: uppercase; }
 .last_price.brdroup { font-size: 16px; line-height: 46px; width: 20%; text-align: right; }
 .last_price.brdroup ul li a { color: #40b9cd; font-size: 18px; }
+.last_price.brdroup ul li .cp-splitter { color: white; font-size: 18px; }
 .last_price.brdroup ul li a b { color: #f5675d; font-weight: normal }
 .dropdown-menu.mymenu { background: #062636; color: #fff; right: 0; left: auto; }
 .dropdown.fontsize a.dropdown-toggle { font-size: 34px; background: transparent; padding:8px 10px; border-radius:4px;}

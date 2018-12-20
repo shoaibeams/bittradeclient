@@ -17,7 +17,8 @@ export class HttpClientService {
     Endpoints: object = this.globals.constants.EndPoints;
     constructor(private http: HttpClient, 
         private router: Router,
-        private log: LoggerService, private globals: GlobalsService) {
+        private log: LoggerService, 
+        private globals: GlobalsService) {
     }
 
     get<T>(url: string): Observable<T> {

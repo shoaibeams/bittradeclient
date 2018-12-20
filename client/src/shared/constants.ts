@@ -16,6 +16,7 @@ export class Constants{
     static get Instance():Constants { return this.getInstance(); }
 
     BaseURL:string = "https://api.bitvelocity.io/";//"http://localhost:1337/";
+    IsDev:boolean = false;
     ResponseMessageTimeout = 4;//in seconds
     RecaptchaSiteKey = StaticConstatns.RecaptchaSiteKey;
     MaxScale = 10;
@@ -45,7 +46,8 @@ export class Constants{
         PostAccountVerify: "account/verify",
         GetAuthUser: "auth/user",
         GetLogout: "auth/logout",
-        PostTradeCurrencyPairs: "trade/currencyPairs",
+        GetCurrenciesCurrencyPairs: "currencies/currencyPairs",
+        GetTradeBriefRecentHistory: "trade/briefRecentHistory",
         PostOrder: "trade/order",
         PostPairDetails: "trade/pairDetails",
         PostOrderHistory: "trade/orderHistory",

@@ -1,4 +1,4 @@
-import { Constants} from "../shared//constants";
+import { Constants } from "./constants";
 
 export class LanguageBase {
     NameRequired: string;
@@ -161,7 +161,19 @@ export class LanguageBase {
     SkypeId: string;
     Budget: string;
     Consulting: string;
-
+    Cost: string;
+    You: string;
+    Get: string;
+    YouGet: string;
+    NotAnAdminUser: string;
+    OrderCancellationResponseFromThirdParty: string;
+    UnableToSaveFormat: string;
+    Session: string;
+    Volume: string;
+    LastPrice: string;
+    Change: string;
+    High: string;
+    Low: string;
 
     static getLanguage(lang: string): LanguageBase {
         if(!lang)
@@ -202,7 +214,7 @@ export class LangENUS extends LanguageBase {
     UUIDNotProvided = this.UUID + " not provided";
     AlreadyExistsFormat = "{0} already exists";
     SomethingWentWrongTryAgainLater = "Something went wrong, please try again later";
-    ContactUsInsertedResponseMessage = "Thank you for contacting us. We've received your message and we'll get back to you soon if required.";
+    ContactUsInsertedResponseMessage = "Thank you for contacting us. We've received your message and we'll get back to you soon.";
     UUIDAlreadyExists = "UUID already exists";
     First = "First";
     Last = "Last";
@@ -351,5 +363,18 @@ below to re-send`;
     SkypeId = this.Skype + " " + this.Id;
     Budget = "Budget";
     Consulting = "Consulting";
+    Cost = "Cost";
+    You = "You";
+    Get = "Get";
+    YouGet = this.You + " " + this.Get;
+    NotAnAdminUser = "Not an amdin user";
+    OrderCancellationResponseFromThirdParty = "Order cancellation resposne from {0} is {1}";
+    UnableToSaveFormat = "Unable to save {0}";
+    Session = "Session";
+    Volume = "Volume";
+    LastPrice = this.Last + ' ' + this.Price;
+    Change = "Change";
+    High = "High";
+    Low = "Low";
 
 }

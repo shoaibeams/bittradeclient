@@ -33,12 +33,12 @@
                         <span class="last_price brdroup">
                             <ul>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{selectedCurrencyPair.fc_name}} <b>{{selectedCurrencyPair.tc_name}}</b>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{selectedCurrencyPair.fc_name}}<span class="cp-splitter">/</span><b>{{selectedCurrencyPair.tc_name}}</b>
                                         <i class="fa fa-angle-down" aria-hidden="true"></i>
                                     </a>
                                     <ul class="dropdown-menu mymenu">
                                         <li *ngFor="let cp of currencyPairs;" (click)="setSelectedCurrencyPair(cp.id)">
-                                            <a>{{cp.fc_name}} <b>{{cp.tc_name}}</b></a>
+                                            <a>{{cp.fc_name}}<span class="cp-splitter">/</span><b>{{cp.tc_name}}</b></a>
                                         </li>
                                     </ul>
                                 </li>
