@@ -12,9 +12,6 @@ ul.bullet-dot li:before
     word-spacing: 2px;
     line-height: 25px;
 }
-.color-white{
-    color:white;
-}
 .f-fr{
     float: right;
 }

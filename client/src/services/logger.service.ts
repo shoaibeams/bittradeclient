@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { stringify } from '@angular/compiler/src/util';
 import { GlobalsService } from './globals.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 
 export class LoggerService {
 

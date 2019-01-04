@@ -51,6 +51,11 @@ export class Constants{
         PostOrder: "trade/order",
         PostPairDetails: "trade/pairDetails",
         PostOrderHistory: "trade/orderHistory",
+        GetDepositableCurrencies: "currencies/depositableCurrencies",
+        PostDepositMethods: "deposit/depositMethods",
+        PostDepositRequest: "deposit/depositRequest",
+        PostDepositRequestHistory: "deposit/depoistRequestHistory",
+        PostDepositReceipt: "deposit/receipt",
     }
     public GrantTypes = {
         Password: "password",
@@ -115,6 +120,9 @@ export class StaticConstatns {
         AccountVerify: "account/verify",
         AccountForgotPassword: "account/forgotPassword",
         Consulting: "consulting",
+        Funding: "funding",
+        FundingDeposit: "funding/deposit",
+        FundingWithdrawl: "funding/withdrawl",
     }
     public static RecaptchaSiteKey = "6Lfab3YUAAAAANbb2Lp1WYVMiwyUSCLyeZkbw5HK";
 }

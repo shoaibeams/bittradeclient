@@ -3,9 +3,9 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-2 col-sm-12 text-center">
-            <p [innerHTML]="verificationEmailHeader"></p>
+            <p class="color-white" [innerHTML]="verificationEmailHeader"></p>
             <img width="270" height="270" src="assets/images/email.png">
-            <p class="pstylish" [innerHTML]="verificationEmailDetail"></p>
+            <p class="pstylish color-white" [innerHTML]="verificationEmailDetail"></p>
             <button [disabled]="disableResendEmailButton" class="btn btn-success" (click)="sendSignupVerificatinEmail($event)" [innerHTML]="lang.ResendEmail"></button>
           </div>
   

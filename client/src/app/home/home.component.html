@@ -3,15 +3,16 @@
     <!-- Banner Start -->
     <section class="banner clearfix">
         <div class="container">
-            <h1> Buy your digital assests in native currency pairs to reduce huge conversion cost.
-                Now supporting buying in GBP, Euro and USD</h1>
+            <p> Buy your digital assests in native currency pairs to reduce huge conversion cost.
+                Now supporting buying in GBP, Euro and USD</p>
             <!-- <nb-card nbspinnersize="large" nbspinnerstatus="danger" size="xsmall">
                 <nb-card-body> -->
             <div class="row">
                 <div class="col-md-12">
-                    <span class="last_price brdroup" style="margin:0px 20px; line-height: 25px; float:right;">
+                    <span class="last_price brdroup" style="width:100%;margin:0px 20px; line-height: 25px; float:right;">
                         <ul>
-                            <li class="dropdown">
+                            <li style="display:inline-block;font-size:18px;padding-right:20px;">Currency Pair</li>
+                            <li style="display:inline-block;" class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span style="display:inline-block">{{selectedCurrencyPair.fc_name}}</span>
                                     <span class="cp-splitter">/</span>
@@ -31,7 +32,8 @@
             <div class="bannerb clearfix" [nbSpinner]="loadingPairDetails || loadingCurrencies">
                 <div class="col-md-3 col-sm-6 col-xs-6">
                     <div class="buy-txt">Buy {{selectedCurrencyPair.fc_name}} at:<br>
-                        <span>{{selectedBriefHistory.current_buy}}</span> {{selectedCurrencyPair.tc_name}}
+                        <span [@amountChanged]="animValues.current_buy">{{selectedBriefHistory.current_buy}}</span>
+                        {{selectedCurrencyPair.tc_name}}
                         <a [routerLink]="globals.isLoggedIn ? constants.RoutePaths.Trade : constants.RoutePaths.Login">
                             <img src="assets/images/buy-icon.png" [alt]="lang.Buy">
                             <br>
@@ -39,8 +41,8 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-6">
                     <div class="sell-txt">{{lang.Sell}} {{selectedCurrencyPair.fc_name}} at:<br>
-                        <span>{{selectedBriefHistory.current_sell}}</span> {{selectedCurrencyPair.tc_name}} <a
-                            [routerLink]="globals.isLoggedIn ? constants.RoutePaths.Trade : constants.RoutePaths.Login">
+                        <span [@amountChanged]="animValues.current_sell">{{selectedBriefHistory.current_sell}}</span>
+                        {{selectedCurrencyPair.tc_name}} <a [routerLink]="globals.isLoggedIn ? constants.RoutePaths.Trade : constants.RoutePaths.Login">
 
                             <img src="assets/images/sell-icon.png" [alt]="lang.Sell">
                             <br>
@@ -93,8 +95,6 @@
                     </div>
                 </div>
             </div>
-            <!-- </nb-card-body>
-            </nb-card> -->
         </div>
     </section>
 
@@ -107,11 +107,15 @@
                         <h2>
                             <img width="34" height="34" [src]="firstPair.fc_icon">
                             {{firstPair.fc_name}}/{{firstPair.tc_name}}
-                            <!-- <span>2.45%</span> -->
+                            <span>24h</span>
                         </h2>
-                        <p>{{lang.Last}} <b>{{firstPair.tc_symbol}}{{firstPair.last}}</b><!-- $ 12.90 -->
+                        <p>{{lang.Last}}
+                            <b [@amountChanged]="animValues.cards[0].last">{{firstPair.tc_symbol}}{{firstPair.last}}</b><!-- $ 12.90 -->
                             <br>
-                            {{lang.Volume}} {{firstPair.volume}} {{firstPair.fc_name}}</p>
+                            {{lang.Volume}}
+                            <b [@amountChanged]="animValues.cards[0].volume">{{firstPair.volume}}
+                                {{firstPair.fc_name}}</b>
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
@@ -119,11 +123,15 @@
                         <h2>
                             <img width="34" height="34" [src]="secondPair.fc_icon">
                             {{secondPair.fc_name}}/{{secondPair.tc_name}}
-                            <!-- <span>2.45%</span> -->
+                            <span>24h</span>
                         </h2>
-                        <p>{{lang.Last}} <b>{{secondPair.tc_symbol}}{{secondPair.last}}</b><!-- $ 12.90 -->
+                        <p>{{lang.Last}}
+                            <b [@amountChanged]="animValues.cards[1].last">{{secondPair.tc_symbol}}{{secondPair.last}}</b><!-- $ 12.90 -->
                             <br>
-                            {{lang.Volume}} {{secondPair.volume}} {{secondPair.fc_name}}</p>
+                            {{lang.Volume}}
+                            <b [@amountChanged]="animValues.cards[1].volume">{{secondPair.volume}}
+                                {{secondPair.fc_name}}</b>
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
@@ -131,11 +139,15 @@
                         <h2>
                             <img width="34" height="34" [src]="thirdPair.fc_icon">
                             {{thirdPair.fc_name}}/{{thirdPair.tc_name}}
-                            <!-- <span>2.45%</span> -->
+                            <span>24h</span>
                         </h2>
-                        <p>{{lang.Last}} <b>{{thirdPair.tc_symbol}}{{thirdPair.last}}</b><!-- $ 12.90 -->
+                        <p>{{lang.Last}}
+                            <b [@amountChanged]="animValues.cards[2].last">{{thirdPair.tc_symbol}}{{thirdPair.last}}</b><!-- $ 12.90 -->
                             <br>
-                            {{lang.Volume}} {{thirdPair.volume}} {{thirdPair.fc_name}}</p>
+                            {{lang.Volume}}
+                            <b [@amountChanged]="animValues.cards[2].volume">{{thirdPair.volume}}
+                                {{thirdPair.fc_name}}</b>
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
@@ -143,11 +155,15 @@
                         <h2>
                             <img width="34" height="34" [src]="fourthPair.fc_icon">
                             {{fourthPair.fc_name}}/{{fourthPair.tc_name}}
-                            <!-- <span>2.45%</span> -->
+                            <span>24h</span>
                         </h2>
-                        <p>{{lang.Last}} <b>{{fourthPair.tc_symbol}}{{fourthPair.last}}</b><!-- $ 12.90 -->
+                        <p>{{lang.Last}}
+                            <b [@amountChanged]="animValues.cards[3].last">{{fourthPair.tc_symbol}}{{fourthPair.last}}</b><!-- $ 12.90 -->
                             <br>
-                            {{lang.Volume}} {{fourthPair.volume}} {{fourthPair.fc_name}}</p>
+                            {{lang.Volume}}
+                            <b [@amountChanged]="animValues.cards[3].volume">{{fourthPair.volume}}
+                                {{fourthPair.fc_name}}</b>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -182,8 +198,10 @@
                     <img src="assets/images/instant-icon.png" alt="Safe &amp; Secure">
 
                     <h2>FEES</h2>
-                    <p>Standard Buy {{this.selectedCurrencyPair.buy_fee ? this.selectedCurrencyPair.buy_fee.toFixed(2) : ''}}% 
-                        <br> Standard Sell {{this.selectedCurrencyPair.sell_fee ? this.selectedCurrencyPair.sell_fee.toFixed(2) : ''}}% <br></p>
+                    <p>Standard Buy {{this.selectedCurrencyPair.buy_fee ? this.selectedCurrencyPair.buy_fee.toFixed(2)
+                        : ''}}%
+                        <br> Standard Sell {{this.selectedCurrencyPair.sell_fee ?
+                        this.selectedCurrencyPair.sell_fee.toFixed(2) : ''}}% <br></p>
                 </div>
                 <div class="col-md-4 col-sm-6 text-center">
 
@@ -300,40 +318,49 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table-responsive">
                         <tbody>
                             <tr>
-                                <td align="center" (click)="sortPairHistoryTab(tradePairHistorySortings.pair)" valign="middle" class="table-head">
+                                <td align="center" (click)="sortPairHistoryTab(tradePairHistorySortings.pair)" valign="middle"
+                                    class="table-head">
                                     {{lang.Pair}} <img src="assets/images/table-arrow.png" alt="arrow">
                                 </td>
-                                <td align="center" (click)="sortPairHistoryTab(tradePairHistorySortings.last)" valign="middle" class="table-head">
+                                <td align="center" (click)="sortPairHistoryTab(tradePairHistorySortings.last)" valign="middle"
+                                    class="table-head">
                                     {{lang.LastPrice}} <img src="assets/images/table-arrow.png" alt="arrow">
                                 </td>
-                                <td align="center" (click)="sortPairHistoryTab(tradePairHistorySortings.change)" valign="middle" class="table-head">
+                                <td align="center" (click)="sortPairHistoryTab(tradePairHistorySortings.change)" valign="middle"
+                                    class="table-head">
                                     24H {{lang.Change}} <img src="assets/images/table-arrow.png" alt="arrow">
                                 </td>
-                                <td align="center" (click)="sortPairHistoryTab(tradePairHistorySortings.high)" valign="middle" class="table-head">
+                                <td align="center" (click)="sortPairHistoryTab(tradePairHistorySortings.high)" valign="middle"
+                                    class="table-head">
                                     24H {{lang.High}} <img src="assets/images/table-arrow.png" alt="arrow">
                                 </td>
-                                <td align="center" (click)="sortPairHistoryTab(tradePairHistorySortings.low)" valign="middle" class="table-head">
+                                <td align="center" (click)="sortPairHistoryTab(tradePairHistorySortings.low)" valign="middle"
+                                    class="table-head">
                                     24H {{lang.Low}} <img src="assets/images/table-arrow.png" alt="arrow">
                                 </td>
-                                <td align="center" (click)="sortPairHistoryTab(tradePairHistorySortings.volume)" valign="middle" class="table-head">
+                                <td align="center" (click)="sortPairHistoryTab(tradePairHistorySortings.volume)" valign="middle"
+                                    class="table-head">
                                     24H {{lang.Volume}} <img src="assets/images/table-arrow.png" alt="arrow">
                                 </td>
                             </tr>
-                            <tr *ngFor="let p of selectedTradePairHistory;">
+                            <tr *ngFor="let p of selectedTradePairHistory">
                                 <td align="center" valign="middle" class="white-txt">{{getCP(p.id).fc_name}}/{{getCP(p.id).tc_name}}</td>
-                                <td align="center" valign="middle" class="white-txt">{{p.last}}</td>
+                                <td align="center" valign="middle" class="white-txt" [@amountChanged]="p.lastAnim">{{p.last}}</td>
                                 <td align="center" valign="middle" [class]="p.change >= 0 ? 'green-txt' : 'red-txt'">{{p.change}}%</td>
-                                <td align="center" valign="middle" class="white-txt">{{p.high}}</td>
-                                <td align="center" valign="middle" class="white-txt">{{p.low}}</td>
-                                <td align="center" valign="middle" class="white-txt">{{p.volume}}
+                                <td align="center" valign="middle" class="white-txt" [@amountChanged]="p.highAnim">{{p.high}}</td>
+                                <td align="center" valign="middle" class="white-txt" [@amountChanged]="p.lowAnim">{{p.low}}</td>
+                                <td align="center" valign="middle" class="white-txt" [@amountChanged]="p.volumeAnim">{{p.volume}}
                                     {{getCP(p.id).fc_name}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="text-center trading-box"> <a [routerLink]="globals.isLoggedIn ? constants.RoutePaths.Trade : constants.RoutePaths.Login">Start
-                    Trading Now</a> </div>
+            <div class="text-center trading-box">
+                <a class="color-white" [routerLink]="globals.isLoggedIn ? constants.RoutePaths.Trade : constants.RoutePaths.Login">StartTrading
+                    Now
+                </a>
+            </div>
         </div>
     </section>
 

@@ -1,9 +1,11 @@
 /*@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');*/
 @charset "utf-8";
 /* CSS Document */
+/* 'Open Sans', sans-serif; */
 html { font-size: 100% }
 article, aside, details, figcaption, figure, footer, header, main, nav, section, summary, title { display: block }
-body { font-family: 'Open Sans', sans-serif; font-weight: normal; font-style: normal; font-size: 16px; line-height: 15px; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+body { font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+     font-weight: normal; font-style: normal; font-size: 16px; line-height: 15px; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, legend, input, textarea, p, blockquote, th, td { margin: 0; padding: 0 }
 table { border-collapse: collapse; border-spacing: 0 }
 fieldset, img { border: 0 }
@@ -42,9 +44,11 @@ header .navbar { background: rgba(8, 45, 62, 0.90); border: 0px; border-radius: 
 header .navbar-brand { height: auto; }
 header .navbar-nav > li > a { color: #fff; font-size: 20px; font-weight: 500; text-align: center; background-color: #082c3f; -webkit-box-shadow: inset 2px 3px 65px rgba(0,0,0,.35); -moz-box-shadow: inset 2px 3px 65px rgba(0,0,0,.35); box-shadow: inset 2px 3px 65px rgba(0,0,0,.35); border: solid 1px #0b3245; box-sizing: border-box; border-bottom: 6px solid #072636; padding: 30px 35px }
 header .nav > li > a:hover, header .nav > li > a:focus, header .nav > li.active > a { background: none; border-bottom: 6px solid #d35950; box-sizing: border-box; }
+header .nav > li > a:focus { color:white !important; }
 header .nav .open > a, header .nav .open > a:hover, header .nav .open > a:focus { background: none; border: solid 1px #0b3245; }
 header .navbar-nav > li > a span { display: block; margin: 5px 0; }
 header .navbar-nav > li .dropdown-menu { padding: 0px !important; left: 0; right: auto; background: #40b9cd; min-width: 250px; top: 104%; }
+.right-to-left { right: 0 !important; left: inherit !important;  }
 header .navbar-nav > li .dropdown-menu li a { padding: 15px; font-size: 17px; color: #fff; }
 header .dropdown-menu > li > a:hover, header .dropdown-menu > li > a:focus { background: rgba(8, 45, 62, 0.90); color: #fff; }
 header .signup-header.navbar-nav { margin: 45px -15px 0 0; }
@@ -54,19 +58,19 @@ header .signup-header.navbar-nav > li.lang .dropdown-menu li a { margin: 0px; fo
 header .signup-header.navbar-nav > li > a { background: #f5675d; color: #fff; text-transform: uppercase; font-size: 20px; font-weight: 600; box-shadow: none; border: 0px; padding: 12px 15px; margin-left: 7px; border-radius:4px;}
 header .signup-header.navbar-nav > li.lang .dropdown-menu li a:hover { background: rgba(8, 45, 62, 0.90); color: #fff; border-radius: 4px; border:1px solid #40b9cd; }
 /* Banner css */
-.banner { background: url(../images/bannerbg.png) center top no-repeat; background-size: cover; width: 100%; padding: 45px 0; }
-.banner h1 { color: #fff; font-size: 32px; text-align: center; font-weight: 600; margin-bottom: 25px; }
+.banner { background: url(/assets/images/bannerbg.png) center top no-repeat; background-size: cover; width: 100%; padding: 45px 0; }
+.banner p { margin:.67em 0; line-height: 1; color: #fff; font-size: 32px; text-align: center; font-weight: 600; margin-bottom: 25px; }
 .bannerb { 
-    padding: 25px 15px; 
+    padding: 0 15px; 
     /* background:#082d3f; */
 }
 .buy-txt { font-size: 26px; color: #fff; line-height: 30px; }
-.buy-txt span { font-size: 20px; color: #40b9cd; }
-.buy-txt a { background: #40b9cd; color: #fff; display: inline-block; width: 185px; text-align: center; padding: 15px 0; margin: 15px 0 0; border-radius:4px;}
+.buy-txt span { color: #40b9cd; }
+.buy-txt a { background: #40b9cd; color: #fff !important; display: inline-block; width: 185px; text-align: center; padding: 15px 0; margin: 15px 0 0; border-radius:4px;}
 .buy-txt a img { margin-bottom: 8px; }
 .sell-txt { font-size: 26px; color: #fff; line-height: 30px; }
-.sell-txt span { font-size: 20px; color: #f5675d; }
-.sell-txt a { background: #f5675d; color: #fff; display: inline-block; width: 185px; text-align: center; padding: 15px 0; margin: 15px 0 0; border-radius:4px; }
+.sell-txt span { color: #f5675d; }/* font-size: 20px;  */
+.sell-txt a { background: #f5675d; color: #fff !important; display: inline-block; width: 185px; text-align: center; padding: 15px 0; margin: 15px 0 0; border-radius:4px; }
 .sell-txt a img { margin-top: 8px; }
 .buysellwrap { background: #fff; }
 .von-form { width: 100%; display: flex; background: #fff; border-bottom: 1px solid #082f3f; }
@@ -86,7 +90,7 @@ header .signup-header.navbar-nav > li.lang .dropdown-menu li a:hover { backgroun
 .walletwrap h2 { font-size: 17px; color: #2d3e50; padding-bottom: 10px; font-weight: 600; }
 .walletwrap h2 img { vertical-align: middle; margin-right: 5px; }
 .walletwrap h2 span { color: #f5675d; float: right; font-weight: 400; }
-.walletwrap p { font-size: 12px; color: #353535; line-height: 22px; }
+.walletwrap p { color: #353535; line-height: 22px; }
 .walletwrap .walletbox { background: #fff url(../images/walletbg.png) right bottom no-repeat; padding: 8px; border-radius: 5px; }
 .walletwrap .walletbox1 { background: #fff url(../images/walletbg1.png) right bottom no-repeat; padding: 8px; border-radius: 5px; }
 /* Services css */
@@ -101,7 +105,7 @@ header .signup-header.navbar-nav > li.lang .dropdown-menu li a:hover { backgroun
 .howbox p { font-size: 14px; color: #666; text-align: center; line-height: 20px; }
 .howitwork .arrow-how { position: absolute; top: -100px; right: -140px; }
 /* Trading css */ 
-.tradingwrap { width: 100%; padding: 45px 0; background: url(../images/tradebg.jpg) center top no-repeat; background-size: cover; }
+.tradingwrap { width: 100%; padding: 45px 0; background: url(/assets/images/tradebg.jpg) center top no-repeat; background-size: cover; }
 .tradingwrap .nav-tabs { text-align: center; border: 0px; }
 .tradingwrap.dashboad .nav-tabs { background: #033554 }
 .tradingwrap .nav-tabs > li { position: relative }
@@ -113,9 +117,9 @@ header .signup-header.navbar-nav > li.lang .dropdown-menu li a:hover { backgroun
 .tradingwrap.dashboad .nav-tabs > li.active > a { background: #062636; color: #23addd; font-size: 18px; }
 .table-head { background: #0a222f; padding: 20px 0; color: #f5675d; font-size: 18px; font-weight: 600; text-transform: uppercase; }
 .table-head img { vertical-align: -3px; margin-left: 4px; }
-.white-txt { color: #fff; font-size: 14px; padding: 20px 0; }
-.green-txt { color: #8dec1e; font-size: 15px; padding: 20px 0; }
-.red-txt { color: #f5675d; font-size: 15px; padding: 20px 0; }
+.white-txt { color: #fff; padding: 20px 0; }
+.green-txt { color: #8dec1e; padding: 20px 0; }
+.red-txt { color: #f5675d; padding: 20px 0; }
 .trading-box { margin: 45px 0 0; }
 .trading-box a { background: #f5675d; padding: 35px 45px; color: #fff; font-size: 28px; font-weight: 600; display: inline-block; border-radius:4px;}
 /* Track Rate Css */
@@ -139,20 +143,20 @@ header .signup-header.navbar-nav > li.lang .dropdown-menu li a:hover { backgroun
 /* Footer Css */
 footer { background: #082837; width: 100%; }
 .footer { padding: 45px 0; }
-.footer h2 { font-size: 22px; color: #fff; font-weight: 600; margin-bottom: 20px; }
+.footer .h2 { font-size: 22px; color: #fff !important; font-weight: 600; margin-bottom: 20px; margin-top: 0px; }
 .footer li a { font-size: 17px; color: #fff; padding: 12px 0; display: block; }
 .footer .social li { display: inline-block; }
 .footer li a.fb { display: inline-block; width: 50px; height: 50px; background: #435b67; margin-right: 10px; border-radius: 50%; text-align: center; color: #082837; font-size: 26px; line-height: 25px; transition: all ease-in-out 0.5s; }
 .footer li a:hover.fb { background: #4267b2; color: #fff; }
 .footer li a.tw { display: inline-block; width: 50px; height: 50px; background: #435b67; margin-right: 10px; border-radius: 50%; text-align: center; color: #082837; font-size: 26px; line-height: 25px; transition: all ease-in-out 0.5s; }
 .footer li a:hover.tw { background: #1da1f2; color: #fff; }
-.footer p { padding: 35px 0 0; }
+.footer .p { padding: 35px 0 0; }
 .copyright { background: #051f2b; width: 100%; padding: 20px 0; color: #fff; text-align: center; }
 /* Sign up */
 .signupwrap { padding: 50px 0; background: #0a2d42; }
-.signupwrap h2 { font-size: 24px; color: #fff; font-weight: 600; margin-bottom: 25px; text-align: center; line-height: 35px; }
-.signupwrap h3 { font-size: 36px; color: #fff; font-weight: 600; margin-bottom: 35px; text-align: center; }
-.signupwrap p { font-size: 16px; color: #fff; font-weight: 40; text-align: center; }
+.signupwrap .h2 { font-size: 24px; color: #fff; font-weight: 600; margin-bottom: 25px; text-align: center; line-height: 35px; }
+.signupwrap .h3 { margin-top:0px; font-size: 36px; color: #fff !important; font-weight: 600; margin-bottom: 35px; text-align: center; }
+.signupwrap .p { font-size: 16px; color: #fff; font-weight: 40; text-align: center; }
 .signupbox { background: #fff; border-radius: 5px; }
 .signupbox .nav-tabs > li { width: 50%; }
 .signupbox .nav-tabs > li > a { border: 0px; text-align: center; background: #f4f4f4; border-radius: 0 5px 0 0; color: #0a2d42; font-size: 30px; padding: 25px 0; }
@@ -249,3 +253,80 @@ select.desktopDropDown {
 }
 
 .order-txt{ font-size:15px; text-align:center; padding:20px 0 5px; font-style:italic;}
+.funding-wallet{
+    color: white;
+    font-size:13px;
+    line-height: 1.4;
+}
+.funding-wallet th{
+    font-weight: normal;
+}
+.funding-wallet td{
+    text-align: right;
+}
+.funding-deposit-methods{
+    color: white;
+    line-height: 1.9;
+    font-size:15px;
+}
+.funding-table th{
+    background: #0a222f;
+    padding: 20px 0;
+    color: #f5675d !important;
+    text-align: center;
+    border:none !important;
+}
+.funding-table td{
+    color:white !important;
+    border:none !important;
+    padding:.5em 1em !important;
+}
+.funding-table th a{
+    color: #f5675d !important;
+}
+.funding-table{
+    text-align: center;
+}
+.funding-table table tr:hover{
+    background: #0a222f !important;
+}
+.funding-table  tr{
+    background: rgba(10,34,47,.52) !important;
+}
+.funding-table-heading{
+    color: white;
+    padding: 10px 0;
+    font-weight: bolder;
+}
+.input-label{
+    color: white;
+    vertical-align: middle;
+    text-align: left;
+    padding-top: 7px;
+    font-weight: normal;
+}
+.color-white{
+    color:white !important;
+}
+.form-heading{
+    color:white;
+    font-weight: bolder;
+}
+.submit-response{
+    padding-top: 5px;
+}
+.stylish-border{border:1px solid #033554;border-radius: 4px;}
+.stylish-row{
+    padding:5px;
+    margin-bottom:5px;
+}
+.progress-container span
+{
+    vertical-align: middle;
+}
+.ng2-smart-pagination .page-link-next, .ng2-smart-pagination .page-link-prev{
+    height: 100%;
+}
+.ng2-smart-pagination .page-link-next > span, .ng2-smart-pagination .page-link-prev > span{
+    vertical-align: middle;
+}

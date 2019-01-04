@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 import { GlobalsService } from 'src/services/globals.service';
 import { StaticHelper } from 'src/shared/static-helper';
 import { Constants } from 'src/shared/constants';
-import { LoggerService } from 'src/services/logger.service'; import {
+import { LoggerService } from 'src/services/logger.service'; 
+import {
     trigger,
     state,
     style,

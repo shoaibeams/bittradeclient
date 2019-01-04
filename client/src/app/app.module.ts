@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //node_modules
@@ -24,24 +25,13 @@ import {
     NbLayoutModule,
     NbSpinnerModule,
     NbThemeModule,
+    NbDatepickerModule,
+    NB_DOCUMENT,
 } from '@nebular/theme';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 //components
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { HomeComponent } from './home/home.component';
-import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { MainHeaderComponent } from './main-header/main-header.component';
-import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
-import { AccountVerificationComponent } from './account-verification/account-verification.component';
-import { TradeComponent } from './trade/trade.component';
-import { MainFooterComponent } from './main-footer/main-footer.component';
-import { OrderComponent } from './order/order.component';
-import { OrderHistoryComponent } from './order-history/order-history.compononent';
-import { MyComponent } from './MyComponent/MyComponent';
-import { ChatComponent } from './chat/chat.component';
 // import { ConsultingComponent } from './consulting/consulting.component';
 // import { CenterComponent } from './consulting/center.component';
 
@@ -52,105 +42,40 @@ import { LoggerService } from '../services/logger.service'
 import { ConfirmationBoxService } from '../services/confirmation-box.service';
 import { GlobalsService } from '../services/globals.service';
 import { SocketService } from '../services/socket.service';
+import { ToasterService } from '../services/toaster.service';
 
 //directives
 import { NumberOnlyDirective } from '../directives/number-only.directive';
 import { NumberdOnlyDirective } from '../directives/numberd-only.directive';
 
 //modules
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, AppCompoents } from './app-routing.module';
+import { SearchableDropdownModule } from '../modules/searchable-dropdown/searchable-dropdown.module';
+import { FileUploaderModule } from '../modules/file-uploader/file-uploader.module';
 
 //misc
 import { Constants, StaticConstatns } from '../shared/constants';
 
-const appRoutes: Routes = [
-    {
-        path: StaticConstatns.RoutePaths.Login,
-        component: LoginComponent
-    },
-    {
-        path: StaticConstatns.RoutePaths.Home,
-        component: HomeComponent
-    },
-    {
-        path: StaticConstatns.RoutePaths.SignUp,
-        component: SignupComponent,
-        // children:[
-        //   {
-        //     path:"",
-        //     component: ForgetpasswordComponent
-        //   }
-        // ]
-
-    },
-    {
-        path: StaticConstatns.RoutePaths.ContactUs,
-        component: ContactUsComponent
-    },
-    {
-        path: StaticConstatns.RoutePaths.EmailConfirmation,
-        component: EmailConfirmationComponent
-    },
-    {
-        path: StaticConstatns.RoutePaths.AccountVerify,
-        component: AccountVerificationComponent,
-    },
-    {
-        path: StaticConstatns.RoutePaths.AccountForgotPassword,
-        component: ForgetpasswordComponent,
-    },
-    {
-        path: StaticConstatns.RoutePaths.Trade,
-        component: TradeComponent,
-    },
-    {
-        path: 'chat',
-        component: ChatComponent,
-    },
-    // {
-    //     path: StaticConstatns.RoutePaths.Consulting,
-    //     component: ConsultingComponent,
-    // }
-
-];
 @NgModule({
     exports: [RouterModule],
     declarations: [
-        AppComponent,
-        LoginComponent,
-        SignupComponent,
-        HomeComponent,
-        ForgetpasswordComponent,
-        ContactUsComponent,
-        MainHeaderComponent,
-        EmailConfirmationComponent,
-        AccountVerificationComponent,
-        TradeComponent,
-        MainFooterComponent,
-        OrderComponent,
-        NumberOnlyDirective,
-        NumberdOnlyDirective,
-        OrderHistoryComponent,
-        // ConsultingComponent,
-        // CenterComponent,
-        MyComponent,
-        ChatComponent,
+        AppCompoents,
     ],
     imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
         WebStorageModule,
         // GooglePlaceModule,
         ReactiveFormsModule,
         RecaptchaModule,
-        BrowserModule,
         FormsModule,
         HttpModule,
         HttpClientModule,
         NgxSpinnerModule,
-        RouterModule.forRoot(appRoutes),
-        BrowserAnimationsModule,
+        // RouterModule.forRoot(appRoutes),
         RecaptchaFormsModule,
         NgxNotificationModule,
-        // ConsultingModule,
+        NbSpinnerModule,
         AppRoutingModule,
         NbAlertModule,
         NbButtonModule,
@@ -158,8 +83,12 @@ const appRoutes: Routes = [
         NbCheckboxModule,
         NbInputModule,
         NbLayoutModule,
-        NbSpinnerModule,
+        NbDatepickerModule.forRoot(),
         NbThemeModule,
+        SearchableDropdownModule,
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule,
+        FileUploaderModule,
     ],
     providers: [
         HttpClientService,
@@ -168,6 +97,7 @@ const appRoutes: Routes = [
         ConfirmationBoxService,
         GlobalsService,
         SocketService,
+        ToasterService,
         {
             provide: RECAPTCHA_SETTINGS,
             useValue: { siteKey: StaticConstatns.RecaptchaSiteKey } as RecaptchaSettings,

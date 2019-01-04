@@ -1,0 +1,42 @@
+<div class="dropdown dropdown-scroll sadd" [nbSpinner]="showSpinner">
+    <button (click)="dropdownButtonClicked()" style="text-align: left;width:100%" class="btn btn-default dropdown-toggle"
+        type="button" id="dropdownMenu1" data-toggle="dropdown">
+        <table width="100%">
+            <tr [style.height]="settings.imageHeight + 'px'">
+                <td style="vertical-align:middle">
+                    <span *ngIf="selectedValue == null; else setSelectedValue" [innerHTML]="buttonText"></span>
+                    <ng-template #setSelectedValue>
+                        <span>
+                            <img *ngIf="settings.image" [width]="settings.imageWidth" [height]="settings.imageHeight"
+                                [src]="selectedValue.image" />
+                            {{selectedValue.text}}
+                        </span>
+                    </ng-template>
+                </td>
+                <td style="vertical-align:middle; text-align:right">
+                    &nbsp;
+                    <img src="assets/images/up-down-arrow.png" />
+                </td>
+            </tr>
+        </table>
+    </button>
+    <ul style="width:100%" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li *ngIf="settings.searchable" role="presentation">
+            <div class="input-group input-group-sm search-control">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-search"></span>
+                </span>
+                <form [formGroup]="form">
+                    <input formControlName="searchText" type="text" class="form-control" [placeholder]="settings.searchBoxPlaceholder"
+                        (input)="applySearch()">
+                </form>
+            </div>
+        </li>
+        <li role="presentation" *ngFor='let s of appliedSource' (click)="selectionChanged(s)">
+            <a>
+                <img *ngIf="settings.image" [width]="settings.imageWidth" [height]="settings.imageHeight" [src]="s.image" />
+                {{s.text}}
+            </a>
+        </li>
+    </ul>
+</div>

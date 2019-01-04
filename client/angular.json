@@ -13,6 +13,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "preserveSymlinks": true,
                         "outputPath": "dist/client",
                         "index": "src/index.html",
                         "main": "src/main.ts",
@@ -25,6 +26,8 @@
                         ],
                         "styles": [
                             "src/assets/css/bootstrap.css",
+                            "src/assets/css/nebular.default.css",
+                            "src/assets/css/nebular.cosmic.css",
                             "src/assets/css/easy-responsive-tabs.css",
                             "src/assets/css/font-awesome.min.css",
                             "src/assets/css/slick.css",
@@ -33,7 +36,8 @@
                             "src/assets/css/bootstrap-validationv4.css",
                             "src/assets/css/general.css",
                             "src/assets/css/toggle-switch.css",
-                            "node_modules/@nebular/theme/styles/prebuilt/default.css"
+                            "node_modules/ng-pick-datetime/assets/style/picker.min.css",
+                            "node_modules/toastr/toastr.scss"
                         ],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.min.js",
@@ -43,7 +47,8 @@
                             "src/assets/js/easyResponsiveTabs.js",
                             "src/assets/js/slick.js",
                             "src/assets/js/places.js",
-                            "src/assets/js/general.js"
+                            "src/assets/js/general.js",
+                            "node_modules/toastr/toastr.js"
                         ]
                     },
                     "configurations": {
@@ -144,13 +149,13 @@
                             "src/assets/css/bootstrap3.3.7.css",
                             "src/assets/css/font-awesome.min.css",
                             "src/assets/css/slick.css",
-                            "src/assets/css/style.css"
+                            "src/assets/css/consulting-style.css",
+                            "src/assets/css/media.css"
                         ],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.min.js",
                             "src/assets/js/bootstrap3.3.7.js",
                             "node_modules/angular/angular.min.js",
-                            "node_modules/angular-animate/angular-animate.min.js",
                             "src/assets/js/wow.min.js",
                             "src/assets/js/slick.js",
                             "src/assets/js/custome.js"

@@ -196,4 +196,21 @@ export class StaticHelper {
         return obj;
     }
 
+    static capitalizeFirstLetter(value:string) {
+        if(!value)
+        {
+            return '';
+        }
+        if(value.length < 1)
+        {
+            return '';
+        }
+        let firstChar = value.charAt(0).toUpperCase();
+        let remainingString = '';
+        if(value.length > 1)
+        {
+            remainingString = value.slice(1);
+        }
+        return firstChar + remainingString;
+    }
 }

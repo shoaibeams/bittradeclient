@@ -3,8 +3,6 @@ import { HttpClientService } from 'src/services/http-client.service';
 import { mdCallResponse } from 'src/models/call-response';
 import { LoggerService } from 'src/services/logger.service';
 import { GlobalsService } from 'src/services/globals.service';
-import { StaticHelper } from 'src/shared/static-helper';
-import { Router } from '@angular/router';
 import { Constants } from 'src/shared/constants';
 
 @Component({
@@ -20,16 +18,14 @@ export class TradeComponent implements OnInit {
     constants:Constants;
     constructor(private http: HttpClientService, 
         private log: LoggerService, 
-        public globals: GlobalsService,
-        private router: Router) {
-
+        public globals: GlobalsService,) {
     }
 
     ngOnInit() {
         this.constants = this.globals.constants;
         if(!this.globals.isLoggedIn)
         {
-            StaticHelper.navigateToLogin(this.router);
+            // StaticHelper.navigateToLogin(this.router);
         }
         this.loadCurrencyPairs();
     }

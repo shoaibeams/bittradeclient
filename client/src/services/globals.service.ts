@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { LanguageBase } from '../shared/language';
 import { Constants } from '../shared/constants';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 
 export class GlobalsService {
     public constants: Constants;
-    public ip:string = "";
-    public username:string = "";
+    public ip: string = "";
+    public username: string = "";
     public isLoggedIn = false;
     public isDev = true;
     public lang: LanguageBase;
@@ -18,7 +20,7 @@ export class GlobalsService {
             color: null,
             type: null
         },
-        main:{
+        main: {
             bdColor: 'rgba(51, 51, 51, 0.8)',
             size: 'medium',
             color: 'rgba(51, 51, 51, 0.8)',

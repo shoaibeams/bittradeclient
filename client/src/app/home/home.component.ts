@@ -7,11 +7,55 @@ import { LoggerService } from 'src/services/logger.service';
 import { StaticHelper } from 'src/shared/static-helper';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LanguageBase } from 'src/shared/language';
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition,
+    useAnimation,
+    AnimationOptions
+    // ...
+} from '@angular/animations';
+import {
+    bounce,
+    bounceOut,
+    flip,
+    fadeInUp,
+    pulse,
+    flash,
+    rotateInDownLeft,
+} from 'ng-animate';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrls: []
+    styleUrls: [],
+    animations: [
+        trigger('amountChanged', [
+            transition('greater => origional', useAnimation(bounceOut, {
+                // Set the duration to 5seconds and delay to 2seconds
+                params: { timing: '3', delay: 0 }
+            })),
+            transition('lesser => origional', useAnimation(flash, {
+                // Set the duration to 5seconds and delay to 2seconds
+                params: { timing: '3', delay: 0 }
+            })),
+            transition('origional => lesser', animate('0ms')),
+            transition('origional => greater', animate('0ms')),
+            state('greater', style({
+                color: '#87f328',
+                'font-weight':'700',
+            })),
+            state('lesser', style({
+                color: '#dc1d47',
+                'font-weight':'700',
+            })), state('origional', style({
+                // 'font-weight':'b',
+            }))
+        ]),
+    ],
+
 })
 export class HomeComponent implements OnInit {
 
@@ -22,6 +66,7 @@ export class HomeComponent implements OnInit {
     defaultSellFee: number;
     selectedCurrencyPair: any = {};
     selectedBriefHistory: any = {};
+    // selectedBriefHistoryOld: any = {};
     selectedTradePairHistory: any[];
     constants: Constants;
     loadingPairDetails: boolean;
@@ -40,7 +85,26 @@ export class HomeComponent implements OnInit {
     fourthPair: any = {};
     markets: any[];
     tradePairHistorySortings: any = { pair: 1, last: 2, change: 3, high: 4, low: 5, volume: 6 };
-    tradePairhistoryCurrentSorting:any = {sort:this.tradePairHistorySortings.pair, isASC: true};
+    tradePairhistoryCurrentSorting: any = { sort: this.tradePairHistorySortings.pair, isASC: true };
+    selectedMarket: string;
+    animValues: any = {
+        current_by: 'origional',
+        current_sell: 'origional',
+        cards: [{
+            last: 'origional',
+            volume: 'origional',
+        }, {
+            last: 'origional',
+            volume: 'origional',
+        }, {
+            last: 'origional',
+            volume: 'origional',
+        }, {
+            last: 'origional',
+            volume: 'origional',
+        }
+        ],
+    };
 
     constructor(public globals: GlobalsService,
         private http: HttpClientService,
@@ -55,7 +119,6 @@ export class HomeComponent implements OnInit {
         this.isBuy = true;
         this.loadingPairDetails = true;
         this.constants = Constants.Instance;
-        this.loadbriefHistory();
         this.loadCurrencies();
         this.form = this.formBuilder.group({
             fc: [
@@ -76,18 +139,20 @@ export class HomeComponent implements OnInit {
     changePairHistoryTab(name: string) {
         setTimeout(() => {
             let currentSelectedPairs = this.currencyPairs.filter(m => m.tc_name == name).map(m => { return m.id });
-            this.selectedTradePairHistory = this.briefHistory.filter(m => {
+            this.selectedTradePairHistory = this.setAnimValuesForTable(this.selectedTradePairHistory, 
+                this.briefHistory.filter(m => {
                 if (currentSelectedPairs.indexOf(m.id) == -1) {
                     return false;
                 }
                 else {
                     return true;
                 }
-            }).sort(this.sortPairHistoryTabInner);
+            }).sort(this.sortPairHistoryTabInner), this.selectedMarket ? this.selectedMarket : '', name);
+            this.selectedMarket = name;
         }, 150);
     }
 
-    sortPairHistoryTabInner = (a, b)=>{
+    sortPairHistoryTabInner = (a, b) => {
         if (this.tradePairhistoryCurrentSorting.sort == this.tradePairHistorySortings.pair) {
             if (a.fc_name + '/' + a.tc_name > b.fc_name + '/' + b.tc_name) {
                 return this.tradePairhistoryCurrentSorting.isASC ? 1 : -1;
@@ -96,60 +161,58 @@ export class HomeComponent implements OnInit {
                 return this.tradePairhistoryCurrentSorting.isASC ? -1 : 1;
             }
         }
-        else 
-        if (this.tradePairhistoryCurrentSorting.sort == this.tradePairHistorySortings.last) {
-            if (a.last > b.last) {
-                return this.tradePairhistoryCurrentSorting.isASC ? 1 : -1;
+        else
+            if (this.tradePairhistoryCurrentSorting.sort == this.tradePairHistorySortings.last) {
+                if (a.last > b.last) {
+                    return this.tradePairhistoryCurrentSorting.isASC ? 1 : -1;
+                }
+                else {
+                    return this.tradePairhistoryCurrentSorting.isASC ? -1 : 1;
+                }
             }
-            else {
-                return this.tradePairhistoryCurrentSorting.isASC ? -1 : 1;
-            }
-        }
-        else 
-        if (this.tradePairhistoryCurrentSorting.sort == this.tradePairHistorySortings.change) {
-            if (a.change > b.change) {
-                return this.tradePairhistoryCurrentSorting.isASC ? 1 : -1;
-            }
-            else {
-                return this.tradePairhistoryCurrentSorting.isASC ? -1 : 1;
-            }
-        }
-        else 
-        if (this.tradePairhistoryCurrentSorting.sort == this.tradePairHistorySortings.high) {
-            if (a.high > b.high) {
-                return this.tradePairhistoryCurrentSorting.isASC ? 1 : -1;
-            }
-            else {
-                return this.tradePairhistoryCurrentSorting.isASC ? -1 : 1;
-            }
-        }
-        else 
-        if (this.tradePairhistoryCurrentSorting.sort == this.tradePairHistorySortings.low) {
-            if (a.low > b.low) {
-                return this.tradePairhistoryCurrentSorting.isASC ? 1 : -1;
-            }
-            else {
-                return this.tradePairhistoryCurrentSorting.isASC ? -1 : 1;
-            }
-        }
-        else 
-        if (this.tradePairhistoryCurrentSorting.sort == this.tradePairHistorySortings.volume) {
-            if (a.low > b.low) {
-                return this.tradePairhistoryCurrentSorting.isASC ? 1 : -1;
-            }
-            else {
-                return this.tradePairhistoryCurrentSorting.isASC ? -1 : 1;
-            }
-        }
+            else
+                if (this.tradePairhistoryCurrentSorting.sort == this.tradePairHistorySortings.change) {
+                    if (a.change > b.change) {
+                        return this.tradePairhistoryCurrentSorting.isASC ? 1 : -1;
+                    }
+                    else {
+                        return this.tradePairhistoryCurrentSorting.isASC ? -1 : 1;
+                    }
+                }
+                else
+                    if (this.tradePairhistoryCurrentSorting.sort == this.tradePairHistorySortings.high) {
+                        if (a.high > b.high) {
+                            return this.tradePairhistoryCurrentSorting.isASC ? 1 : -1;
+                        }
+                        else {
+                            return this.tradePairhistoryCurrentSorting.isASC ? -1 : 1;
+                        }
+                    }
+                    else
+                        if (this.tradePairhistoryCurrentSorting.sort == this.tradePairHistorySortings.low) {
+                            if (a.low > b.low) {
+                                return this.tradePairhistoryCurrentSorting.isASC ? 1 : -1;
+                            }
+                            else {
+                                return this.tradePairhistoryCurrentSorting.isASC ? -1 : 1;
+                            }
+                        }
+                        else
+                            if (this.tradePairhistoryCurrentSorting.sort == this.tradePairHistorySortings.volume) {
+                                if (a.low > b.low) {
+                                    return this.tradePairhistoryCurrentSorting.isASC ? 1 : -1;
+                                }
+                                else {
+                                    return this.tradePairhistoryCurrentSorting.isASC ? -1 : 1;
+                                }
+                            }
     }
 
     sortPairHistoryTab(sorting: number) {
-        if(sorting == this.tradePairhistoryCurrentSorting.sort)
-        {
+        if (sorting == this.tradePairhistoryCurrentSorting.sort) {
             this.tradePairhistoryCurrentSorting.isASC = !this.tradePairhistoryCurrentSorting.isASC;
         }
-        else
-        {
+        else {
             this.tradePairhistoryCurrentSorting.isASC = true;
         }
         this.tradePairhistoryCurrentSorting.sort = sorting;
@@ -253,6 +316,7 @@ export class HomeComponent implements OnInit {
             this.loadingCurrencies = false;
             this.log.debug(error);
         }, () => {
+            this.loadbriefHistory();
             this.log.debug(res);
             if (res.isSuccess) {
                 this.currencyPairs = res.extras.currencyPairs;
@@ -314,25 +378,37 @@ export class HomeComponent implements OnInit {
                 }
                 else {
                     if (this.firstPair.id) {
-                        this.firstPair = this.briefHistory.filter(m => m.id == this.firstPair.id)[0];
+                        // let old = this.firstPair;
+                        // this.firstPair = this.briefHistory.filter(m => m.id == this.firstPair.id)[0];
+                        // this.firstPair.old = old;
+                        this.firstPair = this.setAnimValuesFor4Pairs(0, this.firstPair,
+                            this.briefHistory.filter(m => m.id == this.firstPair.id)[0]);
                     }
                     if (this.secondPair.id) {
-                        this.secondPair = this.briefHistory.filter(m => m.id == this.secondPair.id)[0];
+                        // this.secondPair = this.briefHistory.filter(m => m.id == this.secondPair.id)[0];
+                        this.secondPair = this.setAnimValuesFor4Pairs(1, this.secondPair,
+                            this.briefHistory.filter(m => m.id == this.secondPair.id)[0]);
                     }
                     if (this.thirdPair.id) {
-                        this.thirdPair = this.briefHistory.filter(m => m.id == this.thirdPair.id)[0];
+                        // this.thirdPair = this.briefHistory.filter(m => m.id == this.thirdPair.id)[0];
+                        this.thirdPair = this.setAnimValuesFor4Pairs(2, this.thirdPair,
+                            this.briefHistory.filter(m => m.id == this.thirdPair.id)[0]);
                     }
                     if (this.fourthPair.id) {
-                        this.fourthPair = this.briefHistory.filter(m => m.id == this.fourthPair.id)[0];
+                        // this.fourthPair = this.briefHistory.filter(m => m.id == this.fourthPair.id)[0];
+                        this.fourthPair = this.setAnimValuesFor4Pairs(3, this.fourthPair,
+                            this.briefHistory.filter(m => m.id == this.fourthPair.id)[0]);
                     }
                 }
             }
 
-            if (!this.selectedTradePairHistory) {
-                if (this.markets.length > 0) {
-                    this.changePairHistoryTab(this.markets[0]);
+            if (this.markets.length > 0) {
+                if(!this.selectedMarket)
+                {
+                    this.selectedMarket = this.markets[0];
                 }
             }
+            this.changePairHistoryTab(this.selectedMarket);
             setTimeout(() => {
                 this.loadbriefHistory();
             }, 15 * 1000);
@@ -351,11 +427,214 @@ export class HomeComponent implements OnInit {
             if (this.briefHistory) {
                 let sbh = this.briefHistory.filter(m => m.id == id);
                 if (sbh.length > 0) {
+                    let old = this.selectedBriefHistory;
                     this.selectedBriefHistory = sbh[0];
+                    this.selectedBriefHistory.old = old;
+                    this.setAnimValuesForSelectedPairHistory(this.selectedBriefHistory);
                 }
                 this.calculatorInput(1);
             }
         }
+    }
+
+    setAnimValuesForSelectedPairHistory(obj: any) {
+        if (obj.old != null) {
+            //setting current buy
+            if (obj.old.id == obj.id) {
+                if (obj.old.current_buy > obj.current_buy) {
+                    this.animValues.current_buy = 'lesser';
+                }
+                else if (obj.old.current_buy < obj.current_buy) {
+                    this.animValues.current_buy = 'greater';
+                }
+                else {
+                    this.animValues.current_buy = 'origional';
+                }
+
+                if (this.animValues.current_buy != 'origional') {
+                    setTimeout(() => {
+                        this.animValues.current_buy = 'origional';
+                    }, 100);
+                }
+                //setting current sell
+                if (obj.old.current_sell > obj.current_sell) {
+                    this.animValues.current_sell = 'lesser';
+                }
+                else if (obj.old.current_sell < obj.current_sell) {
+                    this.animValues.current_sell = 'greater';
+                }
+                else {
+                    this.animValues.current_sell = 'origional';
+                }
+
+                if (this.animValues.current_sell != 'origional') {
+                    setTimeout(() => {
+                        this.animValues.current_sell = 'origional';
+                    }, 100);
+                }
+            }
+        }
+    }
+
+    setAnimValuesFor4Pairs(index: number, old: any, obj: any) {
+        obj.old = old;
+        if (obj.old != null) {
+            //setting last
+            if (obj.old.last > obj.last) {
+                this.animValues.cards[index].last = 'lesser';
+            }
+            else if (obj.old.last < obj.last) {
+                this.animValues.cards[index].last = 'greater';
+            }
+            else {
+                this.animValues.cards[index].last = 'origional';
+            }
+
+            if (this.animValues.cards[index].last != 'origional') {
+                setTimeout(() => {
+                    this.animValues.cards[index].last = 'origional';
+                }, 100);
+            }
+            //setting volume
+            if (obj.old.volume > obj.volume) {
+                this.animValues.cards[index].volume = 'lesser';
+            }
+            else if (obj.old.volume < obj.volume) {
+                this.animValues.cards[index].volume = 'greater';
+            }
+            else {
+                this.animValues.cards[index].volume = 'origional';
+            }
+
+            if (this.animValues.cards[index].volume != 'origional') {
+                setTimeout(() => {
+                    this.animValues.cards[index].volume = 'origional';
+                }, 100);
+            }
+        }
+        return obj;
+    }
+
+    setAnimValuesForTable(oldObj: any[], obj: any[], oldTCName: string, newTCName: string) {
+        if(!oldObj)
+        {
+            return obj;
+        }
+        if(oldObj.length < 1)
+        {
+            return obj;
+        }
+        if (oldTCName != newTCName) {
+            return obj;
+        }
+        for (let i = 0; i < obj.length; i++) {
+            let old = oldObj.filter(m => m.id == obj[i].id);
+            if(old.length > 0)
+            {
+                old = old[0];
+            }
+            else
+            {
+                old = null;
+            }
+            obj[i].old = old;
+            if (obj[i].old != null) {
+                //setting last
+                if (obj[i].old.last > obj[i].last) {
+                    obj[i].lastAnim = 'lesser';
+                }
+                else if (obj[i].old.last < obj[i].last) {
+                    obj[i].lastAnim = 'greater';
+                }
+                else {
+                    obj[i].lastAnim = 'origional';
+                }
+
+                if (obj[i].lastAnim != 'origional') {
+                    setTimeout(() => {
+                        obj[i].lastAnim = 'origional';
+                    }, 150);
+                }
+                
+            }
+            if (obj[i].old != null) {
+                //setting change
+                if (obj[i].old.change > obj[i].change) {
+                    obj[i].changeAnim = 'lesser';
+                }
+                else if (obj[i].old.change < obj[i].change) {
+                    obj[i].changeAnim = 'greater';
+                }
+                else {
+                    obj[i].changeAnim = 'origional';
+                }
+
+                if (obj[i].changeAnim != 'origional') {
+                    setTimeout(() => {
+                        obj[i].changeAnim = 'origional';
+                    }, 150);
+                }
+                
+            }
+            if (obj[i].old != null) {
+                //setting high
+                if (obj[i].old.high > obj[i].high) {
+                    obj[i].highAnim = 'lesser';
+                }
+                else if (obj[i].old.high < obj[i].high) {
+                    obj[i].highAnim = 'greater';
+                }
+                else {
+                    obj[i].highAnim = 'origional';
+                }
+
+                if (obj[i].highAnim != 'origional') {
+                    setTimeout(() => {
+                        obj[i].highAnim = 'origional';
+                    }, 150);
+                }
+                
+            }
+            if (obj[i].old != null) {
+                //setting low
+                if (obj[i].old.low > obj[i].low) {
+                    obj[i].lowAnim = 'lesser';
+                }
+                else if (obj[i].old.low < obj[i].low) {
+                    obj[i].lowAnim = 'greater';
+                }
+                else {
+                    obj[i].lowAnim = 'origional';
+                }
+
+                if (obj[i].lowAnim != 'origional') {
+                    setTimeout(() => {
+                        obj[i].lowAnim = 'origional';
+                    }, 150);
+                }
+                
+            }
+            if (obj[i].old != null) {
+                //setting volume
+                if (obj[i].old.volume > obj[i].volume) {
+                    obj[i].volumeAnim = 'lesser';
+                }
+                else if (obj[i].old.volume < obj[i].volume) {
+                    obj[i].volumeAnim = 'greater';
+                }
+                else {
+                    obj[i].volumeAnim = 'origional';
+                }
+
+                if (obj[i].volumeAnim != 'origional') {
+                    setTimeout(() => {
+                        obj[i].volumeAnim = 'origional';
+                    }, 150);
+                }
+                
+            }
+        }
+        return obj;
     }
 
 }

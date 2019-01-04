@@ -40,10 +40,10 @@ export class OrderComponent implements OnInit {
     amountStep: number;
     submitted: boolean;
     constants: Constants;
-    constructor(private log: LoggerService, 
-        public globals: GlobalsService, 
+    constructor(private log: LoggerService,
+        public globals: GlobalsService,
         private formBuilder: FormBuilder,
-        private http: HttpClientService, 
+        private http: HttpClientService,
         private spinner: SpinnerService) {
 
     }
@@ -89,7 +89,7 @@ export class OrderComponent implements OnInit {
     loadBalanceAndFee() {
         this.sellBalance = "";
         this.buyBalance = "";
-        
+
         if (this.currencyPair.id) {
             let res: mdCallResponse = new mdCallResponse();
             this.http.post<mdCallResponse>(this.constants.EndPoints.PostPairDetails, this.currencyPair.id).subscribe((data) => {
@@ -134,28 +134,25 @@ export class OrderComponent implements OnInit {
         formData.type = this.constants.Order.Type.limit;
         let res: mdCallResponse = new mdCallResponse();
         this.spinner.show();
-        this.http.post<mdCallResponse>(this.constants.EndPoints.PostOrder, formData).subscribe((data) => {
-            res = data;
-        },
-            (error) => {
-                this.log.debug(error);
-                this.spinner.hide();
-            },
-            () => {
-                this.log.debug(res);
-                this.displayAlertBox(res.isSuccess, res.message);
-                this.loadBalanceAndFee();
-                if (action == this.constants.Order.Action.buy) {
-                    this.bf.amount.setValue(0);
-                    this.priceAmountKeyup(this.bf);
+        this.http.postPromise<mdCallResponse>(this.constants.EndPoints.PostOrder, formData).then((res: mdCallResponse) => {
+
+            this.log.debug(res);
+            this.displayAlertBox(res.isSuccess, res.message);
+            this.loadBalanceAndFee();
+            if (action == this.constants.Order.Action.buy) {
+                this.bf.amount.setValue(0);
+                this.priceAmountKeyup(this.bf);
+            }
+            else
+                if (action == this.constants.Order.Action.sell) {
+                    this.sf.amount.setValue(0);
+                    this.priceAmountKeyup(this.sf);
                 }
-                else
-                    if (action == this.constants.Order.Action.sell) {
-                        this.sf.amount.setValue(0);
-                        this.priceAmountKeyup(this.sf);
-                    }
-                this.spinner.hide();
-            });
+            this.spinner.hide();
+        }).catch((error) => {
+            this.log.debug(error);
+            this.spinner.hide();
+        });
     }
 
     displayAlertBox(isSuccess: boolean, message: string) {

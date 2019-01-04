@@ -239,11 +239,13 @@ export class SignupComponent implements OnInit {
                 if (res) {
                     if (res.isSuccess) {
                         //signup completed, now sign in
+                        let token = res.extras.token;
                         res = null;
                         var newFormData = {
                             username: formData.email,
                             password: formData.password,
                             grant_type: this.constants.GrantTypes.Password,
+                            captcha: token,
                         }
                         this.http.post<mdCallResponse>(this.constants.EndPoints.PostAuthLogin, newFormData).subscribe((data) => {
                             res = data;

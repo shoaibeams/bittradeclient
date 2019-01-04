@@ -53,7 +53,7 @@
     @media screen and (max-width:767px) {
     .banner h1 { font-size: 18px; line-height: 35px; margin-bottom: 15px; }
     .buysellwrap { margin: 25px 0 0; }
-    .bannerb { padding: 15px 0px; }
+    .bannerb { padding: 0px 0px; }
     .buy-txt a { font-size: 18px; width: 135px; margin-bottom: 0px; }
     .sell-txt a { font-size: 18px; width: 135px; margin-bottom: 0px; }
     .von-form h4 { font-size: 15px; }

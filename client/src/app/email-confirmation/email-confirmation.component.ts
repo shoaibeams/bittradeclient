@@ -42,12 +42,13 @@ export class EmailConfirmationComponent implements OnInit {
             .subscribe((params: ParamMap) => {
                 email = params[this.constants.QueryParams.email];
             });
-        if (!email) {
             this.spinner.hide();
-        }
-        else {
-            this.sendSignupVerificatinEmail(null);
-        }
+        // if (!email) {
+        //     this.spinner.hide();
+        // }
+        // else {
+        //     this.sendSignupVerificatinEmail(null);
+        // }
     }
 
     sendSignupVerificatinEmail(ev) {
