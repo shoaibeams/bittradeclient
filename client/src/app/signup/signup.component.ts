@@ -99,7 +99,7 @@ export class SignupComponent implements OnInit {
             confirm_password: [
                 this.frmPersonal.confirm_password,
             ],
-            personal_capitcha: this.globals.isDev ? null : new FormControl(false, null)
+            // personal_capitcha: this.globals.isDev ? null : new FormControl(false, null)
         });
         this.errors = {
             first_nameRequired: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.FirstName),
@@ -194,9 +194,9 @@ export class SignupComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-        if (this.personalForm.controls.personal_capitcha.status != "VALID" && !this.globals.isDev) {
-            return;
-        }
+        // if (this.personalForm.controls.personal_capitcha.status != "VALID" && !this.globals.isDev) {
+        //     return;
+        // }
         // stop here if form is invalid
         if (this.personalForm.invalid) {
             return;

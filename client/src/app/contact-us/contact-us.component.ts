@@ -80,7 +80,7 @@ export class ContactUsComponent implements OnInit {
                     Validators.maxLength(ContactUsMetaData.messageMaxLength)
                 ])
             ],
-            contactus_capitcha: new FormControl(false, null)
+            // contactus_capitcha: new FormControl(false, null)
         });
         this.errors = {
             nameRequried: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.Name),
@@ -121,10 +121,9 @@ export class ContactUsComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
         let captchaResposne = $("#g-recaptcha-response").val();
-        console.log("captchaResposne: " + captchaResposne);
-        if (this.contactUsForm.controls.contactus_capitcha.status != "VALID") {
-            return;
-        }
+        // if (this.contactUsForm.controls.contactus_capitcha.status != "VALID") {
+        //     return;
+        // }
         // stop here if form is invalid
         if (this.contactUsForm.invalid) {
             return;
