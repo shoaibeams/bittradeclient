@@ -1,0 +1,109 @@
+import * as React from 'react';
+import * as ReactDOM from "react-dom";
+// import { Link } from "react-router-dom";
+
+import { mdProps } from "../../../models/props";
+import { Link } from 'react-router-dom';
+import { BaseComponent } from '../BaseComponent';
+
+export default class HeaderComponentHTML extends BaseComponent{
+
+    render(){
+    return (
+        <header>
+            <nav className="navbar">
+                <div className="container-fluid">
+                    <div className="navbar-header">
+                        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span> <span className="icon-bar"></span>
+                        </button>
+                        <a className="navbar-brand" href="#">
+                            <img src="assets/images/logo.png" alt="Bit" />
+                        </a>
+                    </div>
+                    <div className="collapse navbar-collapse" id="myNavbar">
+                        <ul className="nav navbar-nav">
+                        {
+                            this.NavLinks()
+                        }
+                        </ul>
+                        <ul className="nav navbar-nav navbar-right signup-header">
+                            {
+                                !this.props.globals.isLoggedIn ? (
+                                    <>
+                                        <li onClick={this.props.params.navItemClicked(-1)}>
+                                            <a href={this.constants.RoutePaths.SignUp}>
+                                                <img src="assets/images/lock-icon.png" alt={this.lang.SignUp} />
+                                                {this.lang.SignUp}
+                                            </a>
+                                        </li>
+                                        <li onClick={this.props.params.navItemClicked(-1)}>
+                                            <a href={this.constants.RoutePaths.Login}>
+                                                <img src="assets/images/sign-icon.png" alt={this.lang.Login} />
+                                                {this.lang.Login}</a>
+                                        </li>
+                                    </>
+                                ) : (
+                                        <li className="dropdown ">
+                                            <a href="#" className="dropdown-toggle" data-toggle="dropdown"> <i className="fa fa-user"></i>
+                                                {this.props.globals.username}
+                                                <i className="fa fa-angle-down"></i></a>
+                                            <ul className="dropdown-menu right-to-left">
+                                                <li><a href={this.lang.Logout} onClick={this.props.params.logout()}></a></li>
+                                            </ul>
+                                        </li>)
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    )
+};
+
+NavLinks = () => {
+    let links = this.props.params.routerLinks.map((l: any, i: number) => {
+        return ((l.requrieLogin && this.props.globals.isLoggedIn) || !l.requrieLogin) ? (
+            <li className={l.class} key={i} onClick={this.props.params.navItemClicked(i)}>
+                {
+                    l.children.length > 0 ? (
+                        <>
+                            <Link to={l.routerLink} className="dropdown-toggle" data-toggle="dropdown">
+                                <span><img src={l.icon} alt={l.alt} /></span>
+                                <span>{l.text} <i className="fa fa-angle-down" aria-hidden="true"></i></span>
+                            </Link>
+                            <ul className="dropdown-menu">
+                                {
+                                    l.children.map((c, i: number) => {
+                                        return (
+                                            <li key={i} onClick={this.props.params.navItemClicked(i)}>
+                                                <Link to={c.routerLink} href={c.routerLink}>{c.text}</Link>
+                                            </li>
+                                        );
+                                    })
+                                }
+                            </ul>
+                        </>
+                    ) : (
+                            l.routerLink != null ? (
+                                <Link to={l.routerLink}>
+                                    <span><img width="40" height="34" src={l.icon} alt={l.alt} /></span>
+                                    <span>{l.text}</span>
+                                </Link>
+                            ) : (
+                                    <Link to={l.href}>
+                                        <span><img width="40" height="34" src={l.icon} alt={l.alt} /></span>
+                                        <span>{l.text}</span>
+                                    </Link>
+                                ))
+                }
+            </li>
+        ) : (null)
+    });
+    return (
+        links
+    );
+}
+
+}

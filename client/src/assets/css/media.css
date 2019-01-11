@@ -1,0 +1,119 @@
+@media screen and (max-width: 1280px) {
+    .cladre-con { display: block; padding: 0 0 15px; vertical-align: top; }
+    .pull-right.comp-adress > a { display: block; text-align: center; font-size: 20px; padding: 10px 30px; }
+    .ta-tour { font-size: 35px; padding: 20px 40px; }
+    h5.head-sec { font-size: 40px; }
+    .vide-sec center { font-size: 40px; }
+    .vide-sec i { font-size: 25px; }
+    .work-sec > p br { display: none; }
+    .serv-img > b { font-size: 45px; }
+    .serv-img > p { font-size: 16px; }
+    .front.face > b { font-size: 20px; }
+    .working-tech-sec h5.head-sec { font-size: 35px; }
+    .soci-fot > a { width: 50px; }
+    .fo-cont > li { font-size: 14px; }
+    .lets-asksec > i { font-size: 140px; }
+    .lets-asksec > i { line-height: 100px; }
+    .lets-asksec { padding: 60px 0 0; }
+    .clien-log-si center { padding: 0 10px; }
+    .work-sec::before { right: -52px; width: 130px; }
+    .work-sec::after { right: -75px; }
+    .work-sec > b { font-size: 21px; }
+    #f1_container span { line-height: 22px; }
+    #f1_container span { font-size: 12px; }
+    .serv-img > b { line-height: 50px; display: block; }
+    .head-conts > p { font-size: 35px; }
+    }
+    @media screen and (max-width: 990px) {
+    .cladre-con span { font-size: 13px; }
+    .slider-image { padding: 160px 0 100px; text-align: center; }
+    .head-conts li { float: left; padding: 10px 20px; text-align: left; width: 50%; }
+    .vide-sec i { font-size: 21px; font-weight: 300; }
+    .work-sec::before { right: -30px; width: 80px; }
+    .work-sec::after { right: -55px; }
+    .work-sec > p { font-size: 16px; }
+    .head-conts > ul { display: table; max-width: 100%; width: 100%; }
+    .serv-img { padding: 0 20px; }
+    .servide-sec .col-md-6:first-child { display: table; height: auto; padding: 0; }
+    .serv-img { display: table-cell; padding: 40px 20px; vertical-align: middle; }
+    .exper-sec center { font-size: 50px; }
+    .exper-sec li i { font-size: 15px; }
+    .clients-sec h5.head-sec { font-size: 35px; padding-bottom: 60px; }
+    .lets-asksec > i { font-size: 90px; font-weight: 800; }
+    .lets-asksec > i { line-height: 70px; }
+    .query-form-sec h5.head-sec { font-size: 30px; line-height: 40px; }
+    .query-form-sec .hea-sec > em { font-size: 25px; }
+    .query-form-sec .hea-sec > p img { display: none; }
+    .query-form-sec .hea-sec > p { font-size: 20px; line-height: normal; margin: 30px 0 20px 0; padding-bottom: 10px; }
+    .fot-adres { font-size: 17px; padding-top: 20px; text-align: center; }
+    .fo-cont > li { text-align: center; }
+    .vide-sec video { width: 100% !important; }
+    .slider-image { height: auto; }
+    }
+    @media screen and (max-width:767px) {
+    .slider-image {padding: 40px 15px 50px;}
+    .ta-tour {font-size: 19px; padding: 10px 15px;}
+    .cladre-con span { margin: 0 0 5px 15px;}
+    .cladre-con span {font-size: 13px;}
+    .cladre-con span img { width: 9px;}
+    .cladre-con span {display: block;}
+    .pull-right.comp-adress > a { font-size: 16px; }
+    .slider-headersec .pull-right { float: right; width: 100%; }
+    .slider-image {text-align: center; }
+    .head-conts > p { font-size: 22px; line-height: normal; }
+    .head-conts > p br { display: none; }
+    .head-conts li { width: 100%; }
+    .head-conts li img { width: 22px; }
+    .head-conts li { float: left; font-size: 14px; padding: 10px 20px; text-align: left; width: 100%; }
+    .ta-tour { font-size: 21px; padding: 15px; }
+    h5.head-sec { font-size: 30px; }
+    .hea-sec > p, .vide-sec > p { font-size: 20px; line-height: normal; }
+    .vide-sec li { margin: 0 0 20px; text-align: center; width: 100%; }
+    .work-sec::before, .work-sec::after { display: none; }
+    .work-sec { float: left; position: relative; text-align: center; width: 100%; }
+    .serv-img > b { font-size: 30px; }
+    #f1_container { width: 100%; }
+    .working-tech-sec li { float: left; margin: 20px 0 0; width: 50%; }
+    .exper-sec ul { overflow: scroll; white-space: nowrap; }
+    .exper-sec li { display: inline-block; float: none; padding: 0; width: 170px; }
+    .our-soft-tech-sec li { width: calc(50% - 20px); }
+    .act-tab-con { background-color: rgb(255, 255, 255); padding: 30px 15px; }
+    .clients-sec h5.head-sec { font-size: 30px; line-height: 40px; padding-bottom: 60px; }
+    .clients-sec h5.head-sec br { display: none; }
+    .lets-asksec > img { width: 90px; }
+    .lets-asksec > i { line-height: 30px; }
+    .lets-asksec > i { font-size: 40px; font-weight: 800; }
+    .inq-form { background-color: rgb(255, 255, 255); padding: 20px; }
+    .query-form-sec button { font-size: 24px; padding: 15px; }
+    .fo-cont > li { text-align: left; }
+    .clients-sec h5.head-sec { font-size: 30px; line-height: 40px; padding-bottom: 30px; }
+    .clients-sec { padding: 30px 0 0; }
+    #back2Top { bottom: 20px; right: 10px; width: 32px; }
+    .head-conts li { font-size: 12px; }
+    .head-conts > p { font-size: 18px; }
+    h5.head-sec { font-size: 25px; }
+    .hea-sec > p, .vide-sec > p { font-size: 16px; }
+    .vide-sec center { font-size: 30px; }
+    .work-sec > b { font-size: 16px; min-height: inherit; padding-bottom: 10px; }
+    .work-sec > center { font-size: 45px; font-weight: 200; height: 70px; width: 70px; }
+    .front.face > b { font-size: 16px; }
+    .flip-text > b { font-size: 20px; }
+    .flip-text > p { font-size: 13px; }
+    .working-tech-sec h5.head-sec { font-size: 22px; line-height: normal; }
+    .working-tech-sec h5.head-sec br { display: none; }
+    .working-tech-sec i { font-size: 17px; }
+    .exper-sec center { font-size: 35px; }
+    .exper-sec li i { font-size: 13px; }
+    h5.head-sec { font-size: 18px; }
+    .act-tab-con > b { font-size: 20px; padding: 10px 0 0; }
+    .act-tab-con > p { font-size: 13px; line-height: 20px; }
+    .clients-sec h5.head-sec { font-size: 20px; line-height: normal; padding-bottom: 30px; }
+    .query-form-sec .hea-sec > em { font-size: 20px; }
+    .query-form-sec h5.head-sec { font-size: 20px; line-height: normal; }
+    .query-form-sec .hea-sec > p { font-size: 18px; }
+    .inp-sec input, .inp-sec select { font-size: 18px; }
+    .fo-cont > li img { margin: 0 8px 0 0; }
+    .fot-adres { font-size: 15px; line-height: normal; }
+    .ta-tour { width: 100%; }
+    }
+    
