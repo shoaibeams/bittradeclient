@@ -90,7 +90,7 @@ export default class HttpClientService {
         })
     }
 
-    postFile<T>(url: string, data: FormData, options?: any) {
+    postFile<T>(url: string, data: FormData, onUploadProgress?, options?: any) {
         if (!options) {
             options = {};
         }
@@ -101,6 +101,7 @@ export default class HttpClientService {
             // headers: requestHeaders,
             reportProgress: true,
             observe: 'events',
+            onUploadProgress: onUploadProgress
         }
         this.log.debug(options);
         // options.headers = requestHeaders;
@@ -109,13 +110,21 @@ export default class HttpClientService {
         // data.append('ip', this.globals.ip);
         url = this.constants.BaseURL + url;
         this.log.debug('postFile: url' + url + "\nbody" + JSON.stringify(data));
-        return Axios.post(url, data, options).then((data: any) => {
-            if (data) {
-                if (data.message == 'Unauthorized request: no authentication given') {
+        return Axios.post(url, data, options).then((res: any) => {
+            if (res) {
+                let data = res.data;
+                if (!data) {
+                    data
+                }
+                if (!data.message) {
+                    data.message = '';
+                }
+                if (this.redirectToLoginMessages.indexOf(data.message.toUpperCase()) > -1) {
                     StaticHelper.navigateToLogin(history);
                 }
+                return data;
             }
-            return data;
+            return {};
         }).catch(error => {
             this.log.debug(error);
             throw error;

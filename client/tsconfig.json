@@ -1,16 +1,15 @@
 {
-    "compileOnSave": false,
-    "compilerOptions": {
-        "outDir": "./dist/",
-        "sourceMap": true,
-        "noImplicitAny": false,
-        "module": "commonjs",
-        "target": "es6",
-        "jsx": "react",
-        "skipLibCheck": true,
-        "typeRoots": [
-            "node_modules/@types"
-        ]
-    }
+  "compileOnSave": false,
+  "compilerOptions": {
+      "outDir": "./dist/",
+      "sourceMap": true,
+      "noImplicitAny": false,
+      "module": "commonjs",
+      "target": "es6",
+      "jsx": "react",
+      "skipLibCheck": true,
+      "typeRoots": [
+          "node_modules/@types"
+      ]
   }
-  
+}

@@ -55,7 +55,7 @@ export class LanguageBase {
     MustContainOneNumberFormat: string;
     VerificationEmailSent: string;
     VerificationEmailSentAgain: string;
-    Again:string;
+    Again: string;
     VerificationEmailSentDetail: string;
     Resend: string;
     ResendEmail: string;
@@ -112,7 +112,7 @@ export class LanguageBase {
     Currency: string;
     Pair: string;
     CurrencyPair: string;
-    Market:string;
+    Market: string;
     AvailableBalance: string;
     Gross: string;
     GrossTotal: string;
@@ -216,13 +216,18 @@ export class LanguageBase {
     Funding: string;
     Free: string;
     to: string;
+    Individual: string;
+    Business: string;
+    Create: string;
+    CreateAccount: string;
+    Receipt: string;
+    DepositReceipt: string
 
-    static getLanguage(lang: string): LanguageBase {
-        if(!lang)
-        {
+    static getLanguage(langKey: string): LanguageBase {
+        if (!langKey) {
             return new LangENUS();
         }
-        switch (lang) {
+        switch (langKey) {
             case Constants.Instance.LanguageKey.ENUS:
                 return new LangENUS();
             default:
@@ -230,7 +235,7 @@ export class LanguageBase {
 
         }
     }
-    
+
     static default(): LanguageBase {
         return new LangENUS();
     }
@@ -294,8 +299,8 @@ export class LangENUS extends LanguageBase {
     AccountType = "Account Type";
     InvalidValueFormat = "Invalid value for {0}";
     VerificationEmailSent = "We've Sent You a Verfication Email";
-    VerificationEmailSentDetail = 
-`Click the link in your email to verify your account
+    VerificationEmailSentDetail =
+        `Click the link in your email to verify your account
 If you didn't find the email, please check your spam folder or click the link
 below to re-send`;
     Resend = "Resend";
@@ -312,7 +317,7 @@ below to re-send`;
     Verifying = "Verifying ...";
     Forgot = "Forgot";
     ForgotPassword = this.Forgot + " " + this.Password;
-    BitVelocity = "Bit Velocity"
+    BitVelocity = "BitVelocity"
     NotJoinedBitvelocityYet = "Not joined " + this.BitVelocity + " yet?";
     Join = "Join";
     Now = "Now";
@@ -368,7 +373,7 @@ below to re-send`;
     NotFoundFormat = "{0} not found";
     Min = "Minimum";
     Order = "Order";
-    MinTotalOrderAmountFormat = this.Min + " " + this.Total + " "  + this.Order + " " + this.Amount + " is {0} {1}";
+    MinTotalOrderAmountFormat = this.Min + " " + this.Total + " " + this.Order + " " + this.Amount + " is {0} {1}";
     NotSupportFormat = "{0} not supported";
     NotEnoughBalance = "Not enough balance available";
     MinTierRequriedForTransaction = "Minimum tier {0} is required for a transaction";
@@ -460,5 +465,11 @@ below to re-send`;
     Funding = "Funding";
     Free = "Free";
     to = "to";
+    Individual = "Individual";
+    Business = "Business";
+    Create = "Create";
+    CreateAccount = this.Create + " " + this.Account;
+    Receipt = "Receipt";
+    DepositReceipt = this.Deposit + " " + this.Receipt;
 
 }

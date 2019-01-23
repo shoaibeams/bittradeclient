@@ -11,6 +11,7 @@ const propsRedcuer = (state = initialState, action) => {
         state = {
             ...state,
             ...action.payload,
+            old:{...state}
         }
         return state;
     }
@@ -18,9 +19,15 @@ const propsRedcuer = (state = initialState, action) => {
     if (global.propKeys) {
         if (Object.keys(global.propKeys).indexOf(action.type) > -1) {
             let obj = StaticHelper.assignPropertyOfObject({}, action.type, action.payload);
+            let oldobj = StaticHelper.assignPropertyOfObject({}, action.type, state[action.type]);
+            if(!oldobj[action.type])
+            {
+                oldobj = obj;
+            }
             state = {
                 ...state,
                 ...obj,
+                old:{...state.old, ...oldobj}
             }
             return state;
         }

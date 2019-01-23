@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Router, Route, Link, Switch } from "react-router-dom";
 
 import { updateGlobalProperty, updateGlobalInstance } from "../store/actions/globals.actions";
 import { LanguageBase } from "../shared/language";
@@ -12,35 +12,83 @@ import { mdProps } from "../models/props";
 import { mdCallResponse } from "../models/call-response";
 import { StaticHelper } from "../shared/static-helper";
 import * as Enums from "../enums/general";
-import { BaseComponent } from "../app/components/BaseComponent";
+import { BaseComponent } from "../app/components/base/BaseComponent";
 import AppRoutes from "../routes";
 import { MainFooterHTML } from "../app/components/main-footer/MainFooterHTML";
 import LoggerService from "../shared/logger";
 import HttpClientService from "../shared/http-client.service";
+import history from '../shared/history';
+import HomeComponent from "../app/components/home/HomeComponent";
+import SignUpComponent from "../app/components/account/SignUpComponent";
+import LoginComponent from "../app/components/account/LoginComponent";
+
+export class ABCCom extends BaseComponent {
+    render() {
+        return null;
+    }
+    constructor(props) {
+        super(props);
+        let loc = location.pathname.split('/');
+        let newLoc = "/";
+        let langKeys = ["en", "de"];
+        if (loc.length < 2) {
+            loc = ["", "en"];
+        }
+        else {
+            if (langKeys.indexOf(loc[1]) < 0) {
+                loc = ["", "en", ...loc.slice(1)];
+            }
+        }
+        if (location.pathname != loc.join("/")) {
+            history.push(loc.join("/"));
+            // location.replace(loc.join("/"));
+            // location.href = loc.join("/");
+        }
+        this.log.debug(location.href);
+    }
+}
 
 export class App extends BaseComponent {
 
-    checkedLogin: boolean = false;
     render() {
-        return (
-            <Router>
+        return this.state.checkedLogin ? (
+            <Router history={history}>
                 <>
-                    <ClipLoaderComponent globals={this.props.globals} />
-                    <MainHeaderComponent globals={this.props.globals}/>
+                    <ClipLoaderComponent {...this.props} />
+                    <MainHeaderComponent {...this.props} />
                     {AppRoutes(this.props)}
-                    <MainFooterHTML globals={this.props.globals}/>
+                    <MainFooterHTML {...this.props} />
                 </>
             </Router>
-        );
+        ) : (null)
+
     }
 
     localProps: mdProps;
+
     constructor(props: any) {
         super(props);
-        this.lang = LanguageBase.getLanguage(Constants.Instance.LanguageKey.ENUS);
+        // console.log(this.parsedLocation);
+        this.state = {
+            checkedLogin: false,
+        }
+        this.lang = LanguageBase.getLanguage(this.getLangKey());
         global.lang = this.lang;
         this.checkUser();
         this.loadCurrencyPairs();
+    }
+
+    getLangKey() {
+        let langKeys = StaticHelper.objectToValuesArray(Constants.Instance.LanguageKey);
+        let langKey = "";
+        let splittedPath = location.pathname.split('/');
+        if (splittedPath.length > 1) {
+            let index = langKeys.indexOf(splittedPath[1]);
+            if (index > -1) {
+                langKey = langKeys[index];
+            }
+        }
+        return langKey;
     }
 
     checkUser() {
@@ -49,6 +97,9 @@ export class App extends BaseComponent {
             this.props.updateGlobals(this.props.globals);
             this.http.get<mdCallResponse>(this.constants.EndPoints.GetAuthUser).then((res: mdCallResponse) => {
                 this.props.globals.showMainLoader = false;
+                this.updateState({
+                    checkedLogin: true
+                })
                 if (res.isSuccess) {
                     //a user is logged in
                     if (res.extras.status == this.constants.RecordStatus.PendingVerification) {
@@ -75,19 +126,23 @@ export class App extends BaseComponent {
                     //a user was logged in but now token has expired
                 }
                 this.log.info("isLoggedIn: " + this.props.globals.isLoggedIn, res);
-                this.checkedLogin = true;
                 this.props.updateGlobals(this.props.globals);
             }).catch(error => {
                 this.log.debug(error);
                 this.props.globals.showMainLoader = false;
                 this.props.globals.isLoggedIn = false;
-                this.checkedLogin = true;
                 this.props.updateGlobals(this.props.globals);
+                this.updateState({
+                    checkedLogin: true
+                })
             });
         }
         else {
             this.props.globals.isLoggedIn = false;
-            this.checkedLogin = true;
+            this.state = {
+                ...this.state,
+                checkedLogin: true,
+            }
             this.props.updateGlobals(this.props.globals);
         }
     }
@@ -101,9 +156,8 @@ export class App extends BaseComponent {
                 this.props.globals.defaultCurrencyPairId = res.extras.defaultCurrencyPair;
                 this.props.globals.defaultBuyFee = res.extras.defaultBuyFee;
                 this.props.globals.defaultSellFee = res.extras.defaultSellFee;
-                let cpList = res.extras.currencyPairs.filter(m => m.res.extras.defaultCurrencyPair);
-                if(cpList.length > 0)
-                {
+                let cpList = res.extras.currencyPairs.filter(m => m.id == res.extras.defaultCurrencyPair);
+                if (cpList.length > 0) {
                     this.props.globals.selectedCurrencyPair = cpList[0];
                 }
             }
@@ -115,12 +169,11 @@ export class App extends BaseComponent {
     }
 
     loadbriefHistory() {
-        if(this.isNullOrEmpty(this.props.globals.currencyPairs))
-        {
+        if (this.isNullOrEmpty(this.props.globals.currencyPairs)) {
             this.loadCurrencyPairs();
             return;
         }
-        this.http.get(this.constants.EndPoints.GetTradeBriefRecentHistory).then((res:mdCallResponse) => {
+        this.http.get(this.constants.EndPoints.GetTradeBriefRecentHistory).then((res: mdCallResponse) => {
             this.log.debug(res);
             if (res.isSuccess) {
                 if (res.extras.briefHistory) {
@@ -131,8 +184,18 @@ export class App extends BaseComponent {
                         history[i].current_sell = StaticHelper.roundNumber(history[i].last - (history[i].last * (cp.sell_fee / 100)), cp.tcd_scale);
                         history[i] = StaticHelper.copyProp(cp, history[i]);
                     }
+                    // this.props.updateGlobalProperty(global.propKeys.briefHistory, history);
+                    let selectedBriefHistory = history.filter(m => m.id == this.props.globals.selectedCurrencyPair.id)[0];
+                    // this.props.updateGlobalProperty(global.propKeys.selectedBriefHistory, selectedBriefHistory);
+                    this.props.updateGlobals({
+                        ...this.props.globals,
+                        briefHistory: history,
+                        selectedBriefHistory: selectedBriefHistory,
+                    })
+                    this.props.globals.selectedBriefHistory = selectedBriefHistory
+                    // this.props.globals.briefHistory = history;
 
-                    this.props.updateGlobalProperty(global.propKeys.briefHistory, history);
+
                 }
             }
             setTimeout(() => {
@@ -151,11 +214,6 @@ export class App extends BaseComponent {
 const mapStateToProps = (state) => {
     return {
         globals: state.globals
-    }
-    return {
-        isLoggedIn: state.globalProps,
-        showMainLoader: state.globalProps,
-        username: state.globalProps,
     }
 };
 

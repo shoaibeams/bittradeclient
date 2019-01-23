@@ -5,11 +5,13 @@ export class Validation {
         var resposne = new ValidationAttributeResponse();
         for (var i = 0; i < params.length; i++) {
             var param = params[i];
-            for (var j = 0; j < param.validationAttributes.length; j++) {
-                var attr = param.validationAttributes[j];
-                if (!attr.IsValid(param.value)) {
-                    resposne.isValid = false;
-                    resposne.errors.push(attr.GetErrorMessage(param.name));
+            if (param.validationAttributes) {
+                for (var j = 0; j < param.validationAttributes.length; j++) {
+                    var attr = param.validationAttributes[j];
+                    if (!attr.IsValid(param.value)) {
+                        resposne.isValid = false;
+                        resposne.errors.push(attr.GetErrorMessage(param.name));
+                    }
                 }
             }
         }

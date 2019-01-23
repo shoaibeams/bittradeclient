@@ -5,8 +5,9 @@ import { LanguageBase } from '../../../shared/language';
 import { Constants } from '../../../shared/constants';
 import {mdProps} from "../../../models/props";
 import HeaderComponentHTML from './MainHeaderHTML';
-import { BaseComponent } from '../BaseComponent';
+import { BaseComponent } from '../base/BaseComponent';
 import LoggerService from '../../../shared/logger';
+import { mdCallResponse } from '../../../models/call-response';
 
 export class MainHeaderComponent extends BaseComponent{
     
@@ -129,7 +130,7 @@ export class MainHeaderComponent extends BaseComponent{
             },
             {
                 routerLink: null,
-                href: '/' + Constants.Instance.RoutePaths.Consulting,
+                href: Constants.Instance.RoutePaths.Consulting,
                 icon: 'assets/images/consult.png',
                 alt: this.lang.Consulting,
                 text: this.lang.Consulting,
@@ -164,14 +165,14 @@ export class MainHeaderComponent extends BaseComponent{
         }
     }
 
-    logout() {
-        // this.spinner.show();
-        // this.http.getPromise<mdCallResponse>(Constants.Instance.EndPoints.GetLogout).then((res: mdCallResponse) => {
-        //     window.location.href = Constants.Instance.RoutePaths.Home;
-        // }).catch(error => {
-        //     this.log.info(error);
-        //     window.location.href = Constants.Instance.RoutePaths.Home;
-        // });
+    logout = (e) => {
+        this.showMainSpinner();
+        this.http.get<mdCallResponse>(Constants.Instance.EndPoints.GetLogout).then((res: mdCallResponse) => {
+            window.location.href = Constants.Instance.RoutePaths.Home;
+        }).catch(error => {
+            this.log.info(error);
+            window.location.href = Constants.Instance.RoutePaths.Home;
+        });
     }
 
 }

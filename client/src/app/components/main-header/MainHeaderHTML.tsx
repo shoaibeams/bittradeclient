@@ -4,10 +4,14 @@ import * as ReactDOM from "react-dom";
 
 import { mdProps } from "../../../models/props";
 import { Link } from 'react-router-dom';
-import { BaseComponent } from '../BaseComponent';
+import { BaseComponent } from '../base/BaseComponent';
 
 export default class HeaderComponentHTML extends BaseComponent{
 
+    constructor(props)
+    {
+        super(props);
+    }
     render(){
     return (
         <header>
@@ -33,15 +37,15 @@ export default class HeaderComponentHTML extends BaseComponent{
                                 !this.props.globals.isLoggedIn ? (
                                     <>
                                         <li onClick={this.props.params.navItemClicked(-1)}>
-                                            <a href={this.constants.RoutePaths.SignUp}>
+                                            <Link to={this.constants.RoutePaths.SignUp}>
                                                 <img src="assets/images/lock-icon.png" alt={this.lang.SignUp} />
                                                 {this.lang.SignUp}
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li onClick={this.props.params.navItemClicked(-1)}>
-                                            <a href={this.constants.RoutePaths.Login}>
+                                            <Link to={this.constants.RoutePaths.Login}>
                                                 <img src="assets/images/sign-icon.png" alt={this.lang.Login} />
-                                                {this.lang.Login}</a>
+                                                {this.lang.Login}</Link>
                                         </li>
                                     </>
                                 ) : (
@@ -50,7 +54,7 @@ export default class HeaderComponentHTML extends BaseComponent{
                                                 {this.props.globals.username}
                                                 <i className="fa fa-angle-down"></i></a>
                                             <ul className="dropdown-menu right-to-left">
-                                                <li><a href={this.lang.Logout} onClick={this.props.params.logout()}></a></li>
+                                                <li><a onClick={this.props.params.logout}>{this.lang.Logout}</a></li>
                                             </ul>
                                         </li>)
                             }
@@ -92,10 +96,10 @@ NavLinks = () => {
                                     <span>{l.text}</span>
                                 </Link>
                             ) : (
-                                    <Link to={l.href}>
+                                    <a href={l.href}>
                                         <span><img width="40" height="34" src={l.icon} alt={l.alt} /></span>
                                         <span>{l.text}</span>
-                                    </Link>
+                                    </a>
                                 ))
                 }
             </li>

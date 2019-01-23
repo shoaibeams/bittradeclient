@@ -14,7 +14,7 @@ export default class LoggerService {
 
     static get Instance():LoggerService { return this.getInstance(); }
 
-    debug(data: any, error?: any) {
+    debug(data: any, error?: any, ...args) {
         if (!global.isDev) {
             return;
         }
@@ -31,10 +31,10 @@ export default class LoggerService {
             message = data;
         }
         if (error) {
-            console.error(message, error);
+            console.error(message, error, ...args);
         }
         else {
-            console.log(message);
+            console.log(message, ...args);
         }
     }
 

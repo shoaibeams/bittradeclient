@@ -1,8 +1,7 @@
-import { BaseComponent } from "../BaseComponent";
+import { BaseComponent } from "../base/BaseComponent";
 import * as React from 'react';
 import { CSSProperties } from "@emotion/serialize";
 import css from "@emotion/css";
-import SharedComponent from "../SharedComponent";
 
 export class MainFooterHTML extends BaseComponent {
 

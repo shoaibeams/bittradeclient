@@ -1,0 +1,21 @@
+.dropdown.dropdown-scroll .dropdown-menu {
+    max-height: 200px;
+    width: 60px;
+    overflow: auto;
+}
+.search-control {
+    padding: 5px 10px;
+}
+.dropdown.dropdown .li {
+    cursor: pointer;
+}
+.sadd button span{
+    display: block;
+    overflow: hidden;
+}
+.sadd{
+    margin:6px 0px;
+}
+.sadd button, .sadd ul{
+    width:100% !important;
+}

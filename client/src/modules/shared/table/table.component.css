@@ -1,0 +1,44 @@
+
+.smart-table button,
+.smart-table input,
+.smart-table optgroup,
+.smart-table select,
+.smart-table textarea {
+      color: inherit;
+      font: inherit;
+      margin: 0;
+    }
+
+    .smart-table {
+        line-height: 1.5em;
+        border-collapse: collapse;
+        border-spacing: 0;
+        display: table;
+        width: 100%;
+        max-width: 100%;
+        overflow: auto;
+        word-break: normal;
+        word-break: keep-all;
+  
+      }
+      .smart-table th {
+        font-weight: bold;
+      }
+      .smart-table section {
+        font-size: .75em;
+        font-weight: bold;
+      }
+      .smart-table td,
+      .smart-table th {
+        font-size: .875em;
+        margin: 0;
+        padding: 0.5em 1em;
+      }
+      
+      .smart-table td
+      {
+          /* text-align: left; */
+      }
+      .smart-table *{
+      font-size: 1rem;
+      }

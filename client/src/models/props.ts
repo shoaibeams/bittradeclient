@@ -20,13 +20,15 @@ export class mdGlobalProps{
     showMainLoader: boolean;
     username: string;
     currencyPairs:any[];
+    selectedCurrencyPair: any;
     defaultCurrencyPairId: number;
     defaultBuyFee: number;
     defaultSellFee: number;
     // loadingCurrencies: boolean;
-    selectedCurrencyPair: any;
     briefHistory:any[];
+    selectedBriefHistory: any;
     loadingBriefHistory:boolean;
+    old?: mdGlobalProps;
 }
 
 export class mdPropKeys{
@@ -40,6 +42,7 @@ export class mdPropKeys{
     // loadingCurrencies: string;
     selectedCurrencyPair: string;
     briefHistory: string;
+    selectedBriefHistory: string;
     loadingBriefHistory: string;
     constructor()
     {
@@ -53,6 +56,7 @@ export class mdPropKeys{
         // this.loadingCurrencies = "loadingCurrencies";
         this.selectedCurrencyPair = "selectedCurrencyPair";
         this.briefHistory = "briefHistory";
+        this.selectedBriefHistory = "selectedBriefHistory";
         this.loadingBriefHistory = "loadingBriefHistory";
     }
 }

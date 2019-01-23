@@ -65,11 +65,11 @@ header .signup-header.navbar-nav > li.lang .dropdown-menu li a:hover { backgroun
     /* background:#082d3f; */
 }
 .buy-txt { font-size: 26px; color: #fff; line-height: 30px; }
-.buy-txt span { color: #40b9cd; }
+.buy-txt div { color: #40b9cd; }
 .buy-txt a { background: #40b9cd; color: #fff !important; display: inline-block; width: 185px; text-align: center; padding: 15px 0; margin: 15px 0 0; border-radius:4px;}
 .buy-txt a img { margin-bottom: 8px; }
 .sell-txt { font-size: 26px; color: #fff; line-height: 30px; }
-.sell-txt span { color: #f5675d; }/* font-size: 20px;  */
+.sell-txt div { color: #f5675d; }/* font-size: 20px;  */
 .sell-txt a { background: #f5675d; color: #fff !important; display: inline-block; width: 185px; text-align: center; padding: 15px 0; margin: 15px 0 0; border-radius:4px; }
 .sell-txt a img { margin-top: 8px; }
 .buysellwrap { background: #fff; }
@@ -91,6 +91,7 @@ header .signup-header.navbar-nav > li.lang .dropdown-menu li a:hover { backgroun
 .walletwrap h2 img { vertical-align: middle; margin-right: 5px; }
 .walletwrap h2 span { color: #f5675d; float: right; font-weight: 400; }
 .walletwrap p { color: #353535; line-height: 22px; }
+.walletwrap .p { color: #353535; line-height: 22px; }
 .walletwrap .walletbox { background: #fff url(../images/walletbg.png) right bottom no-repeat; padding: 8px; border-radius: 5px; }
 .walletwrap .walletbox1 { background: #fff url(../images/walletbg1.png) right bottom no-repeat; padding: 8px; border-radius: 5px; }
 /* Services css */
@@ -99,7 +100,7 @@ header .signup-header.navbar-nav > li.lang .dropdown-menu li a:hover { backgroun
 .servicewrap p { font-size: 17px; color: #282828; line-height: 30px; padding-bottom: 60px; min-height: 180px; }
 /* How it work Css */
 .howitwork { /*background: #f3f8fa;*/ width: 100%; padding: 90px 0 70px; }
-.howbox { position: relative; margin-bottom: 20px; }
+.howbox { position: relative; margin-bottom: 20px; text-align: center; }
 .howbox h3 { font-size: 18px; color: #0a222f; font-weight: 600; text-align: center; margin: 30px 0 0; line-height: 26px; min-height: 120px; }
 .howbox h3 div { margin-right: 10px; background: #0a222f; color: #fff; width: 50px; height: 50px; border-radius: 50%; line-height: 48px; margin: 0 auto 10px; }
 .howbox p { font-size: 14px; color: #666; text-align: center; line-height: 20px; }
@@ -184,6 +185,7 @@ footer { background: #082837; width: 100%; }
 .input_elment { width: 100%; margin-top: 15px; line-height: 25px; font-size: 14px; font-weight: normal !important; }
 .input_elment label { font-weight: normal !important; }
 .input_elment input { width: calc(100% - 70px); float: right; background: #5b707b; border: 0px; padding: 5px 10px; color: #fff; font-size: 14px;}
+.input_elment .invalid-feedback { width: calc(100% - 70px); float: right; }
 .vin { float: right; font-size: 13px; margin: 10px 0 0; padding-left: 71px; width: 100%; }
 .vin span { background: #40b9cd none repeat scroll 0 0; cursor: pointer; display: inline-block; font-size: 12px; margin-right: 0; padding: 10px 0; text-align: center; width: 23.3%; }
 .last_price i { color: #f5675d; font-style: normal; }
@@ -350,4 +352,74 @@ select.desktopDropDown {
 .cp-label{
     font-size:18px;
     padding-right:20px;
+}
+.display-table{
+    display:table;
+}
+.valign-middle{
+    vertical-align: middle;
+}
+.buysellwrap .sell-btn > span{
+    background: none;
+}
+.buysellwrap .buy-btn > span{
+    background: none;
+    height: 100%;
+}
+.buysellwrap .buysellswitch .buy.on {
+    color: #40b9cd;
+    text-decoration: line-through
+}
+.buysellwrap .buysellswitch .buy {
+    color: inherit;
+    text-decoration: none
+}
+.buysellwrap .buysellswitch .sell.on {
+    color: #f5675d;
+    text-decoration: line-through
+}
+.buysellwrap .buysellswitch .sell {
+    color: inherit;
+    text-decoration: none
+}
+.number-input .up-arrow:hover, .number-input .down-arrow:hover{
+    background: rgba(51, 51, 51, 0.5);
+}
+.number-input .up-arrow *{
+    vertical-align: top;
+}
+.number-input .down-arrow *{
+    vertical-align: bottom;
+}
+.trade-brief-history-table{
+    width: 100%; 
+    border: none; 
+    /* cellspacing: 0;
+    cellpadding: 0,  */
+}
+.trade-brief-history-table tr td{
+    vertical-align: middle;
+    text-align: center;
+}
+div.content-only{
+    display: inline-block;
+}
+div.anim-greater{
+    color: #87f328;
+    font-weight:700;
+}
+div.anim-lesser{
+    color: #dc1d47;
+    font-weight:700;
+}
+.full-width{
+    width: 100%;
+}
+.no-border{
+    border:none;
+}
+.daypicker-input{
+    border:none;
+    width: 100%;
+    background: transparent;
 }

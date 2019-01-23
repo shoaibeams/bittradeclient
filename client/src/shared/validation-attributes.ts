@@ -52,6 +52,16 @@ export class RequiredValidator implements ValidationAttribute {
                     return false;
                 }
             }
+            else if (typeof value === 'object') {
+                if(StaticHelper.isNullOrEmpty(value))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
             else {
                 return false;
             }
@@ -377,7 +387,7 @@ export class MailValidator implements ValidationAttribute {
 }
 
 export class RegexValidator implements ValidationAttribute {
-    constructor(errorMsgFormat: string, regexString: string, ...args) {
+    constructor(errorMsgFormat: any, regexString: string, ...args) {
         this.errorMessageFormat = errorMsgFormat;
         this.argss = args;
         this.regex = new RegExp(StaticHelper.formatString(regexString, ...this.argss));
@@ -402,15 +412,15 @@ export class RegexValidator implements ValidationAttribute {
         this.errorMessage = StaticHelper.formatString(this.errorMessageFormat, displayName, ...this.argss);
         return this.errorMessage;
     }
-    errorMessage: string;
-    errorMessageFormat: string;
+    errorMessage: any;
+    errorMessageFormat: any;
     regex: RegExp;
     private innerAttribute: RegexpValidator;
     argss: any[];
 }
 
 export class RegexpValidator implements ValidationAttribute {
-    constructor(errorMsgFormat: string, regexp: RegExp, ...args) {
+    constructor(errorMsgFormat: any, regexp: RegExp, ...args) {
         this.errorMessageFormat = errorMsgFormat;
         this.regex = regexp;
         this.argss = args;
@@ -434,8 +444,8 @@ export class RegexpValidator implements ValidationAttribute {
         this.errorMessage = StaticHelper.formatString(this.errorMessageFormat, displayName, ...this.argss);
         return this.errorMessage;
     }
-    errorMessage: string;
-    errorMessageFormat: string;
+    errorMessage: any;
+    errorMessageFormat: any;
     regex: RegExp;
     argss: any[];
 }

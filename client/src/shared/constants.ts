@@ -15,8 +15,8 @@ export class Constants{
 
     static get Instance():Constants { return this.getInstance(); }
 
-    BaseURL:string = "http://localhost:1337/";//"https://api.bitvelocity.io/";//"http://localhost:1337/";
-    IsDev:boolean = true;
+    BaseURL:string = "https://api.bitvelocity.io/";//"http://localhost:1337/";
+    IsDev:boolean = false;
     ResponseMessageTimeout = 4;//in seconds
     RecaptchaSiteKey = StaticConstatns.RecaptchaSiteKey;
     MaxScale = 10;
@@ -37,6 +37,7 @@ export class Constants{
         MustContainNumber: '(?=.*[0-9])',
         MustContainSpecialChar: '(?=.*[!@#\$%\^&\*_])',
         CannotHaveSpace: '(?=^\\S*$)',
+        NumberWithDecimal: '[0-9]',
     }
     public EndPoints = {
         PostContactUs: "contactUs/contactUs",
@@ -62,7 +63,7 @@ export class Constants{
         RefreshToken: "refresh_token",
     }
     public LanguageKey = {
-        ENUS: 'en-us',
+        ENUS: 'en',
     }
     public NonHeaderRoutePaths = [
         StaticConstatns.RoutePaths.Consulting
@@ -119,7 +120,7 @@ export class StaticConstatns {
         EmailConfirmation: "/account/emailConfirmation",
         AccountVerify: "/account/verify",
         AccountForgotPassword: "/account/forgotPassword",
-        Consulting: "/consulting",
+        Consulting: "https://consulting.bitvelocity.io",
         Funding: "/funding",
         FundingDeposit: "/funding/deposit",
         FundingWithdrawl: "/funding/withdrawl",

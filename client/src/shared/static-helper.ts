@@ -1,10 +1,11 @@
 import { Constants } from "./constants";
 import * as uuid from 'uuid';
-// import { Router } from "@angular/router";
+import history from '../shared/history';
+import * as moment from 'moment';
 
 export class StaticHelper {
 
-    static navigateToLogin(history: any) {
+    static navigateToLogin(histor: any) {
         let cons = Constants.Instance;
         let redirectURI = window.location.href;
         if(window.location.href.indexOf(cons.RoutePaths.Login) > -1)
@@ -139,6 +140,9 @@ export class StaticHelper {
         if (theString.length < 1) {
             return "";
         }
+        if (typeof theString != 'string') {
+            return theString;
+        }
         // start with the second argument (i = 1)
         for (var i = 1; i < arguments.length; i++) {
             // "gm" = RegEx options for Global search (more than one instance)
@@ -258,6 +262,17 @@ export class StaticHelper {
                 }
                 return false;
             }
+            else if(value instanceof Date)
+            {
+                if(!isNaN(Number(value)))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
             else
             {
                 if(Object.keys(value).length < 1)
@@ -269,6 +284,45 @@ export class StaticHelper {
         }
         return false;
 
+    }
+
+    static testRegex(regex, value)
+    {
+        if(this.isNullOrEmpty(regex))
+        {
+            return true;
+        }
+        let regExp = RegExp(regex);
+        return regExp.test(value);
+    }
+
+    static objectToValuesArrayWithObjectName(obj: object, objNameProp: string, stringValues: boolean = false): any[] {
+        let keys = Object.keys(obj);
+        let res: any[] = [];
+        for (let i = 0; i < keys.length; i++) {
+            let o = obj[keys[i]];
+            o[objNameProp] = keys[i];
+            res.push(o);
+        }
+        return res;
+    }
+
+    static longDateFormat(date: Date)
+    {
+        let mmnt = moment(date);
+        return mmnt.locale('en').format('MMM D, YYYY, hh:mm:ss A');
+    }
+
+    static objectToValuesArray(obj: object, stringValues: boolean = false): any[] {
+        return Object.keys(obj).map((valueNamedIndex) => {
+            let value = obj[valueNamedIndex];
+            if (stringValues) {
+                return value.toString();
+            }
+            else {
+                return value;
+            }
+        });
     }
 
 }

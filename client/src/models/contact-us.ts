@@ -21,10 +21,10 @@ export class mdContactUs {
             this.duration = "";
             this.skype_id = "";
             
-            this.email = 'inaamiub@gmil.com';
-            this.name = '1',
-            this.contact_no = 'sf';
-            this.message = '1';
+            // this.email = 'inaamiub@gmil.com';
+            // this.name = '1',
+            // this.contact_no = 'sf';
+            // this.message = '1';
         }
     }
 }

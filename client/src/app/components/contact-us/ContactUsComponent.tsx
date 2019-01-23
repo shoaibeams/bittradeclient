@@ -4,27 +4,72 @@ import { mdContactUs, ContactUsMetaData } from '../../../models/contact-us';
 import { mdProps } from '../../../models/props';
 import { Constants } from '../../../shared/constants';
 import { StaticHelper } from '../../../shared/static-helper';
-import { ValidateParams, Validation, ValidationAttributeResponse } from '../../../shared/validations';
 import * as ValidationAttributes from "../../../shared/validation-attributes"
 import { mdFormControl } from '../../../shared/form-control';
 import { mdCallResponse } from '../../../models/call-response';
-import { BaseComponent } from '../BaseComponent';
-import { ContactUsHTML } from './ContactUsHTML';
+import { BaseComponent } from '../base/BaseComponent';
 
 
 export default class ContactUsComponent extends BaseComponent {
 
     render() {
+        this.initShorts();
         return (
-            <ContactUsHTML globals={this.props.globals} form={this.state.form} params={{
-                onSubmit: this.onSubmit,
-                handleChange: this.handleFormControlInput,
-            }} />
+            <div className="mainpage clearfix">
+                <section className="signupwrap clearfix">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-6 col-md-offset-3 col-sm-12 ">
+                                <p className="h3">{this.lang.ContactUs}</p>
+                                <form onSubmit={this.onSubmit}>
+                                    <div className="signupbox clearfix">
+                                        <div className="tab-content">
+                                            <div id="Individual" className="tab-pane fade in active">
+                                                <div className="row">
+                                                    <div className="col-sm-12">
+                                                        {
+                                                            this.textFormControl(this.f.name, this.handleFormControlInput)
+                                                        }
+                                                    </div>
+                                                    <div className="col-sm-12">
+                                                        {
+                                                            this.textFormControl(this.f.contact_no, this.handleFormControlInput)
+                                                        }
+                                                    </div>
+                                                    <div className="col-sm-12">
+                                                        {
+                                                            this.textFormControl(this.f.email, this.handleFormControlInput)
+                                                        }
+                                                    </div>
+                                                    <div className="col-sm-12">
+                                                        {
+                                                            this.textareaFormControl(this.f.message, this.handleFormControlInput)
+                                                        }
+                                                    </div >
+                                                    <div className="col-sm-12 form-group">
+                                                        <button type="submit" className="btn-primary signup-btn " disabled={this.f.diableSubmitButton} >{this.lang.Submit}</button>
+                                                    </div >
+                                                    <div className="col-sm-12">
+                                                        {
+                                                            this.getSubmitResponseDiv(this.f.submitResponseClass,
+                                                                this.f.submitResponse, this.f.showSubmitResponse)
+                                                        }
+                                                    </div >
+                                                </div >
+                                            </div >
+                                        </div >
+                                    </div >
+                                </form >
+                            </div >
+                        </div >
+                    </div >
+                </section >
+            </div >
         );
     }
 
     model: mdContactUs;
-    errors: any;
+    showErrors: boolean;
 
     constructor(props) {
         super(props);
@@ -33,18 +78,6 @@ export default class ContactUsComponent extends BaseComponent {
 
     init() {
         this.model = new mdContactUs(true);
-        this.errors = {
-            nameRequried: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.Name),
-            nameMaxLength: StaticHelper.formatString(this.lang.MaxLengthFormat, ContactUsMetaData.nameMaxLength),
-            contactNoRequired: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.ContactNo),
-            contactNoMaxLength: StaticHelper.formatString(this.lang.MaxLengthFormat, ContactUsMetaData.contactNoMaxLength),
-            emailRequried: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.Email),
-            emailMaxLength: StaticHelper.formatString(this.lang.MaxLengthFormat, ContactUsMetaData.emailMaxLength),
-            emailInvalid: this.lang.InvalidEmail,
-            messageRequried: StaticHelper.formatString(this.lang.RequiredFormat, this.lang.Message),
-            messageRange: StaticHelper.formatString(this.lang.RangeLengthFormat, ContactUsMetaData.messageMinLength, ContactUsMetaData.messageMaxLength),
-            capitchaErrorMessage: this.lang.CapitchaErrorMessage,
-        };
         this.state = {
             form: {
                 name: new mdFormControl(this.model.name, "name", this.lang.Name, [
@@ -87,7 +120,7 @@ export default class ContactUsComponent extends BaseComponent {
 
         //everything is fine, now save the data
         this.props.updateGlobalProperty(global.propKeys.showMainLoader, true);
-        this.setState({ form: { ...this.state.form, diableSubmitButton: true } });
+        this.updateState({ form: { ...this.state.form, diableSubmitButton: true } });
         let formData: mdContactUs = this.getFormData(this.state.form) as mdContactUs;
         formData.uuid = StaticHelper.getUUID();
 
@@ -100,8 +133,8 @@ export default class ContactUsComponent extends BaseComponent {
                     submitResponseClass = "text-success";
                 }
             }
-            
-            this.setState({
+
+            this.updateState({
                 form: {
                     ...this.state.form,
                     showSubmitResponse: true,
