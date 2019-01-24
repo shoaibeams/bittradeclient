@@ -230,5 +230,354 @@ below to re-send`;
     CreateAccount = this.Create + " " + this.Account;
     Receipt = "Receipt";
     DepositReceipt = this.Deposit + " " + this.Receipt;
+    InterestedIn = "Interested In";
+    Duration = "Duration";
+    FreeInitialConsultation = "Free Initial Consultation";
+    AreYouLookingForAReliable = "Are you looking for a reliable, experienced";
+    SolutionProviderThatCanDeliverInTime = "solution provider that can deliver your project in time ?";
+    Transparency = "Transparency";
+    Quality = "Quality";
+    Deliverables = "Deliverables";
+    QualityDeliverables = this.Quality + " " + this.Deliverables;
+    Flexible = "Flexible";
+    Engagement = "Engagement";
+    Models = "Models";
+    FlexibleEngagementModels = this.Flexible + " " + this.Engagement + " " + this.Models;
+    Skilled = "Skilled";
+    Team = "Team";
+    SkilledTeam = this.Skilled + " " + this.Team;
+    Talk = "Talk";
+    Our = "Our";
+    Experts = "Experts";
+    TalkToOurExperts = this.Talk + " to " + this.Our + " " + this.Experts;
+    Meet = "Meet";
+    Founder = "Founder";
+    CEO = "CEO";
+    MeetFounderAndCEO = this.Meet + " " + this.Founder + " and " + this.CEO;
+    SerialEnterpreneurPara = "Serial enterpreneur and technology evangelist specialized in real-time applications,";
+    CPP = "C++";
+    Linux = "Linux";
+    NodeJS = "NodeJS";
+    InnovateSolutionsPara = "Innovate solutions using technology that can solve real world problems for humans";
+    Years = "Year(s)";
+    Highly = "Highy";
+    Experienced = "Expereinced";
+    HiglyExperienced = this.Highly + " " + this.Experienced;
+    Reliable = "Reliable";
+    Trustable = "Trustable";
+    ReiableAndTrustable = this.Reliable + " & " + this.Trustable;
+    Successfull = "Successfull";
+    Cooperation = "Cooperation";
+    SuccessfullCooperation = this.Successfull + " " + this.Cooperation;
+    HowItWorks = "How it works";
+    TalkToOneofOurPara = "Talk to one of our";
+    IndusteryExpertsPara = "industry experts";
+    AVelocityDirectorPara  = "A Velocity director of engineering will";
+    AVelocityDirectorPara2 = "then asses the workload and select";
+    AVelocityDirectorPara3 = "suitable resource for the project.";
+    AllocateSuitableResource = "Allocate suitable resource";
+    WeWillThenAssessTheWorkLoadPara  = "We will then asses the workload and select suitable resource for the project.";
+    EnsuringPromptDelivery = "Ensuring prompt delivery";
+    EnsuringPromptDeliveryPara1 = "Development starts under internal Scrum";
+    EnsuringPromptDeliveryPara2 = "Master and partners are updated weekly";
+    EnsuringPromptDeliveryPara3 = "on progress";
+    ServicesWeDeliver = "Services we deliver";
+    ServicesWeDeliverPara = `At Velocity solutions we are passionate about building new generation applications
+    using technology. Since we are building solutions that will solve real-world
+    problem. we would love to be a part of organization working in same industry.`;
+    TechnicalConsulting = "Technical Consulting";
+    TechnicalConsultingPara= `Our inhouse quality control analysts ensure that product only goes live
+    in
+    production once it passes all stress testing techniques minimizing last
+    minute production fixes`;
+    ProductDevelopment= "Product Development";
+    ProductDevelopmentPara= `We have helped our clients improve their existing product ensuring
+    reliability and capability.`;
+    UIAndUX= "UI & UX";
+    UIAndUXPara = `Our inhouse quality control analysts ensure that product only goes live
+    in
+    production once it passes all stress testing techniques minimizing last
+    minute production fixes`;
+    DevOps= "Dev Ops";
+    DevOpsPara= `Our inhouse quality control analysts ensure that product only goes live
+    in
+    production once it passes all stress testing techniques minimizing last
+    minute production fixes`;
+    TechnologiesPara = "These are the technologies we specialise in and our";
+    TechnologiesPara2 = "expert will be in touch with you within 3 working days";
+    Experience = "Experience";
+    Project = "Project";
+    Launched = "Launched";
+    ProjectLaunched = this.Project + " " + this.Launched;
+    Support = "Support";
+    Satisfied = "Satisfied";
+    Customers = "Customers";
+    SatisfiedCustomers = this.Satisfied + " " + this.Customers;
+    OurSoftwareDevelopmentIndustries = "Our Software Development Industries";
+    OurSoftwareDevelopmentIndustriesPara = "We have successfully delivered solutions in following industries";
+    BlockchainPara = `We believe blockchain technology is next version of internet where trustless
+    decentralized ecosystem will solve many problems on modern age. Based on
+    this believe we are also developing our inhouse products that will solve
+    high fees exchange challenge that travelers have to have.
+    Similarly using blockchain we are working to solve real-estate transaction
+    issues by placing all the data of a real-estate transaction onto
+    blockchain. Additionally, using this platform users are able to buy/sell
+    real-estate using digital assets and our exchange system will act as a
+    liquidity provider to ensure on-demand conversion is done by taking the
+    hassle out of parties involved in the transaction.
+    Weather it’s based on Ethereum blockchain, Solidity, private or public
+    blockchain, Hyperledger, If you a project that is solving a real-world
+    problem using blockchain technology we would be very much interested to
+    work together delivering a reliable and scalable solution.`;
+    Healthcare = "Healthcare";
+    HealthcarePara = `Our developers have dived into several projects in the Healthcare sector;
+    ranging from Doctor-client appointment & booking systems to medicine
+    verification scanners. If you are looking for a mobile app development
+    company
+    for your next big app in the healthcare industry, feel free to discuss your
+    project with us.Our developers have dived into several projects in the
+    healthcare sector; ranging from Doctor-client booking systems to medicine
+    verification scanners.Our developers have dived into several projects in
+    the
+    Healthcare sector; ranging from Doctor-client appointment & booking systems
+    to
+    medicine verification scanners. If you are looking for a mobile app
+    development
+    company for your next big app in the healthcare industry, feel free to
+    discuss
+    your project with us.`;
+    BankingAndFinance = "Banking & Finance";
+    BankingAndFinancePara =`Our developers have dived into several projects in the Healthcare sector;
+    ranging from Doctor-client appointment & booking systems to medicine
+    verification scanners. If you are looking for a mobile app development
+    company
+    for your next big app in the healthcare industry, feel free to discuss your
+    project with us.Our developers have dived into several projects in the
+    healthcare sector; ranging from Doctor-client booking systems to medicine
+    verification scanners.Our developers have dived into several projects in
+    the
+    Healthcare sector; ranging from Doctor-client appointment & booking systems
+    to
+    medicine verification scanners. If you are looking for a mobile app
+    development
+    company for your next big app in the healthcare industry, feel free to
+    discuss
+    your project with us.`;
+    RealTimeTradingApps1 = "Real-time";
+    RealTimeTradingApps2 = "Trading apps";
+    RealTimeTradingAppsPara = `Our developers have dived into several projects in the Healthcare sector;
+    ranging from Doctor-client appointment & booking systems to medicine
+    verification scanners. If you are looking for a mobile app development
+    company
+    for your next big app in the healthcare industry, feel free to discuss your
+    project with us.Our developers have dived into several projects in the
+    healthcare sector; ranging from Doctor-client booking systems to medicine
+    verification scanners.Our developers have dived into several projects in
+    the
+    Healthcare sector; ranging from Doctor-client appointment & booking systems
+    to
+    medicine verification scanners. If you are looking for a mobile app
+    development
+    company for your next big app in the healthcare industry, feel free to
+    discuss
+    your project with us.`;
+    Education = "Education";
+    EducationAndELearning1 = this.Education + " &";
+    ELearning = "E-learning";
+    EducationAndELearningPara = `Our developers have dived into several projects in the Healthcare sector;
+    ranging from Doctor-client appointment & booking systems to medicine
+    verification scanners. If you are looking for a mobile app development
+    company
+    for your next big app in the healthcare industry, feel free to discuss your
+    project with us.Our developers have dived into several projects in the
+    healthcare sector; ranging from Doctor-client booking systems to medicine
+    verification scanners.Our developers have dived into several projects in
+    the
+    Healthcare sector; ranging from Doctor-client appointment & booking systems
+    to
+    medicine verification scanners. If you are looking for a mobile app
+    development
+    company for your next big app in the healthcare industry, feel free to
+    discuss
+    your project with us.`;
+    Cloud = "Cloud";
+    Technologies = "Technologies";
+    CloudTechnologiesPara = `Our developers have dived into several projects in the Healthcare sector;
+    ranging from Doctor-client appointment & booking systems to medicine
+    verification scanners. If you are looking for a mobile app development
+    company
+    for your next big app in the healthcare industry, feel free to discuss your
+    project with us.Our developers have dived into several projects in the
+    healthcare sector; ranging from Doctor-client booking systems to medicine
+    verification scanners.Our developers have dived into several projects in
+    the
+    Healthcare sector; ranging from Doctor-client appointment & booking systems
+    to
+    medicine verification scanners. If you are looking for a mobile app
+    development
+    company for your next big app in the healthcare industry, feel free to
+    discuss
+    your project with us.`;
+    Automotive = "Automotive";
+    AutomotivePara = `Our developers have dived into several projects in the Healthcare sector;
+    ranging from Doctor-client appointment & booking systems to medicine
+    verification scanners. If you are looking for a mobile app development
+    company
+    for your next big app in the healthcare industry, feel free to discuss your
+    project with us.Our developers have dived into several projects in the
+    healthcare sector; ranging from Doctor-client booking systems to medicine
+    verification scanners.Our developers have dived into several projects in
+    the
+    Healthcare sector; ranging from Doctor-client appointment & booking systems
+    to
+    medicine verification scanners. If you are looking for a mobile app
+    development
+    company for your next big app in the healthcare industry, feel free to
+    discuss
+    your project with us.`;
+    Tourism = "Tourism";
+    TravelAndTourism = this.Travel + " & " + this.Tourism;
+    TravelAndTourismPara = `Our developers have dived into several projects in the Healthcare sector;
+    ranging from Doctor-client appointment & booking systems to medicine
+    verification scanners. If you are looking for a mobile app development
+    company
+    for your next big app in the healthcare industry, feel free to discuss your
+    project with us.Our developers have dived into several projects in the
+    healthcare sector; ranging from Doctor-client booking systems to medicine
+    verification scanners.Our developers have dived into several projects in
+    the
+    Healthcare sector; ranging from Doctor-client appointment & booking systems
+    to
+    medicine verification scanners. If you are looking for a mobile app
+    development
+    company for your next big app in the healthcare industry, feel free to
+    discuss
+    your project with us.`;
+    Manufacturing = "Manufacturing";
+    ManufacturingPara = `Our developers have dived into several projects in the Healthcare sector;
+    ranging from Doctor-client appointment & booking systems to medicine
+    verification scanners. If you are looking for a mobile app development
+    company
+    for your next big app in the healthcare industry, feel free to discuss your
+    project with us.Our developers have dived into several projects in the
+    healthcare sector; ranging from Doctor-client booking systems to medicine
+    verification scanners.Our developers have dived into several projects in
+    the
+    Healthcare sector; ranging from Doctor-client appointment & booking systems
+    to
+    medicine verification scanners. If you are looking for a mobile app
+    development
+    company for your next big app in the healthcare industry, feel free to
+    discuss
+    your project with us.`;
+    Intellectual = "Intellectual";
+    Property = "Property";
+    Products = "Products";
+    PropertyProducts = this.Property + " " + this.Products;
+    IntellectualPropertyProductsPara = `Our developers have dived into several projects in the Healthcare sector;
+    ranging from Doctor-client appointment & booking systems to medicine
+    verification scanners. If you are looking for a mobile app development
+    company
+    for your next big app in the healthcare industry, feel free to discuss your
+    project with us.Our developers have dived into several projects in the
+    healthcare sector; ranging from Doctor-client booking systems to medicine
+    verification scanners.Our developers have dived into several projects in
+    the
+    Healthcare sector; ranging from Doctor-client appointment & booking systems
+    to
+    medicine verification scanners. If you are looking for a mobile app
+    development
+    company for your next big app in the healthcare industry, feel free to
+    discuss
+    your project with us.`;
+    Gaming = "Gaming";
+    GamingPara = `Our developers have dived into several projects in the Healthcare sector;
+    ranging from Doctor-client appointment & booking systems to medicine
+    verification scanners. If you are looking for a mobile app development
+    company
+    for your next big app in the healthcare industry, feel free to discuss your
+    project with us.Our developers have dived into several projects in the
+    healthcare sector; ranging from Doctor-client booking systems to medicine
+    verification scanners.Our developers have dived into several projects in
+    the
+    Healthcare sector; ranging from Doctor-client appointment & booking systems
+    to
+    medicine verification scanners. If you are looking for a mobile app
+    development
+    company for your next big app in the healthcare industry, feel free to
+    discuss
+    your project with us.`;
+    Media = "Media";
+    MediaAnd = this.Media + " &";
+    Entertainment = "Entertainment";
+    MediaAndEntertainmentPara = `Our developers have dived into several projects in the Healthcare sector;
+    ranging from Doctor-client appointment & booking systems to medicine
+    verification scanners. If you are looking for a mobile app development
+    company
+    for your next big app in the healthcare industry, feel free to discuss your
+    project with us.Our developers have dived into several projects in the
+    healthcare sector; ranging from Doctor-client booking systems to medicine
+    verification scanners.Our developers have dived into several projects in
+    the
+    Healthcare sector; ranging from Doctor-client appointment & booking systems
+    to
+    medicine verification scanners. If you are looking for a mobile app
+    development
+    company for your next big app in the healthcare industry, feel free to
+    discuss
+    your project with us.`;
+    ProjectsSuccessfullyDelivery1 = "Projects successfully delivery";
+    ProjectsSuccessfullyDelivery2 = "for these clients";
+    DepartureControlSystem1 = "Departure Control System and";
+    DepartureControlSystem2 = "Flight management System";
+    RealtimeRemoteControl1 = "Real-time remote control";
+    RealtimeRemoteControl2 = "application";
+    LondonUndergroundRailSimulation1 = "London underground rail";
+    LondonUndergroundRailSimulation2 = "simulation";
+    CloudGaming = this.Cloud + " " + this.Gaming;
+    Virtualization = "Virtualization";
+    CloudVirtualization = this.Cloud + " " + this.Virtualization;
+    Lets = "Lets";
+    ContactUs1 = "We believe in solving problem with";
+    ContactUs2 = "Skill, Passion, Quality and Reliability";
+    ContactUs3 = "that could result in building long term relationships.";
+    ContactUs4 = "So if you are looking for a developer in these areas,";
+    ContactUs5 = "fill our the form below and our team will be in contact within few days.";
+    ThankYouForContactingUs = "Thank you for contacting us.";
+    WeHaveReceivedYourMessage = "We've received your message.";
+    OurExpertWillBeInTouchWithYou = "Our expert will be in touch with you within 3 working days";
+    FahadSheikh = "Fahad Sheikh";
+    AngularJS = "AngularJS";
+    MeanStack = "Mean Stack";
+    ReactNative = "React Native";
+    BlockchainForTravel = this.Blockchain + " for " + this.Travel;
+    BlockchainForRealEstate = this.Blockchain + " for " + this.RealEstate;
+    HTML5 = "HTML5";
+    CSS = "CSS";
+    ReactJS = "ReactJS";
+    FullStackDevelopment = "Full Stack Development";
+    MobileDevelopment = "Mobile Development";
+    ServerDevelopment = "Server Development";
+    AWS = "AWS";
+    EC2Console = "EC2 Console";
+    ERC20Tokens = "ERC20 Tokens";
+    DecentralisedApps = "Decentralised Apps";
+    XenServer = "Xen Server";
+    RealTime = "RealTime";
+    Applications = "Applications";
+    RealTimeApplications = this.RealTime + " " + this.Applications;
+    Java = "Java";
+    ApacheTomcat = "Apache Tomcat";
+    Copyrights = "Copyrights";
+    CopyrightsWithYear = this.Copyrights + "@2019";
+    AllRightsReserved = "All rights reserved";
+    VelocitySolutions = "Velocity Solutions";
+    OperatingUnderVelocitySolutions = "Operating under " + this.VelocitySolutions;
+    CompanyNo = "Company No";
+    Method = "Method";
+    DepositMethod = this.Deposit + " " + this.Method
+    Params = "Params";
+    MinimumAmountFormat = this.Minimum + " " + this.Amount + " is {0}";
+    NotSaved = "Not Saved";
 
 }

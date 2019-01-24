@@ -15,8 +15,8 @@ export class Constants{
 
     static get Instance():Constants { return this.getInstance(); }
 
-    BaseURL:string = "https://api.bitvelocity.io/";//"http://localhost:1337/";
-    IsDev:boolean = false;
+    BaseURL:string = "http://localhost:1337/";//"https://api.bitvelocity.io/";//"http://localhost:1337/";
+    IsDev:boolean = true;
     ResponseMessageTimeout = 4;//in seconds
     RecaptchaSiteKey = StaticConstatns.RecaptchaSiteKey;
     MaxScale = 10;

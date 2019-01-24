@@ -1,12 +1,8 @@
 import * as React from 'react';
-import * as ReactDOM from "react-dom";
-
-import { LanguageBase } from '../../../shared/language';
 import { Constants } from '../../../shared/constants';
 import {mdProps} from "../../../models/props";
 import HeaderComponentHTML from './MainHeaderHTML';
 import { BaseComponent } from '../base/BaseComponent';
-import LoggerService from '../../../shared/logger';
 import { mdCallResponse } from '../../../models/call-response';
 
 export class MainHeaderComponent extends BaseComponent{

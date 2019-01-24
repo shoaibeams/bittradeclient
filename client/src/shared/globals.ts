@@ -1,4 +1,4 @@
-import { LanguageBase } from "./language";
+import { LanguageBase } from "../language/language";
 import mdSpinnerConfig from "../models/spinner-config";
 import { mdPropKeys } from "../models/props";
 import mdTransitions from "../models/transitions";

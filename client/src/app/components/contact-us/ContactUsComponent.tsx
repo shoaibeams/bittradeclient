@@ -1,8 +1,5 @@
 import React = require('react');
-import { LanguageBase } from '../../../shared/language';
 import { mdContactUs, ContactUsMetaData } from '../../../models/contact-us';
-import { mdProps } from '../../../models/props';
-import { Constants } from '../../../shared/constants';
 import { StaticHelper } from '../../../shared/static-helper';
 import * as ValidationAttributes from "../../../shared/validation-attributes"
 import { mdFormControl } from '../../../shared/form-control';

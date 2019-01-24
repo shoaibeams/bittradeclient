@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Router, Route, Link, Switch } from "react-router-dom";
 
 import { updateGlobalProperty, updateGlobalInstance } from "../store/actions/globals.actions";
-import { LanguageBase } from "../shared/language";
 import { Constants, StaticConstatns } from "../shared/constants";
 
 import { MainHeaderComponent } from "../app/components/main-header/MainHeaderComponet";
@@ -15,40 +14,10 @@ import * as Enums from "../enums/general";
 import { BaseComponent } from "../app/components/base/BaseComponent";
 import AppRoutes from "../routes";
 import { MainFooterHTML } from "../app/components/main-footer/MainFooterHTML";
-import LoggerService from "../shared/logger";
-import HttpClientService from "../shared/http-client.service";
 import history from '../shared/history';
-import HomeComponent from "../app/components/home/HomeComponent";
-import SignUpComponent from "../app/components/account/SignUpComponent";
-import LoginComponent from "../app/components/account/LoginComponent";
+import { getLanguage } from "../language/language";
 
-export class ABCCom extends BaseComponent {
-    render() {
-        return null;
-    }
-    constructor(props) {
-        super(props);
-        let loc = location.pathname.split('/');
-        let newLoc = "/";
-        let langKeys = ["en", "de"];
-        if (loc.length < 2) {
-            loc = ["", "en"];
-        }
-        else {
-            if (langKeys.indexOf(loc[1]) < 0) {
-                loc = ["", "en", ...loc.slice(1)];
-            }
-        }
-        if (location.pathname != loc.join("/")) {
-            history.push(loc.join("/"));
-            // location.replace(loc.join("/"));
-            // location.href = loc.join("/");
-        }
-        this.log.debug(location.href);
-    }
-}
-
-export class App extends BaseComponent {
+class App extends BaseComponent {
 
     render() {
         return this.state.checkedLogin ? (
@@ -72,7 +41,7 @@ export class App extends BaseComponent {
         this.state = {
             checkedLogin: false,
         }
-        this.lang = LanguageBase.getLanguage(this.getLangKey());
+        this.lang = getLanguage(this.getLangKey());
         global.lang = this.lang;
         this.checkUser();
         this.loadCurrencyPairs();

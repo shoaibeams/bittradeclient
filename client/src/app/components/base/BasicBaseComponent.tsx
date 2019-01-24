@@ -3,7 +3,7 @@ import { mdProps, mdGlobalProps, mdPropKeys } from "../../../models/props";
 import { Constants } from "../../../shared/constants";
 import LoggerService from "../../../shared/logger";
 import HttpClientService from "../../../shared/http-client.service";
-import { LanguageBase } from "../../../shared/language";
+import { LanguageBase } from "../../../language/language";
 import mdSpinnerConfig from "../../../models/spinner-config";
 import mdTransitions from "../../../models/transitions";
 import * as Enums from "../../../enums/general";
