@@ -1,8 +1,5 @@
 import { BaseComponent } from "../base/BaseComponent";
 import * as React from "react";
-import { Link } from "react-router-dom";
-import { StaticHelper } from "../../../shared/static-helper";
-import { mdFormControl } from "../../../shared/form-control";
 import { mdCallResponse } from "../../../models/call-response";
 
 export default class AccountVerificationComponent extends BaseComponent {
@@ -52,7 +49,7 @@ export default class AccountVerificationComponent extends BaseComponent {
                 }
                 else {
                     setTimeout(() => {
-                        window.location.replace(this.constants.RoutePaths.Login);
+                        window.location.replace(this.getLink(this.constants.RoutePaths.Login));
                     }, 2 * 1000);
                 }
                 this.hideMainSpinner();

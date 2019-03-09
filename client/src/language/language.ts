@@ -1,5 +1,6 @@
 import { Constants } from "../shared/constants";
 import { LangENUS } from "./enus";
+import { LangDE } from "./de";
 
 export interface LanguageBase {
     Name: string;
@@ -387,8 +388,8 @@ export function getLanguage(lang: string): LanguageBase {
         case Constants.Instance.LanguageKey.ENUS:
             return new LangENUS();
             
-        // case Constants.Instance.LanguageKey.DE:
-        // return new LangDE();
+        case Constants.Instance.LanguageKey.DE:
+        return new LangDE();
 
         default:
             return new LangENUS();

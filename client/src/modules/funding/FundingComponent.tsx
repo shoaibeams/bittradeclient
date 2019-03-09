@@ -1,7 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { BaseComponent } from "../../app/components/base/BaseComponent";
-import { mdCallResponse } from "../../models/call-response";
 import DepositComponent from "./DepositComponent";
 
 export default class FundingComponent extends BaseComponent {

@@ -1,9 +1,9 @@
 import { BaseComponent } from "./BaseComponent";
-import React = require("react");
+import * as React from "react";
 import { StaticHelper } from "../../../shared/static-helper";
 import { Constants } from "../../../shared/constants";
-import NotFoundComponent from "../not-found/NotFoundComponent";
 import history from '../../../shared/history';
+import NotFoundComponent from "../not-found/NotFoundComponent";
 
 export default class NoMatchComponent extends BaseComponent {
     render() {
@@ -13,19 +13,22 @@ export default class NoMatchComponent extends BaseComponent {
     loadNotFoundComponent: boolean;
     constructor(props) {
         super(props);
-        let defaultLangKey = "en";
         let loc = location.pathname.split('/');
         let langKeys = StaticHelper.objectToValuesArray(Constants.Instance.LanguageKey);
         if (loc.length < 2) {
-            loc = ["", defaultLangKey];
+            loc = ["", this.g.langKey];
         }
         else {
-            if (langKeys.indexOf(loc[1]) < 0) {
-                loc = ["", defaultLangKey, ...loc.slice(1)];
+            if (langKeys.indexOf(loc[1]) > -1) {
+                loc = ["", loc[1], ...loc.slice(2)];
+            }
+            else
+            {
+                loc = ["", this.g.langKey, ...loc.slice(2)];
             }
         }
         if (location.pathname != loc.join("/")) {
-            history.push(loc.join("/"));
+            history.push(loc.join("/") + location.search);
             this.loadNotFoundComponent = false;
             return;
             // location.replace(loc.join("/"));

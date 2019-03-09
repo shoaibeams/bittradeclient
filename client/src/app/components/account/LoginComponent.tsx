@@ -79,12 +79,12 @@ export default class LoginComponent extends BaseComponent {
                                     </div>
                                 </div>
                                 <div className="col-sm-12 pstylish color-white">
-                                    <Link className="f-fl hyperlink-color" to={this.constants.RoutePaths.AccountForgotPassword}>
+                                    <Link className="f-fl hyperlink-color" to={this.getLink(this.constants.RoutePaths.AccountForgotPassword)}>
                                         {this.lang.ForgotPassword}
                                     </Link>
                                     <span className="f-fr">
                                         <span>{this.lang.NotJoinedBitvelocityYet}</span>
-                                        <Link className="hyperlink-color" to={this.constants.RoutePaths.SignUp}>{this.lang.JoinNow}</Link>
+                                        <Link className="hyperlink-color" to={this.getLink(this.constants.RoutePaths.SignUp)}>{this.lang.JoinNow}</Link>
                                     </span >
                                 </div >
                             </div >
@@ -105,7 +105,7 @@ export default class LoginComponent extends BaseComponent {
     init() {
         this.redirectURI = this.parsedLocation[this.constants.QueryParams.redirectURI];
         if (!this.redirectURI) {
-            this.redirectURI = this.constants.RoutePaths.Trade;
+            this.redirectURI = this.getLink(this.constants.RoutePaths.Trade);
         }
         this.model = new mdSignUp(true);
         this.state = {
@@ -169,7 +169,7 @@ export default class LoginComponent extends BaseComponent {
                                 window.location.href = this.redirectURI;
                             }
                             else {
-                                window.location.href = this.constants.RoutePaths.Trade;
+                                window.location.href = this.getLink(this.constants.RoutePaths.Trade);
                             }
                         }
                     }

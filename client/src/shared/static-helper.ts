@@ -5,14 +5,14 @@ import * as moment from 'moment';
 
 export class StaticHelper {
 
-    static navigateToLogin(histor: any) {
+    static navigateToLogin() {
         let cons = Constants.Instance;
         let redirectURI = window.location.href;
         if(window.location.href.indexOf(cons.RoutePaths.Login) > -1)
         {
             redirectURI = '';
         }
-        history.push(cons.RoutePaths.Login +
+        history.push("/" + global.langKey + cons.RoutePaths.Login +
             "?" + cons.QueryParams.redirectURI + "=" + redirectURI)
         // router.navigateByUrl(cons.RoutePaths.Login +
         //     "?" + cons.QueryParams.redirectURI + "=" + redirectURI,

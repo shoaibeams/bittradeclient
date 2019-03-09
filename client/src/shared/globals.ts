@@ -11,6 +11,7 @@ declare global {
             mainSpinnerConfig: mdSpinnerConfig;
             propKeys: mdPropKeys;
             transitions: mdTransitions;
+            langKey: string;
         }
     }
 }

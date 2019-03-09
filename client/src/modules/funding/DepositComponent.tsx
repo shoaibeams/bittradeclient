@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { BaseComponent } from "../../app/components/base/BaseComponent";
 import { mdCallResponse } from "../../models/call-response";
 import { SearchableDropdownSettings } from "../shared/searchable-dropdown/searchable-dropdown-settings";
@@ -354,7 +353,7 @@ export default class DepositComponent extends BaseComponent {
                     title: this.lang.Amount,
                     type: 'number',
                 },
-                deposit_date: {
+                created_timestamp: {
                     title: this.lang.Date,
                     type: 'string',
                     valuePrepareFunction: (value: Date, row) => {

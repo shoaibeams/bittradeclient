@@ -37,13 +37,13 @@ export default class HeaderComponentHTML extends BaseComponent{
                                 !this.props.globals.isLoggedIn ? (
                                     <>
                                         <li onClick={this.props.params.navItemClicked(-1)}>
-                                            <Link to={this.constants.RoutePaths.SignUp}>
+                                            <Link to={this.getLink(this.constants.RoutePaths.SignUp)}>
                                                 <img src="assets/images/lock-icon.png" alt={this.lang.SignUp} />
                                                 {this.lang.SignUp}
                                             </Link>
                                         </li>
                                         <li onClick={this.props.params.navItemClicked(-1)}>
-                                            <Link to={this.constants.RoutePaths.Login}>
+                                            <Link to={this.getLink(this.constants.RoutePaths.Login)}>
                                                 <img src="assets/images/sign-icon.png" alt={this.lang.Login} />
                                                 {this.lang.Login}</Link>
                                         </li>
@@ -73,7 +73,7 @@ NavLinks = () => {
                 {
                     l.children.length > 0 ? (
                         <>
-                            <Link to={l.routerLink} className="dropdown-toggle" data-toggle="dropdown">
+                            <Link to={this.getLink(l.routerLink)} className="dropdown-toggle" data-toggle="dropdown">
                                 <span><img src={l.icon} alt={l.alt} /></span>
                                 <span>{l.text} <i className="fa fa-angle-down" aria-hidden="true"></i></span>
                             </Link>
@@ -82,7 +82,7 @@ NavLinks = () => {
                                     l.children.map((c, i: number) => {
                                         return (
                                             <li key={i} onClick={this.props.params.navItemClicked(i)}>
-                                                <Link to={c.routerLink} href={c.routerLink}>{c.text}</Link>
+                                                <Link to={this.getLink(c.routerLink)} href={c.routerLink}>{c.text}</Link>
                                             </li>
                                         );
                                     })
@@ -91,7 +91,7 @@ NavLinks = () => {
                         </>
                     ) : (
                             l.routerLink != null ? (
-                                <Link to={l.routerLink}>
+                                <Link to={this.getLink(l.routerLink)}>
                                     <span><img width="40" height="34" src={l.icon} alt={l.alt} /></span>
                                     <span>{l.text}</span>
                                 </Link>

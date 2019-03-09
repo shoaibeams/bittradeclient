@@ -94,7 +94,7 @@ export default class SignUpComponent extends BaseComponent {
                                 </div>
                                 <div className="pstylish color-white">
                                     <span>{this.lang.AlreadyHaveAnAccount}</span>
-                                    <Link className="hyperlink-color" to={this.constants.RoutePaths.Login}>{this.lang.Login}</Link>
+                                    <Link className="hyperlink-color" to={this.getLink(this.constants.RoutePaths.Login)}>{this.lang.Login}</Link>
                                 </div>
                             </div>
 
@@ -254,7 +254,7 @@ export default class SignUpComponent extends BaseComponent {
                         this.log.debug(res);
                         if (res) {
                             if (res.isSuccess) {
-                                window.location.href = this.constants.RoutePaths.EmailConfirmation + "?" + this.constants.QueryParams.email + "=em";//we just need to set something in this param if we want to send email on component load
+                                window.location.href = this.getLink(this.constants.RoutePaths.EmailConfirmation);// + "?" + this.constants.QueryParams.email + "=em";//we just need to set something in this param if we want to send email on component load
                             }
                             else {
                                 this.hideSpinnerAndShowError();

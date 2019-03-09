@@ -1,10 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
-import { StaticHelper } from "../../../shared/static-helper";
 import { mdFormControl } from "../../../shared/form-control";
-import { mdSignUp, SignUpMetaData } from "../../../models/sign-up";
-import * as ValidationAttributes from "../../../shared/validation-attributes";
-import { mdCallResponse } from "../../../models/call-response";
 import { BaseComponent } from "../../../app/components/base/BaseComponent";
 import "./searchable-dropdown.component.css";
 import NBSpinnerComponent from "../spinner/NBSpinnerComponent";

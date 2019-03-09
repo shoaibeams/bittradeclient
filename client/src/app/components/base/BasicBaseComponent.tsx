@@ -38,6 +38,7 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
             global.mainSpinnerConfig.size = Enums.SpinnerSize.medium;
             global.mainSpinnerConfig.color = "rgb(243, 103, 93)";
             global.mainSpinnerConfig.type = "ball-fussion";
+            global.langKey = this.g ? this.g.langKey : null;
             global.transitions = new mdTransitions();
         }
         this.log = LoggerService.getInstance();

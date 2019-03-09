@@ -201,7 +201,7 @@ below to re-send`;
     Branch = "Branch";
     IBAN = "IBAN";
     Address = "Address";
-    Minimum = "Minumum";
+    Minimum = "Minimum";
     WhichEverHigherFormat = "{0} or {1} (which ever is higher)";
     Reference = "Reference";
     Sr = "Sr.";

@@ -29,6 +29,7 @@ export class mdGlobalProps{
     selectedBriefHistory: any;
     loadingBriefHistory:boolean;
     old?: mdGlobalProps;
+    langKey: string;
 }
 
 export class mdPropKeys{
@@ -44,6 +45,7 @@ export class mdPropKeys{
     briefHistory: string;
     selectedBriefHistory: string;
     loadingBriefHistory: string;
+    langKey: string;
     constructor()
     {
         this.isLoggedIn = "isLoggedIn";
@@ -58,5 +60,6 @@ export class mdPropKeys{
         this.briefHistory = "briefHistory";
         this.selectedBriefHistory = "selectedBriefHistory";
         this.loadingBriefHistory = "loadingBriefHistory";
+        this.langKey = "langKey";
     }
 }

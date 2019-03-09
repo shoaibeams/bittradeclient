@@ -39,7 +39,7 @@ export default class HttpClientService {
                 }
                 if (url != this.constants.EndPoints.GetAuthUser) {
                     if (this.redirectToLoginMessages.indexOf(data.message.toUpperCase()) > -1) {
-                        StaticHelper.navigateToLogin(history);
+                        StaticHelper.navigateToLogin();
                     }
                 }
                 return data;
@@ -79,7 +79,7 @@ export default class HttpClientService {
                     data.message = '';
                 }
                 if (this.redirectToLoginMessages.indexOf(data.message.toUpperCase()) > -1) {
-                    StaticHelper.navigateToLogin(history);
+                    StaticHelper.navigateToLogin();
                 }
                 return data;
             }
@@ -120,7 +120,7 @@ export default class HttpClientService {
                     data.message = '';
                 }
                 if (this.redirectToLoginMessages.indexOf(data.message.toUpperCase()) > -1) {
-                    StaticHelper.navigateToLogin(history);
+                    StaticHelper.navigateToLogin();
                 }
                 return data;
             }

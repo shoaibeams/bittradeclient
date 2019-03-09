@@ -139,7 +139,7 @@ export default class TradeBriefHistoryComponent extends BaseComponent {
                         </div >
                     </div >
                     <div className="text-center trading-box">
-                        <Link className="color-white" to={this.g.isLoggedIn ? this.constants.RoutePaths.Trade : this.constants.RoutePaths.Login}>
+                        <Link className="color-white" to={this.g.isLoggedIn ? this.getLink(this.constants.RoutePaths.Trade) : this.getLink(this.constants.RoutePaths.Login)}>
                             StartTrading Now
                         </Link>
                     </div >

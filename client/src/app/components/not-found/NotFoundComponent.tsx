@@ -18,7 +18,7 @@ export default class NotFoundComponent extends BaseComponent {
                     <span>4</span>
                 </section>
                 <div className="link-container">
-                    <Link to={this.constants.RoutePaths.Home} className="more-link">{this.lang.BackToHome}</Link>
+                    <Link to={this.getLink(this.constants.RoutePaths.Home)} className="more-link">{this.lang.BackToHome}</Link>
                 </div>
             </div>
         );

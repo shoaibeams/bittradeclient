@@ -71,7 +71,7 @@ export default class BannerComponent extends BaseComponent {
                                         </div>}
                                 /> */}
                                 &nbsp;{scp.tc_name}<br/>
-                                <Link to={this.g.isLoggedIn ? this.constants.RoutePaths.Trade : this.constants.RoutePaths.Login}>
+                                <Link to={this.g.isLoggedIn ? this.getLink(this.constants.RoutePaths.Trade) : this.getLink(this.constants.RoutePaths.Login)}>
                                     <img src="assets/images/buy-icon.png" alt={this.lang.Buy} />
                                     <br />
                                     {this.lang.Sell} {this.lang.Now}
@@ -84,7 +84,7 @@ export default class BannerComponent extends BaseComponent {
                                     this.animatedCSSDiv(sbh.current_sell, this.state.animValues.current_sell)
                                 }
                                 &nbsp;{scp.tc_name}<br/>
-                                <Link to={this.g.isLoggedIn ? this.constants.RoutePaths.Trade : this.constants.RoutePaths.Login}>
+                                <Link to={this.g.isLoggedIn ? this.getLink(this.constants.RoutePaths.Trade) : this.getLink(this.constants.RoutePaths.Login)}>
                                     <img src="assets/images/sell-icon.png" alt={this.lang.Sell} />
                                     <br />
                                     {this.lang.Sell} {this.lang.Now}

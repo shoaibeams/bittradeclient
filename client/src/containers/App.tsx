@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Router, Route, Link, Switch } from "react-router-dom";
+import { Router } from "react-router-dom";
 
 import { updateGlobalProperty, updateGlobalInstance } from "../store/actions/globals.actions";
 import { Constants, StaticConstatns } from "../shared/constants";
@@ -16,11 +16,14 @@ import AppRoutes from "../routes";
 import { MainFooterHTML } from "../app/components/main-footer/MainFooterHTML";
 import history from '../shared/history';
 import { getLanguage } from "../language/language";
+import { CookieHelper } from "../shared/cookie-heler";
 
 class App extends BaseComponent {
 
     render() {
+        this.initShorts();
         return this.state.checkedLogin ? (
+            this.isNullOrEmpty(this.g.langKey) ? null :
             <Router history={history}>
                 <>
                     <ClipLoaderComponent {...this.props} />
@@ -41,8 +44,7 @@ class App extends BaseComponent {
         this.state = {
             checkedLogin: false,
         }
-        this.lang = getLanguage(this.getLangKey());
-        global.lang = this.lang;
+        this.detectLanguage();
         this.checkUser();
         this.loadCurrencyPairs();
     }
@@ -89,7 +91,7 @@ class App extends BaseComponent {
                 }
                 if (res.extras == true) {
                     this.props.globals.username = res.extras.username;
-                    StaticHelper.navigateToLogin(this.props.history);
+                    this.navigateToLogin();
                     // this.router.navigateByUrl(this.constants.RoutePaths.Login + "?" + this.constants.QueryParams.redirectURI + "=" + window.location.href, { skipLocationChange: false });
                     // window.location.href = this.constants.RoutePaths.Login + "?" + this.constants.QueryParams.redirectURI + "=" + window.location.href;
                     //a user was logged in but now token has expired
@@ -176,6 +178,84 @@ class App extends BaseComponent {
                 this.loadbriefHistory();
             }, 10 * 1000);
         });
+    }
+
+    loadLanguage(langKey) {
+        if(this.isNullOrEmpty(langKey))
+        {
+            langKey = this.constants.DefaultLangKey;
+        }
+        this.lang = getLanguage(langKey);
+        global.lang = this.lang;
+    }
+
+    detectLanguage() {
+        let lkey: string;
+        let loc = location.pathname.split('/');
+        let langKeys = StaticHelper.objectToValuesArray(Constants.Instance.LanguageKey);
+        if (loc.length > 1) {
+            if (langKeys.indexOf(loc[1]) > -1) {
+                lkey = loc[1];
+            }
+        }
+        if (this.isNullOrEmpty(lkey)) {
+            lkey = CookieHelper.get(this.constants.CookieKeys.LangKey);
+        }
+        if (this.isNullOrEmpty(lkey)) {
+            this.http.get<mdCallResponse>("").then((res: mdCallResponse) => {
+                let isdefault = false;
+                if (!res.isSuccess) {
+                    isdefault = true;
+                }
+                else
+                    if (!res.extras) {
+                        isdefault = true;
+                    }
+                    else {
+                        let langHeader = res.extras["accept-language"];
+                        if (!langHeader) {
+                            isdefault = true;
+                        }
+                        else {
+                            let lkeys = langHeader.split(',');
+                            for(let i = 0; i < lkeys.length; i++)
+                            {
+                                let k = lkeys[i];
+                                if (k.indexOf(";") > -1) {
+                                    k = k.split(';')[0];
+                                }
+                                if (langKeys.indexOf(k) > -1) {
+                                    lkey = k;
+                                    break;
+                                }
+                            }
+                            if (this.isNullOrEmpty(lkey)) {
+                                isdefault = true;
+                            }
+                        }
+                    }
+                if (isdefault) {
+                    lkey = this.constants.DefaultLangKey;
+                }
+                else {
+                    if (langKeys.indexOf(lkey) < 0) {
+                        lkey = this.constants.DefaultLangKey;
+                    }
+                    // CookieHelper.set(this.constants.CookieKeys.LangKey, this.langKey);
+                }
+                this.loadLanguage(lkey);
+                this.props.updateGlobalProperty(global.propKeys.langKey, lkey);
+                // this.updateState({langKey: lkey});
+            })
+        }
+        else {
+            
+            this.loadLanguage(lkey);
+            this.props.updateGlobalProperty(global.propKeys.langKey, lkey);
+            // this.state = {
+            //     langKey: lkey
+            // }
+        }
     }
 
 }

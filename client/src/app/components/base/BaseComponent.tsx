@@ -9,6 +9,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import DatePickerComponent from "../../../modules/shared/date-picker/DatePickerComponent";
 import { BasicBaseComponent } from "./BasicBaseComponent";
 import { TransitionState } from "../../../enums/transition";
+import history from '../../../shared/history';
 
 
 export class BaseComponent extends BasicBaseComponent {
@@ -677,6 +678,32 @@ export class BaseComponent extends BasicBaseComponent {
         this.updateState({
             displayAlert: false,
         })
+    }
+
+    getLink(path: string)
+    {
+        if(!this.isNullOrEmpty(path))
+        {
+            if(path[0] != "/")
+            {
+                path = "/" + path;
+            }
+        }
+        return "/" + this.g.langKey + path;
+    }
+
+    navigateToLogin() {
+        let cons = Constants.Instance;
+        let redirectURI = window.location.href;
+        if(window.location.href.indexOf(cons.RoutePaths.Login) > -1)
+        {
+            redirectURI = '';
+        }
+        history.push(this.getLink(cons.RoutePaths.Login +
+            "?" + cons.QueryParams.redirectURI + "=" + redirectURI));
+        // router.navigateByUrl(cons.RoutePaths.Login +
+        //     "?" + cons.QueryParams.redirectURI + "=" + redirectURI,
+        //     { skipLocationChange: false });
     }
 
 }

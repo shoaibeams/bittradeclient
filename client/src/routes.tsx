@@ -79,7 +79,7 @@ const AppRoutes = (props) => {
                     return getRoutesForLangKey(k, props);
                 })
             }
-            <Route path="*" render={() => <NoMatchComponent {...this.props} />} />
+            <Route path="*" render={() => <NoMatchComponent {...props} />} />
         </FragmentSupportingSwitch>
     );
 }

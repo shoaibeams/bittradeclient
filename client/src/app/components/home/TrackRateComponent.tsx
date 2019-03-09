@@ -1,8 +1,5 @@
 import { BaseComponent } from "../base/BaseComponent";
 import * as React from "react";
-import { Link } from "react-router-dom";
-import { StaticHelper } from "../../../shared/static-helper";
-import { mdFormControl } from "../../../shared/form-control";
 
 export default class TrackRateComponent extends BaseComponent {
 
