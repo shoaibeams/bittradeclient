@@ -16,6 +16,7 @@ export default class mdTransitions{
     flipInY: mdTransition;
     fadeInUp2s: mdTransition;
     flipOutX2s: mdTransition;
+    pulse: mdTransition;
     constructor()
     {
         
@@ -67,6 +68,12 @@ export default class mdTransitions{
             after: 'hidden',
             state: TransitionState.NotStarted,
         };
+        this.pulse = {
+            before: '',
+            classes: 'pulse animated slower-2s',
+            after: '',
+            state: TransitionState.NotStarted,
+        };
     }
 }
 export enum Transitions{
@@ -78,4 +85,5 @@ export enum Transitions{
     flipInY = 'flipInY',
     fadeInUp2s = 'fadeInUp2s',
     flipOutX2s = 'flipOutX2s',
+    pulse = 'pulse',
 }

@@ -1,6 +1,9 @@
 import { BaseComponent } from "../base/BaseComponent";
 import * as React from "react";
 import { mdCallResponse } from "../../../models/call-response";
+import { mdFormControl } from "../../../shared/form-control";
+import { Transitions } from "../../../models/transitions";
+import { TransitionState } from "../../../enums/transition";
 
 export default class AccountVerificationComponent extends BaseComponent {
 
@@ -11,9 +14,16 @@ export default class AccountVerificationComponent extends BaseComponent {
                 <section className="signupwrap clearfix">
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-6 col-md-offset-3 col-sm-12">
-                                <p className="h3">Account Verification</p>
-                                <p className="p pstylish">{this.state.verificationResponse}</p>
+                            <div className="col-md-6 col-md-offset-3 col-sm-12 text-center">
+                                <p className="color-white p-header mb-3">Account Verification</p>
+                                {
+                                    this.animatedCSSDiv(<img className="mb-3" style={{
+                                        width: '200px',
+                                        height: '200px',
+                                    }} src={this.state.image} />, 
+                                    this.state.animValues.tick_img)
+                                }
+                                <p className="p-body color-white">{this.state.verificationResponse}</p>
                             </div>
                         </div>
                     </div>
@@ -29,7 +39,12 @@ export default class AccountVerificationComponent extends BaseComponent {
 
     init() {
         this.state = {
-            verificationResponse: this.lang.Verifying
+            verificationResponse: this.lang.Verifying,
+            image: "assets/images/email.png",
+            animValues: {
+                tick_img: new mdFormControl(this.getTransisition(Transitions.pulse, TransitionState.Running),
+                    'tick_img', null, null, null, null, true),
+            }
         }
         let key: string = this.parsedLocation[this.constants.QueryParams.key];
         if (key) {
@@ -46,11 +61,17 @@ export default class AccountVerificationComponent extends BaseComponent {
                 })
                 if (!res.isSuccess) {
                     this.displayMessage(res.message);
+                    this.updateState({
+                        image: "assets/images/cancel-512x512.png"
+                    })
                 }
                 else {
+                    this.updateState({
+                        image: "assets/images/check-mark-512x512.png"
+                    })
                     setTimeout(() => {
                         window.location.replace(this.getLink(this.constants.RoutePaths.Login));
-                    }, 2 * 1000);
+                    }, 3 * 1000);
                 }
                 this.hideMainSpinner();
             }

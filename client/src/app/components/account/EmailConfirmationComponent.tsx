@@ -1,6 +1,9 @@
 import { BaseComponent } from "../base/BaseComponent";
 import * as React from "react";
 import { mdCallResponse } from "../../../models/call-response";
+import { mdFormControl } from "../../../shared/form-control";
+import { Transitions, mdTransition } from "../../../models/transitions";
+import { TransitionState } from "../../../enums/transition";
 
 export default class EmailConfirmationComponent extends BaseComponent {
 
@@ -11,9 +14,14 @@ export default class EmailConfirmationComponent extends BaseComponent {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2 col-sm-12 text-center">
-                            <p className="color-white">{this.state.verificationEmailHeader}</p>
-                            <img width="270" height="270" style={{ marginTop: '32px', marginBottom: '32pxx' }} src="assets/images/email.png" />
-                            <p className="pstylish color-white">{this.state.verificationEmailDetail}</p>
+                            <p className="color-white p-header mb-3">{this.state.verificationEmailHeader}</p>.
+                            {
+                                this.animatedCSSDiv(<img className="mb-3" style={{
+                                    width: '200px',
+                                    height: '200px',
+                                }} src="assets/images/email.png" />, this.state.animValues.mail_img)
+                            }
+                            <p className="p-body color-white">{this.state.verificationEmailDetail}</p>
                             <button
                                 disabled={this.state.disableResendEmailButton}
                                 className="btn btn-success"
@@ -40,7 +48,23 @@ export default class EmailConfirmationComponent extends BaseComponent {
             verificationEmailDetail: this.addNewLineHTML(this.lang.VerificationEmailSentDetail.split(/\n/g)),
             // verificationEmailDetail: this.lang.VerificationEmailSentDetail.replace(/\n/g, `<br/>`),
             disableResendEmailButton: false,
+            animValues: {
+                mail_img: new mdFormControl(this.getTransisition(Transitions.pulse, TransitionState.Running),
+                    'mail_img', null, null, null, null, true),
+            }
         }
+    }
+
+    componentWillMount() {
+        this.log.debug("registerEvent " + this.constants.SocketEvents.EmailVerified);
+        this.socket.registerEvent(this.constants.SocketEvents.EmailVerified, () => {
+            window.location.replace(this.getLink(this.constants.RoutePaths.Login));
+        });
+        this.socket.emitEvent(this.constants.SocketEvents.WaitEmailVerification);
+    }
+
+    componentWillUnmount() {
+        this.socket.unregisterEvent(this.constants.SocketEvents.EmailVerified);
     }
 
     sendSignupVerificatinEmail = (ev) => {

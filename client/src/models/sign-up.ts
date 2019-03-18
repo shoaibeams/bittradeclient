@@ -22,6 +22,14 @@ export class mdSignUp {
             this.confirm_password = "";
             this.company_name = "";
             this.uuid = "";
+            if (Constants.Instance.IsDev) {
+                this.first_name = "inaam";
+                this.last_name = "inaam";
+                this.email = "inaamiub@gmail.com";
+                this.username = this.email;
+                this.password = "pAssword1!"
+                this.confirm_password = this.password;
+            }
         }
     }
 }

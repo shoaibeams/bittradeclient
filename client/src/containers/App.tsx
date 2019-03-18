@@ -17,6 +17,20 @@ import { MainFooterHTML } from "../app/components/main-footer/MainFooterHTML";
 import history from '../shared/history';
 import { getLanguage } from "../language/language";
 import { CookieHelper } from "../shared/cookie-heler";
+import Socket from "../shared/socket";
+//css includes
+// import "../assets/css/bootstrap.css";
+// import "../assets/css/nebular.default.css";
+// import "../assets/css/easy-responsive-tabs.css";
+// import "../assets/css/font-awesome.min.css";
+// import "../assets/css/slick.css";
+// import "../assets/css/styles.css";
+// import "../assets/css/responsive.css";
+// import "../assets/css/bootstrap-validationv4.css";
+// import "../assets/css/general.css";
+// import "../assets/css/toggle-switch.css";
+// import "../assets/css/animate.css";
+
 
 class App extends BaseComponent {
 
@@ -47,6 +61,17 @@ class App extends BaseComponent {
         this.detectLanguage();
         this.checkUser();
         this.loadCurrencyPairs();
+    }
+
+    initSocket()
+    {
+        Socket.Instance.connect(()=>{
+            this.log.debug("socket connected");
+            // Socket.Instance.registerEvent("message", (e)=>{
+            //     this.log.debug(e);
+            // });
+            // Socket.Instance.emitEvent("wait_email_verification", "wait_email_verification");
+        });
     }
 
     getLangKey() {
@@ -85,6 +110,7 @@ class App extends BaseComponent {
                         this.props.history.push(this.constants.RoutePaths.Trade);
                     }
                     this.props.globals.username = res.extras.username;
+                    this.initSocket();
                 }
                 else {
                     this.props.globals.isLoggedIn = false;
@@ -123,16 +149,16 @@ class App extends BaseComponent {
             this.loadbriefHistory();
             this.log.debug(res);
             if (res.isSuccess) {
-                this.props.globals.currencyPairs = res.extras.currencyPairs;
-                this.props.globals.defaultCurrencyPairId = res.extras.defaultCurrencyPair;
-                this.props.globals.defaultBuyFee = res.extras.defaultBuyFee;
-                this.props.globals.defaultSellFee = res.extras.defaultSellFee;
+                this.props.updateGlobalProperty(global.propKeys.currencies, res.extras.currencies);
+                this.props.updateGlobalProperty(global.propKeys.currencyPairs, res.extras.currencyPairs);
+                this.props.updateGlobalProperty(global.propKeys.defaultCurrencyPairId, res.extras.defaultCurrencyPair);
+                this.props.updateGlobalProperty(global.propKeys.defaultBuyFee, res.extras.defaultBuyFee);
+                this.props.updateGlobalProperty(global.propKeys.defaultSellFee, res.extras.defaultSellFee);
                 let cpList = res.extras.currencyPairs.filter(m => m.id == res.extras.defaultCurrencyPair);
                 if (cpList.length > 0) {
-                    this.props.globals.selectedCurrencyPair = cpList[0];
+                    this.props.updateGlobalProperty(global.propKeys.selectedCurrencyPair, cpList[0]);
                 }
-            }
-            this.props.updateGlobals(this.props.globals);
+            }            
 
         }).catch(error => {
             this.log.debug(error);

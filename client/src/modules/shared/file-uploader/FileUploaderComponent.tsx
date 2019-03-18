@@ -125,7 +125,7 @@ export default class FileUploaderComponent extends BaseComponent {
             let sizeInBytes = event.target.files[i].size;
             let allowedFileSizeInBytes = this.p.config.maxSize * 1024 * 1024;
             if (sizeInBytes > allowedFileSizeInBytes) {
-                status = this.p.globals.lang.SizeLimitExceeds;
+                status = this.lang.SizeLimitExceeds;
                 isError = true;
                 break;
             }

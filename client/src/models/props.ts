@@ -1,3 +1,5 @@
+import { mdCurrency } from "./currency";
+import { mdCurrencyPair } from "./currency-pair";
 
 export class mdProps{
     params?: any;
@@ -19,7 +21,8 @@ export class mdGlobalProps{
     isLoggedIn: boolean;
     showMainLoader: boolean;
     username: string;
-    currencyPairs:any[];
+    currencies: mdCurrency[];
+    currencyPairs:mdCurrencyPair[];
     selectedCurrencyPair: any;
     defaultCurrencyPairId: number;
     defaultBuyFee: number;
@@ -36,6 +39,7 @@ export class mdPropKeys{
     isLoggedIn: string;
     showMainLoader: string;
     username: string;
+    currencies: string;
     currencyPairs: string;
     defaultCurrencyPairId: string;
     defaultBuyFee: string;
@@ -61,5 +65,6 @@ export class mdPropKeys{
         this.selectedBriefHistory = "selectedBriefHistory";
         this.loadingBriefHistory = "loadingBriefHistory";
         this.langKey = "langKey";
+        this.currencies = "currencies";
     }
 }

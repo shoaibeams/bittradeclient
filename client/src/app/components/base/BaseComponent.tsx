@@ -206,6 +206,21 @@ export class BaseComponent extends BasicBaseComponent {
                 ...animValues
             }
         });
+        if(control.continousAnim)
+        {
+            setTimeout(() => {
+                t.state = TransitionState.Running;
+                control.value = t;
+                let obj = StaticHelper.assignPropertyOfObject({}, control.name, control);
+                let animValues = {
+                    ...this.state.animValues,
+                    ...obj,
+                }
+                this.updateState({
+                    ...animValues
+                });
+            }, 500);
+        }
     }
 
     animatedCSSDivWithAttr(content: any, attr: any, control: mdFormControl, callback?) {
@@ -453,106 +468,106 @@ export class BaseComponent extends BasicBaseComponent {
         }
         // console.log(inputElement())
         return inputElement();
-        let updownArrowsClick = (isAdd: boolean, isClick: boolean) => {
-            if (!isClick) {
-                let timer = instance.state.form[control.name].interval;
-                if (!timer) {
-                    return;
-                }
-            }
-            if (!step) {
-                return;
-            }
-            if (step <= 0) {
-                return;
-            }
-            let value = instance.state.form[control.name].value;
-            if (StaticHelper.isNullOrEmpty(value)) {
-                value = 0;
-            }
-            if (isAdd) {
-                value += step;
-            }
-            else {
-                value -= step;
-            }
-            value = StaticHelper.roundNumber(value, scale);
-            if (max != null) {
-                if (value > max) {
-                    value = max;
-                }
-            }
-            if (min != null) {
-                if (value < min) {
-                    value = min;
-                }
-            }
-            onInput(control.name, {
-                target: {
-                    value: value,
-                }
-            });
-        }
-        if (!step) {
-            // return inputElement();
-        }
-        let removeInterval = () => {
-            let ctrl = instance.state.form[control.name];
-            clearInterval(ctrl.interval);
-            // ctrl.interval = null;
-            instance.updateState({
-                form: {
-                    ...instance.state.form,
-                    ctrl
-                }
-            })
-        }
-        let placeInterval = (isAdd: boolean) => {
-            let ctrl = instance.state.form[control.name];
-            ctrl.interval = setInterval(() => {
-                updownArrowsClick(isAdd, false);
-            }, 100);
-            instance.updateState({
-                form: {
-                    ...instance.state.form,
-                    ctrl
-                }
-            })
-        }
-        return (
-            <>
-                <table className="number-input">
-                    <tbody>
-                        <tr>
-                            <td rowSpan={2}>
-                                {
-                                    // inputElement()
-                                }
-                            </td>
-                            <td className="up-arrow"
-                                onMouseUp={removeInterval}
-                                onMouseLeave={removeInterval}
-                                onClick={(e) => { updownArrowsClick(true, true); }}
-                            // onMouseDown={(e) =>{console.log("mousedonw");placeInterval(true)}}
-                            >
-                                <img src="assets/images/dropdown1-hover.png" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="down-arrow"
-                                onMouseUp={removeInterval}
-                                onMouseLeave={removeInterval}
-                                onClick={(e) => { updownArrowsClick(false, true); }}
-                            // onMouseDown={(e) =>{placeInterval(false);}}
-                            >
-                                <img src="assets/images/dropdown1.png" />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        // let updownArrowsClick = (isAdd: boolean, isClick: boolean) => {
+        //     if (!isClick) {
+        //         let timer = instance.state.form[control.name].interval;
+        //         if (!timer) {
+        //             return;
+        //         }
+        //     }
+        //     if (!step) {
+        //         return;
+        //     }
+        //     if (step <= 0) {
+        //         return;
+        //     }
+        //     let value = instance.state.form[control.name].value;
+        //     if (StaticHelper.isNullOrEmpty(value)) {
+        //         value = 0;
+        //     }
+        //     if (isAdd) {
+        //         value += step;
+        //     }
+        //     else {
+        //         value -= step;
+        //     }
+        //     value = StaticHelper.roundNumber(value, scale);
+        //     if (max != null) {
+        //         if (value > max) {
+        //             value = max;
+        //         }
+        //     }
+        //     if (min != null) {
+        //         if (value < min) {
+        //             value = min;
+        //         }
+        //     }
+        //     onInput(control.name, {
+        //         target: {
+        //             value: value,
+        //         }
+        //     });
+        // }
+        // if (!step) {
+        //     // return inputElement();
+        // }
+        // let removeInterval = () => {
+        //     let ctrl = instance.state.form[control.name];
+        //     clearInterval(ctrl.interval);
+        //     // ctrl.interval = null;
+        //     instance.updateState({
+        //         form: {
+        //             ...instance.state.form,
+        //             ctrl
+        //         }
+        //     })
+        // }
+        // let placeInterval = (isAdd: boolean) => {
+        //     let ctrl = instance.state.form[control.name];
+        //     ctrl.interval = setInterval(() => {
+        //         updownArrowsClick(isAdd, false);
+        //     }, 100);
+        //     instance.updateState({
+        //         form: {
+        //             ...instance.state.form,
+        //             ctrl
+        //         }
+        //     })
+        // }
+        // return (
+        //     <>
+        //         <table className="number-input">
+        //             <tbody>
+        //                 <tr>
+        //                     <td rowSpan={2}>
+        //                         {
+        //                             // inputElement()
+        //                         }
+        //                     </td>
+        //                     <td className="up-arrow"
+        //                         onMouseUp={removeInterval}
+        //                         onMouseLeave={removeInterval}
+        //                         onClick={(e) => { updownArrowsClick(true, true); }}
+        //                     // onMouseDown={(e) =>{console.log("mousedonw");placeInterval(true)}}
+        //                     >
+        //                         <img src="assets/images/dropdown1-hover.png" />
+        //                     </td>
+        //                 </tr>
+        //                 <tr>
+        //                     <td className="down-arrow"
+        //                         onMouseUp={removeInterval}
+        //                         onMouseLeave={removeInterval}
+        //                         onClick={(e) => { updownArrowsClick(false, true); }}
+        //                     // onMouseDown={(e) =>{placeInterval(false);}}
+        //                     >
+        //                         <img src="assets/images/dropdown1.png" />
+        //                     </td>
+        //                 </tr>
+        //             </tbody>
+        //         </table>
 
-            </>
-        );
+        //     </>
+        // );
     }
 
     isNumberd(e) {

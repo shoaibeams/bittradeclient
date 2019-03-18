@@ -15,8 +15,9 @@ export class Constants{
 
     static get Instance():Constants { return this.getInstance(); }
 
-    BaseURL:string = "https://api.bitvelocity.io/";//"http://localhost:1337/";
-    IsDev:boolean = true;
+    BaseURL:string = "http://localhost:1337";//"https://api.bitvelocity.io";//"http://localhost:1337";
+    IsDev:boolean = this.BaseURL == "https://api.bitvelocity.io" ? false : true;
+    SocketURL: string = "/stream";
     ResponseMessageTimeout = 4;//in seconds
     RecaptchaSiteKey = StaticConstatns.RecaptchaSiteKey;
     MaxScale = 10;
@@ -40,23 +41,24 @@ export class Constants{
         NumberWithDecimal: '[0-9]',
     }
     public EndPoints = {
-        PostContactUs: "contactUs/contactUs",
-        PostAccountRegister: "account/register",
-        PostAuthLogin: "auth/login",
-        GetSendSignUpVerificationEmail: "account/sendSignUpVerificationEmail",
-        PostAccountVerify: "account/verify",
-        GetAuthUser: "auth/user",
-        GetLogout: "auth/logout",
-        GetCurrenciesCurrencyPairs: "currencies/currencyPairs",
-        GetTradeBriefRecentHistory: "trade/briefRecentHistory",
-        PostOrder: "trade/order",
-        PostPairDetails: "trade/pairDetails",
-        PostOrderHistory: "trade/orderHistory",
-        GetDepositableCurrencies: "currencies/depositableCurrencies",
-        PostDepositMethods: "deposit/depositMethods",
-        PostDepositRequest: "deposit/depositRequest",
-        PostDepositRequestHistory: "deposit/depoistRequestHistory",
-        PostDepositReceipt: "deposit/receipt",
+        PostContactUs: "/contactUs/contactUs",
+        PostAccountRegister: "/account/register",
+        PostAuthLogin: "/auth/login",
+        GetSendSignUpVerificationEmail: "/account/sendSignUpVerificationEmail",
+        PostAccountVerify: "/account/verify",
+        GetAuthUser: "/auth/user",
+        GetLogout: "/auth/logout",
+        GetCurrenciesCurrencyPairs: "/currencies/currencyPairs",
+        GetTradeBriefRecentHistory: "/trade/briefRecentHistory",
+        PostOrder: "/trade/order",
+        PostPairDetails: "/trade/pairDetails",
+        PostOrderHistory: "/trade/orderHistory",
+        GetDepositableCurrencies: "/currencies/depositableCurrencies",
+        PostDepositMethods: "/deposit/depositMethods",
+        PostDepositRequest: "/deposit/depositRequest",
+        PostDepositRequestHistory: "/deposit/depoistRequestHistory",
+        PostDepositReceipt: "/deposit/receipt",
+        GetStreamSocket: "/stream",
     }
     public GrantTypes = {
         Password: "password",
@@ -112,6 +114,10 @@ export class Constants{
             partially_completed: 3,
             completed: 4,
         }
+    }
+    public SocketEvents = {
+        WaitEmailVerification: "wait_email_verification",
+        EmailVerified: "email_verified"
     }
 }
 

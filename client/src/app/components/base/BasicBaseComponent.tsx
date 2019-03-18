@@ -8,6 +8,7 @@ import mdSpinnerConfig from "../../../models/spinner-config";
 import mdTransitions from "../../../models/transitions";
 import * as Enums from "../../../enums/general";
 import * as queryString from 'query-string';
+import Socket from "../../../shared/socket";
 
 export class BasicBaseComponent extends React.Component<mdProps, any>{
 
@@ -23,6 +24,7 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
     componentMountedFirstTime = false;
     defaultFormName = "form";
     parsedLoc: any;
+    socket: Socket;
     constructor(props, extractFromProp?: boolean) {
         super(props);
         this.initClasses(extractFromProp);
@@ -46,6 +48,7 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
         this.lang = global.lang;
         this.initShorts(extractFromProp);
         this.parsedLocation = queryString.parse(location.search);
+        this.socket = Socket.Instance;
         // this.parsedLoc = queryString.parseUrl(location);
     }
 
