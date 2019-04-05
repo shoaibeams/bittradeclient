@@ -1,0 +1,42 @@
+@import "../../../../styles/variables.less";
+.trading-box{
+  margin:40px 0 0;
+}
+.trading-box a { 
+  background: @secondary-color;
+  font-size: 25px; 
+  color: white;
+  padding:20px 25px;
+  border-radius:8px;
+}
+.trading-box a:hover { 
+  color: white;
+}
+.table-head { 
+  font-size: 16px; 
+  font-weight: 600; 
+}
+.table-head img { 
+  vertical-align: -3px; 
+  margin-left: 4px; 
+}
+.custom-table td{
+  font-size: 15px;
+}
+@media screen and (max-width:767px) {
+  .trading-box{
+    margin:30px 0 0;
+  }
+  .trading-box a { 
+    font-size: 22px; 
+    padding:10px 24px;
+    border-radius:6px;
+  }
+  .table-head { 
+    font-size: 13px; 
+    font-weight: 600; 
+  }
+  .custom-table td{
+    font-size: 12px;
+  }
+}

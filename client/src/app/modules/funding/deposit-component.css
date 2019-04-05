@@ -1,0 +1,17 @@
+
+.funding-wallet{
+  font-size:13px;
+  line-height: 1.4;
+}
+.funding-wallet th{
+  font-weight: normal;
+}
+.funding-wallet td{
+  text-align: right;
+}.funding-deposit-methods{
+  line-height: 1.9;
+  font-size:15px;
+}
+.hidden{
+  display: none
+}

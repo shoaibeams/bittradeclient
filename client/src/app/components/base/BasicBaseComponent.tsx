@@ -1,0 +1,155 @@
+import * as React from "react";
+import { mdProps, mdGlobalProps, mdPropKeys } from "../../../models/props";
+import { Constants } from "../../../shared/constants";
+import LoggerService from "../../../shared/logger";
+import HttpClientService from "../../../shared/http-client.service";
+import { LanguageBase } from "../../../language/language";
+import mdSpinnerConfig from "../../../models/spinner-config";
+import mdTransitions from "../../../models/transitions";
+import * as Enums from "../../../enums/general";
+import * as queryString from 'query-string';
+import Socket from "../../../shared/socket";
+import { StaticHelper } from "../../../shared/static-helper";
+
+export class BasicBaseComponent extends React.Component<mdProps, any>{
+
+    constants: Constants;
+    log: LoggerService;
+    http: HttpClientService;
+    lang: LanguageBase;
+    f?: any;
+    p: any;
+    g: mdGlobalProps;
+    showErrors = false;
+    parsedLocation: any;
+    // componentMountedFirstTime = false;
+    defaultFormName = "form";
+    parsedLoc: any;
+    socket: Socket;
+    timeouts: any[];
+    isComponentMounted: boolean;
+    constructor(props, extractFromProp?: boolean) {
+        super(props);
+        this.initClasses(extractFromProp);
+    }
+
+    initClasses(extractFromProp?: boolean) {
+        this.constants = Constants.getInstance();
+        if (!global.mainSpinnerConfig) {
+            global.isDev = this.constants.IsDev;
+            global.propKeys = new mdPropKeys();
+            global.mainSpinnerConfig = new mdSpinnerConfig();
+            global.mainSpinnerConfig.bdColor = "rgba(51, 51, 51, 0.8)";
+            global.mainSpinnerConfig.size = Enums.SpinnerSize.medium;
+            global.mainSpinnerConfig.color = "rgb(243, 103, 93)";
+            global.mainSpinnerConfig.type = "ball-fussion";
+            global.langKey = this.g ? this.g.langKey : null;
+            global.transitions = new mdTransitions();
+        }
+        this.log = LoggerService.getInstance();
+        this.http = HttpClientService.getInstance();
+        this.lang = global.lang;
+        this.initShorts(this.props, extractFromProp);
+        this.parsedLocation = queryString.parse(location.search);
+        this.socket = Socket.Instance;
+        this.timeouts = [];
+        // this.parsedLoc = queryString.parseUrl(location);
+    }
+
+    updateState(state, callback?) {
+        if (!this.isComponentMounted) {
+            this.state = {
+                ...this.state,
+                ...state,
+            }
+        }
+
+        this.setState({
+            ...this.state,
+            ...state,
+            old: { ...this.state }
+        }, callback);
+    }
+
+    componentWillUnmount = () => {
+        this.isComponentMounted = false;
+    }
+
+    componentWillMount = () => {
+        this.isComponentMounted = true;
+    }
+
+    updateStateWEvent(state, e = null, callback?) {
+        if (!this.isComponentMounted || !e) {
+            this.state = {
+                ...this.state,
+                ...state,
+            }
+            return;
+        }
+
+        this.setState({
+            ...this.state,
+            ...state,
+            old: { ...this.state }
+        }, callback);
+    }
+
+    initShorts = (props: mdProps = this.props, extractFromProp: boolean = false) => {
+        this.g = props.globals;
+        if (!extractFromProp) {
+            if (this.state) {
+                this.f = this.state.form;
+            }
+        }
+        else {
+            this.f = props.form;
+        }
+        this.p = props.params;
+    }
+
+    appendChildToComponent(component, child) {
+        if (!child) {
+            return (<>{component}</>);
+        }
+        let children = component.props.children;
+        if (!children) {
+            children = [];
+        }
+        else {
+            if (!Array.isArray(children)) {
+                children = [children];
+            }
+        }
+        let childKey = child.key;
+        if (!childKey) {
+            childKey = children.length + 1;
+            child = {
+                ...child,
+                key: childKey,
+            }
+        }
+        children = [
+            ...children,
+            child,
+        ]
+        let props = {
+            ...component.props,
+            children: children,
+        }
+        let comp = {
+            ...component,
+            props: props
+        }
+        return (<>{comp}</>);
+    }
+
+    isNullOrEmpty(value: any): boolean {
+        return StaticHelper.isNullOrEmpty(value);
+    }
+
+    emptyNaN(value: any): any | string {
+        return StaticHelper.emptyNaN(value);
+    }
+
+}

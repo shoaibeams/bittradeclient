@@ -1,0 +1,103 @@
+@import "../../../../styles/variables.less";
+.buy-txt { 
+  font-size: 24px; 
+  color: @primary-color; 
+  line-height: 30px; 
+}
+.buy-colors{
+  color:@primary-color; 
+}
+.buy-txt div { 
+  color: #40b9cd; 
+  display: inline-block;
+}
+.buy-txt a { 
+  background-color: @primary-color; 
+  color: #fff; 
+  display: inline-block; 
+  width: 185px; 
+  text-align: center; 
+  padding: 15px 0; 
+  margin: 15px 0 0; 
+  border-radius:4px;
+}
+.buy-txt a:hover {
+  color: #fff; 
+} 
+.buy-txt a img { 
+  margin-bottom: 8px; 
+}
+.sell-colors{
+  color: @secondary-color; 
+}
+.sell-txt { 
+  font-size: 24px; 
+  color: @secondary-color; 
+  line-height: 30px; 
+}
+.sell-txt div { 
+  color: #40b9cd; 
+  display: inline-block;
+}
+.sell-txt a { 
+  background-color: @secondary-color; 
+  color: #fff; 
+  display: inline-block; 
+  width: 185px; 
+  text-align: center; 
+  padding: 15px 0; 
+  margin: 15px 0 0; 
+  border-radius:4px;
+}
+.sell-txt a:hover {
+  color: #fff; 
+} 
+.sell-txt a img { 
+  margin-bottom: 8px; 
+}
+.buysellwrap .holder { 
+  // height: 66px; 
+  font-size: 24px; 
+  // line-height: 55px;
+}
+.buysellwrap .holder-old { 
+  height: 66px; 
+  font-size: 24px; 
+  line-height: 55px;
+}
+.calculator-input{
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 55px;
+  width: 100%;
+  height: auto;
+}
+.main-page-header{
+  font-size: 24px;
+  color:@layout-header-background-dark;
+}
+div.anim-greater{
+    color: #87f328;
+    font-weight:700;
+}
+div.anim-lesser{
+    color: #dc1d47;
+    font-weight:700;
+}
+@media screen and (max-width:767px) {
+  .buy-txt a, .sell-txt a { font-size: 18px; width: 135px; margin-bottom: 0px; }
+  .buy-txt, .sell-txt{ 
+    font-size: 20px; 
+    // line-height: 25px; 
+  }
+  .buysellwrap .holder { 
+    font-size: 20px; 
+  }
+  .calculator-input{
+    font-size: 22px;
+    line-height: 38px;
+  }
+  .main-page-header{
+    font-size: 18px;
+  }
+}

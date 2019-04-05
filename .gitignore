@@ -3,6 +3,7 @@
 /.git
 # compiled output
 /client/dist
+/client/build
 /client/tmp
 /client/out-tsc
 
