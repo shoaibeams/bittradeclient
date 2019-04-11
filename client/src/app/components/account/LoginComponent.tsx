@@ -42,10 +42,10 @@ export class LoginComponent extends BaseComponent {
                 <h1 style={{ textAlign: 'center' }}>{this.lang.SignIn}</h1>
                 <Form onSubmit={this.onSubmit} className="gx-signin-form gx-form-row0">
                   {
-                    this.textFormItem(this.f.username)
+                    this.antd.textFormItem(this.f.username)
                   }
                   {
-                    this.passwordFormItem(this.f.password, false)
+                    this.antd.passwordFormItem(this.f.password, false)
                   }
                   <FormItem>
                     {
@@ -68,9 +68,11 @@ export class LoginComponent extends BaseComponent {
                     </span>
                   </FormItem>
                   <FormItem>
-                    <span className="gx-signup-form-forgot gx-link">
-                      {this.lang.ForgotPassword + this.lang.QuestionMark}
-                    </span>
+                    <Link to={this.getLink(this.constants.RoutePaths.AccountForgotPassword)}>
+                      <span className="gx-signup-form-forgot gx-link">
+                        {this.lang.ForgotPassword + this.lang.QuestionMark}
+                      </span>
+                    </Link>
                   </FormItem>
                 </Form>
               </div>

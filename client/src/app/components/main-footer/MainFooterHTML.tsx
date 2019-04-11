@@ -17,7 +17,7 @@ export default class MainFooter extends BaseComponent {
                 this.links.map((l,i) => {
                   return <React.Fragment key={i}>
                     {
-                      this.colmd6(
+                      this.antd.colmd6(
                       <>
                         <p className="h2">{l.heading}</p>
                         <ul>
@@ -33,7 +33,7 @@ export default class MainFooter extends BaseComponent {
                 })
               }
               {
-                this.colmd6(
+                this.antd.colmd6(
                   <div className="social">
                     <p className="h2">{this.lang.Social}</p>
                     <ul>

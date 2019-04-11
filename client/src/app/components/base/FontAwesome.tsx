@@ -21,6 +21,11 @@ library.add(
   solidSVGIcons.faEnvelopeOpenText,
   solidSVGIcons.faBriefcase,
   solidSVGIcons.faLock,
+  solidSVGIcons.faWalking,
+  solidSVGIcons.faBuilding,
+  solidSVGIcons.faInfo,
+  solidSVGIcons.faQuestion,
+  solidSVGIcons.faFileSignature,
 );
 
 export default class FontAwesome {

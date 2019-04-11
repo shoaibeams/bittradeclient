@@ -7,6 +7,8 @@ import { Transitions, mdTransition } from "../../../models/transitions";
 import { TransitionState } from "../../../enums/transition";
 import { mdAnimControl } from "../../../models/anim-control";
 import { Button } from "antd";
+import { SocketCustomEvents } from "../../../enums/socket";
+import { mdRegisterSocketEvent } from "../../../models/register-socket-event";
 
 export default class EmailConfirmationComponent extends BaseComponent {
 
@@ -69,17 +71,16 @@ export default class EmailConfirmationComponent extends BaseComponent {
   }
 
   componentWillMount = () => {
-    this.log.debug("registerEvent " + this.constants.SocketEvents.EmailVerified);
-    this.socket.registerEvent(this.constants.SocketEvents.EmailVerified, () => {
-      setTimeout(() => {
-        window.location.replace(this.getLink(this.constants.RoutePaths.Login));
-      }, 2000);
+    this.log.debug("registerEvent " + SocketCustomEvents.EmailVerified);
+    this.socket.registerEvent(SocketCustomEvents.EmailVerified, () => {
+      this.redirectToLogin(2000);
     });
-    this.socket.emitEvent(this.constants.SocketEvents.WaitEmailVerification);
+    this.socket.emitEvent(SocketCustomEvents.AwaitingEmailVerification, this.g.username);
+    // this.socket.emitEvent(this.constants.SocketEvents.WaitEmailVerification, this.g.username);
   }
 
   componentWillUnmount = () => {
-    this.socket.unregisterEvent(this.constants.SocketEvents.EmailVerified);
+    this.socket.unregisterEvent(SocketCustomEvents.EmailVerified);
   }
 
   sendSignupVerificatinEmail = (ev) => {

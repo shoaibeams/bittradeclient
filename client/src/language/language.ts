@@ -513,5 +513,16 @@ export interface LanguageBase {
     KnowledgeBase: string;
     Social: string;
     OurFees: string;
+    Your: string;
+    ForgotYourPassword: string;
+    ForgotYourPasswordPara: string;
+    Recovery: string;
+    PasswordRecoveryEmailSentPara: string;
+    PassowrdRecovery: string;
+    Set: string;
+    SetNewPassword: string;
+    Update: string;
+    Token: string;
+    Try: string;
 
 }

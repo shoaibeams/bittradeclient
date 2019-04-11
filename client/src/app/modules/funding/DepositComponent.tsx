@@ -33,7 +33,7 @@ export default class DepositComponent extends BaseComponent {
       <>
         <Row>
           {
-            this.colmd12(
+            this.antd.colmd12(
               <Card className="gx-card" title={this.lang.Deposit}>
                 <Select
                   showSearch
@@ -142,7 +142,7 @@ export default class DepositComponent extends BaseComponent {
             )
           }
           {
-            this.colmd12(
+            this.antd.colmd12(
               this.animatedCSSDivWithAttr(
                 <>
                   {
@@ -151,10 +151,10 @@ export default class DepositComponent extends BaseComponent {
 
                         <Form onSubmit={this.submitDepositRequest} className="gx-signin-form gx-form-row0">
                           {
-                            this.numberFormItem(this.f.amount, true, 25, sdm ? sdm.minimum_deposit : 0, 9999999, null, this.formItemLayout)
+                            this.antd.numberFormItem(this.f.amount, true, 25, sdm ? sdm.minimum_deposit : 0, 9999999, null, this.formItemLayout)
                           }
                           {
-                            this.dateFormItem(this.f.deposit_date, true, this.formItemLayout)
+                            this.antd.dateFormItem(this.f.deposit_date, true, this.formItemLayout)
                           }
                           <Row>
                             <Col xs={this.formItemLayout.labelCol.xs}
@@ -188,7 +188,7 @@ export default class DepositComponent extends BaseComponent {
                           </Row>
                           <Row>
                             {
-                              this.colmd12(
+                              this.antd.colmd12(
                                 <Button loading={this.state.disableSubmitButton}
                                   type={"primary"}
                                   style={{ width: '100%' }}
@@ -197,7 +197,7 @@ export default class DepositComponent extends BaseComponent {
                                 </Button>)
                             }
                             {
-                              this.colmd12(
+                              this.antd.colmd12(
                                 <Button loading={false}
                                   type={"default"}
                                   style={{ width: '100%' }}

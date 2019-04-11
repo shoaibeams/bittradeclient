@@ -27,6 +27,10 @@ export class Constants{
     DefaultValue = "|1|";
     LoadBriefHistoryTimeout = 15 * 1000;//15 seconds
     DefaultDateFormat = "DD/MM/YYYY";
+    SmallLeters = "a-z";
+    CapitalLeters = "A-Z";
+    SpecialChars = "!@#\$%\^&\*_";
+    Numbers = "0-9";
     public Regex = {
         MustStartWithSmallLetter: "(?=^[a-z]+)",
         MustStartWithCapitalLetter: "(?=^[A-Z]+)",
@@ -36,10 +40,10 @@ export class Constants{
         MinLength: `(?=^.{{0},}$)`,
         MaxLength: `(?=^.{,{0}}$)`,
         RangeLength: `(?=^.{{0},{1}}$)`,
-        MustContainSmallLetter: '(?=.*[a-z])',
-        MustContainCapitalLetter: '(?=.*[A-Z])',
-        MustContainNumber: '(?=.*[0-9])',
-        MustContainSpecialChar: '(?=.*[!@#\$%\^&\*_])',
+        MustContainSmallLetter: '(?=.*[' + this.SmallLeters + '])',
+        MustContainCapitalLetter: '(?=.*[' + this.CapitalLeters + '])',
+        MustContainNumber: '(?=.*[' + this.Numbers + '])',
+        MustContainSpecialChar: '(?=.*[' + this.SpecialChars + '])',
         CannotHaveSpace: '(?=^\\S*$)',
         NumberWithDecimal: '[0-9]',
     }
@@ -49,6 +53,9 @@ export class Constants{
         PostAuthLogin: "/auth/login",
         GetSendSignUpVerificationEmail: "/account/sendSignUpVerificationEmail",
         PostAccountVerify: "/account/verify",
+        PostAccountForgotPassword: "/account/forgotPassword",
+        PostAccountUpdatePassword: "/account/updatePassword",
+        PostAccountPasswordRecoveryToken: "/account/verifyPasswordRecoveryToken",
         GetAuthUser: "/auth/user",
         GetLogout: "/auth/logout",
         GetCurrenciesCurrencyPairs: "/currencies/currencyPairs",
@@ -120,10 +127,6 @@ export class Constants{
             completed: 4,
         }
     }
-    public SocketEvents = {
-        WaitEmailVerification: "wait_email_verification",
-        EmailVerified: "email_verified"
-    }
 }
 
 export class StaticConstatns {
@@ -140,6 +143,7 @@ export class StaticConstatns {
         EmailConfirmation: "/account/emailConfirmation",
         AccountVerify: "/account/verify",
         AccountForgotPassword: "/account/forgotPassword",
+        AccountPasswordRecovery: "/account/passwordRecovery",
         Consulting: "https://consulting.bitvelocity.io",
         Funding: "/funding",
         FundingDeposit: "/funding/deposit",

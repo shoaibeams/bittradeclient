@@ -29,10 +29,10 @@ export class LangENUS implements LanguageBase {
     User = "User";
     UserName = this.User + " " + this.Name;
     AlphaNumericFormat = "{0} must be alpha numeric";
-    MustContainOneSpecialCharFormat = "{0} must contain atleast one special character";
-    MustContainOneCapitalLetterFormat = "{0} must contain atleast one capital letter";
-    MustContainOneSmallLetterFormat = "{0} must contain atleast one small letter";
-    MustContainOneNumberFormat = "{0} must contain atleast one number";
+    MustContainOneSpecialCharFormat = "{0} must contain atleast one special character (" + Constants.Instance.SpecialChars + ")";
+    MustContainOneCapitalLetterFormat = "{0} must contain atleast one capital letter (" + Constants.Instance.CapitalLeters + ")";
+    MustContainOneSmallLetterFormat = "{0} must contain atleast one small letter (" + Constants.Instance.SmallLeters + ")";
+    MustContainOneNumberFormat = "{0} must contain atleast one number (" + Constants.Instance.Numbers + ")";
     PasswordRequirement = [
         this.RangeLengthFormat2,
         this.MustContainOneCapitalLetterFormat,
@@ -693,5 +693,16 @@ If you didn't find the email, please check your spam folder or click below to re
     KnowledgeBase = this.Knowledge + " " + this.Base;
     Social = "Social";
     OurFees = this.Our + " " + this.Fees;
+    Your = "Your";
+    ForgotYourPassword = this.Forgot + " " + this.Your + " " + this.Password;
+    ForgotYourPasswordPara = "Don't worry. Recovering the password is easy. Just tell us the email you have registered with";
+    Recovery = "Recovery";
+    PasswordRecoveryEmailSentPara = "We've sent you a " + this.Password + " " + this.Recovery + " " + this.Email + ". Please follow the instructions mentioned there";
+    PassowrdRecovery = this.Password + " " + this.Recovery;
+    Set = "Set";
+    SetNewPassword = this.Set + " " + this.New + " " + this.Password;
+    Update = "Update";
+    Token = "Token";
+    Try = "Try";
 
 }

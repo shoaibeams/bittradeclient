@@ -1,6 +1,8 @@
 import * as io from 'socket.io-client';
 import LoggerService from "./logger";
 import { Constants } from './constants';
+import {mdRegisterSocketEvent} from "../models/register-socket-event";
+import { SocketCustomEvents } from '../enums/socket';
 
 export default class Socket {
     private static _instance: Socket;
@@ -13,6 +15,7 @@ export default class Socket {
     }
 
     private io;
+    RegisterEvent = "register_event";
     log: LoggerService = LoggerService.getInstance();
     connect(callback?)
     {
@@ -24,15 +27,15 @@ export default class Socket {
         });
     }
 
-    emitEvent(event: string, payload?)
+    emitEvent(event: SocketCustomEvents, payload?: any)
     {
         if(this.io)
         {
-            this.io.emit(event, payload);
+            this.io.emit(this.RegisterEvent, new mdRegisterSocketEvent(event, payload));
         }
     }
 
-    registerEvent(event: string, callback)
+    registerEvent(event: SocketCustomEvents, callback)
     {
         if(this.io)
         {
@@ -40,7 +43,7 @@ export default class Socket {
         }
     }
 
-    unregisterEvent(event: string)
+    unregisterEvent(event: SocketCustomEvents)
     {
         if(this.io)
         {

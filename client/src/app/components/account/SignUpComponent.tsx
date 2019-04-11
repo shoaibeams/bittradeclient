@@ -21,10 +21,10 @@ export default class SignUpComponent extends BaseComponent {
         <Form onSubmit={this.onSubmit} className="gx-login-form gx-form-row0" style={{ maxWidth: 'unset' }}>
           <Row>
             {
-              this.colmd12(this.textFormItem(this.f.first_name, false), true, false)
+              this.antd.colmd12(this.antd.textFormItem(this.f.first_name, false), true, false)
             }
             {
-              this.colmd12(this.textFormItem(this.f.last_name, false), false, true)
+              this.antd.colmd12(this.antd.textFormItem(this.f.last_name, false), false, true)
             }
           </Row>
           {/* {
@@ -35,18 +35,18 @@ export default class SignUpComponent extends BaseComponent {
           } */}
           {
             this.state.account_type == AccountTypes.Business ?
-              this.textFormItem(this.f.company_name, false) : (null)
+              this.antd.textFormItem(this.f.company_name, false) : (null)
 
           }
           {
-            this.textFormItem(this.f.email, false)
+            this.antd.textFormItem(this.f.email, false)
           }
           <Row>
             {
-              this.colmd12(this.passwordFormItem(this.f.password, false), true, false)
+              this.antd.colmd12(this.antd.passwordFormItem(this.f.password, false), true, false)
             }
             {
-              this.colmd12(this.passwordFormItem(this.f.confirm_password, false), false, true)
+              this.antd.colmd12(this.antd.passwordFormItem(this.f.confirm_password, false), false, true)
             }
           </Row>
           {/* {
@@ -56,7 +56,7 @@ export default class SignUpComponent extends BaseComponent {
             this.passwordFormItem(this.f.confirm_password, false)
           } */}
           {
-            this.checkboxFormItem(this.f.agreement,
+            this.antd.checkboxFormItem(this.f.agreement,
               <>
                 {this.lang.IAgree}
                 <Link className="gx-login-form-forgot" to={this.getLink(this.constants.RoutePaths.Home)}>
@@ -149,18 +149,18 @@ export default class SignUpComponent extends BaseComponent {
         ], "envelope"),
         password: new mdFormControl(this.model.password, "password", this.lang.Password, [
           // new ValidationAttributes.RequiredValidator(this.lang.RequiredFormat),
-          new ValidationAttributes.RegexValidator(this.lang.RangeLengthFormat2,//length rage
+          new ValidationAttributes.RegexValidator(//length rage
             StaticHelper.formatString(this.constants.Regex.RangeLength, SignUpMetaData.passwordMinLength,
-              SignUpMetaData.passwordMaxLength), SignUpMetaData.passwordMinLength,
+              SignUpMetaData.passwordMaxLength), this.lang.RangeLengthFormat2, SignUpMetaData.passwordMinLength,
             SignUpMetaData.passwordMaxLength),
-          new ValidationAttributes.RegexValidator(this.lang.MustContainOneSmallLetterFormat,//must contain small letter
-            this.constants.Regex.MustContainSmallLetter),
-          new ValidationAttributes.RegexValidator(this.lang.MustContainOneCapitalLetterFormat,//must contain capital letter
-            this.constants.Regex.MustContainCapitalLetter),
-          new ValidationAttributes.RegexValidator(this.lang.MustContainOneSpecialCharFormat,//special char
-            this.constants.Regex.MustContainSpecialChar),
-          new ValidationAttributes.RegexValidator(this.lang.MustContainOneNumberFormat,//number
-            this.constants.Regex.MustContainNumber),
+          new ValidationAttributes.RegexValidator(this.constants.Regex.MustContainSmallLetter//must contain small letter
+            ,this.lang.MustContainOneSmallLetterFormat),
+          new ValidationAttributes.RegexValidator(this.constants.Regex.MustContainCapitalLetter,//must contain capital letter
+            this.lang.MustContainOneCapitalLetterFormat),
+          new ValidationAttributes.RegexValidator(this.constants.Regex.MustContainSpecialChar,//special char
+            this.lang.MustContainOneSpecialCharFormat),
+          new ValidationAttributes.RegexValidator(this.constants.Regex.MustContainNumber,//number
+            this.lang.MustContainOneNumberFormat),
           // new ValidationAttributes.RegexValidator(this.lang.PasswordRequirement, SignUpMetaData.passwordRegex, this.lang.Password, SignUpMetaData.passwordMinLength,
           //   SignUpMetaData.passwordMaxLength)
         ], "lock"),

@@ -17,7 +17,7 @@ export default class WalletComponent extends BaseComponent {
     let getWalletBox = (pair: any, last: mdFormControl, volume: mdFormControl, bgColor: string, barsFillColor: string) => {
       let data = pair.data;
       return (
-        this.colmd6(
+        this.antd.colmd6(
           <ChartCard
             chartProperties={{
               title: data == null ? "" :
@@ -289,8 +289,16 @@ export default class WalletComponent extends BaseComponent {
     let fourthPair: any = this.state.fourthPair;
     let sortedPairs: any[] = [];
     let newPairs = [];
-    if (this.g.briefHistory) {
-      sortedPairs = this.g.briefHistory.sort((a, b) => {
+    let history = this.g.briefHistory;
+    if (history) {
+      history = history.map(m =>{
+        if(m.data)
+        {
+          return m.data;
+        }
+        return m;
+      })
+      sortedPairs = history.sort((a, b) => {
         if (a.volume > b.volume) {
           return -1;
         }

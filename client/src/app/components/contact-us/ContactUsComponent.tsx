@@ -15,24 +15,24 @@ export default class ContactUsComponent extends BaseComponent {
     return (
       <Row className="full-width-controls" style={{display: 'flex'}}>
       {
-        this.colmd6(<></>)
+        this.antd.colmd6(<></>)
       }
         {
-          this.colmd12(
+          this.antd.colmd12(
             <Card className="gx-card form-header" title={this.lang.ContactUs} style={{fontSize: 25,
             textAlign: 'center'}}>
               <Form onSubmit={this.onSubmit} className="gx-signin-form gx-form-row0 large-size-form">
                 {
-                  this.textFormItem(this.f.name, false)
+                  this.antd.textFormItem(this.f.name, false)
                 }
                 {
-                  this.textFormItem(this.f.contact_no, false)
+                  this.antd.textFormItem(this.f.contact_no, false)
                 }
                 {
-                  this.textFormItem(this.f.email, false)
+                  this.antd.textFormItem(this.f.email, false)
                 }
                 {
-                  this.textAreaFormItem(this.f.message, 4, false)
+                  this.antd.textAreaFormItem(this.f.message, 4, false)
                 }
                 <div className="gx-text-center">
                   <Button loading={this.state.disableSubmitButton}
@@ -47,7 +47,7 @@ export default class ContactUsComponent extends BaseComponent {
           )
         }
         {
-          this.colmd6(<></>)
+          this.antd.colmd6(<></>)
         }
       </Row>
     );

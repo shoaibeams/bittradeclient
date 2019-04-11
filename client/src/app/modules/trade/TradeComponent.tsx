@@ -35,7 +35,7 @@ export default class TradeComponent extends BaseComponent {
       <>
         <Row type="flex" align="middle">
           {
-            this.colmd4(this.getCPDropDown(currencyPairs, (e) => {
+            this.antd.colmd4(this.getCPDropDown(currencyPairs, (e) => {
               if (!e) {
                 return;
               }
@@ -43,7 +43,7 @@ export default class TradeComponent extends BaseComponent {
             }))
           }
           {
-            this.colmd4(<LivePriceWidget
+            this.antd.colmd4(<LivePriceWidget
               iconColor={'white'}
               cardColor="cyan"
               icon="timeline"
@@ -51,7 +51,7 @@ export default class TradeComponent extends BaseComponent {
               subTitle={sbh.tc_symbol + (isNaN(sbh.last) ? '' : sbh.last)} />)
           }
           {
-            this.colmd4(<LivePriceWidget
+            this.antd.colmd4(<LivePriceWidget
               iconColor={'white'}
               cardColor="teal"
               icon="long-arrow-up"
@@ -59,7 +59,7 @@ export default class TradeComponent extends BaseComponent {
               subTitle={sbh.tc_symbol + (isNaN(sbh.high) ? '' : sbh.high)} />)
           }
           {
-            this.colmd4(<LivePriceWidget
+            this.antd.colmd4(<LivePriceWidget
               iconColor={'white'}
               cardColor="red"
               icon="long-arrow-down"
@@ -67,7 +67,7 @@ export default class TradeComponent extends BaseComponent {
               subTitle={sbh.tc_symbol + (isNaN(sbh.low) ? '' : sbh.low)} />)
           }
           {
-            this.colmd4(<LivePriceWidget
+            this.antd.colmd4(<LivePriceWidget
               iconColor={'white'}
               cardColor="orange"
               icon="tasks"
@@ -75,7 +75,7 @@ export default class TradeComponent extends BaseComponent {
               subTitle={sbh.tc_symbol + (isNaN(sbh.volume) ? '' : sbh.volume)} />)
           }
           {
-            this.colmd4(<LivePriceWidget
+            this.antd.colmd4(<LivePriceWidget
               iconColor={'white'}
               cardColor="primary"
               icon="timeline-with-icons"
@@ -86,10 +86,10 @@ export default class TradeComponent extends BaseComponent {
         <Row>
           {
             // this.g.selectedCurrencyPair == null ? null :
-            this.colmd16(
+            this.antd.colmd16(
               <Row>
                 {
-                  this.colmd12(
+                  this.antd.colmd12(
                     <OrderComponent {...this.props} ref={this.orderRef} params={{
                       onNewOrder: this.newOrderCreated,
                       action: OrderActions.buy,
@@ -97,7 +97,7 @@ export default class TradeComponent extends BaseComponent {
                     }} />)
                 }
                 {
-                  this.colmd12(
+                  this.antd.colmd12(
                     <OrderComponent {...this.props} ref={this.orderRef} params={{
                       onNewOrder: this.newOrderCreated,
                       action: OrderActions.sell,
@@ -107,12 +107,12 @@ export default class TradeComponent extends BaseComponent {
               </Row>)
           }
           {
-            this.colmd8(<RecentTradesComponent {...this.props} />)
+            this.antd.colmd8(<RecentTradesComponent {...this.props} />)
           }
         </Row>
         <Row>
           {
-            this.colmd24(<OrderHistoryComponent {...this.props} ref={this.orderHistoryRef} />)
+            this.antd.colmd24(<OrderHistoryComponent {...this.props} ref={this.orderHistoryRef} />)
           }
         </Row>
       </>

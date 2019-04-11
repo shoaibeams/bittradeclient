@@ -26,21 +26,21 @@ export default class MapComponent extends BaseComponent {
         </div>
         <Row className="servicewrap">
           {
-            this.colmd8(
+            this.antd.colmd8(
               <>
                 <h2>{this.lang.PartBuyting}</h2>
                 <p>{this.lang.PartBuytingPara}</p>
               </>)
           }
           {
-            this.colmd8(
+            this.antd.colmd8(
               <>
                 <h2>{this.lang.Support}</h2>
                 <p>{this.lang.SupportPara}</p>
               </>)
           }
           {
-            this.colmd8(
+            this.antd.colmd8(
               <>
                 <h2>{this.lang.API}</h2>
                 <p>{this.lang.APIPara}</p>

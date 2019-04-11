@@ -63,8 +63,8 @@ class NavMenuComponent extends BaseComponent {
         {item.text}
       </>;
       return (
-        <SubMenu className={`${this.getNavStyleSubMenuClass(navMenuType, navStyle)} gx-text-center color-white`} 
-        key={item.name}
+        <SubMenu className={`${this.getNavStyleSubMenuClass(navMenuType, navStyle)} gx-text-center color-white`}
+          key={item.name}
           title={this.linkOrA(item.href, item.routerLink, titleInner())}
           style={{ lineHeight: '36px' }}>
           {
@@ -74,13 +74,32 @@ class NavMenuComponent extends BaseComponent {
       );
     }
     else {
+      let titleInner = () => <>
+        {item.children.length < 1 ? <img width="17" height="17" src={item.icon} style={{ marginRight: 20 }} /> : null}
+        {item.text}
+      </>;
       return (
-        <MenuItemGroup key={item.name} className="gx-menu-group" 
-        title={this.linkOrA(item.href, item.routerLink, item.text)}>
-          {
-            children
-          }
-        </MenuItemGroup>
+        item.children.length > 0 ?
+          <SubMenu className={`${this.getNavStyleSubMenuClass(navMenuType, navStyle)}`}
+            key={item.name}
+            title={this.linkOrA(item.href, item.routerLink, titleInner())}
+            style={{ lineHeight: '36px' }}>
+            {
+              children
+            }
+          </SubMenu>
+          // <MenuItemGroup key={item.name} className="gx-menu-group"
+          //   title={this.linkOrA(item.href, item.routerLink, item.text)}>
+          //   {
+          //     children
+          //   }
+          // </MenuItemGroup>
+          :
+          <Menu.Item className="gx-text-left" key={item.name}>
+          <div  style={{color: "white !important"}}>
+            {this.linkOrA(item.href, item.routerLink, titleInner())}
+            </div>
+          </Menu.Item>
       );
     }
 
@@ -111,7 +130,9 @@ class NavMenuComponent extends BaseComponent {
         );
       }
       return (
-        <Menu.Item className="gx-text-left" key={item.name}>{this.linkOrA(item.href, item.routerLink , titleInner())}</Menu.Item>
+        <Menu.Item className="gx-text-left" key={item.name}>
+          {this.linkOrA(item.href, item.routerLink, titleInner())}
+        </Menu.Item>
       );
     }
     // else {
@@ -187,7 +208,8 @@ class NavMenuComponent extends BaseComponent {
   getNavBarLinks() {
     let home = {
       name: 'home',
-      routerLink: Constants.Instance.RoutePaths.Home,
+      routerLink: this.isNullOrEmpty(Constants.Instance.RoutePaths.Home) ? "/" :
+        Constants.Instance.RoutePaths.Home,
       icon: '/assets/images/home-icon.png',
       alt: this.lang.Home,
       text: this.lang.Home,
@@ -245,7 +267,7 @@ class NavMenuComponent extends BaseComponent {
         {
           name: 'blockchain/travel',
           routerLink: '/blockchain/travel',
-          icon: 'angle-double-up',
+          icon: 'walking',
           alt: this.lang.Travel,
           text: this.lang.Travel,
           requireLogin: false,
@@ -253,7 +275,7 @@ class NavMenuComponent extends BaseComponent {
         }, {
           name: 'blockchain/realEstate',
           routerLink: '/blockchain/realEstate',
-          icon: 'angle-double-up',
+          icon: 'building',
           alt: this.lang.RealEstate,
           text: this.lang.RealEstate,
           requireLogin: false,
@@ -288,7 +310,7 @@ class NavMenuComponent extends BaseComponent {
       children: [{
         name: "help/faq",
         routerLink: Constants.Instance.RoutePaths.ContactUs,
-        icon: 'angle-double-up',
+        icon: 'question',
         alt: this.lang.FAQ,
         text: this.lang.FAQ,
         requireLogin: false,
@@ -296,7 +318,7 @@ class NavMenuComponent extends BaseComponent {
       }, {
         name: "help/aboutUs",
         routerLink: Constants.Instance.RoutePaths.ContactUs,
-        icon: 'angle-double-up',
+        icon: 'info',
         alt: this.lang.AboutUs,
         text: this.lang.AboutUs,
         requireLogin: false,
@@ -304,7 +326,7 @@ class NavMenuComponent extends BaseComponent {
       }, {
         name: Constants.Instance.RoutePaths.ContactUs.substr(1),
         routerLink: Constants.Instance.RoutePaths.ContactUs,
-        icon: 'angle-double-up',
+        icon: 'file-signature',
         alt: this.lang.ContactUs,
         text: this.lang.ContactUs,
         requireLogin: false,

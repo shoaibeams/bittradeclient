@@ -14,9 +14,17 @@ export default class TradeBriefHistoryComponent extends BaseComponent {
 
   render() {
     let table = () => {
+      let history = this.state.selectedTradePairHistory;
+      if(history)
+      {
+        history = history.map((p, i) =>{
+          p["key"] = i;
+          return p;
+        })
+      }
       return (
         <Table className="gx-table-no-bordered custom-table" columns={this.columns as any}
-          dataSource={this.state.selectedTradePairHistory} pagination={false} bordered={false}
+          dataSource={history} pagination={false} bordered={false}
           size="small"
         // scroll={{ x: 'auto' }}
         />

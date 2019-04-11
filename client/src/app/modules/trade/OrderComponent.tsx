@@ -67,10 +67,10 @@ export default class OrderComponent extends BaseComponent {
               </Col>
             </Row> */}
             {
-              this.numberFormItem(this.f.price, true, this.state.tcStep, 0, 9999999, this.priceAmountKeyup, this.formItemLayout)
+              this.antd.numberFormItem(this.f.price, true, this.state.tcStep, 0, 9999999, this.priceAmountKeyup, this.formItemLayout)
             }
             {
-              this.numberWithDropDownFormItem(this.f.amount, this.f.amountCurrency, currencyTypeSource, this.priceAmountKeyup,
+              this.antd.numberWithDropDownFormItem(this.f.amount, this.f.amountCurrency, currencyTypeSource, this.priceAmountKeyup,
                 true, amountStep, 0, 9999999, currencyTypeSource.length < 1, this.priceAmountKeyup, this.formItemLayout)
             }
             {

@@ -33,6 +33,7 @@ import BVApp from "./BVApp";
 import "../../assets/css/animate.css";
 import "../../assets/css/general.less";
 import { RestrictedRoutes } from "../../routes";
+import { BasicBaseComponent } from "../../app/components/base/BasicBaseComponent";
 
 class App extends BaseComponent {
 
@@ -48,7 +49,8 @@ class App extends BaseComponent {
     this.loadCurrencyPairs();
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
+    this.isComponentMounted = true;
     window.addEventListener("resize", this.updateWidth);
   }
 
@@ -102,11 +104,11 @@ class App extends BaseComponent {
           if (window.location.href.indexOf(this.constants.RoutePaths.Login) > -1) {
             this.props.history.push(this.constants.RoutePaths.Trade);
           }
-          this.initSocket();
         }
         else {
           isLoggedIn = false;
         }
+        this.initSocket();
         if (res.extras == true) {
           this.navigateToLogin();
           // this.router.navigateByUrl(this.constants.RoutePaths.Login + "?" + this.constants.QueryParams.redirectURI + "=" + window.location.href, { skipLocationChange: false });
@@ -132,8 +134,8 @@ class App extends BaseComponent {
         })
       }).catch(error => {
         this.log.debug(error);
-        this.props.updateGlobalProperty([global.propKeys.showMainLoader, 
-          global.propKeys.isLoggedIn], [false, false]);
+        this.props.updateGlobalProperty([global.propKeys.showMainLoader,
+        global.propKeys.isLoggedIn], [false, false]);
         this.updateState({
           checkedLogin: true
         })
@@ -188,7 +190,6 @@ class App extends BaseComponent {
     //   return;
     // }
     this.http.get(this.constants.EndPoints.GetTradeBriefRecentHistory).then((res: mdCallResponse) => {
-      this.log.debug(res);
       if (res.isSuccess) {
         if (res.extras.briefHistory) {
           let history = res.extras.briefHistory;
@@ -199,9 +200,8 @@ class App extends BaseComponent {
             history[i] = StaticHelper.copyProp(cp, history[i]);
           }
           let selectedBriefHistory = history.filter(m => m.id == this.props.globals.selectedCurrencyPair.id)[0];
-
-          this.props.updateGlobalProperty([global.propKeys.briefHistory, 
-            global.propKeys.selectedBriefHistory], [history, selectedBriefHistory]);
+          this.props.updateGlobalProperty([global.propKeys.briefHistory,
+          global.propKeys.selectedBriefHistory], [history, selectedBriefHistory]);
 
 
         }
@@ -362,6 +362,7 @@ class App extends BaseComponent {
 
     const currentAppLocale = AppLocale[locale.locale];
     this.initShorts();
+
     return this.state.checkedLogin && !this.isNullOrEmpty(this.g.langKey) ? (
       <>
         <ClipLoaderComponent {...this.props} />
@@ -378,7 +379,7 @@ class App extends BaseComponent {
         </Switch>
         <NotificationContainer />
       </>
-    ) : (null)
+    ) : (<div></div>)
 
     // </Router>
 

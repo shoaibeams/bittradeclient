@@ -11,3 +11,9 @@ export enum SocketMessageTypes{
     CHAT = 'chat',
     NOTIFICATION = 'notification',
 }
+export enum SocketCustomEvents{  
+    AwaitingEmailVerification = "AwaitingEmailVerification",
+    EmailVerified = "EmailVerified",
+    AwaitingPasswordRecovery = "AwaitingPasswordRecovery",
+    PasswordRecovered = "PasswordRecovered",
+  }

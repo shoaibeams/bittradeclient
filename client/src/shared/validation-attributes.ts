@@ -387,7 +387,7 @@ export class MailValidator implements ValidationAttribute {
 }
 
 export class RegexValidator implements ValidationAttribute {
-    constructor(errorMsgFormat: any, regexString: string, ...args) {
+    constructor(regexString: any, errorMsgFormat: string, ...args) {
         this.errorMessageFormat = errorMsgFormat;
         this.argss = args;
         this.regex = new RegExp(StaticHelper.formatString(regexString, ...this.argss));

@@ -62,12 +62,12 @@ const FundingComponent = asyncComponent(() =>
 const TradeComponent = asyncComponent(() =>
   import('../app/modules/trade/TradeComponent').then(module => module.default)
 )
-const MainFooterHTML = asyncComponent(() =>
-  import('../app/components/main-footer/MainFooterHTML').then(module => module.default)
+const ForgotPasswordComponent = asyncComponent(() =>
+  import('../app/components/account/ForgotPasswordComponent').then(module => module.default)
 )
 
-const MainHeaderComponent = asyncComponent(() =>
-  import('../app/components/main-header/MainHeaderComponet').then(module => module.default)
+const PasswordRecoveryComponent = asyncComponent(() =>
+  import('../app/components/account/PasswordRecoveryComponent').then(module => module.default)
 )
 
 let langKeys = StaticHelper.objectToValuesArray(Constants.Instance.LanguageKey);
@@ -136,6 +136,10 @@ const RestrictedRoutes = (props) => {
         render={() => <AccountVerificationComponent {...props} />}></Route>
       <Route exact path={`${props.match.url}${StaticConstatns.RoutePaths.EmailConfirmation}`}
         render={() => <EmailConfirmationComponent {...props} />}></Route>
+      <Route exact path={`${props.match.url}${StaticConstatns.RoutePaths.AccountForgotPassword}`}
+        render={() => <ForgotPasswordComponent {...props} />}></Route>
+        <Route exact path={`${props.match.url}${StaticConstatns.RoutePaths.AccountPasswordRecovery}`}
+          render={() => <PasswordRecoveryComponent {...props} />}></Route>
       <Route exact path={`${props.match.url}${StaticConstatns.RoutePaths.Home}*`}
         render={() => <MainApp {...props} />}></Route>
       {/* <Route path="*" render={() => <MainApp {...props} match={{ url: "/" }} />} /> */}
@@ -167,22 +171,22 @@ class ThemeImplementedRoutes extends BaseComponent {
     return (
       <div className="gx-main-content-wrapper">
         <Switch>
-      <Route exact path={`${this.props.match.url}${StaticConstatns.RoutePaths.ContactUs}`}
-        render={() => <ContactUsComponent {...this.props} />}></Route>
+          <Route exact path={`${this.props.match.url}${StaticConstatns.RoutePaths.ContactUs}`}
+            render={() => <ContactUsComponent {...this.props} />}></Route>
           <Route path={`${this.props.match.url}/exchange/trade`}
             render={() => {
               if (!this.props.globals.isLoggedIn) {
                 return redirectToLogin();
               }
-              return <TradeComponent {...this.props as any} match={{ url: `${this.props.match.url}/trade` }}/>
+              return <TradeComponent {...this.props as any} match={{ url: `${this.props.match.url}/trade` }} />
             }} />
           <Route path={`${this.props.match.url}/funding`}
-            
+
             render={() => {
               if (!this.props.globals.isLoggedIn) {
                 return redirectToLogin();
               }
-              return <FundingComponent {...this.props as any} match={{ url: `${this.props.match.url}/funding` }}/>
+              return <FundingComponent {...this.props as any} match={{ url: `${this.props.match.url}/funding` }} />
             }} />
           <Route path={`${this.props.match.url}/`}
             render={() => <HomeComponent {...this.props} />} />

@@ -3,7 +3,6 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { StaticHelper } from "../../../../shared/static-helper";
 import { mdFormControl } from "../../../../shared/form-control";
-import { CSSTransition } from 'react-transition-group';
 import { Transitions } from "../../../../models/transitions";
 import { TransitionState } from "../../../../enums/transition";
 import { Row, Card, Button, Switch, Radio, Col } from "antd";
@@ -55,18 +54,18 @@ export default class BannerComponent extends BaseComponent {
         </Row> */}
         <Row>
           {
-            this.colmd24(
+            this.antd.colmd24(
               <div className="main-page-header gx-text-center">
                 <p> {this.lang.MainPageHeader}</p>
               </div>
             )
           }
           {
-            this.colmd12(
+            this.antd.colmd12(
               <Card className="gx-card">
                 <Row>
                   {
-                    this.colsm12(
+                    this.antd.colsm12(
                       <div className="buy-txt">{`${this.lang.Buy} ${scp.fc_name} ${this.lang.at}:`}<br />
                         {
                           this.animatedCSSDiv(sbh.current_buy, this.state.animValues.current_buy)
@@ -83,8 +82,8 @@ export default class BannerComponent extends BaseComponent {
                     )
                   }
                   {
-                    this.colsm12(
-                      <div className="sell-txt">{`${this.lang.Sell} ${scp.tc_name} ${this.lang.at}:`}<br />
+                    this.antd.colsm12(
+                      <div className="sell-txt">{`${this.lang.Sell} ${scp.fc_name} ${this.lang.at}:`}<br />
                         {
                           this.animatedCSSDiv(sbh.current_sell, this.state.animValues.current_sell)
                         }
@@ -102,17 +101,17 @@ export default class BannerComponent extends BaseComponent {
             )
           }
           {
-            this.colmd12(
+            this.antd.colmd12(
               <Card className="gx-card buysellwrap" title={this.lang.CurrencyCalculator}>
                 <Row>
                   {
-                    this.colmd12(<div className="gx-mb-3">{this.getCPDropDown(currencyPairs, (cp) => {
+                    this.antd.colmd12(<div className="gx-mb-3">{this.getCPDropDown(currencyPairs, (cp) => {
                       this.afterSettingCurrencyPair(cp);
                     })
                   }
                   </div>)
                   }{
-                    this.colmd12(
+                    this.antd.colmd12(
                       <div className="gx-mb-3">
                         <RadioGroup onChange={this.buySellChange} defaultValue="buy">
                           <RadioButton value="buy">{this.lang.Buy}</RadioButton>
@@ -124,27 +123,27 @@ export default class BannerComponent extends BaseComponent {
                 </Row>
                 <Row>
                   {
-                    this.colmd12(
+                    this.antd.colmd12(
                       <>
                         <div className="buy-colors gx-mb-3">
                           <span className="holder">{scp.fc_name}</span>
                         </div>
                         {
-                          this.numberWithoutFormItem(this.f.fc, true, this.state.fcStep, 0,
+                          this.antd.numberWithoutFormItem(this.f.fc, true, this.state.fcStep, 0,
                             this.maxInputValue, this.calculatorInput, this.formItemLayout, this.state.fcPlaceholder)
                         }
                       </>
                     )
                   }
                   {
-                    this.colmd12(
+                    this.antd.colmd12(
                       <>
                         <div className="sell-colors gx-mb-3">
                           <span className="holder">{scp.tc_name}</span>
                           <span>{" (" + (this.state.isBuy ? this.lang.Cost : this.lang.YouGet) + ")"}</span>
                         </div>
                         {
-                          this.numberWithoutFormItem(this.f.tc, true, this.state.tcStep, 0,
+                          this.antd.numberWithoutFormItem(this.f.tc, true, this.state.tcStep, 0,
                             this.maxInputValue, this.calculatorInput, this.formItemLayout, this.state.tcPlaceholder)
                         }
                       </>
@@ -237,8 +236,7 @@ export default class BannerComponent extends BaseComponent {
   buySellChange = (e) => {
     this.updateState({
       isBuy: !this.state.isBuy
-    })
-    this.calculatorInput('', null);
+    },()=>{ this.calculatorInput('', null);} )
   }
 
   updatePlaceholder(field: string) {
@@ -390,23 +388,23 @@ export default class BannerComponent extends BaseComponent {
     if (!cp) {
       return;
     }
-    this.props.updateGlobalProperty(global.propKeys.selectedCurrencyPair, cp);
-    let obj = {
-      tcStep: this.state.tcStep,
-      fcStep: this.state.fcStep,
-    };
+    // this.props.updateGlobalProperty(global.propKeys.selectedCurrencyPair, cp);
+    // let obj = {
+    //   tcStep: this.state.tcStep,
+    //   fcStep: this.state.fcStep,
+    // };
     // obj.tcStep = 1 / Math.pow(10, StaticHelper.minScale(this.g.selectedCurrencyPair.tcd_scale));
     //obj.fcStep = 1 / Math.pow(10, StaticHelper.minScale(this.g.selectedCurrencyPair.fcd_scale));
     //this.updateState(obj);
     if (this.g.briefHistory) {
-      let sbh = this.g.briefHistory.filter(m => m.id == cp.id);
-      if (sbh.length > 0) {
-        let old = this.g.selectedBriefHistory;
-        // this.g.selectedBriefHistory = sbh[0];
-        // this.g.selectedBriefHistory.old = old;
-        this.props.updateGlobalProperty(global.propKeys.selectedBriefHistory, sbh[0]);
-        // this.setAnimValuesForSelectedPairHistory(this.g.selectedBriefHistory);
-      }
+      // let sbh = this.g.briefHistory.filter(m => m.id == cp.id);
+      // if (sbh.length > 0) {
+      //   let old = this.g.selectedBriefHistory;
+      //   // this.g.selectedBriefHistory = sbh[0];
+      //   // this.g.selectedBriefHistory.old = old;
+      //   this.props.updateGlobalProperty(global.propKeys.selectedBriefHistory, sbh[0]);
+      //   // this.setAnimValuesForSelectedPairHistory(this.g.selectedBriefHistory);
+      // }
       this.calculatorInput('', null);
     }
   }
