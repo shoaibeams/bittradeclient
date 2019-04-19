@@ -65,7 +65,7 @@ class NavMenuComponent extends BaseComponent {
       return (
         <SubMenu className={`${this.getNavStyleSubMenuClass(navMenuType, navStyle)} gx-text-center color-white`}
           key={item.name}
-          title={this.linkOrA(item.href, item.routerLink, titleInner())}
+          title={this.linkOrA(item.href, item.routerLink, titleInner(), item.newTab)}
           style={{ lineHeight: '36px' }}>
           {
             children
@@ -82,7 +82,7 @@ class NavMenuComponent extends BaseComponent {
         item.children.length > 0 ?
           <SubMenu className={`${this.getNavStyleSubMenuClass(navMenuType, navStyle)}`}
             key={item.name}
-            title={this.linkOrA(item.href, item.routerLink, titleInner())}
+            title={this.linkOrA(item.href, item.routerLink, titleInner(), item.newTab)}
             style={{ lineHeight: '36px' }}>
             {
               children
@@ -97,7 +97,7 @@ class NavMenuComponent extends BaseComponent {
           :
           <Menu.Item className="gx-text-left" key={item.name}>
           <div  style={{color: "white !important"}}>
-            {this.linkOrA(item.href, item.routerLink, titleInner())}
+            {this.linkOrA(item.href, item.routerLink, titleInner(), item.newTab)}
             </div>
           </Menu.Item>
       );
@@ -131,7 +131,7 @@ class NavMenuComponent extends BaseComponent {
       }
       return (
         <Menu.Item className="gx-text-left" key={item.name}>
-          {this.linkOrA(item.href, item.routerLink, titleInner())}
+          {this.linkOrA(item.href, item.routerLink, titleInner(), item.newTab)}
         </Menu.Item>
       );
     }
@@ -295,6 +295,7 @@ class NavMenuComponent extends BaseComponent {
       name: 'consulting',
       routerLink: null,
       href: Constants.Instance.RoutePaths.Consulting,
+      newTab: true,
       icon: '/assets/images/consult.png',
       alt: this.lang.Consulting,
       text: this.lang.Consulting,

@@ -1,0 +1,9 @@
+Add jsdoc comments
+Bracket Pair Colorizer
+Code Spell Checker
+Debugger for Chrome
+ES7 React/Redux/GraphQL/React-Native snippets
+GitLens — Git supercharged
+HTML CSS Support
+Prettier - Code formatter
+

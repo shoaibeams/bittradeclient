@@ -101,7 +101,6 @@ export class MainApp extends BaseComponent {
   };
 
   render() {
-    console.log(this.props.match);
     this.initShorts();
     if (!this.g.isLoggedIn) {
       // return (<Redirect to={`${this.props.match.url}${this.constants.RoutePaths.Login}`} />);

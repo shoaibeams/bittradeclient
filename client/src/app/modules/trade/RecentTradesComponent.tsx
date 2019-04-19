@@ -1,15 +1,10 @@
 
 import * as React from "react";
-import NBSpinnerComponent from "../shared/spinner/NBSpinnerComponent";
 import { BaseComponent } from "../../components/base/BaseComponent";
-import { mdOrderHistory } from "../../../models/order-history";
 import { StaticHelper } from "../../../shared/static-helper";
 import { mdCallResponse } from "../../../models/call-response";
-import { OrderRecordStatuses, OrderActions } from "../../../enums/order";
-import { mdOrder } from "../../../models/order";
-import Widget from "../../../components/Widget/index";
+import { OrderActions } from "../../../enums/order";
 import { Table, Tabs, Card, Pagination } from "antd";
-import data from "../../../routes/extensions/charts/recharts/radar/Components/data";
 const TabPane = Tabs.TabPane;
 
 export default class RecentTradesComponent extends BaseComponent {

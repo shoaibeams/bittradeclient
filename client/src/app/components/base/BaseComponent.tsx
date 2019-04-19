@@ -2,14 +2,25 @@ import * as React from "react";
 import { mdProps, mdPropKeys, mdGlobalProps } from "../../../models/props";
 import { Constants, StaticConstatns } from "../../../shared/constants";
 import { mdFormControl } from "../../../shared/form-control";
-import { ValidateParams, ValidationAttributeResponse, Validation } from "../../../shared/validations";
+import {
+  ValidateParams,
+  ValidationAttributeResponse,
+  Validation
+} from "../../../shared/validations";
 import { StaticHelper } from "../../../shared/static-helper";
-import mdTransitions, { Transitions, mdTransition } from "../../../models/transitions";
+import mdTransitions, {
+  Transitions,
+  mdTransition
+} from "../../../models/transitions";
 import ReCAPTCHA from "react-google-recaptcha";
 import { BasicBaseComponent } from "./BasicBaseComponent";
 import { TransitionState } from "../../../enums/transition";
-import history from '../../../shared/history';
-import { InputTypes, NotificationTypes, SelectSizes } from "../../../enums/general";
+import history from "../../../shared/history";
+import {
+  InputTypes,
+  NotificationTypes,
+  SelectSizes
+} from "../../../enums/general";
 import { NotificationManager } from "react-notifications";
 import { mdCallResponse } from "../../../models/call-response";
 import DatePickerComponent from "../../modules/shared/date-picker/DatePickerComponent";
@@ -19,42 +30,34 @@ import moment from "moment";
 import { mdAnimControl } from "../../../models/anim-control";
 import FontAwesome from "./FontAwesome";
 import { IconName } from "@fortawesome/fontawesome-common-types";
-import { SizeProp } from '@fortawesome/fontawesome-svg-core'
+import { SizeProp } from "@fortawesome/fontawesome-svg-core";
 import { Link } from "react-router-dom";
-import { Form, Input, Checkbox, Button, Icon, DatePicker, Select, InputNumber, Col } from "antd";
+import {
+  Form,
+  Input,
+  Checkbox,
+  Button,
+  Icon,
+  DatePicker,
+  Select,
+  InputNumber,
+  Col
+} from "antd";
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RangePicker = DatePicker.RangePicker;
 const InputGroup = Input.Group;
 const TextArea = Input.TextArea;
 
-
 export class BaseComponent extends BasicBaseComponent {
-
   constructor(props, extractFromProp?: boolean) {
     super(props);
     this.initClasses(extractFromProp);
     this.state = {
       ...this.state,
       currentWidth: this.getCurrentWidth()
-    }
+    };
   }
-
-  // componentWillMount = () => {
-  //   this.timeouts = [];
-  // }
-
-  // setTimeout = (...args) => {
-  //   this.timeouts.push(setTimeout.apply(this, ...args));
-  // }
-
-  // clearTimeouts = () => {
-  //   this.timeouts.forEach(clearTimeout);
-  // }
-
-  // componentWillUnmount = () => {
-  //   this.clearTimeouts();
-  // }
 
   faicon(icon: IconName, size?: SizeProp) {
     return FontAwesome.faIcon(icon, size);
@@ -64,12 +67,10 @@ export class BaseComponent extends BasicBaseComponent {
     let dot = this.state.threeDots as string;
     if (!dot) {
       dot = " .";
-    }
-    else {
+    } else {
       if (dot.length < 3) {
         dot += ".";
-      }
-      else {
+      } else {
         dot = " ";
       }
     }
@@ -80,27 +81,34 @@ export class BaseComponent extends BasicBaseComponent {
     setTimeout(() => {
       this.threeDots();
     }, 500);
-  }
+  };
 
-  updateAnimValue(animName: string, value: Transitions, tstate = TransitionState.NotStarted) {
+  updateAnimValue(
+    animName: string,
+    value: Transitions,
+    tstate = TransitionState.NotStarted
+  ) {
     let animValues = {
-      ...this.state.animValues,
-    }
+      ...this.state.animValues
+    };
 
-    animValues[animName].value = this.getTransisition(value, tstate);
+    animValues[animName].value = this.getTransition(value, tstate);
     this.updateState({
       animValues: animValues
-    })
+    });
   }
 
-  getTransisition(transition: Transitions, tstate: TransitionState = TransitionState.NotStarted) {
+  getTransition(
+    transition: Transitions,
+    tstate: TransitionState = TransitionState.NotStarted
+  ) {
     let t = global.transitions[transition];
     t.state = tstate;
     return t;
   }
 
   runTransition(transition: Transitions) {
-    return this.getTransisition(transition, TransitionState.Running);
+    return this.getTransition(transition, TransitionState.Running);
   }
 
   handleCaptchaInput = (field, e, formName: string = null) => {
@@ -117,8 +125,7 @@ export class BaseComponent extends BasicBaseComponent {
       if (this.showErrors) {
         form[field] = this.validateFormControl(form[field]);
       }
-    }
-    else {
+    } else {
       if (form.showErrors) {
         form[field] = this.validateFormControl(form[field]);
       }
@@ -126,7 +133,7 @@ export class BaseComponent extends BasicBaseComponent {
     let state = this.state;
     StaticHelper.assignPropertyOfObject(state, formName, form);
     this.updateState({ ...state });
-  }
+  };
 
   validateForm(formName: string) {
     let isValid = true;
@@ -143,8 +150,7 @@ export class BaseComponent extends BasicBaseComponent {
             isValid = false;
           }
         }
-      }
-      else {
+      } else {
         this.log.debug("null control " + k);
       }
     });
@@ -159,7 +165,11 @@ export class BaseComponent extends BasicBaseComponent {
     let keys = Object.keys(form);
     let fd = {};
     keys.forEach(k => {
-      fd = StaticHelper.assignPropertyOfObject(fd, k, form[k] ? form[k].value : null);
+      fd = StaticHelper.assignPropertyOfObject(
+        fd,
+        k,
+        form[k] ? form[k].value : null
+      );
     });
     return fd;
   }
@@ -168,33 +178,40 @@ export class BaseComponent extends BasicBaseComponent {
     return this.animatedCSSDivInner(content, null, control, true, callback);
   }
 
-  private animatedCSSDivInner(content: any, attr: any, control: mdAnimControl, contentOnly: boolean, callback?, props?) {
+  private animatedCSSDivInner(
+    content: any,
+    attr: any,
+    control: mdAnimControl,
+    contentOnly: boolean,
+    callback?,
+    props?
+  ) {
     if (control) {
       let transition: mdTransition = control.value;
-      let classes = '';
+      let classes = "";
       if (transition.state == TransitionState.NotStarted) {
         classes = transition.before;
-      }
-      else if (transition.state == TransitionState.Running) {
+      } else if (transition.state == TransitionState.Running) {
         classes = transition.classes;
-      }
-      else if (transition.state == TransitionState.Completed) {
+      } else if (transition.state == TransitionState.Completed) {
         classes = transition.after;
       }
       return (
-        <div onAnimationEnd={(e) => { this.onAnimationEnd(control, callback, e); }}
+        <div
+          onAnimationEnd={e => {
+            this.onAnimationEnd(control, callback, e);
+          }}
           {...attr}
-          className={`${contentOnly ? 'content-only' : ''} ${classes}`}
-          {...props}>
+          className={`${contentOnly ? "content-only" : ""} ${classes}`}
+          {...props}
+        >
           {content}
         </div>
       );
-    }
-    else {
-      return <div
-        className={`${contentOnly ? 'content-only' : ''}`}>
-        {content}
-      </div>;
+    } else {
+      return (
+        <div className={`${contentOnly ? "content-only" : ""}`}>{content}</div>
+      );
     }
   }
 
@@ -210,7 +227,7 @@ export class BaseComponent extends BasicBaseComponent {
     let animValues = {
       ...this.state.animValues,
       ...obj
-    }
+    };
     this.updateState({
       animValues: {
         ...animValues
@@ -220,19 +237,28 @@ export class BaseComponent extends BasicBaseComponent {
       setTimeout(() => {
         t.state = TransitionState.Running;
         control.value = t;
-        let obj = StaticHelper.assignPropertyOfObject({}, control.name, control);
+        let obj = StaticHelper.assignPropertyOfObject(
+          {},
+          control.name,
+          control
+        );
         let animValues = {
           ...this.state.animValues,
-          ...obj,
-        }
+          ...obj
+        };
         this.updateState({
           ...animValues
         });
       }, 500);
     }
-  }
+  };
 
-  animatedCSSDivWithAttr(content: any, attr: any, control: mdAnimControl, callback?) {
+  animatedCSSDivWithAttr(
+    content: any,
+    attr: any,
+    control: mdAnimControl,
+    callback?
+  ) {
     return this.animatedCSSDivInner(content, attr, control, false, callback);
   }
 
@@ -253,170 +279,185 @@ export class BaseComponent extends BasicBaseComponent {
     // will and always has to be the first argument.
     if (array.length == 0) {
       return null;
-    }
-    else if (array.length == 1) {
+    } else if (array.length == 1) {
       return array[0];
     }
     return (
       <ul className="bullet-dot">
-        {
-          array.map((m, i) => {
-            return (<li key={i}>{StaticHelper.formatString(array[i], ...args)}</li>);
-          })
-        }
+        {array.map((m, i) => {
+          return (
+            <li key={i}>{StaticHelper.formatString(array[i], ...args)}</li>
+          );
+        })}
       </ul>
     );
   }
 
-  getErrosDiv(errors: any[]) {
+  getErrorsDiv(errors: any[]) {
     if (!errors) {
-      return (null);
+      return null;
     }
-    return (errors.length > 0 ? (
+    return errors.length > 0 ? (
       <div className="invalid-feedback">
         <div key={0}>{errors[0]}</div>
       </div>
-    ) : (null)
-    );
+    ) : null;
   }
 
-  textFormControl(control: mdFormControl, onInput?: any, formGroup: boolean = true, type: string = "text") {
-    let inputHandler = onInput ? (e) => {
-      if (!Array.isArray(onInput)) {
-        onInput = [onInput];
-      }
-      onInput.forEach(f => {
-        f(control.name, e);
-      });
-    } : null;
+  textFormControl(
+    control: mdFormControl,
+    onInput?: any,
+    formGroup: boolean = true,
+    type: string = "text"
+  ) {
+    let inputHandler = onInput
+      ? e => {
+          if (!Array.isArray(onInput)) {
+            onInput = [onInput];
+          }
+          onInput.forEach(f => {
+            f(control.name, e);
+          });
+        }
+      : null;
     let inputElement = () => {
       return (
         <>
           <input
             onInput={inputHandler}
-            className={`form-control ${control.errors.length > 0 ? 'is-invalid' : ''}`}
+            className={`form-control ${
+              control.errors.length > 0 ? "is-invalid" : ""
+            }`}
             placeholder={control.title}
             defaultValue={control.value}
             type={type}
           />
-          {
-            this.getErrosDiv(control.errors)
-          }
+          {this.getErrorsDiv(control.errors)}
         </>
-      )
+      );
     };
-
 
     if (!formGroup) {
       return inputElement();
     }
-    return (
-      <div className="form-group">
-        {inputElement()}
-      </div>
-    );
+    return <div className="form-group">{inputElement()}</div>;
   }
 
-  datePickerFormControl(control: mdFormControl, onInput?: any, formGroup: boolean = true) {
-    let inputHandler = onInput ? (e) => {
-      if (!Array.isArray(onInput)) {
-        onInput = [onInput];
-      }
-      onInput.forEach(f => {
-        f(control.name, e);
-      });
-    } : null;
+  datePickerFormControl(
+    control: mdFormControl,
+    onInput?: any,
+    formGroup: boolean = true
+  ) {
+    let inputHandler = onInput
+      ? e => {
+          if (!Array.isArray(onInput)) {
+            onInput = [onInput];
+          }
+          onInput.forEach(f => {
+            f(control.name, e);
+          });
+        }
+      : null;
     let inputElement = () => {
       return (
         <>
-          <DatePickerComponent {...this.props} params={{
-            control: control,
-            onInput: inputHandler
-          }} />
-          {
-            this.getErrosDiv(control.errors)
-          }
+          <DatePickerComponent
+            {...this.props}
+            params={{
+              control: control,
+              onInput: inputHandler
+            }}
+          />
+          {this.getErrorsDiv(control.errors)}
         </>
-      )
+      );
     };
-
 
     if (!formGroup) {
       return inputElement();
     }
-    return (
-      <div className="form-group">
-        {inputElement()}
-      </div>
-    );
+    return <div className="form-group">{inputElement()}</div>;
   }
 
-  passwordFormControl(control: mdFormControl, onInput?: any, formGroup: boolean = true) {
+  passwordFormControl(
+    control: mdFormControl,
+    onInput?: any,
+    formGroup: boolean = true
+  ) {
     return this.textFormControl(control, onInput, formGroup, "password");
   }
 
-  captchaFormControl(control: mdFormControl, onInput?, formGroup: boolean = true) {
-    let inputHandler = onInput ? (e) => { onInput(control.name, e) } : null;
+  captchaFormControl(
+    control: mdFormControl,
+    onInput?,
+    formGroup: boolean = true
+  ) {
+    let inputHandler = onInput
+      ? e => {
+          onInput(control.name, e);
+        }
+      : null;
     let inputElement = () => {
       return (
         <>
           <ReCAPTCHA
-            className={`no-form-control ${control.errors.length > 0 ? 'is-invalid' : ''}`}
+            className={`no-form-control ${
+              control.errors.length > 0 ? "is-invalid" : ""
+            }`}
             sitekey={StaticConstatns.RecaptchaSiteKey}
-            onChange={inputHandler} />
-          {
-            this.getErrosDiv(control.errors)
-          }
+            onChange={inputHandler}
+          />
+          {this.getErrorsDiv(control.errors)}
         </>
-      )
+      );
     };
-
 
     if (!formGroup) {
       return inputElement();
     }
-    return (
-      <div className="form-group">
-        {inputElement()}
-      </div>
-    );
+    return <div className="form-group">{inputElement()}</div>;
   }
 
   textareaStyle = {
-    height: 'auto',
+    height: "auto"
   };
 
-  textareaFormControl(control: mdFormControl, onInput?, formGroup: boolean = true) {
-    let inputHandler = onInput ? (e) => { onInput(control.name, e) } : null;
+  textareaFormControl(
+    control: mdFormControl,
+    onInput?,
+    formGroup: boolean = true
+  ) {
+    let inputHandler = onInput
+      ? e => {
+          onInput(control.name, e);
+        }
+      : null;
     let inputElement = () => {
       return (
         <>
           <textarea
             onInput={inputHandler}
-            className={`form-control ${control.errors.length > 0 ? 'is-invalid' : ''}`}
+            className={`form-control ${
+              control.errors.length > 0 ? "is-invalid" : ""
+            }`}
             style={this.textareaStyle}
             rows={4}
             placeholder={control.title}
-            defaultValue={control.value}></textarea>
-          {
-            this.getErrosDiv(control.errors)
-          }
+            defaultValue={control.value}
+          />
+          {this.getErrorsDiv(control.errors)}
         </>
-      )
+      );
     };
     if (!formGroup) {
       return inputElement();
     }
-    return (
-      <div className="form-group">
-        {inputElement()}
-      </div>
-    );
+    return <div className="form-group">{inputElement()}</div>;
   }
 
   getSubmitResponseDiv(clas: string, text: string, show: boolean) {
     if (!show) {
-      return (null);
+      return null;
     }
 
     return (
@@ -461,22 +502,28 @@ export class BaseComponent extends BasicBaseComponent {
     }
     let cps = this.g.currencyPairs.filter(m => m.id == id);
     if (cps.length > 0) {
-      this.props.updateGlobalProperty(global.propKeys.selectedCurrencyPair, cps[0]);
-      if (this.g.briefHistory) {
-        let sbh = this.g.briefHistory.filter(m => m.id == id);
+      this.props.updateGlobalProperty(
+        global.propKeys.selectedCurrencyPair,
+        cps[0]
+      );
+      let histr = this.g.briefHistory;
+      if (histr) {
+        let sbh = histr.filter(m => m.id == id);
         if (sbh.length > 0) {
           let data = sbh[0];
-          if(data.data)
-          {
+          if (data.data) {
             data = data.data;
           }
-          this.props.updateGlobalProperty(global.propKeys.selectedBriefHistory, data);
+          this.props.updateGlobalProperty(
+            global.propKeys.selectedBriefHistory,
+            data
+          );
         }
       }
       return cps[0];
     }
     return null;
-  }
+  };
 
   getCPDropDown = (currencyPairs, callback) => {
     return (
@@ -484,36 +531,60 @@ export class BaseComponent extends BasicBaseComponent {
         showSearch
         className="gx-w-100 mb-3 gx-vertical-align-middle"
         optionFilterProp="children"
-        onChange={(e) => {
+        onChange={e => {
           let cp = this.setSelectedCurrencyPair(e, null);
           if (typeof callback == "function") {
             callback(cp);
           }
         }}
-        filterOption={(input, option) => option.props.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0}
-        value={this.g.selectedCurrencyPair ? this.g.selectedCurrencyPair.id : null}
+        filterOption={(input, option) =>
+          option.props.children
+            .toString()
+            .toLowerCase()
+            .indexOf(input.toLowerCase()) >= 0
+        }
+        value={
+          this.g.selectedCurrencyPair ? this.g.selectedCurrencyPair.id : null
+        }
         size={SelectSizes.large}
       >
-        {
-          currencyPairs.map((s: mdKeyValue, i) => {
-            return <Option key={i} value={s.value}>{s.key}</Option>
-          })
-        }
+        {currencyPairs.map((s: mdKeyValue, i) => {
+          return (
+            <Option key={i} value={s.value}>
+              {s.key}
+            </Option>
+          );
+        })}
       </Select>
     );
-  }
+  };
 
-  numberInput(instance, control: mdFormControl, onInput?, step?: number, min?: number, max?: number, placeholder?: string, scale?: number) {
-
+  numberInput(
+    instance,
+    control: mdFormControl,
+    onInput?,
+    step?: number,
+    min?: number,
+    max?: number,
+    placeholder?: string,
+    scale?: number
+  ) {
     let inputElement = () => {
       // console.log(control);
       return (
         <>
-          <input className={`form-control ${control.errors.length > 0 ? 'is-invalid' : ''}`}
-            onKeyDown={(e) => {
-              if (!this.isNumberd(e)) { e.preventDefault(); }
+          <input
+            className={`form-control ${
+              control.errors.length > 0 ? "is-invalid" : ""
+            }`}
+            onKeyDown={e => {
+              if (!this.isNumberd(e)) {
+                e.preventDefault();
+              }
             }}
-            onChange={(e) => { onInput(control.name, e) }}
+            onChange={e => {
+              onInput(control.name, e);
+            }}
             min="0"
             max={max}
             type="number"
@@ -522,12 +593,10 @@ export class BaseComponent extends BasicBaseComponent {
             // defaultValue={control.value}
             placeholder={placeholder ? placeholder : control.title}
           />
-          {
-            this.getErrosDiv(control.errors)
-          }
+          {this.getErrorsDiv(control.errors)}
         </>
       );
-    }
+    };
     // console.log(inputElement())
     return inputElement();
   }
@@ -538,10 +607,21 @@ export class BaseComponent extends BasicBaseComponent {
     }
     let prev = e.target.value;
     let value = prev.concat(e.key);
-    if (value.split('.').length > 2) {
+    if (value.split(".").length > 2) {
       return false;
     }
-    let specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', '-', "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Delete"];
+    let specialKeys: Array<string> = [
+      "Backspace",
+      "Tab",
+      "End",
+      "Home",
+      "-",
+      "ArrowLeft",
+      "ArrowRight",
+      "ArrowUp",
+      "ArrowDown",
+      "Delete"
+    ];
     if (specialKeys.indexOf(e.key) !== -1) {
       return true;
     }
@@ -550,7 +630,9 @@ export class BaseComponent extends BasicBaseComponent {
       return false;
     }
 
-    if (StaticHelper.testRegex(Constants.Instance.Regex.NumberWithDecimal, value)) {
+    if (
+      StaticHelper.testRegex(Constants.Instance.Regex.NumberWithDecimal, value)
+    ) {
       return true;
     }
     return false;
@@ -559,11 +641,14 @@ export class BaseComponent extends BasicBaseComponent {
   addNewLineHTML(text: string[]) {
     return (
       <>
-        {
-          text.map((m, i) => {
-            return <React.Fragment key={i}>{m}{i == text.length - 1 ? (null) : <br />}</React.Fragment>
-          })
-        }
+        {text.map((m, i) => {
+          return (
+            <React.Fragment key={i}>
+              {m}
+              {i == text.length - 1 ? null : <br />}
+            </React.Fragment>
+          );
+        })}
       </>
     );
   }
@@ -577,8 +662,7 @@ export class BaseComponent extends BasicBaseComponent {
     if (!this.isNullOrEmpty(val)) {
       if (val == value) {
         return true;
-      }
-      else {
+      } else {
         return false;
       }
     }
@@ -596,28 +680,30 @@ export class BaseComponent extends BasicBaseComponent {
     let firstLetter = value.charAt(0).toUpperCase();
     if (value.length < 2) {
       return firstLetter;
-    }
-    else {
+    } else {
       return firstLetter + value.substring(1);
     }
   }
 
-  formatEnumValue(enumValue: any, replace_: boolean = true, upperCase: boolean = true) {
+  formatEnumValue(
+    enumValue: any,
+    replace_: boolean = true,
+    upperCase: boolean = true
+  ) {
     if (!enumValue) {
-      return '';
+      return "";
     }
     enumValue = enumValue.toString();
     if (replace_) {
-      enumValue = enumValue.replace('_', ' ');
+      enumValue = enumValue.replace("_", " ");
     }
     if (upperCase) {
       enumValue = enumValue.toUpperCase();
-    }
-    else {
-      let splitted = enumValue.split(' ');
+    } else {
+      let splitted = enumValue.split(" ");
       splitted = splitted.map(m => {
         return this.upperCaseFirstLetter(m);
-      })
+      });
       enumValue = splitted.join(" ");
     }
     return enumValue;
@@ -627,15 +713,16 @@ export class BaseComponent extends BasicBaseComponent {
     if (!this.state.displayAlert) {
       return null;
     }
-    return (<div className={this.state.alertClass}>{this.state.alertMessage}</div>);
+    return (
+      <div className={this.state.alertClass}>{this.state.alertMessage}</div>
+    );
   }
 
   showAlertDiv(isSuccess: boolean, message: any) {
     let classs = "";
     if (isSuccess) {
       classs = "alert alert-success";
-    }
-    else {
+    } else {
       classs = "alert alert-danger";
     }
     if (message) {
@@ -648,7 +735,7 @@ export class BaseComponent extends BasicBaseComponent {
       alertMessage: message,
       displayAlert: true,
       alertClass: classs
-    })
+    });
     setTimeout(() => {
       this.hideAlertDiv();
     }, this.constants.ResponseMessageTimeout * 1000);
@@ -656,24 +743,12 @@ export class BaseComponent extends BasicBaseComponent {
 
   hideAlertDiv() {
     this.updateState({
-      displayAlert: false,
-    })
+      displayAlert: false
+    });
   }
 
   getLink(path: string) {
-    if (!this.isNullOrEmpty(path)) {
-      if (path[0] != "/") {
-        path = "/" + path;
-      }
-    }
-    else {
-      path = "/";
-    }
-    let langPart = "";
-    if (this.g.langKey != this.constants.DefaultLangKey) {
-      langPart = "/" + this.g.langKey;
-    }
-    return langPart + path;
+    return StaticHelper.getLink(path);
   }
 
   redirectToLogin = (timeout?: number) => {
@@ -683,18 +758,22 @@ export class BaseComponent extends BasicBaseComponent {
     setTimeout(() => {
       window.location.replace(this.getLink(this.constants.RoutePaths.Login));
     }, timeout);
-  }
+  };
   navigateToLogin() {
     let cons = Constants.Instance;
     let redirectURI = window.location.href;
     if (window.location.href.indexOf(cons.RoutePaths.Login) > -1) {
-      redirectURI = '';
+      redirectURI = "";
     }
-    history.push(this.getLink(cons.RoutePaths.Login +
-      "?" + cons.QueryParams.redirectURI + "=" + redirectURI));
-    // router.navigateByUrl(cons.RoutePaths.Login +
-    //     "?" + cons.QueryParams.redirectURI + "=" + redirectURI,
-    //     { skipLocationChange: false });
+    history.push(
+      this.getLink(
+        cons.RoutePaths.Login +
+          "?" +
+          cons.QueryParams.redirectURI +
+          "=" +
+          redirectURI
+      )
+    );
   }
 
   spinnerComponent(component, showSpinner) {
@@ -707,46 +786,105 @@ export class BaseComponent extends BasicBaseComponent {
     }
     let props = {
       ...component.props,
-      className: classes,
-    }
+      className: classes
+    };
     let comp = {
       ...component,
       props: props
-    }
-    return this.appendChildToComponent(comp,
-      <NBSpinnerComponent key="NBSpinnerComponent" {...this.props} params={{ show: showSpinner }} />);
+    };
+    return this.appendChildToComponent(
+      comp,
+      <NBSpinnerComponent
+        key="NBSpinnerComponent"
+        {...this.props}
+        params={{ show: showSpinner }}
+      />
+    );
   }
 
-  logout = (e) => {
+  logout = e => {
     // this.showMainSpinner();
-    this.http.get<mdCallResponse>(Constants.Instance.EndPoints.GetLogout).then((res: mdCallResponse) => {
-      window.location.href = this.getLink(Constants.Instance.RoutePaths.Home);
-    }).catch(error => {
-      this.log.info(error);
-      window.location.href = this.getLink(Constants.Instance.RoutePaths.Home);
-    });
+    this.http
+      .get<mdCallResponse>(Constants.Instance.EndPoints.GetLogout)
+      .then((res: mdCallResponse) => {
+        window.location.href = this.getLink(Constants.Instance.RoutePaths.Home);
+      })
+      .catch(error => {
+        this.log.info(error);
+        window.location.href = this.getLink(Constants.Instance.RoutePaths.Home);
+      });
+  };
+
+  errorNotification(
+    content: any,
+    title: any = this.lang.Error,
+    timeout: number = 5000,
+    callback?
+  ) {
+    return this.displayNotification(
+      content,
+      title,
+      timeout,
+      NotificationTypes.error,
+      callback
+    );
   }
 
-  errorNotification(content: any, title: any = this.lang.Error, timeout: number = 5000, callback?) {
-    return this.displayNotification(content, title, timeout, NotificationTypes.error, callback);
+  successNotification(
+    content: any,
+    title: any = this.lang.Success,
+    timeout: number = 5000,
+    callback?
+  ) {
+    return this.displayNotification(
+      content,
+      title,
+      timeout,
+      NotificationTypes.success,
+      callback
+    );
   }
 
-  successNotification(content: any, title: any = this.lang.Success, timeout: number = 5000, callback?) {
-    return this.displayNotification(content, title, timeout, NotificationTypes.success, callback);
+  infoNotification(
+    content: any,
+    title: any,
+    timeout: number = 5000,
+    callback?
+  ) {
+    return this.displayNotification(
+      content,
+      title,
+      timeout,
+      NotificationTypes.info,
+      callback
+    );
   }
 
-  infoNotification(content: any, title: any, timeout: number = 5000, callback?) {
-    return this.displayNotification(content, title, timeout, NotificationTypes.info, callback);
-  }
-
-  warningNotification(content: any, title: any, timeout: number = 5000, callback?) {
-    return this.displayNotification(content, title, timeout, NotificationTypes.warning, callback);
+  warningNotification(
+    content: any,
+    title: any,
+    timeout: number = 5000,
+    callback?
+  ) {
+    return this.displayNotification(
+      content,
+      title,
+      timeout,
+      NotificationTypes.warning,
+      callback
+    );
   }
 
   //if timeout is -1, notification will not automaticaly dismiss
-  displayNotification(content: any, title: any, timeout: number = 5000, type: NotificationTypes = NotificationTypes.info, callback?) {
+  displayNotification(
+    content: any,
+    title: any,
+    timeout: number = 5000,
+    type: NotificationTypes = NotificationTypes.info,
+    callback?
+  ) {
     if (timeout == -1) {
-      timeout = 60 * 60 * 1000;//1 hour
+      timeout = 60 * 60 * 1000; //1 hour
     }
     if (content) {
       if (!Array.isArray(content)) {
@@ -767,246 +905,51 @@ export class BaseComponent extends BasicBaseComponent {
       case NotificationTypes.warning:
         NotificationManager.warning(content, title, timeout, callback);
         break;
-
     }
   }
-
-  // selectFormItem = (control: mdFormControl, source: mdKeyValue[], showSpinner: boolean = false,
-  //   label: boolean = false, onInput: any = null, size: SelectSizes = SelectSizes.default) => {
-  //   control.type = InputTypes.Select;
-  //   control.size = size;
-  //   return this.inputGroup(control, label, onInput, source, showSpinner);
-  // }
-
-  // private inputGroup = (control: mdFormControl, label: boolean = false, onInput: any = null,
-  //   source: mdKeyValue[] = [], showSpinner: boolean = false, resetButton = false, startDateControl?: mdFormControl,
-  //   endDateControl?: mdFormControl, textareaRows: number = 2) => {
-  //   let id: string = control.name;
-  //   let inputHandler = (e, ctrl: mdFormControl = control, ctrlInput: any = onInput) => {
-  //     this.log.debug(e);
-  //     this.handleFormControlInput(ctrl.name, e);
-  //     if (ctrlInput) {
-  //       if (!Array.isArray(ctrlInput)) {
-  //         ctrlInput = [ctrlInput];
-  //       }
-  //       ctrlInput.forEach(f => {
-  //         f(ctrl.name, e);
-  //       });
-  //     }
-  //   };
-  //   let daterangeOnApply = (e, picker) => {
-  //     this.handleFormControlInput(control.name, {
-  //       target: {
-  //         value: StaticHelper.shortDateFormat(picker.startDate._d) + ' - ' +
-  //           StaticHelper.shortDateFormat(picker.endDate._d)
-  //       }
-  //     });
-  //     if (startDateControl) {
-  //       this.handleFormControlInput(startDateControl.name, {
-  //         target: {
-  //           value: picker.startDate._d
-  //         }
-  //       });
-  //     }
-  //     if (endDateControl) {
-  //       this.handleFormControlInput(endDateControl.name, {
-  //         target: {
-  //           value: picker.endDate._d
-  //         }
-  //       });
-  //     }
-  //   }
-  //   let rangePicker = () => {
-  //     return (
-  //       <RangePicker
-  //         value={control.value ? [control.value.start, control.value.end] : []}
-  //         ranges={{ Today: [moment(), moment()], 'This Month': [moment(), moment().endOf('month')] }}
-  //         onChange={(e) => { inputHandler(e, control) }} />
-  //     )
-  //   }
-  //   let select = (sControl: mdFormControl, sSource: mdKeyValue[], ctrlInput: any = null) => {
-  //     return (
-  //       <Select
-  //         showSearch
-  //         style={{ width: '100%' }}
-  //         placeholder={sControl.placeholder}
-  //         optionFilterProp="children"
-  //         onChange={(e) => { inputHandler({ target: { value: e } }, sControl, ctrlInput) }}
-  //         filterOption={(input, option) => option.props.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0}
-  //         value={sControl.value}
-  //         size={sControl.size}
-  //       >
-  //         {
-  //           sSource.map((s, i) => {
-  //             return <Option key={i} value={s.value}>{s.key}</Option>
-  //           })
-  //         }
-  //       </Select>
-  //     )
-  //   }
-  //   let inputNumber = (ctrl: mdFormControl) => {
-  //     return (
-  //       <InputNumber
-  //         id={id}
-  //         placeholder={ctrl.placeholder}
-  //         value={ctrl.value ? ctrl.value : ''}
-  //         disabled={ctrl.disabled}
-  //         min={ctrl.min}
-  //         max={ctrl.max}
-  //         style={{ width: '100%' }}
-  //         onChange={(e) => { inputHandler({ target: { value: e } }, ctrl) }}
-  //       />
-  //     );
-  //   }
-  //   let generalInput = () => {
-  //     return (
-  //       <Input
-  //         id={id}
-  //         onChange={(e) => { inputHandler({ target: { value: e } }, control) }}
-  //         className={`form-control ${control.errors.length > 0 ? 'is-invalid' : ''}`}
-  //         placeholder={control.placeholder}
-  //         value={control.value ? control.value : ''}
-  //         type={control.type}
-  //         disabled={control.disabled}
-  //         min={control.min}
-  //         max={control.max}
-  //       >
-  //       </Input>
-  //     );
-  //   }
-  //   let numberWithDropdown = (ctrl: mdFormControl) => {
-  //     ctrl.type = InputTypes.Number;
-  //     ctrl.dropDownControl.type = InputTypes.Select;
-  //     return (
-  //       <InputGroup compact>
-  //         {
-  //           select(control.dropDownControl, source, ctrl.onDropDownInput)
-  //         }
-  //         {
-  //           inputNumber(control)
-  //         }
-  //       </InputGroup>
-  //     );
-  //   }
-  //   let inputOnly = () => {
-  //     if (control.type == InputTypes.Daterange) {
-  //       return rangePicker();
-  //     }
-  //     else if (control.type == InputTypes.Select) {
-  //       return select(control, source);
-  //     }
-  //     else if (control.type == InputTypes.Number) {
-  //       return inputNumber(control);
-  //     }
-  //     else if (control.type == InputTypes.NumberWithDropdown) {
-  //       return numberWithDropdown(control);
-  //     }
-  //     else {
-  //       return generalInput();
-  //     }
-  //   }
-  //   let inputElementInner = () => {
-  //     return (
-  //       <>
-  //         {
-  //           inputOnly()
-  //         }
-  //         {
-  //           this.getErrosDiv(control.errors)
-  //         }
-  //       </>
-  //     );
-  //   }
-  //   let getLabel = () => {
-  //     return !label ? null : <label htmlFor={id}>{control.title}</label>
-  //   }
-
-  //   let inputElement = () => {
-  //     return (
-  //       <>
-  //         {
-  //           resetButton ? null : getLabel()
-  //         }
-  //         {
-  //           !showSpinner ? inputElementInner() :
-  //             <div className={showSpinner ? 'nb-spinner-container' : ''}>
-  //               {
-  //                 inputElementInner()
-  //               }
-  //             </div>
-  //         }
-  //       </>
-  //     );
-
-  //   };
-
-  //   let errors = "";
-  //   control.errors.map((e, i) => {
-  //     if (i > 0) {
-  //       errors += <br />;
-  //     }
-  //     errors += e;
-  //   });
-
-  //   return (
-  //     <FormItem
-  //       help={errors}
-  //       // label={label ? control.title : ""}
-  //       validateStatus={control.errors.length > 0 ? "error" : "success"}>
-  //       {inputElement()}
-  //       {
-  //         <NBSpinnerComponent {...this.props} params={{ show: showSpinner }} />
-  //       }
-  //     </FormItem>
-  //   );
-
-  // }
 
   widthLessThanmd = () => {
     if (window.innerWidth < 768) {
       return true;
     }
     return false;
-  }
+  };
 
   getCurrentWidth = () => {
     if (window.innerWidth < 576) {
       return "xs";
+    } else if (window.innerWidth >= 576 && window.innerWidth < 768) {
+      return "sm";
+    } else if (window.innerWidth >= 768 && window.innerWidth < 992) {
+      return "md";
+    } else if (window.innerWidth >= 992 && window.innerWidth < 1200) {
+      return "lg";
+    } else if (window.innerWidth >= 1200 && window.innerWidth < 1600) {
+      return "xl";
+    } else {
+      return "xxl";
     }
-    else
-      if (window.innerWidth >= 576 && window.innerWidth < 768) {
-        return "sm";
-      }
-      else
-        if (window.innerWidth >= 768 && window.innerWidth < 992) {
-          return "md";
-        }
-        else
-          if (window.innerWidth >= 992 && window.innerWidth < 1200) {
-            return "lg";
-          }
-          else
-            if (window.innerWidth >= 1200 && window.innerWidth < 1600) {
-              return "xl";
-            }
-            else {
-              return "xxl";
-            }
-  }
+  };
 
-  linkOrA = (href, routerLink, children) => {
+  linkOrA = (href, routerLink, children, newTab: boolean = false) => {
     if (this.isNullOrEmpty(href) && this.isNullOrEmpty(routerLink)) {
       return children;
-    }
-    else if (this.isNullOrEmpty(href)) {
+    } else if (this.isNullOrEmpty(href)) {
+      return <Link to={this.getLink(routerLink)}>{children}</Link>;
+    } else {
+      let aProps = {};
+      if (newTab) {
+        aProps = {
+          target: "_blank"
+        };
+      }
       return (
-        <Link to={this.getLink(routerLink)}>{children}</Link>
+        <a href={href} {...aProps}>
+          {children}
+        </a>
       );
     }
-    else {
-      return <a href={href}>{children}</a>
-    }
-  }
+  };
 
   sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

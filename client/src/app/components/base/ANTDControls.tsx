@@ -1,7 +1,16 @@
 import * as React from "react";
 import { mdFormControl } from "../../../shared/form-control";
 import { mdKeyValue } from "../../../models/key-value";
-import { InputNumber, Select, DatePicker, Checkbox, Input, Form, Col } from "antd";
+import {
+  InputNumber,
+  Select,
+  DatePicker,
+  Checkbox,
+  Input,
+  Form,
+  Col,
+  Modal
+} from "antd";
 import { InputTypes } from "../../../enums/general";
 import moment from "moment";
 import { StaticHelper } from "../../../shared/static-helper";
@@ -10,25 +19,34 @@ import FontAwesome from "./FontAwesome";
 import { mdProps } from "../../../models/props";
 import { BasicBaseComponent } from "./BasicBaseComponent";
 import NBSpinnerComponent from "../../modules/shared/spinner/NBSpinnerComponent";
+import { LanguageBase } from "../../../language/language";
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RangePicker = DatePicker.RangePicker;
 const InputGroup = Input.Group;
 const TextArea = Input.TextArea;
 
-export default class ANTDControls{
-
+export default class ANTDControls {
   handleFormControlInput;
   instance: BasicBaseComponent;
-  constructor(_instance: BasicBaseComponent,handleInput)
-  {
+  lang: LanguageBase;
+  constructor(_instance: BasicBaseComponent, handleInput) {
     this.handleFormControlInput = handleInput;
     this.instance = _instance;
+    this.lang = this.instance.lang;
   }
 
-  private formItemInput = (control: mdFormControl, label: boolean = false, onInput?,
-    formItemLayout: any = {}, disabled: boolean = false, dropDownSource: mdKeyValue[] = [],
-    showSpinner = false, format: string = Constants.Instance.DefaultDateFormat, formItem: boolean = true) => {
+  private formItemInput = (
+    control: mdFormControl,
+    label: boolean = false,
+    onInput?,
+    formItemLayout: any = {},
+    disabled: boolean = false,
+    dropDownSource: mdKeyValue[] = [],
+    showSpinner = false,
+    format: string = Constants.Instance.DefaultDateFormat,
+    formItem: boolean = true
+  ) => {
     let id: string = control.name;
     let inputHandler = (e, ctrl: mdFormControl, ctrlInput = onInput) => {
       if (!e) {
@@ -37,7 +55,7 @@ export default class ANTDControls{
       if (!e.target) {
         return;
       }
-      this.handleFormControlInput(ctrl.name, e, () =>{
+      this.handleFormControlInput(ctrl.name, e, () => {
         if (ctrlInput) {
           if (!Array.isArray(ctrlInput)) {
             ctrlInput = [ctrlInput];
@@ -50,7 +68,12 @@ export default class ANTDControls{
     };
     let errors = control.errors.map((e, i) => {
       if (i > 0) {
-        return <><br />{e}</>;
+        return (
+          <>
+            <br />
+            {e}
+          </>
+        );
       }
       return <>{e}</>;
     });
@@ -62,16 +85,15 @@ export default class ANTDControls{
         style = formItemLayout.inputStyle;
       }
       if (!style) {
-        style = { width: '100%' };
+        style = { width: "100%" };
       }
       let classes = "";
       if (!StaticHelper.isNullOrEmpty(formItemLayout.inputClassName)) {
         classes = formItemLayout.inputClassName;
       }
       let value = ctrl.value;
-      if(typeof value == "undefined" || value == null)
-      {
-        value = '';
+      if (typeof value == "undefined" || value == null || isNaN(value)) {
+        value = "";
       }
       return (
         <InputNumber
@@ -84,14 +106,20 @@ export default class ANTDControls{
           min={ctrl.min}
           max={ctrl.max}
           step={ctrl.step}
-          onChange={(e) => { 
-            inputHandler({ target: { value: e } }, ctrl); 
-          }} />
+          onChange={e => {
+            inputHandler({ target: { value: e } }, ctrl);
+          }}
+        />
       );
-    }
-    let dropDownInput = (sControl: mdFormControl, ctrlSrc: mdKeyValue[], ctrlInput?, style?) => {
+    };
+    let dropDownInput = (
+      sControl: mdFormControl,
+      ctrlSrc: mdKeyValue[],
+      ctrlInput?,
+      style?
+    ) => {
       if (!style) {
-        style = { width: '100%' };
+        style = { width: "100%" };
       }
       return (
         <Select
@@ -99,38 +127,47 @@ export default class ANTDControls{
           style={{ ...style }}
           placeholder={sControl.placeholder}
           optionFilterProp="children"
-          onChange={(e) => { inputHandler({ target: { value: e } }, sControl, ctrlInput) }}
-          filterOption={(input, option) => option.props.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          onChange={e => {
+            inputHandler({ target: { value: e } }, sControl, ctrlInput);
+          }}
+          filterOption={(input, option) =>
+            option.props.children
+              .toString()
+              .toLowerCase()
+              .indexOf(input.toLowerCase()) >= 0
+          }
           value={sControl.value}
           size={sControl.size}
         >
-          {
-            ctrlSrc.map((s: mdKeyValue, i) => {
-              return <Option key={i} value={s.value}>{s.key}</Option>
-            })
-          }
+          {ctrlSrc.map((s: mdKeyValue, i) => {
+            return (
+              <Option key={i} value={s.value}>
+                {s.key}
+              </Option>
+            );
+          })}
         </Select>
       );
-    }
+    };
     let numberWithDropdown = (ctrl: mdFormControl) => {
       control.type = InputTypes.Number;
       ctrl.type = InputTypes.Select;
       ctrl.dropDownControl.type = InputTypes.Select;
       return (
-        <InputGroup compact
-          style={{ width: "100%", display: 'flex' }}>
-          {
-            dropDownInput(control.dropDownControl, dropDownSource, ctrl.onDropDownInput, {})
-          }
-          {
-            numberInput(control, { flexGrow: 100 })
-          }
+        <InputGroup compact style={{ width: "100%", display: "flex" }}>
+          {dropDownInput(
+            control.dropDownControl,
+            dropDownSource,
+            ctrl.onDropDownInput,
+            {}
+          )}
+          {numberInput(control, { flexGrow: 100 })}
         </InputGroup>
       );
-    }
+    };
     let dateInput = (ctrl: mdFormControl, style?) => {
       if (!style) {
-        style = { width: '100%' };
+        style = { width: "100%" };
       }
       return (
         <DatePicker
@@ -139,113 +176,109 @@ export default class ANTDControls{
           placeholder={ctrl.placeholder}
           value={ctrl.value ? moment(ctrl.value, format) : null}
           disabled={disabled}
-          onChange={(e) => { inputHandler({ target: { value: e } }, ctrl); }} />
+          onChange={e => {
+            inputHandler({ target: { value: e } }, ctrl);
+          }}
+        />
       );
-    }
+    };
     let checkboxInput = (ctrl: mdFormControl) => {
       return (
         <Checkbox
-          onChange={(e) => {
+          onChange={e => {
             let ee = {};
-            inputHandler({
-              target: {
-                value: e.target.checked
-              }
-            }, ctrl);
+            inputHandler(
+              {
+                target: {
+                  value: e.target.checked
+                }
+              },
+              ctrl
+            );
           }}
-          value={control.value ? control.value : ''}
+          value={control.value ? control.value : ""}
           disabled={disabled}
-        >{control.placeholder}</Checkbox>
+        >
+          {control.placeholder}
+        </Checkbox>
       );
-    }
+    };
     let textAreaInput = (ctrl: mdFormControl) => {
       return (
         <TextArea
           id={id}
-          onChange={(e) => {
+          onChange={e => {
             inputHandler(e, ctrl);
           }}
           placeholder={control.title}
-          value={control.value ? control.value : ''}
+          value={control.value ? control.value : ""}
           disabled={disabled}
           rows={ctrl.rows}
         />
       );
-    }
+    };
     let dateRangePicker = (ctrl: mdFormControl) => {
       return (
-        <RangePicker 
-        id={id}
-        style={{ width: "100%" }}
-        onChange={(e) => {
-          inputHandler({ target: { value: e } }, ctrl);
-        }}
-        value={ctrl.value ? ctrl.value : ''}
-        disabled={disabled}
-           />
+        <RangePicker
+          id={id}
+          style={{ width: "100%" }}
+          onChange={e => {
+            inputHandler({ target: { value: e } }, ctrl);
+          }}
+          value={ctrl.value ? ctrl.value : ""}
+          disabled={disabled}
+        />
       );
-    }
+    };
     let generalInput = (ctrl: mdFormControl) => {
       return (
         <Input
           id={id}
           style={{ width: "100%" }}
-          onChange={(e) => {
+          onChange={e => {
             inputHandler(e, ctrl);
           }}
           placeholder={ctrl.title}
-          value={ctrl.value ? ctrl.value : ''}
+          value={ctrl.value ? ctrl.value : ""}
           type={ctrl.type}
           disabled={disabled}
-          prefix={StaticHelper.isNullOrEmpty(ctrl.icon) ? null :
-            FontAwesome.faIcon(ctrl.icon as any)}
-        // <Icon type={control.icon} style={{ color: 'rgba(0,0,0,.25)' }} />}
+          prefix={
+            StaticHelper.isNullOrEmpty(ctrl.icon)
+              ? null
+              : FontAwesome.faIcon(ctrl.icon as any)
+          }
+          // <Icon type={control.icon} style={{ color: 'rgba(0,0,0,.25)' }} />}
         />
       );
-    }
+    };
     let InputElement = () => {
       if (control.type == InputTypes.Number) {
         return numberInput(control);
+      } else if (control.type == InputTypes.Label) {
+        return (
+          <>
+            <label id={id} style={{ width: "100%" }}>
+              {control.value ? control.value : ""}
+            </label>
+            {/* <Input style={{ display: 'hidden' }}/> */}
+          </>
+        );
+      } else if (control.type == InputTypes.NumberWithDropdown) {
+        return numberWithDropdown(control);
+      } else if (control.type == InputTypes.Date) {
+        return dateInput(control);
+      } else if (control.type == InputTypes.Checkbox) {
+        return checkboxInput(control);
+      } else if (control.type == InputTypes.TextArea) {
+        return textAreaInput(control);
+      } else if (control.type == InputTypes.Daterange) {
+        return dateRangePicker(control);
+      } else if (control.type == InputTypes.Select) {
+        return dropDownInput(control, dropDownSource);
+      } else {
+        return generalInput(control);
       }
-      else
-        if (control.type == InputTypes.Label) {
-          return (
-            <>
-              <label
-                id={id}
-                style={{ width: "100%" }}>{control.value ? control.value : ''}</label>
-              {/* <Input style={{ display: 'hidden' }}/> */}
-            </>
-          );
-        }
-        else
-          if (control.type == InputTypes.NumberWithDropdown) {
-            return numberWithDropdown(control);
-          }
-          else
-            if (control.type == InputTypes.Date) {
-              return dateInput(control);
-            }
-            else
-              if (control.type == InputTypes.Checkbox) {
-                return checkboxInput(control);
-              }
-              else
-                if (control.type == InputTypes.TextArea) {
-                  return textAreaInput(control);
-                }
-                else
-                  if (control.type == InputTypes.Daterange) {
-                    return dateRangePicker(control);
-                  }
-                  else
-                    if (control.type == InputTypes.Select) {
-                      return dropDownInput(control, dropDownSource);
-                    }
-              else {
-                return generalInput(control);
-              }
-    }
+    };
     if (!formItem) {
       return InputElement();
     }
@@ -254,52 +287,90 @@ export default class ANTDControls{
         {...formItemLayout}
         help={errors}
         label={label ? control.title : ""}
-        validateStatus={control.errors.length > 0 ? "error" : "success"}>
-        {
-          InputElement()
-        }
+        validateStatus={control.errors.length > 0 ? "error" : "success"}
+      >
+        {InputElement()}
         <NBSpinnerComponent params={{ show: showSpinner }} />
       </FormItem>
     );
-  }
+  };
 
   textFormItem = (control: mdFormControl, label: boolean = false, onInput?) => {
     control.type = InputTypes.Text;
     return this.formItemInput(control, label, onInput);
-  }
+  };
 
-  textAreaFormItem = (control: mdFormControl, rows = 2, label: boolean = false, onInput?) => {
+  textAreaFormItem = (
+    control: mdFormControl,
+    rows = 2,
+    label: boolean = false,
+    onInput?
+  ) => {
     control.type = InputTypes.TextArea;
     control.rows = rows;
     return this.formItemInput(control, label, onInput);
-  }
+  };
 
-  checkboxFormItem = (control: mdFormControl, placeholder: any = null, label: boolean = false, onInput?) => {
+  checkboxFormItem = (
+    control: mdFormControl,
+    placeholder: any = null,
+    label: boolean = false,
+    onInput?
+  ) => {
     control.type = InputTypes.Checkbox;
     control.placeholder = placeholder;
     return this.formItemInput(control, label, onInput);
-  }
+  };
 
-  passwordFormItem = (control: mdFormControl, label: boolean = false, onInput?) => {
+  passwordFormItem = (
+    control: mdFormControl,
+    label: boolean = false,
+    onInput?
+  ) => {
     control.type = InputTypes.Password;
     return this.formItemInput(control, label, onInput);
-  }
+  };
 
-  dateFormItem = (control: mdFormControl, label: boolean = false, formItemLayout = null,
-    format: string = Constants.Instance.DefaultDateFormat, onInput?, disabled: boolean = false) => {
+  dateFormItem = (
+    control: mdFormControl,
+    label: boolean = false,
+    formItemLayout = null,
+    format: string = Constants.Instance.DefaultDateFormat,
+    onInput?,
+    disabled: boolean = false
+  ) => {
     control.type = InputTypes.Date;
-    return this.formItemInput(control, label, onInput, formItemLayout,
-      disabled, null, false, format);
-  }
+    return this.formItemInput(
+      control,
+      label,
+      onInput,
+      formItemLayout,
+      disabled,
+      null,
+      false,
+      format
+    );
+  };
 
-  labelFormItem = (control: mdFormControl, label: boolean = false, formItemLayout: any = {}) => {
+  labelFormItem = (
+    control: mdFormControl,
+    label: boolean = false,
+    formItemLayout: any = {}
+  ) => {
     control.type = InputTypes.Label;
     return this.formItemInput(control, label, InputTypes.Text, formItemLayout);
-  }
+  };
 
-  numberFormItem = (control: mdFormControl, label: boolean = false, step: number = 1,
-    min: number = 0, max: number = 9999999999, onInput?, formItemLayout: any = {},
-    placeholder: string = "") => {
+  numberFormItem = (
+    control: mdFormControl,
+    label: boolean = false,
+    step: number = 1,
+    min: number = 0,
+    max: number = 9999999999,
+    onInput?,
+    formItemLayout: any = {},
+    placeholder: string = ""
+  ) => {
     control.type = InputTypes.Number;
     control.min = min;
     control.max = max;
@@ -309,11 +380,18 @@ export default class ANTDControls{
     }
     control.step = step;
     return this.formItemInput(control, label, onInput, formItemLayout);
-  }
+  };
 
-  numberWithoutFormItem = (control: mdFormControl, label: boolean = false, step: number = 1,
-    min: number = 0, max: number = 9999999999, onInput?, formItemLayout: any = {},
-    placeholder: string = "") => {
+  numberWithoutFormItem = (
+    control: mdFormControl,
+    label: boolean = false,
+    step: number = 1,
+    min: number = 0,
+    max: number = 9999999999,
+    onInput?,
+    formItemLayout: any = {},
+    placeholder: string = ""
+  ) => {
     control.type = InputTypes.Number;
     control.min = min;
     control.max = max;
@@ -322,12 +400,32 @@ export default class ANTDControls{
       step = 1;
     }
     control.step = step;
-    return this.formItemInput(control, label, onInput, formItemLayout, false, [], false, null, false);
-  }
+    return this.formItemInput(
+      control,
+      label,
+      onInput,
+      formItemLayout,
+      false,
+      [],
+      false,
+      null,
+      false
+    );
+  };
 
-  numberWithDropDownFormItem = (control: mdFormControl, dropDownControl: mdFormControl, dropDownSource: mdKeyValue[],
-    onDropDownInput, label: boolean = false, step: number = 1, min: number = 0, max: number = 9999999999,
-    showSpinner: boolean = false, onControlInput?, formItemLayout: any = {}) => {
+  numberWithDropDownFormItem = (
+    control: mdFormControl,
+    dropDownControl: mdFormControl,
+    dropDownSource: mdKeyValue[],
+    onDropDownInput,
+    label: boolean = false,
+    step: number = 1,
+    min: number = 0,
+    max: number = 9999999999,
+    showSpinner: boolean = false,
+    onControlInput?,
+    formItemLayout: any = {}
+  ) => {
     control.type = InputTypes.NumberWithDropdown;
     control.onDropDownInput = onDropDownInput;
     control.dropDownControl = dropDownControl;
@@ -337,23 +435,46 @@ export default class ANTDControls{
       step = 1;
     }
     control.step = step;
-    return this.formItemInput(control, label, onControlInput, formItemLayout,
-      false, dropDownSource, showSpinner);
-  }
+    return this.formItemInput(
+      control,
+      label,
+      onControlInput,
+      formItemLayout,
+      false,
+      dropDownSource,
+      showSpinner
+    );
+  };
 
-  selectFormItem = (control: mdFormControl, source: mdKeyValue[], label: boolean = false, 
-    showSpinner: boolean = false,onInput?, formItemLayout: any = {}) => {
-      control.type = InputTypes.Select;
-    return this.formItemInput(control, label, onInput, formItemLayout,
-      false, source, showSpinner);
+  selectFormItem = (
+    control: mdFormControl,
+    source: mdKeyValue[],
+    label: boolean = false,
+    showSpinner: boolean = false,
+    onInput?,
+    formItemLayout: any = {}
+  ) => {
+    control.type = InputTypes.Select;
+    return this.formItemInput(
+      control,
+      label,
+      onInput,
+      formItemLayout,
+      false,
+      source,
+      showSpinner
+    );
+  };
 
-  }
-
-  daterangeFormItem = (control: mdFormControl, label: boolean = false, onInput, formItemLayout: any = {}) => {
+  daterangeFormItem = (
+    control: mdFormControl,
+    label: boolean = false,
+    onInput,
+    formItemLayout: any = {}
+  ) => {
     control.type = InputTypes.Daterange;
     return this.formItemInput(control, label, onInput, formItemLayout);
-
-  }
+  };
 
   colmd1(children) {
     return (
@@ -371,7 +492,13 @@ export default class ANTDControls{
     );
   }
 
-  colmd12(children, noPaddingLeft = false, noPaddingRight = true, style = null, className = "") {
+  colmd12(
+    children,
+    noPaddingLeft = false,
+    noPaddingRight = true,
+    style = null,
+    className = ""
+  ) {
     if (!style) {
       style = {};
     }
@@ -383,21 +510,34 @@ export default class ANTDControls{
       if (noPaddingRight) {
         style["paddingRight"] = 1;
       }
-    }
-    else {
+    } else {
       if (noPaddingLeft || noPaddingRight) {
         style["paddingLeft"] = 1;
         style["paddingRight"] = 1;
       }
     }
     return (
-      <Col style={{ ...style }} xs={24} sm={24} md={12} lg={12} xl={12} className={className}>
+      <Col
+        style={{ ...style }}
+        xs={24}
+        sm={24}
+        md={12}
+        lg={12}
+        xl={12}
+        className={className}
+      >
         {children}
       </Col>
     );
   }
 
-  colmd6(children, noPaddingLeft = false, noPaddingRight = true, style = null, className = "") {
+  colmd6(
+    children,
+    noPaddingLeft = false,
+    noPaddingRight = true,
+    style = null,
+    className = ""
+  ) {
     if (!style) {
       style = {};
     }
@@ -409,21 +549,33 @@ export default class ANTDControls{
       if (noPaddingRight) {
         style["paddingRight"] = 1;
       }
-    }
-    else {
+    } else {
       if (noPaddingLeft || noPaddingRight) {
         style["paddingLeft"] = 1;
         style["paddingRight"] = 1;
       }
     }
     return (
-      <Col style={{ ...style }} xs={24} sm={12} md={6} lg={6} xl={6} className={className}>
+      <Col
+        style={{ ...style }}
+        xs={24}
+        sm={12}
+        md={6}
+        lg={6}
+        xl={6}
+        className={className}
+      >
         {children}
       </Col>
     );
   }
 
-  colsm12(children, noPaddingLeft = false, noPaddingRight = true, style = null) {
+  colsm12(
+    children,
+    noPaddingLeft = false,
+    noPaddingRight = true,
+    style = null
+  ) {
     if (!style) {
       style = {};
     }
@@ -435,8 +587,7 @@ export default class ANTDControls{
       if (noPaddingRight) {
         style["paddingRight"] = 1;
       }
-    }
-    else {
+    } else {
       if (noPaddingLeft || noPaddingRight) {
         style["paddingLeft"] = 1;
         style["paddingRight"] = 1;
@@ -473,12 +624,55 @@ export default class ANTDControls{
     );
   }
 
-  colmd8(children) {
+  collg16(children) {
     return (
-      <Col xs={24} sm={24} md={8} lg={8} xl={8}>
+      <Col xs={24} sm={24} md={24} lg={16} xl={16}>
         {children}
       </Col>
     );
   }
 
+  colmd8(children, props: any = {}) {
+    return (
+      <Col {...props} xs={24} sm={24} md={8} lg={8} xl={8}>
+        {children}
+      </Col>
+    );
+  }
+
+  collg8(children) {
+    return (
+      <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+        {children}
+      </Col>
+    );
+  }
+
+  modalInfo = (body, title = this.lang.Alert) => {
+    Modal.info({
+      title: title,
+      content: body
+    });
+  };
+
+  modalSuccess = (body, title = this.lang.Alert) => {
+    Modal.success({
+      title: title,
+      content: body
+    });
+  };
+
+  modalWarning = (body, title = this.lang.Warning) => {
+    Modal.warning({
+      title: title,
+      content: body
+    });
+  };
+
+  modalError = (body, title = this.lang.Error) => {
+    Modal.error({
+      title: title,
+      content: body
+    });
+  };
 }

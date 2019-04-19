@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import { Button, Dropdown, Icon, Layout, Menu, message, Popover } from 'antd';
+import { Button, Dropdown, Icon, Layout, Menu, message, Popover } from "antd";
 import { connect } from "react-redux";
 
 import UserInfo from "../../../components/UserInfo";
 import AppNotification from "../../../components/AppNotification";
 import HorizontalNav from "../HorizontalNav";
 import { Link } from "react-router-dom";
-import { switchLanguage, toggleCollapsedSideNav } from "../../../appRedux/actions/Setting";
+import {
+  switchLanguage,
+  toggleCollapsedSideNav
+} from "../../../appRedux/actions/Setting";
 import { BaseComponent } from "../../../app/components/base/BaseComponent";
 import LanguageMenu from "../LanguageMenu";
 
@@ -21,28 +24,49 @@ const menu = (
 );
 
 function handleMenuClick(e) {
-  message.info('Click on menu item.');
+  message.info("Click on menu item.");
 }
 
 class InsideHeader extends BaseComponent {
-
   state = {
-    searchText: '',
+    searchText: ""
+  };
+  headerDiv;
+
+  componentDidMount = () => {
+    this.isComponentMounted = true;
+    window.addEventListener("resize", this.updateHeaderHeight);
   };
 
-  updateSearchChatUser = (evt) => {
+  componentUnMount() {
+    window.removeEventListener("resize", this.updateHeaderHeight);
+  }
+
+  updateHeaderHeight = () => {
+    if (this.headerDiv != null)
+      this.props.updateGlobalProperty(
+        global.propKeys.headerHeight,
+        this.headerDiv.clientHeight
+      );
+  };
+
+  updateSearchChatUser = evt => {
     this.setState({
-      searchText: evt.target.value,
+      searchText: evt.target.value
     });
   };
-
 
   render() {
     const { locale, navCollapsed } = this.props as any;
     let lmnu = LanguageMenu(this.props);
 
     return (
-      <div className="gx-header-horizontal gx-header-horizontal-dark gx-inside-header-horizontal">
+      <div
+        className="gx-header-horizontal gx-header-horizontal-dark gx-inside-header-horizontal"
+        ref={element => {
+          this.headerDiv = element;
+        }}
+      >
         <div className="gx-header-horizontal-top">
           <div className="gx-container">
             <div className="gx-header-horizontal-top-flex">
@@ -58,24 +82,34 @@ class InsideHeader extends BaseComponent {
           </div>
         </div>
 
-
-        <Header
-          className="gx-header-horizontal-main">
+        <Header className="gx-header-horizontal-main">
           <div className="gx-container">
             <div className="gx-header-horizontal-main-flex">
               <div className="gx-d-block gx-d-lg-none gx-linebar gx-mr-xs-3 6e">
-                <i className="gx-icon-btn icon icon-menu"
+                <i
+                  className="gx-icon-btn icon icon-menu"
                   onClick={() => {
                     this.props.toggleCollapsedSideNav(!navCollapsed);
                   }}
                 />
               </div>
-              <Link to={this.getLink(this.constants.RoutePaths.Home)}
-                className="gx-d-block gx-d-lg-none gx-pointer gx-mr-xs-3 gx-pt-xs-1 gx-w-logo">
-                <img alt="" src={"/assets/images/goto.png"} /></Link>
-              <Link to={this.getLink(this.constants.RoutePaths.Home)}
-                className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo">
-                <img alt="" src={"/assets/images/logo.png"} width={200} height={70} /></Link>
+              <Link
+                to={this.getLink(this.constants.RoutePaths.Home)}
+                className="gx-d-block gx-d-lg-none gx-pointer gx-mr-xs-3 gx-pt-xs-1 gx-w-logo"
+              >
+                <img alt="" src={"/assets/images/goto.png"} />
+              </Link>
+              <Link
+                to={this.getLink(this.constants.RoutePaths.Home)}
+                className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
+              >
+                <img
+                  alt=""
+                  src={"/assets/images/logo.png"}
+                  width={200}
+                  height={70}
+                />
+              </Link>
 
               <div className="gx-header-horizontal-nav gx-header-horizontal-nav-curve gx-d-none gx-d-lg-block">
                 <HorizontalNav {...this.props} />
@@ -101,10 +135,15 @@ class InsideHeader extends BaseComponent {
                 </li> */}
 
                 <li className="gx-notify">
-                  <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight" 
-                  content={<AppNotification />}
-                    trigger="click">
-                    <span className="gx-pointer gx-d-block"><i className="icon icon-notification" /></span>
+                  <Popover
+                    overlayClassName="gx-popover-horizantal"
+                    placement="bottomRight"
+                    content={<AppNotification />}
+                    trigger="click"
+                  >
+                    <span className="gx-pointer gx-d-block">
+                      <i className="icon icon-notification" />
+                    </span>
                   </Popover>
                 </li>
 
@@ -118,22 +157,38 @@ class InsideHeader extends BaseComponent {
                   </Popover>
                 </li> */}
                 <li className="gx-language">
-                  <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight"
-                    content={lmnu.menu} trigger="click">
-                    <span className="gx-pointer gx-flex-row gx-align-items-center"><i
-                      className={`flag flag-24 flag-${lmnu.current.icon}`} />
+                  <Popover
+                    overlayClassName="gx-popover-horizantal"
+                    placement="bottomRight"
+                    content={lmnu.menu}
+                    trigger="click"
+                  >
+                    <span className="gx-pointer gx-flex-row gx-align-items-center">
+                      <i className={`flag flag-24 flag-${lmnu.current.icon}`} />
                     </span>
                   </Popover>
                 </li>
                 <li className="gx-user-nav">
-                  {
-                    this.g.isLoggedIn ?
-                      <UserInfo {...this.props} /> :
-                      <ul className="gx-login-list" style={{ paddingLeft: 0 }}>
-                        <li><Link to={this.getLink(this.constants.RoutePaths.Login)}>{this.lang.Login}</Link></li>
-                        <li><Link to={this.getLink(this.constants.RoutePaths.SignUp)}>{this.lang.SignUp}</Link></li>
-                      </ul>
-                  }
+                  {this.g.isLoggedIn ? (
+                    <UserInfo {...this.props} />
+                  ) : (
+                    <ul className="gx-login-list" style={{ paddingLeft: 0 }}>
+                      <li>
+                        <Link
+                          to={this.getLink(this.constants.RoutePaths.Login)}
+                        >
+                          {this.lang.Login}
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to={this.getLink(this.constants.RoutePaths.SignUp)}
+                        >
+                          {this.lang.SignUp}
+                        </Link>
+                      </li>
+                    </ul>
+                  )}
                 </li>
               </ul>
             </div>
@@ -146,6 +201,9 @@ class InsideHeader extends BaseComponent {
 
 const mapStateToProps = ({ settings }) => {
   const { locale, navCollapsed } = settings;
-  return { locale, navCollapsed }
+  return { locale, navCollapsed };
 };
-export default connect(mapStateToProps, { toggleCollapsedSideNav, switchLanguage })(InsideHeader);
+export default connect(
+  mapStateToProps,
+  { toggleCollapsedSideNav, switchLanguage }
+)(InsideHeader);

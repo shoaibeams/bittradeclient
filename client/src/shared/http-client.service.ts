@@ -31,6 +31,7 @@ export default class HttpClientService {
     return Axios.get(completeURL, {
       withCredentials: true
     }).then((res: any) => {
+      this.log.debug('url' + url + "\nres:" + JSON.stringify(res.data));
       if (res) {
         let data = res.data;
         if (!data) {
@@ -49,7 +50,7 @@ export default class HttpClientService {
       }
       return {};
     }).catch(error => {
-      this.log.error(error);
+      this.log.debug("url: ",  url, error)
       throw error;
     })
   }
@@ -71,11 +72,11 @@ export default class HttpClientService {
       //   })
     }
     url = this.constants.BaseURL + url;
-    this.log.debug('url' + url + "\nbody" + JSON.stringify(body));
     return Axios.post(url, body, {
       headers: requestHeaders
       , withCredentials: true
     }).then((res: any) => {
+      this.log.debug('url: ' + url + "\nbody: " + JSON.stringify(body) + "\nres: " + JSON.stringify(res.data));
       if (res) {
         let data = res.data;
         if (!data) {
@@ -93,7 +94,7 @@ export default class HttpClientService {
       }
       return {};
     }).catch(error => {
-      this.log.debug(error);
+      this.log.debug("url: ",  url, error)
       throw error;
     })
   }
@@ -111,7 +112,6 @@ export default class HttpClientService {
       observe: 'events',
       onUploadProgress: onUploadProgress
     }
-    this.log.debug(options);
     // options.headers = requestHeaders;
     // options.withCredentials = true;
     // data.append('lang', null);

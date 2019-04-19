@@ -35,11 +35,8 @@ export default class TradeComponent extends BaseComponent {
       <>
         <Row type="flex" align="middle">
           {
-            this.antd.colmd4(this.getCPDropDown(currencyPairs, (e) => {
-              if (!e) {
-                return;
-              }
-              this.orderRef.current.recievedNewChanges(e);
+            this.antd.colmd4(this.getCPDropDown(currencyPairs, (cp) => {
+              this.loadBalanceAndFee(cp);
             }))
           }
           {
@@ -85,15 +82,15 @@ export default class TradeComponent extends BaseComponent {
         </Row>
         <Row>
           {
-            // this.g.selectedCurrencyPair == null ? null :
-            this.antd.colmd16(
+            this.antd.collg16(
               <Row>
                 {
                   this.antd.colmd12(
                     <OrderComponent {...this.props} ref={this.orderRef} params={{
                       onNewOrder: this.newOrderCreated,
                       action: OrderActions.buy,
-                      currencyPairDetails: this.state.currencyPairDetails
+                      currencyPairDetails: this.state.currencyPairDetails,
+                      selectedCurrencyPair: this.state.selectedCurrencyPair,
                     }} />)
                 }
                 {
@@ -101,13 +98,14 @@ export default class TradeComponent extends BaseComponent {
                     <OrderComponent {...this.props} ref={this.orderRef} params={{
                       onNewOrder: this.newOrderCreated,
                       action: OrderActions.sell,
-                      currencyPairDetails: this.state.currencyPairDetails
+                      currencyPairDetails: this.state.currencyPairDetails,
+                      selectedCurrencyPair: this.state.selectedCurrencyPair,
                     }} />)
                 }
               </Row>)
           }
           {
-            this.antd.colmd8(<RecentTradesComponent {...this.props} />)
+            this.antd.collg8(<RecentTradesComponent {...this.props} />)
           }
         </Row>
         <Row>
@@ -129,42 +127,42 @@ export default class TradeComponent extends BaseComponent {
 
   init() {
     this.state = {
+      selectedCurrencyPair: this.g.selectedCurrencyPair,
       currencyPairDetails: {},
       lastTradeId: 0,
       recentTrades: []
     }
-    this.loadBalanceAndFee();
+    this.loadBalanceAndFee(this.state.selectedCurrencyPair);
   }
 
   newOrderCreated = () => {
-    this.loadBalanceAndFee({});
-    this.orderHistoryRef.current.recievedNewChanges(this.g.selectedCurrencyPair, true);
+    this.loadBalanceAndFee(this.state.selectedCurrencyPair);
+    this.orderHistoryRef.current.recievedNewChanges(this.state.selectedCurrencyPair, true);
   }
 
   componentWillReceiveProps(nextProps: mdProps) {
-    if (nextProps.globals.selectedCurrencyPair != this.g.selectedCurrencyPair) {
+    if (this.props != nextProps) {
       this.initShorts();
-      this.loadBalanceAndFee({});
     }
   }
 
-  loadBalanceAndFee = (e?) => {
+  loadBalanceAndFee = (cp: mdCurrencyPair) => {
     this.updateStateWEvent({
       sellBalance: "",
       buyBalance: "",
       showSpinner: true,
-    }, e);
+    });
 
-    if (this.g.selectedCurrencyPair) {
-      this.http.post<mdCallResponse>(this.constants.EndPoints.PostPairDetails, this.g.selectedCurrencyPair.id)
+    if (cp) {
+      this.http.post<mdCallResponse>(this.constants.EndPoints.PostPairDetails, cp.id)
         .then((res: mdCallResponse) => {
+          let state = {};
           if (res.isSuccess) {
-            this.updateState({
-              currencyPairDetails: res.extras
-            })
-            // this.log.debug(res.extras);
+            state = { currencyPairDetails: res.extras };
           }
           this.updateState({
+            ...state,
+            selectedCurrencyPair: cp,
             showSpinner: false
           })
         }).catch((error) => {

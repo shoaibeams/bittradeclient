@@ -5,6 +5,7 @@ let initialState = new mdGlobalProps();
 initialState.isLoggedIn = false;
 initialState.showMainLoader = false;
 initialState.username = "";
+initialState.headerHeight = 0;
 
 const propsRedcuer = (state = initialState, action) => {
   if (action.type == "UPDATE_GLBOALS_INSTANCE") {
@@ -12,14 +13,12 @@ const propsRedcuer = (state = initialState, action) => {
       ...state,
       ...action.payload,
       old: { ...state }
-    }
+    };
     return state;
   }
 
   if (!Array.isArray(action.type)) {
     action.type = [action.type];
-  }
-  if (!Array.isArray(action.payload)) {
     action.payload = [action.payload];
   }
   action.type.forEach((type, i) => {
@@ -28,7 +27,11 @@ const propsRedcuer = (state = initialState, action) => {
         let payload = action.payload[i];
         if (Object.keys(global.propKeys).indexOf(type) > -1) {
           let obj = StaticHelper.assignPropertyOfObject({}, type, payload);
-          let oldobj = StaticHelper.assignPropertyOfObject({}, type, state[type]);
+          let oldobj = StaticHelper.assignPropertyOfObject(
+            {},
+            type,
+            state[type]
+          );
           if (!oldobj[type]) {
             oldobj = obj;
           }
@@ -36,7 +39,7 @@ const propsRedcuer = (state = initialState, action) => {
             ...state,
             ...obj,
             old: { ...state.old, ...oldobj }
-          }
+          };
           return state;
         }
       }

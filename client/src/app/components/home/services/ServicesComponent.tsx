@@ -69,8 +69,4 @@ export default class ServicesComponent extends BaseComponent {
     );
   }
 
-  constructor(props) {
-    super(props);
-  }
-
 }

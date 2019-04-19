@@ -32,6 +32,7 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
   timeouts: any[];
   isComponentMounted: boolean;
   antd: ANTDControls;
+  afterReceivingProps;
   constructor(props, extractFromProp?: boolean) {
     super(props);
     this.initClasses(extractFromProp);
@@ -67,6 +68,10 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
         ...this.state,
         ...state,
       }
+      if(typeof callback === "function")
+      {
+        callback();
+      }
     }
     else {
       this.setState({
@@ -99,6 +104,14 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
       ...state,
       old: { ...this.state }
     }, callback);
+  }
+
+  componentWillReceiveProps(nextProps: mdProps) {
+    this.initShorts(nextProps);
+    if(typeof this.afterReceivingProps === "function")
+    {
+      this.afterReceivingProps(nextProps != this.props);
+    }
   }
 
   initShorts = (props: mdProps = this.props, extractFromProp: boolean = false) => {
@@ -158,11 +171,11 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
     return StaticHelper.emptyNaN(value);
   }
 
-  handleFormControlInput = (field, e, formName: string = null) => {
+  handleFormControlInput = (field, e, callback) => {
     if (!e) {
       return;
     }
-    this.handleFormControlInputWithValue(field, e.target.value);
+    return this.handleFormControlInputWithValue(field, e.target.value, callback);
     // if (this.isNullOrEmpty(formName)) {
     //   formName = this.defaultFormName;
     // }
@@ -183,15 +196,13 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
     // this.updateState({ ...state });
   }
 
-  handleFormControlInputWithValue = (field, value, formName: string = null) => {
-    if (this.isNullOrEmpty(formName)) {
-      formName = this.defaultFormName;
-    }
+  handleFormControlInputWithValue = (field, value, callback?) => {
+    let formName = this.defaultFormName;
     let form = this.state[formName];
     let control = form[field] as mdFormControl;
     if (control.type == Enums.InputTypes.Number) {
       if (!this.isNullOrEmpty(value)) {
-        value = parseInt(value);
+        value = parseFloat(value);
       }
     }
     form[field].value = value;
@@ -207,7 +218,7 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
     }
     let state = this.state;
     StaticHelper.assignPropertyOfObject(state, formName, form);
-    this.updateState({ ...state });
+    this.updateState({ ...state }, callback);
   }
 
   validateFormControl(control: mdFormControl) {

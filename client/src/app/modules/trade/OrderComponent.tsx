@@ -9,13 +9,14 @@ import { StaticHelper } from "../../../shared/static-helper";
 import { Tabs, Card, Row, Form, Button, Col } from "antd";
 import { OrderActions, CurrencyTypes } from "../../../enums/order";
 import { mdKeyValue } from "../../../models/key-value";
+import { mdCurrencyPair } from "../../../models/currency-pair";
 const TabPane = Tabs.TabPane;
 
 export default class OrderComponent extends BaseComponent {
 
   render() {
     this.initShorts();
-    let cp = this.g.selectedCurrencyPair;
+    let cp = this.p.selectedCurrencyPair;
     let currencyTypeSource: mdKeyValue[] = [];
     if (!cp) {
       cp = {
@@ -149,6 +150,7 @@ export default class OrderComponent extends BaseComponent {
   };
   model: mdOrder;
   action: OrderActions;
+  previousCP: any;
 
   constructor(props) {
     super(props);
@@ -178,6 +180,7 @@ export default class OrderComponent extends BaseComponent {
       tcStep: 1,
       fcStep: 1,
       disableSubmitButton: false,
+      cp: this.p.selectedCurrencyPair
     }
     if (!e) {
       this.state = {
@@ -195,49 +198,27 @@ export default class OrderComponent extends BaseComponent {
     this.resetForm();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps != this.props) {
-      this.initShorts();
-      if (StaticHelper.isNullOrEmpty(this.f.price.value) && this.g.selectedBriefHistory) {
-        let last = this.g.selectedBriefHistory.last;
-        if (last) {
-          this.handleFormControlInputWithValue(this.f.price.name, last)
+  afterReceivingProps = (propsChanged) => {
+    if (propsChanged) {
+      if(this.previousCP)
+      {
+        if(this.previousCP.id == this.p.selectedCurrencyPair.id)
+        {
+          return;
         }
       }
+      if (this.g.selectedBriefHistory) {
+        let last = this.g.selectedBriefHistory.last;
+        this.handleFormControlInputWithValue(this.f.price.name, last);
+      }
       this.updateBalances();
+      this.previousCP = this.p.selectedCurrencyPair;
     }
-  }
-
-  componentWillUpdate() {
-    // if (!this.g.selectedCurrencyPair) {
-    //   this.recievedNewChanges(this.g.selectedCurrencyPair);
-    // }
-  }
-
-  recievedNewChanges = (newCP) => {
-    // this.log.debug("recievedNewChanges");
-    // if (!newCP) {
-    //   return;
-    // }
-    // let oldCP = this.currencyPair;
-    // if (oldCP) {
-    //   if (oldCP.id == newCP.id) {
-    //     return;
-    //   }
-    // }
-    // this.currencyPair = newCP;
-    // if (this.currencyPair) {
-    //   this.state = {
-    //     ...this.state,
-    //     showSpinner: true,
-    //   }
-    //   // this.loadBalanceAndFee();
-    // }
   }
 
   updateBalances = () => {
     let cpDetails = this.p.currencyPairDetails
-    let cp = this.g.selectedCurrencyPair;
+    let cp = this.p.selectedCurrencyPair;
     if (!cpDetails || !cp) {
       return;
     }
@@ -267,8 +248,13 @@ export default class OrderComponent extends BaseComponent {
       formData.amount = formData.amount / formData.price;
     }
     formData.action = this.action;
-    formData.currencyPair = this.g.selectedCurrencyPair.id;
+    formData.currencyPair = this.p.selectedCurrencyPair.id;
     formData.type = this.constants.Order.Type.limit;
+    if(!formData.currencyPair)
+    {
+      this.antd.modalError(this.lang.Error);
+      return;
+    }
     this.updateState({
       disableSubmitButton: true,
     });
@@ -296,7 +282,7 @@ export default class OrderComponent extends BaseComponent {
 
   priceAmountKeyup = (name, e) => {
     let cpDetails = this.p.currencyPairDetails;
-    let cp = this.g.selectedCurrencyPair;
+    let cp = this.p.selectedCurrencyPair;
     if (!cpDetails || !cp) {
       return;
     }
@@ -322,7 +308,6 @@ export default class OrderComponent extends BaseComponent {
     else {
       let feeAmount = grossAmount * (StaticHelper.unfloatAmount(cpDetails.sell_fee) / 100);
       let totalAmount = grossAmount + feeAmount;
-      this.log.debug('gm', grossAmount);
       this.updateState({
         limitFeeAmount: this.emptyNaN(StaticHelper.bestScale(feeAmount)) + " " + cp.tc_name,
         limitGrossAmount: this.emptyNaN(StaticHelper.bestScale(grossAmount)) + " " + cp.tc_name,

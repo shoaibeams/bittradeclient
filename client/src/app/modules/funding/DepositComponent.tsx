@@ -317,8 +317,8 @@ export default class DepositComponent extends BaseComponent {
       wallet: null,
       depositRequestHistory: [],
       animValues: {
-        depositRequests: new mdFormControl(this.getTransisition(Transitions.bounseOutHide2s, TransitionState.Completed), 'depositRequests'),
-        newDepositRequest: new mdFormControl(this.getTransisition(Transitions.bounseOutHide2s, TransitionState.Completed), 'newDepositRequest')
+        depositRequests: new mdFormControl(this.getTransition(Transitions.bounseOutHide2s, TransitionState.Completed), 'depositRequests'),
+        newDepositRequest: new mdFormControl(this.getTransition(Transitions.bounseOutHide2s, TransitionState.Completed), 'newDepositRequest')
       }
     }
     this.loadDepositableCurrencies();
@@ -454,8 +454,6 @@ export default class DepositComponent extends BaseComponent {
                 image: m.icon,
               }
             });
-
-
             this.updateState({
               depositableCurrencies: res.extras.depositableCurrencies,
               defaultCurrencyId: res.extras.defaultCurrencyId,
