@@ -6,11 +6,8 @@ import Widget from "../../../components/Widget";
 import { Tabs } from "antd";
 import MyAccountComponent from "./MyAccountComponent";
 import { Link } from "react-router-dom";
+import KYCComponent from "./kyc/KYCComponent";
 const TabPane = Tabs.TabPane;
-
-const KYCSwitch = asyncComponent(() =>
-  import("./kyc/KYCSwitch").then(module => module.default)
-);
 
 export default class MyAccountSwitch extends BaseComponent {
   render() {
@@ -26,7 +23,7 @@ export default class MyAccountSwitch extends BaseComponent {
             }`}
             render={() => {
               return (
-                <KYCSwitch
+                <KYCComponent
                   {...this.props as any}
                   match={{
                     url: `${this.props.match.url}${
@@ -60,7 +57,7 @@ export default class MyAccountSwitch extends BaseComponent {
       <>
         <Widget styleName="gx-order-history">
           <Tabs
-            defaultActiveKey={this.state.activeTabKey}
+            activeKey={this.getActiveTabKey()}
             tabPosition={this.widthLessThanmd() ? "top" : "left"}
             style={{ height: "calc(100% - " + this.g.headerHeight + "px)" }}
             onChange={(key: string) => {
@@ -92,7 +89,9 @@ export default class MyAccountSwitch extends BaseComponent {
     this.init();
   }
 
-  init() {
+  init() {}
+
+  getActiveTabKey = () => {
     let activeTabKey = this.tabKeys.account;
     if (
       new RegExp(".*?(" + this.tabKeys.verification + ").*").test(
@@ -101,6 +100,6 @@ export default class MyAccountSwitch extends BaseComponent {
     ) {
       activeTabKey = this.tabKeys.verification;
     }
-    this.state = { activeTabKey };
-  }
+    return activeTabKey;
+  };
 }

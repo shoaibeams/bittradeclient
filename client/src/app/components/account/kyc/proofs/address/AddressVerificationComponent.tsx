@@ -112,5 +112,12 @@ export default class AddressVerificationComponent extends BaseComponent {
       currentStep: this.steps.AddressInfo
     };
   }
-  onAttachmentsDone = attachments => {};
+  onAttachmentsDone = attachments => {
+    this.log.debug(
+      "attachments",
+      attachments,
+      "form data",
+      this.state.addressInfo
+    );
+  };
 }

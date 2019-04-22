@@ -176,7 +176,8 @@ export default class BasicInfoFormComponent extends BaseComponent {
       // this.antd.modalError("InValid Form");
       // return;
     }
-    let formData = this.getFormData() as mdUserAccounts;
+    let formData = this.getFormData(this.state.form) as mdUserAccounts;
+    this.log.debug("fd", formData);
     this.p.onNext(formData);
   };
 }

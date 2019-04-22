@@ -131,7 +131,7 @@ export default class AddressInfoFormComponent extends BaseComponent {
       // this.antd.modalError("InValid Form");
       // return;
     }
-    let formData = this.getFormData() as mdUserAccounts;
+    let formData = this.getFormData(this.state.form) as mdUserAccounts;
     this.p.onNext(formData);
   };
 }

@@ -7,10 +7,6 @@ import Widget from "../../../components/Widget";
 import { Tabs } from "antd";
 const TabPane = Tabs.TabPane;
 
-const KYCSwitch = asyncComponent(() =>
-  import("./kyc/KYCSwitch").then(module => module.default)
-);
-
 export default class MyAccountComponent extends BaseComponent {
   render() {
     return <></>;
