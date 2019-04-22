@@ -14,6 +14,7 @@ import { mdAnimControl } from "../../../models/anim-control";
 import { TransitionState } from "../../../enums/transition";
 import { Transitions } from "../../../models/transitions";
 import { SocketCustomEvents } from "../../../enums/socket";
+import FontAwesome from "../base/FontAwesome";
 const FormItem = Form.Item;
 
 export class ForgotPasswordComponent extends BaseComponent {
@@ -47,7 +48,7 @@ export class ForgotPasswordComponent extends BaseComponent {
               <div className="gx-text-center">
                 <div className="gx-mb-3">
                   {this.animatedCSSDiv(
-                    this.faicon("envelope-open-text", "10x"),
+                    FontAwesome.faIcon("envelope-open-text", "10x"),
                     this.state.animValues.mail_img
                   )}
                 </div>

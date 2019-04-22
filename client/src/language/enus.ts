@@ -19,8 +19,6 @@ export class LangENUS implements LanguageBase {
   UUID = "UUID";
   UUIDNotProvided = this.UUID + " not provided";
   AlreadyExistsFormat = "{0} already exists";
-  SomethingWentWrongTryAgainLater =
-    "Something went wrong, please try again later";
   ContactUsInsertedResponseMessage =
     "Thank you for contacting us. We've received your message and we'll get back to you soon.";
   UUIDAlreadyExists = "UUID already exists";
@@ -801,4 +799,76 @@ If you didn't find the email, please check your spam folder or click below to re
   Birth = "Birth";
   BirthDate = this.Birth + " " + this.Date;
   Gender = "Gender";
+  Submitted = this.Submit + "ted";
+  Not = "Not";
+  NotSubmitted = this.Not + " " + this.Submitted;
+  NotVerified = this.Not + " " + this.Verified;
+  Nationality = "Nationality";
+  Personal = "Personal";
+  Information = "Information";
+  PersonalInformation = this.Personal + " " + this.Information;
+  Basic = "Basic";
+  BasicInformation = this.Basic + " " + this.Information;
+  Next = "Next";
+  Passport = "Passport";
+  National = "National";
+  NationalIdentityCard = this.National + " " + this.Identity + " " + this.Card;
+  Resident = "Resident";
+  Permit = "Permit";
+  ResidentPermit = this.Resident + " " + this.Permit;
+  Driving = "Driving";
+  License = "License";
+  DrivingLicense = this.Driving + " " + this.License;
+  Statement = "Statement";
+  BankStatement = this.Bank + " " + this.Statement;
+  Utility = "Utility";
+  Bill = "Bill";
+  Bills = this.Bill + "(s)";
+  UtilityBill = this.Utility + " " + this.Bill;
+  Wages = "Wages";
+  Slip = "Slip";
+  WagesSlip = this.Wages + " " + this.Slip;
+  Certification = "Certification";
+  Certificate = "Certificate";
+  BusinessIncorporationCertificate =
+    this.Business + " " + this.Incorporation + " " + this.Certificate;
+  Memorandum = "Memorandum";
+  Association = "Association";
+  MemorandumOfAssociation = this.Memorandum + " of " + this.Association;
+  Tax = "Tax";
+  Document = "Document";
+  Documents = this.Document + "(s)";
+  TaxDocument = this.Tax + " " + this.Document;
+  Picture = "Picture";
+  Front = "Front";
+  FrontPicture = this.Front + " " + this.Picture;
+  BackPicture = this.Back + " " + this.Picture;
+  Attachment = "Attachment";
+  Attachments = this.Attachment + "(s)";
+  atLeast = "at-least";
+  Section = "Section";
+  Sections = this.Section + "(s)";
+  SelectatLeastsectionsFormat =
+    this.Select + " " + this.atLeast + " {0} " + this.Sections.toLowerCase();
+  SelectatLeastdocumentsFormat =
+    this.Select + " " + this.atLeast + " {0} " + this.Documents.toLowerCase();
+  SelectDocumentType = this.Select + " " + this.Document + " " + this.Type;
+  Click = "Click";
+  Drag = "Drag";
+  Upload = "Upload";
+  ClickOrDragFileToUpload =
+    this.Click + " or " + this.Drag + " " + this.File + " to " + this.Upload;
+  PleaseTryAgain = this.Please + " " + this.Try + " " + this.Again;
+  SomethingWentWrong = "Something went wrong";
+  SomethingWentWrongTryAgainLater =
+    this.SomethingWentWrong + ", please try again later";
+  MaxAttachmentSizeFormat = "Maximum " + this.Attachment + " size is {0}";
+  Expired = "Expired";
+  SessionExpired = this.Session + " " + this.Expired;
+  ProofsAttachmentAlert = `Please select a valid, clear and color picture`;
+  Post = "Post";
+  Postal = this.Post + "al";
+  Code = "Code";
+  PostalCode = this.Postal + " " + this.Code;
+  City = "City";
 }

@@ -69,10 +69,10 @@ export default class ANTDControls {
     let errors = control.errors.map((e, i) => {
       if (i > 0) {
         return (
-          <>
+          <React.Fragment key={i}>
             <br />
             {e}
-          </>
+          </React.Fragment>
         );
       }
       return <>{e}</>;
@@ -295,30 +295,38 @@ export default class ANTDControls {
     );
   };
 
-  textFormItem = (control: mdFormControl, label: boolean = false, onInput?) => {
+  textFormItem = (
+    control: mdFormControl,
+    label: boolean = false,
+    onInput?,
+    formItemLayout = null
+  ) => {
     control.type = InputTypes.Text;
-    return this.formItemInput(control, label, onInput);
+    return this.formItemInput(control, label, onInput, formItemLayout);
   };
 
   textAreaFormItem = (
     control: mdFormControl,
     rows = 2,
     label: boolean = false,
-    onInput?
+    onInput?,
+    formItemLayout = null
   ) => {
     control.type = InputTypes.TextArea;
     control.rows = rows;
-    return this.formItemInput(control, label, onInput);
+    return this.formItemInput(control, label, onInput, formItemLayout);
   };
 
   checkboxFormItem = (
     control: mdFormControl,
-    placeholder: any = null,
     label: boolean = false,
-    onInput?
+    onInput?,
+    placeholder: any = null
   ) => {
     control.type = InputTypes.Checkbox;
-    control.placeholder = placeholder;
+    if (placeholder) {
+      control.placeholder = placeholder;
+    }
     return this.formItemInput(control, label, onInput);
   };
 
@@ -334,9 +342,9 @@ export default class ANTDControls {
   dateFormItem = (
     control: mdFormControl,
     label: boolean = false,
+    onInput?,
     formItemLayout = null,
     format: string = Constants.Instance.DefaultDateFormat,
-    onInput?,
     disabled: boolean = false
   ) => {
     control.type = InputTypes.Date;
@@ -478,7 +486,14 @@ export default class ANTDControls {
 
   colmd1(children) {
     return (
-      <Col xs="12" sm="2" md="1" lg="1" xl="1">
+      <Col
+        key={this.instance.generateDynamicKey()}
+        xs="12"
+        sm="2"
+        md="1"
+        lg="1"
+        xl="1"
+      >
         {children}
       </Col>
     );
@@ -486,7 +501,14 @@ export default class ANTDControls {
 
   colmd4(children) {
     return (
-      <Col xs={12} sm={8} md={4} lg={4} xl={4}>
+      <Col
+        key={this.instance.generateDynamicKey()}
+        xs={12}
+        sm={8}
+        md={4}
+        lg={4}
+        xl={4}
+      >
         {children}
       </Col>
     );
@@ -557,6 +579,7 @@ export default class ANTDControls {
     }
     return (
       <Col
+        key={this.instance.generateDynamicKey()}
         style={{ ...style }}
         xs={24}
         sm={12}
@@ -594,7 +617,15 @@ export default class ANTDControls {
       }
     }
     return (
-      <Col style={{ ...style }} xs={12} sm={12} md={12} lg={12} xl={12}>
+      <Col
+        key={this.instance.generateDynamicKey()}
+        style={{ ...style }}
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+        xl={12}
+      >
         {children}
       </Col>
     );
@@ -602,7 +633,14 @@ export default class ANTDControls {
 
   colmd24(children) {
     return (
-      <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+      <Col
+        key={this.instance.generateDynamicKey()}
+        xs={24}
+        sm={24}
+        md={24}
+        lg={24}
+        xl={24}
+      >
         {children}
       </Col>
     );
@@ -610,7 +648,14 @@ export default class ANTDControls {
 
   colmd48(children) {
     return (
-      <Col xs={48} sm={48} md={48} lg={48} xl={48}>
+      <Col
+        key={this.instance.generateDynamicKey()}
+        xs={48}
+        sm={48}
+        md={48}
+        lg={48}
+        xl={48}
+      >
         {children}
       </Col>
     );
@@ -618,7 +663,14 @@ export default class ANTDControls {
 
   colmd16(children) {
     return (
-      <Col xs={24} sm={24} md={16} lg={16} xl={16}>
+      <Col
+        key={this.instance.generateDynamicKey()}
+        xs={24}
+        sm={24}
+        md={16}
+        lg={16}
+        xl={16}
+      >
         {children}
       </Col>
     );
@@ -626,7 +678,14 @@ export default class ANTDControls {
 
   collg16(children) {
     return (
-      <Col xs={24} sm={24} md={24} lg={16} xl={16}>
+      <Col
+        key={this.instance.generateDynamicKey()}
+        xs={24}
+        sm={24}
+        md={24}
+        lg={16}
+        xl={16}
+      >
         {children}
       </Col>
     );
@@ -642,7 +701,14 @@ export default class ANTDControls {
 
   collg8(children) {
     return (
-      <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+      <Col
+        key={this.instance.generateDynamicKey()}
+        xs={24}
+        sm={24}
+        md={12}
+        lg={8}
+        xl={8}
+      >
         {children}
       </Col>
     );

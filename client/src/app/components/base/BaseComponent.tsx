@@ -59,10 +59,6 @@ export class BaseComponent extends BasicBaseComponent {
     };
   }
 
-  faicon(icon: IconName, size?: SizeProp) {
-    return FontAwesome.faIcon(icon, size);
-  }
-
   threeDots = () => {
     let dot = this.state.threeDots as string;
     if (!dot) {
@@ -135,9 +131,14 @@ export class BaseComponent extends BasicBaseComponent {
     this.updateState({ ...state });
   };
 
-  validateForm(formName: string) {
+  validateForm(formName: string = this.defaultFormName) {
     let isValid = true;
     let form = this.state[formName];
+    if (formName == this.defaultFormName) {
+      this.showErrors = true;
+    } else {
+      form.showErros = true;
+    }
 
     let keys = Object.keys(form);
     keys.forEach(k => {
@@ -161,7 +162,7 @@ export class BaseComponent extends BasicBaseComponent {
     return isValid;
   }
 
-  getFormData(form: any) {
+  getFormData(form: any = this.defaultFormName) {
     let keys = Object.keys(form);
     let fd = {};
     keys.forEach(k => {
@@ -759,9 +760,10 @@ export class BaseComponent extends BasicBaseComponent {
       window.location.replace(this.getLink(this.constants.RoutePaths.Login));
     }, timeout);
   };
+
   navigateToLogin() {
     let cons = Constants.Instance;
-    let redirectURI = window.location.href;
+    let redirectURI = encodeURIComponent(window.location.href);
     if (window.location.href.indexOf(cons.RoutePaths.Login) > -1) {
       redirectURI = "";
     }

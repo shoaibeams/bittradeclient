@@ -98,3 +98,29 @@ div.content-only {
   display: flex;
   align-items: center;
 }
+.black-overlay {
+  background-color: rgba(0, 0, 0, 0.65);
+}
+.w-fill-available {
+  display: block;
+  width: 100%;
+}
+a.no-decor {
+  color: @text-color;
+}
+a.no-decor:hover {
+  color: @primary-color;
+  text-decoration: none;
+}
+.identity .attachments .doc-type {
+  background-color: aliceblue;
+  cursor: pointer;
+}
+.identity .attachments .doc-type:hover {
+  transform: scale(1.2);
+  z-index: 9999;
+}
+.attachments .ant-upload-list-picture-card .ant-upload-list-item {
+  height: unset !important;
+  width: unset !important;
+}

@@ -1,99 +1,151 @@
 import * as React from "react";
 import { BaseComponent } from "../../base/BaseComponent";
-import AccountTypeSelectionComponent from "./account-type-selection/AccountTypeSelectionComponent";
-import { Row, Col } from "antd";
-import { Redirect } from "react-router";
 import { AccountTypes } from "../../../../enums/general";
+import { Button, Table, Card, Row, Col, Badge } from "antd";
+import Widget from "../../../../components/Widget";
+import { Link } from "react-router-dom";
+import IdentityVerificationComponent from "./proofs/identity/IdentityVerificationComponent";
+import WidgetHeader from "../../../../components/WidgetHeader";
+import AddressVerificationComponent from "./proofs/address/AddressVerificationComponent";
 
 export default class KYCComponent extends BaseComponent {
   render() {
-    const getContent = currentStep => {
-      if (currentStep == this.steps.AccountTypeSelection) {
-        return <AccountTypeSelectionComponent {...this.props} params={{}} />;
-      } else if (currentStep == this.steps.ProofsGrid) {
-        return (
-          <Redirect
-            to={this.getLink(
-              this.constants.RoutePaths.AccountVerificationProofs
-            )}
+    if (this.state.currentProof == null) {
+      return (
+        <>
+          <WidgetHeader
+            styleName="gx-flex-row"
+            title={this.lang.Verification}
+            extra={null}
           />
-        );
-      }
-    };
-    return (
-      <>
-        {this.state.accountType == null ? (
-          <AccountTypeSelectionComponent
-            {...this.props}
-            params={{
-              nextClick: (accountType: AccountTypes) => {
-                this.updateState({ accountType });
-              }
-            }}
-          />
-        ) : (
-          <Redirect
-            to={this.getLink(
-              this.constants.RoutePaths.AccountVerificationProofs +
-                "?" +
-                this.constants.QueryParams.aType +
-                "=" +
-                this.state.accountType
-            )}
-          />
-        )}
-      </>
-    );
-    // (
-    //   <>
-    //     <Row type="flex" style={{ alignItems: "center" }}>
-    //       <Col
-    //         style={{
-    //           display: "inline-flex",
-    //           justifyContent: "center",
-    //           alignItems: "center"
-    //         }}
-    //         xl={24}
-    //       >
-    //         <div
-    //           style={{
-    //             display: "inline-block",
-    //             verticalAlign: "middle",
-    //             minWidth: 500
-    //           }}
-    //         >
-    //           <h1 className="gx-login-title">{this.lang.Verification}</h1>
-    //           {getContent(this.state.currentStep)}
-    //         </div>
-    //       </Col>
-    //     </Row>
-    //   </>
-    // );
+          <Row>
+            {this.state.proofs.map((p, i) => {
+              return this.antd.colmd8(
+                <Widget styleName="gx-ch-capitalize gx-card-sm-px">
+                  <div className="gx-text-center gx-pt-sm-3">
+                    <img
+                      className="gx-size-60 gx-mb-3"
+                      src={p.icon}
+                      alt="birds"
+                    />
+                    <h2 className="gx-mb-3 gx-mb-sm-4">{p.title}</h2>
+                    <Badge status={p.badge.status} text={p.badge.text} />
+                    <br />
+                    {/* <Link to={p.link}> */}
+                    <Button
+                      className="gx-btn gx-btn-primary gx-text-white gx-mb-1"
+                      onClick={() => {
+                        this.updateState({ currentProof: p });
+                      }}
+                    >
+                      {p.buttonText}
+                    </Button>
+                    {/* </Link> */}
+                  </div>
+                </Widget>,
+                { key: i }
+              );
+            })}
+          </Row>
+        </>
+        // </Card>
+      );
+    } else {
+      let proof = this.state.currentProof;
+      return (
+        <proof.component
+          {...this.props}
+          params={{
+            accountType: this.accountType,
+            onDone: proof.onDone,
+            onBack: this.onBack
+          }}
+        />
+      );
+    }
   }
 
-  steps = {
-    AccountTypeSelection: 1,
-    ProofsGrid: 2
-  };
+  accountType: AccountTypes;
   constructor(props) {
     super(props);
     this.init();
   }
 
   init() {
+    this.accountType = this.p.accountType;
+    if (!this.accountType) {
+      //load default account type from server
+      this.accountType = AccountTypes.Individual;
+    }
     this.state = {
-      currentStep: this.steps.AccountTypeSelection,
-      accountType: null
+      currentProof: null,
+      proofs: [
+        {
+          icon:
+            this.accountType == AccountTypes.Business
+              ? "/assets/images/online-store128x128.png"
+              : "/assets/images/boss128x128.png",
+          title:
+            this.accountType == AccountTypes.Business
+              ? this.lang.ProofOfBusiness
+              : this.accountType == AccountTypes.Individual
+              ? this.lang.ProofOfIdentity
+              : "",
+          buttonText: this.lang.Verify,
+          badge: {
+            status: "default",
+            text: this.lang.NotVerified
+          },
+          link: this.getLink(
+            this.constants.RoutePaths.AccountVerificationProofsIdentity +
+              "?" +
+              this.constants.QueryParams.aType +
+              "=" +
+              this.accountType
+          ),
+          component: IdentityVerificationComponent
+        },
+        {
+          icon: "/assets/images/placeholder128x128.png",
+          title: this.lang.ProofOfAddress,
+          buttonText: this.lang.Verify,
+          badge: {
+            status: "default",
+            text: this.lang.NotVerified
+          },
+          link: this.getLink(
+            this.constants.RoutePaths.AccountVerificationProofsIdentity +
+              "?" +
+              this.constants.QueryParams.aType +
+              "=" +
+              this.accountType
+          ),
+          component: AddressVerificationComponent
+        },
+        {
+          value: AccountTypes.Individual,
+          icon: "/assets/images/profit128x128.png",
+          title: this.lang.ProofOfIncome,
+          buttonText: this.lang.Verify,
+          badge: {
+            status: "default",
+            text: this.lang.NotVerified
+          },
+          link: this.getLink(
+            this.constants.RoutePaths.AccountVerificationProofsIdentity +
+              "?" +
+              this.constants.QueryParams.aType +
+              "=" +
+              this.accountType
+          )
+        }
+      ]
     };
   }
 
-  nextClick = previous => {
-    let next = null;
-    if (previous == this.steps.AccountTypeSelection) {
-      next = this.steps.ProofsGrid;
-    }
-    if (next != null) {
-      this.updateState({ currentStep: next });
-    }
+  onBack = () => {
+    this.updateState({ currentProof: null });
   };
+
+  getBadge = () => {};
 }

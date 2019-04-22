@@ -8,6 +8,7 @@ import { mdAnimControl } from "../../../models/anim-control";
 import { Button } from "antd";
 import { SocketCustomEvents } from "../../../enums/socket";
 import { mdRegisterSocketEvent } from "../../../models/register-socket-event";
+import FontAwesome from "../base/FontAwesome";
 
 export default class EmailConfirmationComponent extends BaseComponent {
   render() {
@@ -38,7 +39,7 @@ export default class EmailConfirmationComponent extends BaseComponent {
             </div>
             <div className="gx-mb-3">
               {this.animatedCSSDiv(
-                this.faicon("envelope-open-text", "10x"),
+                FontAwesome.faIcon("envelope-open-text", "10x"),
                 this.state.animValues.mail_img
               )}
             </div>

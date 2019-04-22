@@ -9,6 +9,12 @@ export class mdUserAccounts {
   public last_name: string;
   public dob: Date;
   gender: Genders;
+  contact_no_country_id: number;
+  contact_no: string;
+  address: string;
+  postal_code: string;
+  city: string;
+  country_id: number;
   public record_status: RecordStatuses;
   public company_name: string;
   public account_type: number;
@@ -39,9 +45,13 @@ export class mdUserAccounts {
 }
 
 export class UserAccountsMetaData {
-  public static first_nameMaxLength: number = 30;
+  public static first_nameMaxLength: number = 50;
   public static middle_nameMaxLength: number = 20;
   public static last_nameMaxLength: number = 30;
+  public static contact_noMaxLength: number = 15;
+  public static addressMaxLength: number = 200;
+  public static postal_codeMaxLength: number = 14;
+  public static cityMaxLength: number = 50;
   public static company_nameMaxLength: number = 50;
   public static uuidMaxLength: number = 50;
 }

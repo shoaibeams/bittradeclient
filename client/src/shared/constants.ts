@@ -28,6 +28,7 @@ export class Constants {
   CapitalLeters = "A-Z";
   SpecialChars = "!@#$%^&*_";
   Numbers = "0-9";
+  MaxFileUploadSize = 5; //5 mb
   public Regex = {
     MustStartWithSmallLetter: "(?=^[a-z]+)",
     MustStartWithCapitalLetter: "(?=^[A-Z]+)",
@@ -64,9 +65,10 @@ export class Constants {
     GetDepositableCurrencies: "/currencies/depositableCurrencies",
     PostDepositMethods: "/deposit/depositMethods",
     PostDepositRequest: "/deposit/depositRequest",
-    PostDepositRequestHistory: "/deposit/depoistRequestHistory",
+    PostDepositRequestHistory: "/deposit/depositRequestHistory",
     PostDepositReceipt: "/deposit/receipt",
-    GetStreamSocket: "/stream"
+    GetStreamSocket: "/stream",
+    PostDigitalEvidence: "/digitalEvidence?type="
   };
   public GrantTypes = {
     Password: "password",
@@ -121,6 +123,10 @@ export class Constants {
       completed: 4
     }
   };
+  RedirectToLoginMessages = [
+    "Invalid token: access token is invalid".toUpperCase(),
+    "Unauthorized request: no authentication given".toUpperCase()
+  ];
 }
 
 export class StaticConstatns {
@@ -147,6 +153,12 @@ export class StaticConstatns {
     FundingDeposit: string;
     FundingWithdrawl: string;
     Proofs: string;
+    Identity: string;
+    AccountVerificationProofsIdentity: string;
+    Address: string;
+    AccountVerificationProofsAddress: string;
+    Income: string;
+    AccountVerificationProofsIncome: string;
     constructor() {
       this.Home = "";
       this.Login = "/account/login";
@@ -158,8 +170,17 @@ export class StaticConstatns {
       this.MyAccount = "/account";
       this.Verification = "/verification";
       this.Proofs = "/proofs";
+      this.Identity = "/identity";
+      this.Address = "/address";
+      this.Income = "/income";
       this.AccountVerification = "/account" + this.Verification;
       this.AccountVerificationProofs = this.AccountVerification + this.Proofs;
+      this.AccountVerificationProofsIdentity =
+        this.AccountVerificationProofs + this.Identity;
+      this.AccountVerificationProofsAddress =
+        this.AccountVerificationProofs + this.Address;
+      this.AccountVerificationProofsIncome =
+        this.AccountVerificationProofs + this.Income;
       this.AccountForgotPassword = "/account/forgotPassword";
       this.AccountPasswordRecovery = "/account/passwordRecovery";
       this.Consulting = "https =//consulting.bitvelocity.io";

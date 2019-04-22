@@ -1,19 +1,32 @@
 import { Constants } from "./constants";
-import * as uuid from 'uuid';
-import history from '../shared/history';
-import moment from 'moment';
+import * as uuid from "uuid";
+import history from "../shared/history";
+import moment from "moment";
 import { mdKeyValue } from "../models/key-value";
 
 export class StaticHelper {
-
   static navigateToLogin() {
     let cons = Constants.Instance;
     let redirectURI = encodeURIComponent(window.location.href);
     if (window.location.href.indexOf(cons.RoutePaths.Login) > -1) {
-      redirectURI = '';
+      redirectURI = "";
     }
-    window.location.href = this.getLink(cons.RoutePaths.Login +
-      "?" + cons.QueryParams.redirectURI + "=" + redirectURI);
+    alert(
+      this.getLink(
+        cons.RoutePaths.Login +
+          "?" +
+          cons.QueryParams.redirectURI +
+          "=" +
+          redirectURI
+      )
+    );
+    window.location.href = this.getLink(
+      cons.RoutePaths.Login +
+        "?" +
+        cons.QueryParams.redirectURI +
+        "=" +
+        redirectURI
+    );
   }
 
   static getLink(path: string) {
@@ -21,8 +34,7 @@ export class StaticHelper {
       if (path[0] != "/") {
         path = "/" + path;
       }
-    }
-    else {
+    } else {
       path = "/";
     }
     let langPart = "";
@@ -37,26 +49,25 @@ export class StaticHelper {
   static roundNumber(num: number, scale: number): number {
     if (scale > 0) {
       let numS: string = StaticHelper.toFixedNSN(num).toString();
-      let splittedNumber = numS.split('.');
+      let splittedNumber = numS.split(".");
       if (splittedNumber.length > 1) {
         if (splittedNumber[1].length > scale) {
-          let toRoundArray = splittedNumber[1].substr(0, scale + 1).split('');
+          let toRoundArray = splittedNumber[1].substr(0, scale + 1).split("");
           let toRoundLastDigit = Number(toRoundArray[toRoundArray.length - 1]);
           toRoundArray.pop();
           if (toRoundLastDigit >= 5) {
-            toRoundArray[toRoundArray.length - 1] = (Number(toRoundArray[toRoundArray.length - 1]) + 1).toString()
+            toRoundArray[toRoundArray.length - 1] = (
+              Number(toRoundArray[toRoundArray.length - 1]) + 1
+            ).toString();
           }
           return Number(splittedNumber[0] + "." + toRoundArray.join(""));
-        }
-        else {
+        } else {
           return num;
         }
-      }
-      else {
+      } else {
         return num;
       }
-    }
-    else {
+    } else {
       return Math.round(num);
     }
   }
@@ -78,25 +89,26 @@ export class StaticHelper {
       amount = 0;
     }
     let amnt = StaticHelper.toFixedNSN(amount).toString();
-    let index = amnt.indexOf('.');
+    let index = amnt.indexOf(".");
     let currentScale = amnt.substr(index + 1, amnt.length - (index + 1)).length;
     let scale = StaticHelper.minScale(currentScale);
     return amount.toFixed(scale);
   }
 
-  static toFixedNSN(x) {//no scientific notation
+  static toFixedNSN(x) {
+    //no scientific notation
     if (Math.abs(x) < 1.0) {
-      var e = parseInt(x.toString().split('e-')[1]);
+      var e = parseInt(x.toString().split("e-")[1]);
       if (e) {
         x *= Math.pow(10, e - 1);
-        x = '0.' + (new Array(e)).join('0') + x.toString().substring(2);
+        x = "0." + new Array(e).join("0") + x.toString().substring(2);
       }
     } else {
-      var e = parseInt(x.toString().split('+')[1]);
+      var e = parseInt(x.toString().split("+")[1]);
       if (e > 20) {
         e -= 20;
         x /= Math.pow(10, e);
-        x += (new Array(e + 1)).join('0');
+        x += new Array(e + 1).join("0");
       }
     }
     return x;
@@ -129,20 +141,18 @@ export class StaticHelper {
     let index = values.indexOf(value);
     if (index < keys.length) {
       return keys[index];
-    }
-    else {
+    } else {
       index = keys.indexOf(value);
       if (index < keys.length) {
         return keys[index];
-      }
-      else {
+      } else {
         return value;
       }
     }
   }
 
-  static formatString(...args): string// = function(...args) {
-  {
+  static formatString(...args): string {
+    // = function(...args) {
     // The string containing the format items (e.g. "{0}")
     // will and always has to be the first argument.
     if (arguments.length == 0) {
@@ -152,13 +162,13 @@ export class StaticHelper {
     if (theString == null) {
       return "";
     }
-    if (typeof theString == 'undefined') {
+    if (typeof theString == "undefined") {
       return "";
     }
     if (theString.length < 1) {
       return "";
     }
-    if (typeof theString != 'string') {
+    if (typeof theString != "string") {
       return theString;
     }
     // start with the second argument (i = 1)
@@ -172,8 +182,8 @@ export class StaticHelper {
     return theString;
   }
 
-  static bulletList(array: string[], ...args): string// = function(...args) {
-  {
+  static bulletList(array: string[], ...args): string {
+    // = function(...args) {
     // The string containing the format items (e.g. "{0}")
     // will and always has to be the first argument.
     if (array.length == 0) {
@@ -181,14 +191,15 @@ export class StaticHelper {
     }
     var response = "<ul class='bullet-dot'>";
     for (var i = 0; i < array.length; i++) {
-      response += "<li>" + StaticHelper.formatString(array[i], ...args) + "</li>";
+      response +=
+        "<li>" + StaticHelper.formatString(array[i], ...args) + "</li>";
     }
     response += "</ul>";
     return response;
   }
 
-  static copyProp(fromObj: any, toObj: any): any// = function(...args) {
-  {
+  static copyProp(fromObj: any, toObj: any): any {
+    // = function(...args) {
     let keys = Object.keys(fromObj);
     for (let j = 0; j < keys.length; j++) {
       toObj[keys[j]] = fromObj[keys[j]];
@@ -196,8 +207,8 @@ export class StaticHelper {
     return toObj;
   }
 
-  static distinctArray(array: any[]): any// = function(...args) {
-  {
+  static distinctArray(array: any[]): any {
+    // = function(...args) {
     let newArray = [];
     for (let i = 0; i < array.length; i++) {
       if (newArray.indexOf(array[i]) == -1) {
@@ -217,32 +228,35 @@ export class StaticHelper {
 
   static capitalizeFirstLetter(value: string) {
     if (!value) {
-      return '';
+      return "";
     }
     if (value.length < 1) {
-      return '';
+      return "";
     }
     let firstChar = value.charAt(0).toUpperCase();
-    let remainingString = '';
+    let remainingString = "";
     if (value.length > 1) {
       remainingString = value.slice(1);
     }
     return firstChar + remainingString;
   }
 
-  static getUUID(): string {
+  static getUUID = (): string => {
     return uuid.v4();
-  }
+  };
 
-  static assignPropertyOfObject(targetObject: any, property: string, propertyValue: any) {
-
+  static assignPropertyOfObject(
+    targetObject: any,
+    property: string,
+    propertyValue: any
+  ) {
     let obj = {};
-    obj[property] = propertyValue
+    obj[property] = propertyValue;
     Object.assign({}, obj);
     targetObject = {
       ...targetObject,
-      ...obj,
-    }
+      ...obj
+    };
     return targetObject;
   }
 
@@ -262,16 +276,13 @@ export class StaticHelper {
           return true;
         }
         return false;
-      }
-      else if (value instanceof Date) {
+      } else if (value instanceof Date) {
         if (!isNaN(Number(value))) {
           return false;
-        }
-        else {
+        } else {
           return true;
         }
-      }
-      else {
+      } else {
         if (Object.keys(value).length < 1) {
           return true;
         }
@@ -282,14 +293,12 @@ export class StaticHelper {
       return true;
     }
     return false;
-
   }
 
   static emptyNaN(value: any): any | string {
     if (this.isNullOrEmpty(value)) {
-      return '';
-    }
-    else {
+      return "";
+    } else {
       return value;
     }
   }
@@ -302,7 +311,11 @@ export class StaticHelper {
     return regExp.test(value);
   }
 
-  static objectToValuesArrayWithObjectName(obj: object, objNameProp: string, stringValues: boolean = false): any[] {
+  static objectToValuesArrayWithObjectName(
+    obj: object,
+    objNameProp: string,
+    stringValues: boolean = false
+  ): any[] {
     let keys = Object.keys(obj);
     let res: any[] = [];
     for (let i = 0; i < keys.length; i++) {
@@ -315,21 +328,23 @@ export class StaticHelper {
 
   static longDateFormat(date: Date) {
     let mmnt = moment(date);
-    return mmnt.locale('en').format('MMM D, YYYY, hh:mm:ss A');
+    return mmnt.locale("en").format("MMM D, YYYY, hh:mm:ss A");
   }
 
   static toTimehhmmss(date: Date) {
     let mmnt = moment(date);
-    return mmnt.locale('en').format('hh:mm:ss');
+    return mmnt.locale("en").format("hh:mm:ss");
   }
 
-  static objectToValuesArray(obj: object, stringValues: boolean = false): any[] {
-    return Object.keys(obj).map((valueNamedIndex) => {
+  static objectToValuesArray(
+    obj: object,
+    stringValues: boolean = false
+  ): any[] {
+    return Object.keys(obj).map(valueNamedIndex => {
       let value = obj[valueNamedIndex];
       if (stringValues) {
         return value.toString();
-      }
-      else {
+      } else {
         return value;
       }
     });
@@ -340,10 +355,13 @@ export class StaticHelper {
       return "";
     }
     let mmnt = moment(date);
-    return mmnt.locale('en').format('DD MMM, YYYY');
-  }
+    return mmnt.locale("en").format("DD MMM, YYYY");
+  };
 
-  static objectKeyValueArrayArray(obj: object, stringValues: boolean = false): mdKeyValue[] {
+  static objectKeyValueArrayArray(
+    obj: object,
+    stringValues: boolean = false
+  ): mdKeyValue[] {
     let keys = Object.keys(obj);
     let res: mdKeyValue[] = [];
     for (var valueNamedIndex in obj) {
@@ -351,7 +369,7 @@ export class StaticHelper {
       if (!isValueProperty) {
         let kv = new mdKeyValue();
         kv.key = valueNamedIndex;
-        kv.value
+        kv.value;
         kv.value = obj[valueNamedIndex];
         if (stringValues) {
           kv.value = kv.value.toString();
@@ -362,14 +380,19 @@ export class StaticHelper {
     return res;
   }
 
-  static objectKeyValueArrayWithAll(obj: object, stringValues: boolean = false): mdKeyValue[] {
+  static objectKeyValueArrayWithAll(
+    obj: object,
+    stringValues: boolean = false
+  ): mdKeyValue[] {
     let keys = Object.keys(obj);
-    let res: mdKeyValue[] = [new mdKeyValue("All", Constants.Instance.DefaultValue)];
+    let res: mdKeyValue[] = [
+      new mdKeyValue("All", Constants.Instance.DefaultValue)
+    ];
     for (var valueNamedIndex in obj) {
       var isValueProperty = parseInt(valueNamedIndex, 10) >= 0;
       if (!isValueProperty) {
         let kv = new mdKeyValue();
-        kv.key = valueNamedIndex.toUpperCase().replace('_', ' ');
+        kv.key = valueNamedIndex.toUpperCase().replace("_", " ");
         kv.value = obj[valueNamedIndex];
         if (stringValues) {
           kv.value = kv.value.toString();
@@ -379,5 +402,4 @@ export class StaticHelper {
     }
     return res;
   }
-
 }

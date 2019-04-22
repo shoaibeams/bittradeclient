@@ -63,6 +63,8 @@ export default class SignUpComponent extends BaseComponent {
           } */}
           {this.antd.checkboxFormItem(
             this.f.agreement,
+            false,
+            null,
             <>
               {this.lang.IAgree}
               <Link

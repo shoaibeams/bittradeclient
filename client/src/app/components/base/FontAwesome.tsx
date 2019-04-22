@@ -1,7 +1,7 @@
 import * as React from "react";
-import { library, IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core'
-import * as brandsSVGIcons from '@fortawesome/free-brands-svg-icons';
-import * as solidSVGIcons from '@fortawesome/free-solid-svg-icons';
+import { library, IconProp, SizeProp } from "@fortawesome/fontawesome-svg-core";
+import * as brandsSVGIcons from "@fortawesome/free-brands-svg-icons";
+import * as solidSVGIcons from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconName, IconLookup } from "@fortawesome/fontawesome-common-types";
 import { StaticHelper } from "../../../shared/static-helper";
@@ -26,6 +26,8 @@ library.add(
   solidSVGIcons.faInfo,
   solidSVGIcons.faQuestion,
   solidSVGIcons.faFileSignature,
+  solidSVGIcons.faArrowLeft,
+  solidSVGIcons.faInbox
 );
 
 export default class FontAwesome {
@@ -46,5 +48,5 @@ export default class FontAwesome {
       iconName: icon
     } as IconLookup;
     return <FontAwesomeIcon icon={lookup} size={size} />;
-  }
+  };
 }

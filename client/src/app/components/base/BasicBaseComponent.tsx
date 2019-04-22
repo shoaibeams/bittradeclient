@@ -7,15 +7,18 @@ import { LanguageBase } from "../../../language/language";
 import mdSpinnerConfig from "../../../models/spinner-config";
 import mdTransitions from "../../../models/transitions";
 import * as Enums from "../../../enums/general";
-import * as queryString from 'query-string';
+import * as queryString from "query-string";
 import Socket from "../../../shared/socket";
 import { StaticHelper } from "../../../shared/static-helper";
 import ANTDControls from "./ANTDControls";
 import { mdFormControl } from "../../../shared/form-control";
-import { ValidateParams, ValidationAttributeResponse, Validation } from "../../../shared/validations";
+import {
+  ValidateParams,
+  ValidationAttributeResponse,
+  Validation
+} from "../../../shared/validations";
 
-export class BasicBaseComponent extends React.Component<mdProps, any>{
-
+export class BasicBaseComponent extends React.Component<mdProps, any> {
   constants: Constants;
   log: LoggerService;
   http: HttpClientService;
@@ -66,76 +69,86 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
     if (!this.isComponentMounted) {
       this.state = {
         ...this.state,
-        ...state,
-      }
-      if(typeof callback === "function")
-      {
+        ...state
+      };
+      if (typeof callback === "function") {
         callback();
       }
-    }
-    else {
-      this.setState({
-        ...this.state,
-        ...state,
-        old: { ...this.state }
-      }, callback);
+    } else {
+      this.setState(
+        {
+          ...this.state,
+          ...state,
+          old: { ...this.state }
+        },
+        callback
+      );
     }
   }
 
   componentWillUnmount = () => {
     this.isComponentMounted = false;
-  }
+  };
 
   componentDidMount = () => {
     this.isComponentMounted = true;
-  }
+  };
 
   updateStateWEvent(state, e = null, callback?) {
     if (!this.isComponentMounted || !e) {
       this.state = {
         ...this.state,
-        ...state,
-      }
+        ...state
+      };
       return;
     }
 
-    this.setState({
-      ...this.state,
-      ...state,
-      old: { ...this.state }
-    }, callback);
+    this.setState(
+      {
+        ...this.state,
+        ...state,
+        old: { ...this.state }
+      },
+      callback
+    );
   }
 
   componentWillReceiveProps(nextProps: mdProps) {
     this.initShorts(nextProps);
-    if(typeof this.afterReceivingProps === "function")
-    {
+    if (typeof this.afterReceivingProps === "function") {
       this.afterReceivingProps(nextProps != this.props);
     }
   }
 
-  initShorts = (props: mdProps = this.props, extractFromProp: boolean = false) => {
+  initShorts = (
+    props: mdProps = this.props,
+    extractFromProp: boolean = false
+  ) => {
     this.g = props.globals;
     if (!extractFromProp) {
       if (this.state) {
         this.f = this.state.form;
       }
-    }
-    else {
+    } else {
       this.f = props.form;
+      if (this.f) {
+        this.f = {};
+      }
     }
     this.p = props.params;
-  }
+    if (!this.p) {
+      this.p = {};
+    }
+  };
 
   appendChildToComponent(component, child) {
     if (!child) {
-      return (<>{component}</>);
+      return <>{component}</>;
     }
     let children = component.props.children;
     if (!children) {
       children = [];
-    }
-    else {
+    } else {
       if (!Array.isArray(children)) {
         children = [children];
       }
@@ -145,22 +158,19 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
       childKey = children.length + 1;
       child = {
         ...child,
-        key: childKey,
-      }
+        key: childKey
+      };
     }
-    children = [
-      ...children,
-      child,
-    ]
+    children = [...children, child];
     let props = {
       ...component.props,
-      children: children,
-    }
+      children: children
+    };
     let comp = {
       ...component,
       props: props
-    }
-    return (<>{comp}</>);
+    };
+    return <>{comp}</>;
   }
 
   isNullOrEmpty(value: any): boolean {
@@ -175,7 +185,11 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
     if (!e) {
       return;
     }
-    return this.handleFormControlInputWithValue(field, e.target.value, callback);
+    return this.handleFormControlInputWithValue(
+      field,
+      e.target.value,
+      callback
+    );
     // if (this.isNullOrEmpty(formName)) {
     //   formName = this.defaultFormName;
     // }
@@ -194,7 +208,7 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
     // let state = this.state;
     // StaticHelper.assignPropertyOfObject(state, formName, form);
     // this.updateState({ ...state });
-  }
+  };
 
   handleFormControlInputWithValue = (field, value, callback?) => {
     let formName = this.defaultFormName;
@@ -210,8 +224,7 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
       if (this.showErrors) {
         form[field] = this.validateFormControl(form[field]);
       }
-    }
-    else {
+    } else {
       if (form.showErrors) {
         form[field] = this.validateFormControl(form[field]);
       }
@@ -219,18 +232,25 @@ export class BasicBaseComponent extends React.Component<mdProps, any>{
     let state = this.state;
     StaticHelper.assignPropertyOfObject(state, formName, form);
     this.updateState({ ...state }, callback);
-  }
+  };
 
   validateFormControl(control: mdFormControl) {
-    let params: ValidateParams = new ValidateParams(control.value, control.title, control.validators);
+    let params: ValidateParams = new ValidateParams(
+      control.value,
+      control.title,
+      control.validators
+    );
     let response: ValidationAttributeResponse = Validation.Validate([params]);
     if (!response.isValid) {
       control.errors = [...response.errors];
-    }
-    else {
+    } else {
       control.errors = [];
     }
     return control;
   }
 
+  generateDynamicKey = (prefix: string = "id") => {
+    prefix += StaticHelper.getUUID();
+    return prefix;
+  };
 }

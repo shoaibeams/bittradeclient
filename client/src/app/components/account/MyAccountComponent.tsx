@@ -2,6 +2,10 @@ import * as React from "react";
 import { BaseComponent } from "../base/BaseComponent";
 import { Redirect, Route, Switch } from "react-router";
 import asyncComponent from "../base/AsyncComponent";
+import MyAccountSwitch from "./MyAccountSwitch";
+import Widget from "../../../components/Widget";
+import { Tabs } from "antd";
+const TabPane = Tabs.TabPane;
 
 const KYCSwitch = asyncComponent(() =>
   import("./kyc/KYCSwitch").then(module => module.default)
@@ -9,30 +13,7 @@ const KYCSwitch = asyncComponent(() =>
 
 export default class MyAccountComponent extends BaseComponent {
   render() {
-    if (window.location.href.endsWith(this.constants.RoutePaths.MyAccount)) {
-      return <Redirect to={this.constants.RoutePaths.AccountVerification} />;
-    }
-    return (
-      <Switch>
-        <Route
-          path={`${this.props.match.url}${
-            this.constants.RoutePaths.Verification
-          }`}
-          render={() => {
-            return (
-              <KYCSwitch
-                {...this.props as any}
-                match={{
-                  url: `${this.props.match.url}${
-                    this.constants.RoutePaths.Verification
-                  }`
-                }}
-              />
-            );
-          }}
-        />
-      </Switch>
-    );
+    return <></>;
   }
 
   constructor(props) {
@@ -40,7 +21,5 @@ export default class MyAccountComponent extends BaseComponent {
     this.init();
   }
 
-  init() {
-    // this.loadCurrencies();
-  }
+  init() {}
 }

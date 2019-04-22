@@ -4,14 +4,13 @@ import AccountTypeSelectionComponent from "./account-type-selection/AccountTypeS
 import { Row, Col, Card } from "antd";
 import asyncComponent from "../../base/AsyncComponent";
 import { Route, Switch } from "react-router";
-import ProofsGridComponent from "./proofs/ProofsGridComponent";
+import ProofsSwitch from "./proofs/ProofsSwitch";
 import KYCComponent from "./KYCComponent";
 
 export default class KYCSwitch extends BaseComponent {
   render() {
     return (
       <>
-        <h1 className="gx-login-title">{this.lang.Verification}</h1>
         <div className="gx-mb-3">
           <Switch>
             <Route
@@ -20,7 +19,7 @@ export default class KYCSwitch extends BaseComponent {
               }`}
               render={() => {
                 return (
-                  <ProofsGridComponent
+                  <ProofsSwitch
                     {...this.props as any}
                     match={{
                       url: `${this.props.match.url}${

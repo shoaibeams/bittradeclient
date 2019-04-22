@@ -6,6 +6,7 @@ import { Transitions } from "../../../models/transitions";
 import { TransitionState } from "../../../enums/transition";
 import { mdAnimControl } from "../../../models/anim-control";
 import { Progress } from "antd";
+import FontAwesome from "../base/FontAwesome";
 
 export default class AccountVerificationComponent extends BaseComponent {
   render() {
@@ -39,7 +40,7 @@ export default class AccountVerificationComponent extends BaseComponent {
             <div className="gx-mb-3 gx-text-center">
               {this.animatedCSSDiv(
                 this.state.verified == 0 ? (
-                  this.faicon("envelope-open-text", "10x")
+                  FontAwesome.faIcon("envelope-open-text", "10x")
                 ) : (
                   <Progress
                     {...progressStatus}

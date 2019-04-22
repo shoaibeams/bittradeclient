@@ -57,8 +57,8 @@ const PasswordRecoveryComponent = asyncComponent(() =>
   )
 );
 
-const MyAccountComponent = asyncComponent(() =>
-  import("../app/components/account/MyAccountComponent").then(
+const MyAccountSwitch = asyncComponent(() =>
+  import("../app/components/account/MyAccountSwitch").then(
     module => module.default
   )
 );
@@ -114,9 +114,15 @@ const OpenRoutes = props => {
 
 const restrictedRouteRenderer = (Comp, props, url) => {
   if (!props.globals.isLoggedIn) {
-    return (
-      <Redirect to={StaticHelper.getLink(StaticConstatns.RoutePaths.Login)} />
+    let redirectURI = encodeURIComponent(window.location.href);
+    let to = StaticHelper.getLink(
+      StaticConstatns.RoutePaths.Login +
+        "?" +
+        Constants.Instance.QueryParams.redirectURI +
+        "=" +
+        redirectURI
     );
+    return <Redirect to={to} />;
   }
   return <Comp {...props as any} match={{ url: url }} />;
 };
@@ -167,7 +173,7 @@ class ThemeImplementedRoutes extends BaseComponent {
             }`}
             render={() => {
               return restrictedRouteRenderer(
-                MyAccountComponent,
+                MyAccountSwitch,
                 this.props,
                 `${this.props.match.url}${this.constants.RoutePaths.MyAccount}`
               );

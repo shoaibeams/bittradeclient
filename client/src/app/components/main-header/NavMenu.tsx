@@ -1,11 +1,11 @@
-import * as React from 'react';
+import * as React from "react";
 import { connect } from "react-redux";
-import { Constants } from '../../../shared/constants';
+import { Constants } from "../../../shared/constants";
 import { mdProps } from "../../../models/props";
-import HeaderComponentHTML from './MainHeaderHTML';
-import { BaseComponent } from '../base/BaseComponent';
-import { mdCallResponse } from '../../../models/call-response';
-import { Menu } from 'antd';
+import HeaderComponentHTML from "./MainHeaderHTML";
+import { BaseComponent } from "../base/BaseComponent";
+import { mdCallResponse } from "../../../models/call-response";
+import { Menu } from "antd";
 import {
   NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR,
   NAV_STYLE_NO_HEADER_MINI_SIDEBAR,
@@ -15,20 +15,20 @@ import {
   NAV_STYLE_DEFAULT_HORIZONTAL,
   NAV_STYLE_INSIDE_HEADER_HORIZONTAL
 } from "../../../constants/ThemeSetting";
-import { NavMenuTypes } from '../../../enums/general';
-import { Link } from 'react-router-dom';
+import { NavMenuTypes } from "../../../enums/general";
+import { Link } from "react-router-dom";
+import FontAwesome from "../base/FontAwesome";
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 class NavMenuComponent extends BaseComponent {
-
   render() {
     const { pathname, navStyle, themeType } = this.props as any;
     const selectedKeys = pathname.substr(1);
-    const defaultOpenKeys = selectedKeys.split('/')[1];
+    const defaultOpenKeys = selectedKeys.split("/")[1];
     let navMenuType = this.p.navMenuType as NavMenuTypes;
-    let theme = (themeType === THEME_TYPE_LITE ? 'lite' : 'dark') as any;
+    let theme = (themeType === THEME_TYPE_LITE ? "lite" : "dark") as any;
     if (navMenuType == NavMenuTypes.Topbar) {
       theme = null;
     }
@@ -38,12 +38,11 @@ class NavMenuComponent extends BaseComponent {
         defaultOpenKeys={[defaultOpenKeys]}
         selectedKeys={[selectedKeys]}
         theme={theme}
-        mode={navMenuType == NavMenuTypes.Topbar ? "horizontal" : "inline"}>
-        {
-          navLinks.map(l => {
-            return this.getMenuItem(navMenuType, navStyle, l, true)
-          })
-        }
+        mode={navMenuType == NavMenuTypes.Topbar ? "horizontal" : "inline"}
+      >
+        {navLinks.map(l => {
+          return this.getMenuItem(navMenuType, navStyle, l, true);
+        })}
       </Menu>
     );
   }
@@ -57,55 +56,86 @@ class NavMenuComponent extends BaseComponent {
 
   FirstContainer = (navMenuType: NavMenuTypes, navStyle, item, children) => {
     if (navMenuType == NavMenuTypes.Topbar) {
-      let titleInner = () => <>
-        <img width="40" height="34" src={item.icon} />
-        <br />
-        {item.text}
-      </>;
+      let titleInner = () => (
+        <>
+          <img width="40" height="34" src={item.icon} />
+          <br />
+          {item.text}
+        </>
+      );
       return (
-        <SubMenu className={`${this.getNavStyleSubMenuClass(navMenuType, navStyle)} gx-text-center color-white`}
+        <SubMenu
+          className={`${this.getNavStyleSubMenuClass(
+            navMenuType,
+            navStyle
+          )} gx-text-center color-white`}
           key={item.name}
-          title={this.linkOrA(item.href, item.routerLink, titleInner(), item.newTab)}
-          style={{ lineHeight: '36px' }}>
-          {
-            children
-          }
+          title={this.linkOrA(
+            item.href,
+            item.routerLink,
+            titleInner(),
+            item.newTab
+          )}
+          style={{ lineHeight: "36px" }}
+        >
+          {children}
         </SubMenu>
       );
-    }
-    else {
-      let titleInner = () => <>
-        {item.children.length < 1 ? <img width="17" height="17" src={item.icon} style={{ marginRight: 20 }} /> : null}
-        {item.text}
-      </>;
-      return (
-        item.children.length > 0 ?
-          <SubMenu className={`${this.getNavStyleSubMenuClass(navMenuType, navStyle)}`}
-            key={item.name}
-            title={this.linkOrA(item.href, item.routerLink, titleInner(), item.newTab)}
-            style={{ lineHeight: '36px' }}>
-            {
-              children
-            }
-          </SubMenu>
-          // <MenuItemGroup key={item.name} className="gx-menu-group"
-          //   title={this.linkOrA(item.href, item.routerLink, item.text)}>
-          //   {
-          //     children
-          //   }
-          // </MenuItemGroup>
-          :
-          <Menu.Item className="gx-text-left" key={item.name}>
-          <div  style={{color: "white !important"}}>
-            {this.linkOrA(item.href, item.routerLink, titleInner(), item.newTab)}
-            </div>
-          </Menu.Item>
+    } else {
+      let titleInner = () => (
+        <>
+          {item.children.length < 1 ? (
+            <img
+              width="17"
+              height="17"
+              src={item.icon}
+              style={{ marginRight: 20 }}
+            />
+          ) : null}
+          {item.text}
+        </>
+      );
+      return item.children.length > 0 ? (
+        <SubMenu
+          className={`${this.getNavStyleSubMenuClass(navMenuType, navStyle)}`}
+          key={item.name}
+          title={this.linkOrA(
+            item.href,
+            item.routerLink,
+            titleInner(),
+            item.newTab
+          )}
+          style={{ lineHeight: "36px" }}
+        >
+          {children}
+        </SubMenu>
+      ) : (
+        // <MenuItemGroup key={item.name} className="gx-menu-group"
+        //   title={this.linkOrA(item.href, item.routerLink, item.text)}>
+        //   {
+        //     children
+        //   }
+        // </MenuItemGroup>
+        <Menu.Item className="gx-text-left" key={item.name}>
+          <div style={{ color: "white !important" }}>
+            {this.linkOrA(
+              item.href,
+              item.routerLink,
+              titleInner(),
+              item.newTab
+            )}
+          </div>
+        </Menu.Item>
       );
     }
+  };
 
-  }
-
-  getMenuItem = (navMenuType: NavMenuTypes, navStyle, item, first: boolean = false) => {
+  getMenuItem = (
+    navMenuType: NavMenuTypes,
+    navStyle,
+    item,
+    first: boolean = false
+  ) => {
     if (!this.g.isLoggedIn && item.requireLogin) {
       return null;
     }
@@ -113,8 +143,8 @@ class NavMenuComponent extends BaseComponent {
     let children = () => {
       return item.children.map(c => {
         return this.getMenuItem(navMenuType, navStyle, c);
-      })
-    }
+      });
+    };
     if (first) {
       return this.FirstContainer(navMenuType, navStyle, item, children());
     }
@@ -124,11 +154,13 @@ class NavMenuComponent extends BaseComponent {
       let titleInner = () => {
         return (
           <>
-            <span style={{ marginRight: '20px' }}>{this.faicon(item.icon)}</span>
+            <span style={{ marginRight: "20px" }}>
+              {FontAwesome.faIcon(item.icon)}
+            </span>
             {item.text}
           </>
         );
-      }
+      };
       return (
         <Menu.Item className="gx-text-left" key={item.name}>
           {this.linkOrA(item.href, item.routerLink, titleInner(), item.newTab)}
@@ -141,7 +173,7 @@ class NavMenuComponent extends BaseComponent {
     //       title={<span>{this.faicon(item.icon)}{item.text}</span>}>
     //     </SubMenu>);
     // }
-  }
+  };
 
   getNavStyleSubMenuClass = (navMenuType = NavMenuTypes.Topbar, navStyle) => {
     switch (navStyle) {
@@ -158,34 +190,37 @@ class NavMenuComponent extends BaseComponent {
       default:
         if (navMenuType == NavMenuTypes.Topbar) {
           return "gx-menu-horizontal";
-        }
-        else {
+        } else {
           return "";
         }
     }
   };
 
   getClasses(link) {
-    let classes = '';
+    let classes = "";
     if (link.children.length > 0) {
-      classes += ' dropdown';
+      classes += " dropdown";
       if (link.children.indexOf(this.currentPath) > -1) {
-        classes += ' active';
+        classes += " active";
       }
-    }
-    else if ((this.currentPath == link.routerLink && this.currentPath != "") ||
-      (this.lang.Home == link.text && this.currentPath == "")) {
-      classes += 'active';
+    } else if (
+      (this.currentPath == link.routerLink && this.currentPath != "") ||
+      (this.lang.Home == link.text && this.currentPath == "")
+    ) {
+      classes += "active";
     }
     return classes;
   }
 
   navChildClicked(index) {
     for (let i = 0; i < this.routerLinks.length; i++) {
-      this.routerLinks[i].class = this.routerLinks[i].class.replace('active', '');
+      this.routerLinks[i].class = this.routerLinks[i].class.replace(
+        "active",
+        ""
+      );
     }
     if (index >= 0) {
-      this.routerLinks[index].class += ' active';
+      this.routerLinks[index].class += " active";
     }
   }
 
@@ -198,90 +233,99 @@ class NavMenuComponent extends BaseComponent {
       }
     }
     for (let i = 0; i < this.routerLinks.length; i++) {
-      this.routerLinks[i].class = this.routerLinks[i].class.replace('active', '');
+      this.routerLinks[i].class = this.routerLinks[i].class.replace(
+        "active",
+        ""
+      );
     }
     if (index >= 0) {
-      this.routerLinks[index].class += ' active';
+      this.routerLinks[index].class += " active";
     }
   }
 
   getNavBarLinks() {
     let home = {
-      name: 'home',
-      routerLink: this.isNullOrEmpty(Constants.Instance.RoutePaths.Home) ? "/" :
-        Constants.Instance.RoutePaths.Home,
-      icon: '/assets/images/home-icon.png',
+      name: "home",
+      routerLink: this.isNullOrEmpty(Constants.Instance.RoutePaths.Home)
+        ? "/"
+        : Constants.Instance.RoutePaths.Home,
+      icon: "/assets/images/home-icon.png",
       alt: this.lang.Home,
       text: this.lang.Home,
       requireLogin: false,
-      children: [],
+      children: []
     };
     let exchange = {
-      name: 'exchange',
-      icon: '/assets/images/exchange-icon.png',
+      name: "exchange",
+      icon: "/assets/images/exchange-icon.png",
       alt: this.lang.Exchange,
       text: this.lang.Exchange,
       requireLogin: true,
-      children: [{
-        name: Constants.Instance.RoutePaths.Trade.substr(1),
-        routerLink: Constants.Instance.RoutePaths.Trade,
-        icon: "money-bill-wave",
-        alt: this.lang.Trade,
-        text: this.lang.Trade,
-        requireLogin: true,
-        children: [],
-      },
-      ],
-    }
+      children: [
+        {
+          name: Constants.Instance.RoutePaths.Trade.substr(1),
+          routerLink: Constants.Instance.RoutePaths.Trade,
+          icon: "money-bill-wave",
+          alt: this.lang.Trade,
+          text: this.lang.Trade,
+          requireLogin: true,
+          children: []
+        }
+      ]
+    };
     let funding = {
       name: "funding",
-      icon: '/assets/images/funds.png',
+      icon: "/assets/images/funds.png",
       alt: this.lang.Funding,
       text: this.lang.Funding,
       requireLogin: true,
-      children: [{
-        name: Constants.Instance.RoutePaths.FundingDeposit.substr(1),
-        routerLink: Constants.Instance.RoutePaths.FundingDeposit,
-        icon: 'angle-double-up',
-        alt: this.lang.Deposit,
-        text: this.lang.Deposit,
-        requireLogin: true,
-        children: [],
-      }, {
-        name: Constants.Instance.RoutePaths.FundingWithdrawl.substr(1),
-        routerLink: Constants.Instance.RoutePaths.FundingWithdrawl,
-        icon: 'angle-double-down',
-        alt: this.lang.Withdrawl,
-        text: this.lang.Withdrawl,
-        requireLogin: true,
-        children: [],
-      }],
+      children: [
+        {
+          name: Constants.Instance.RoutePaths.FundingDeposit.substr(1),
+          routerLink: Constants.Instance.RoutePaths.FundingDeposit,
+          icon: "angle-double-up",
+          alt: this.lang.Deposit,
+          text: this.lang.Deposit,
+          requireLogin: true,
+          children: []
+        },
+        {
+          name: Constants.Instance.RoutePaths.FundingWithdrawl.substr(1),
+          routerLink: Constants.Instance.RoutePaths.FundingWithdrawl,
+          icon: "angle-double-down",
+          alt: this.lang.Withdrawl,
+          text: this.lang.Withdrawl,
+          requireLogin: true,
+          children: []
+        }
+      ]
     };
     let blockchain = {
-      name: 'blockchain',
-      icon: '/assets/images/blockchain.png',
+      name: "blockchain",
+      icon: "/assets/images/blockchain.png",
       alt: this.lang.Blockchain,
       text: this.lang.Blockchain,
       requireLogin: false,
       children: [
         {
-          name: 'blockchain/travel',
-          routerLink: '/blockchain/travel',
-          icon: 'walking',
+          name: "blockchain/travel",
+          routerLink: "/blockchain/travel",
+          icon: "walking",
           alt: this.lang.Travel,
           text: this.lang.Travel,
           requireLogin: false,
-          children: [],
-        }, {
-          name: 'blockchain/realEstate',
-          routerLink: '/blockchain/realEstate',
-          icon: 'building',
+          children: []
+        },
+        {
+          name: "blockchain/realEstate",
+          routerLink: "/blockchain/realEstate",
+          icon: "building",
           alt: this.lang.RealEstate,
           text: this.lang.RealEstate,
           requireLogin: false,
-          children: [],
+          children: []
         }
-      ],
+      ]
     };
     // let wallet = {
     //   routerLink: Constants.Instance.RoutePaths.Home,
@@ -292,49 +336,52 @@ class NavMenuComponent extends BaseComponent {
     //   children: [],
     // }
     let consulting = {
-      name: 'consulting',
+      name: "consulting",
       routerLink: null,
       href: Constants.Instance.RoutePaths.Consulting,
       newTab: true,
-      icon: '/assets/images/consult.png',
+      icon: "/assets/images/consult.png",
       alt: this.lang.Consulting,
       text: this.lang.Consulting,
       requireLogin: false,
-      children: [],
-    }
+      children: []
+    };
     let help = {
-      name: 'help',
-      icon: '/assets/images/faq-icon.png',
+      name: "help",
+      icon: "/assets/images/faq-icon.png",
       alt: this.lang.Help,
       text: this.lang.Help,
       requireLogin: false,
-      children: [{
-        name: "help/faq",
-        routerLink: Constants.Instance.RoutePaths.ContactUs,
-        icon: 'question',
-        alt: this.lang.FAQ,
-        text: this.lang.FAQ,
-        requireLogin: false,
-        children: [],
-      }, {
-        name: "help/aboutUs",
-        routerLink: Constants.Instance.RoutePaths.ContactUs,
-        icon: 'info',
-        alt: this.lang.AboutUs,
-        text: this.lang.AboutUs,
-        requireLogin: false,
-        children: [],
-      }, {
-        name: Constants.Instance.RoutePaths.ContactUs.substr(1),
-        routerLink: Constants.Instance.RoutePaths.ContactUs,
-        icon: 'file-signature',
-        alt: this.lang.ContactUs,
-        text: this.lang.ContactUs,
-        requireLogin: false,
-        children: [],
-      }
-      ],
-    }
+      children: [
+        {
+          name: "help/faq",
+          routerLink: Constants.Instance.RoutePaths.ContactUs,
+          icon: "question",
+          alt: this.lang.FAQ,
+          text: this.lang.FAQ,
+          requireLogin: false,
+          children: []
+        },
+        {
+          name: "help/aboutUs",
+          routerLink: Constants.Instance.RoutePaths.ContactUs,
+          icon: "info",
+          alt: this.lang.AboutUs,
+          text: this.lang.AboutUs,
+          requireLogin: false,
+          children: []
+        },
+        {
+          name: Constants.Instance.RoutePaths.ContactUs.substr(1),
+          routerLink: Constants.Instance.RoutePaths.ContactUs,
+          icon: "file-signature",
+          alt: this.lang.ContactUs,
+          text: this.lang.ContactUs,
+          requireLogin: false,
+          children: []
+        }
+      ]
+    };
     return [home, exchange, funding, blockchain, consulting, help];
     // if(this.g.isLoggedIn)
     // {
@@ -346,19 +393,21 @@ class NavMenuComponent extends BaseComponent {
     // }
   }
 
-  logout = (e) => {
+  logout = e => {
     this.showMainSpinner();
-    this.http.get<mdCallResponse>(Constants.Instance.EndPoints.GetLogout).then((res: mdCallResponse) => {
-      window.location.href = Constants.Instance.RoutePaths.Home;
-    }).catch(error => {
-      this.log.info(error);
-      window.location.href = Constants.Instance.RoutePaths.Home;
-    });
-  }
-
+    this.http
+      .get<mdCallResponse>(Constants.Instance.EndPoints.GetLogout)
+      .then((res: mdCallResponse) => {
+        window.location.href = Constants.Instance.RoutePaths.Home;
+      })
+      .catch(error => {
+        this.log.info(error);
+        window.location.href = Constants.Instance.RoutePaths.Home;
+      });
+  };
 }
 const mapStateToProps = ({ settings }) => {
   const { themeType, navStyle, pathname, locale } = settings;
-  return { themeType, navStyle, pathname, locale }
+  return { themeType, navStyle, pathname, locale };
 };
 export default connect(mapStateToProps)(NavMenuComponent);

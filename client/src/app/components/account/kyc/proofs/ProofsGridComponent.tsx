@@ -1,60 +1,66 @@
 import * as React from "react";
 import { BaseComponent } from "../../../base/BaseComponent";
 import { AccountTypes } from "../../../../../enums/general";
-import { Button, Table, Card, Row, Col } from "antd";
+import { Button, Table, Card, Row, Col, Badge } from "antd";
 import Widget from "../../../../../components/Widget";
+import { Link } from "react-router-dom";
+import IdentityVerificationComponent from "./identity/IdentityVerificationComponent";
+import WidgetHeader from "../../../../../components/WidgetHeader";
 
 export default class ProofsGridComponent extends BaseComponent {
   render() {
-    const AccountTypeSelectionListItem = data => {
-      const { icon, value, title, steps, description } = data;
+    if (this.state.currentProof == null) {
       return (
-        <div key={value} className="gx-user-list">
-          <img
-            alt="avatar"
-            src={icon}
-            className="gx-avatar-img gx-avatar-img-lg gx-border-0"
+        <>
+          <WidgetHeader
+            styleName="gx-flex-row"
+            title={this.lang.Verification}
+            extra={null}
           />
-          <div className="gx-description">
-            <h3>{title}</h3>
-            <p className="gx-mb-1">{description}</p>
-            <ol className="gx-btn-list">
-              {steps.map((s, i) => {
-                return <li key={i}>{s}</li>;
-              })}
-            </ol>
-          </div>
-          <div className="align-middle">
-            <Button type="primary">{this.lang.Select}</Button>
-          </div>
-        </div>
+          <Row>
+            {this.state.proofs.map((p, i) => {
+              return this.antd.colmd8(
+                <Widget styleName="gx-ch-capitalize gx-card-sm-px">
+                  <div className="gx-text-center gx-pt-sm-3">
+                    <img
+                      className="gx-size-60 gx-mb-3"
+                      src={p.icon}
+                      alt="birds"
+                    />
+                    <h2 className="gx-mb-3 gx-mb-sm-4">{p.title}</h2>
+                    <Badge status={p.badge.status} text={p.badge.text} />
+                    <br />
+                    {/* <Link to={p.link}> */}
+                    <Button
+                      className="gx-btn gx-btn-primary gx-text-white gx-mb-1"
+                      onClick={() => {
+                        this.updateState({ currentProof: p });
+                      }}
+                    >
+                      {p.buttonText}
+                    </Button>
+                    {/* </Link> */}
+                  </div>
+                </Widget>,
+                { key: i }
+              );
+            })}
+          </Row>
+        </>
+        // </Card>
       );
-    };
-
-    return (
-      <Card title={this.lang.Verification}>
-        <Row>
-          {this.state.proofs.map((p, i) => {
-            return this.antd.colmd8(
-              <Widget styleName="gx-ch-capitalize gx-card-sm-px">
-                <div className="gx-text-center gx-pt-sm-3">
-                  <img
-                    className="gx-size-60 gx-mb-3"
-                    src={p.icon}
-                    alt="birds"
-                  />
-                  <h2 className="gx-mb-3 gx-mb-sm-4">{p.title}</h2>
-                  <Button className="gx-btn gx-btn-primary gx-text-white gx-mb-1">
-                    {p.buttonText}
-                  </Button>
-                </div>
-              </Widget>,
-              { key: i }
-            );
-          })}
-        </Row>
-      </Card>
-    );
+    } else {
+      let proof = this.state.currentProof;
+      return (
+        <proof.component
+          {...this.props}
+          params={{
+            accountType: this.accountType,
+            onDone: proof.onDone
+          }}
+        />
+      );
+    }
   }
 
   accountType: AccountTypes;
@@ -64,8 +70,13 @@ export default class ProofsGridComponent extends BaseComponent {
   }
 
   init() {
-    this.accountType = this.parsedLocation[this.constants.QueryParams.aType];
+    this.accountType = this.p.accountType;
+    if (!this.accountType) {
+      //load default account type from server
+      this.accountType = AccountTypes.Individual;
+    }
     this.state = {
+      currentProof: null,
       proofs: [
         {
           icon:
@@ -78,20 +89,56 @@ export default class ProofsGridComponent extends BaseComponent {
               : this.accountType == AccountTypes.Individual
               ? this.lang.ProofOfIdentity
               : "",
-          buttonText: this.lang.Verify
+          buttonText: this.lang.Verify,
+          badge: {
+            status: "default",
+            text: this.lang.NotVerified
+          },
+          link: this.getLink(
+            this.constants.RoutePaths.AccountVerificationProofsIdentity +
+              "?" +
+              this.constants.QueryParams.aType +
+              "=" +
+              this.accountType
+          ),
+          component: IdentityVerificationComponent
         },
         {
           icon: "/assets/images/placeholder128x128.png",
           title: this.lang.ProofOfAddress,
-          buttonText: this.lang.Verify
+          buttonText: this.lang.Verify,
+          badge: {
+            status: "default",
+            text: this.lang.NotVerified
+          },
+          link: this.getLink(
+            this.constants.RoutePaths.AccountVerificationProofsIdentity +
+              "?" +
+              this.constants.QueryParams.aType +
+              "=" +
+              this.accountType
+          )
         },
         {
           value: AccountTypes.Individual,
           icon: "/assets/images/profit128x128.png",
           title: this.lang.ProofOfIncome,
-          buttonText: this.lang.Verify
+          buttonText: this.lang.Verify,
+          badge: {
+            status: "default",
+            text: this.lang.NotVerified
+          },
+          link: this.getLink(
+            this.constants.RoutePaths.AccountVerificationProofsIdentity +
+              "?" +
+              this.constants.QueryParams.aType +
+              "=" +
+              this.accountType
+          )
         }
       ]
     };
   }
+
+  getBadge = () => {};
 }
