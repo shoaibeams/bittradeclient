@@ -10,16 +10,8 @@ export class StaticHelper {
     let redirectURI = encodeURIComponent(window.location.href);
     if (window.location.href.indexOf(cons.RoutePaths.Login) > -1) {
       redirectURI = "";
+      return;
     }
-    alert(
-      this.getLink(
-        cons.RoutePaths.Login +
-          "?" +
-          cons.QueryParams.redirectURI +
-          "=" +
-          redirectURI
-      )
-    );
     window.location.href = this.getLink(
       cons.RoutePaths.Login +
         "?" +
@@ -402,4 +394,16 @@ export class StaticHelper {
     }
     return res;
   }
+
+  static getEnumKey = (enumType, value) => {
+    let keyVal = StaticHelper.objectKeyValueArrayArray(
+      enumType,
+      value
+    ) as mdKeyValue[];
+    let keys = keyVal.filter(m => m.value == value);
+    if (keys.length > 0) {
+      return keys[0].key;
+    }
+    return null;
+  };
 }

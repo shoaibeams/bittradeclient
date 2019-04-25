@@ -15,15 +15,10 @@ import {
 import { mdKeyValue } from "../../../../../../models/key-value";
 import { StaticHelper } from "../../../../../../shared/static-helper";
 
-export default class AddressInfoFormComponent extends BaseComponent {
+export default class IncomeInfoFormComponent extends BaseComponent {
   render() {
     this.initShorts();
     let countriesList: mdKeyValue[] = [];
-    if (this.g.countries) {
-      countriesList = this.g.countries.map(m => {
-        return new mdKeyValue(m.name, m.id);
-      });
-    }
     let headerStyle = {};
     if (["xs", "sm"].indexOf(this.getCurrentWidth()) < 0) {
       headerStyle = {
@@ -36,23 +31,17 @@ export default class AddressInfoFormComponent extends BaseComponent {
           <h2 style={headerStyle}>{this.lang.BasicInformation}</h2>
         </div>
         <Form layout="horizontal" onSubmit={this.onSubmit}>
-          {this.antd.textAreaFormItem(
-            this.f.address,
-            3,
-            true,
-            null,
-            this.formItemLayout
-          )}
-          {this.antd.textFormItem(
-            this.f.postal_code,
-            true,
-            null,
-            this.formItemLayout
-          )}
-          {this.antd.textFormItem(this.f.city, true, null, this.formItemLayout)}
           {this.antd.selectFormItem(
-            this.f.country_id,
-            countriesList,
+            this.f.income,
+            this.incomeSource,
+            true,
+            false,
+            null,
+            this.formItemLayout
+          )}
+          {this.antd.selectFormItem(
+            this.f.expected_investment,
+            this.investmentSource,
             true,
             false,
             null,
@@ -75,53 +64,59 @@ export default class AddressInfoFormComponent extends BaseComponent {
   accountType: AccountTypes;
   model: mdUserAccounts;
   genderSource: mdKeyValue[];
+  investmentSource: mdKeyValue[] = [];
+  incomeSource: mdKeyValue[] = [];
   constructor(pps) {
     super(pps);
     this.init();
   }
 
   init() {
+    this.incomeSource.push(new mdKeyValue("$500-1000", "$500-1000"));
+    this.incomeSource.push(new mdKeyValue("$1001-1500", "$1001-1500"));
+    this.incomeSource.push(new mdKeyValue("$1501-2500", "$1501-2500"));
+    this.incomeSource.push(new mdKeyValue("$2501-5000", "$2501-5000"));
+    this.incomeSource.push(new mdKeyValue("$5001-10000", "$5001-10000"));
+    this.incomeSource.push(
+      new mdKeyValue("More than $10000", "More than $10000")
+    );
+
+    this.investmentSource.push(new mdKeyValue("$5000-10000", "$5000-10000"));
+    this.investmentSource.push(new mdKeyValue("$10001-20000", "$10001-20000"));
+    this.investmentSource.push(new mdKeyValue("$20001-50000", "$20001-50000"));
+    this.investmentSource.push(
+      new mdKeyValue("$50001-100000", "$50001-100000")
+    );
+    this.investmentSource.push(
+      new mdKeyValue("More than $100000", "More than $100000")
+    );
+
     this.accountType = this.p.accountType;
     this.genderSource = StaticHelper.objectKeyValueArrayArray(Genders);
     this.model = new mdUserAccounts(true);
     this.state = {
       form: {
-        address: new mdFormControl(
-          this.model.address,
-          "address",
-          this.lang.Address,
+        income: new mdFormControl(
+          this.model.income,
+          "income",
+          this.lang.IncomePerMonth,
           [
-            new RequiredValidator(this.lang.RequiredFormat),
             new MaxLengthValidator(
               this.lang.MaxLengthFormat2,
-              UserAccountsMetaData.addressMaxLength
+              UserAccountsMetaData.incomeMaxLength
             )
           ]
         ),
-        postal_code: new mdFormControl(
-          this.model.postal_code,
-          "postal_code",
-          this.lang.PostalCode,
+        expected_investment: new mdFormControl(
+          this.model.expected_investment,
+          "expected_investment",
+          this.lang.ExpectedAmountOfInvestment,
           [
-            new RequiredValidator(this.lang.RequiredFormat),
             new MaxLengthValidator(
               this.lang.MaxLengthFormat2,
-              UserAccountsMetaData.postal_codeMaxLength
+              UserAccountsMetaData.expected_investmentMaxLength
             )
           ]
-        ),
-        city: new mdFormControl(this.model.city, "city", this.lang.City, [
-          new RequiredValidator(this.lang.RequiredFormat),
-          new MaxLengthValidator(
-            this.lang.MaxLengthFormat2,
-            UserAccountsMetaData.cityMaxLength
-          )
-        ]),
-        country_id: new mdFormControl(
-          this.model.country_id,
-          "country_id",
-          this.lang.Country,
-          [new RequiredValidator(this.lang.RequiredFormat)]
         )
       }
     };
@@ -137,6 +132,7 @@ export default class AddressInfoFormComponent extends BaseComponent {
       // return;
     }
     let formData = this.getFormData(this.state.form) as mdUserAccounts;
+    // this.log.debug("fd", formData);
     this.p.onNext(formData);
   };
 }

@@ -4,9 +4,12 @@ import { AccountTypes } from "../../../../enums/general";
 import { Button, Table, Card, Row, Col, Badge } from "antd";
 import Widget from "../../../../components/Widget";
 import { Link } from "react-router-dom";
-import IdentityVerificationComponent from "./proofs/identity/IdentityVerificationComponent";
 import WidgetHeader from "../../../../components/WidgetHeader";
-import AddressVerificationComponent from "./proofs/address/AddressVerificationComponent";
+import { DocumentTypesWithNames, ProofTypes } from "../../../../enums/kyc";
+import BasicInfoFormComponent from "./proofs/identity/BasicInfoFormComponent";
+import AddressInfoFormComponent from "./proofs/address/AddressInfoFormComponent";
+import VerificationComponent from "./proofs/VerificationComponent";
+import IncomeInfoFormComponent from "./proofs/income/IncomeInfoFormComponent";
 
 export default class KYCComponent extends BaseComponent {
   render() {
@@ -53,10 +56,14 @@ export default class KYCComponent extends BaseComponent {
     } else {
       let proof = this.state.currentProof;
       return (
-        <proof.component
+        <VerificationComponent
           {...this.props}
           params={{
             accountType: this.accountType,
+            docs: proof.docs,
+            proof: proof.type,
+            proofTitle: proof.title,
+            basicInfoComponent: proof.basicInfoComponent,
             onDone: proof.onDone,
             onBack: this.onBack
           }}
@@ -77,6 +84,41 @@ export default class KYCComponent extends BaseComponent {
       //load default account type from server
       this.accountType = AccountTypes.Individual;
     }
+    let identityDocs = [];
+    if (this.accountType == AccountTypes.Business) {
+      identityDocs.push(
+        DocumentTypesWithNames.BusinessIncorporationCertificate
+      );
+      identityDocs.push(DocumentTypesWithNames.MemorandumOfAssociation);
+    } else {
+      identityDocs.push(DocumentTypesWithNames.Passport);
+      identityDocs.push(DocumentTypesWithNames.NIC);
+      identityDocs.push(DocumentTypesWithNames.ResidentPermit);
+    }
+
+    let addressDocs = [];
+    if (this.accountType == AccountTypes.Business) {
+      let bankStatement = DocumentTypesWithNames.BankStatement;
+      bankStatement.title = this.lang.Business + " " + bankStatement.title;
+      addressDocs.push(bankStatement);
+      addressDocs.push(DocumentTypesWithNames.UtilityBill);
+      addressDocs.push(DocumentTypesWithNames.Tax);
+    } else {
+      addressDocs.push(DocumentTypesWithNames.DrivingLicense);
+      addressDocs.push(DocumentTypesWithNames.UtilityBill);
+      addressDocs.push(DocumentTypesWithNames.Tax);
+    }
+
+    let incomeDocs = [];
+    if (this.accountType == AccountTypes.Business) {
+      let bankStatement = DocumentTypesWithNames.BankStatement;
+      bankStatement.title = this.lang.Business + " " + bankStatement.title;
+      incomeDocs.push(bankStatement);
+    } else {
+      incomeDocs.push(DocumentTypesWithNames.WagesSlip);
+      incomeDocs.push(DocumentTypesWithNames.BankStatement);
+    }
+
     this.state = {
       currentProof: null,
       proofs: [
@@ -103,7 +145,9 @@ export default class KYCComponent extends BaseComponent {
               "=" +
               this.accountType
           ),
-          component: IdentityVerificationComponent
+          docs: identityDocs,
+          basicInfoComponent: BasicInfoFormComponent,
+          type: ProofTypes.Identity
         },
         {
           icon: "/assets/images/placeholder128x128.png",
@@ -120,7 +164,9 @@ export default class KYCComponent extends BaseComponent {
               "=" +
               this.accountType
           ),
-          component: AddressVerificationComponent
+          docs: addressDocs,
+          basicInfoComponent: AddressInfoFormComponent,
+          type: ProofTypes.Address
         },
         {
           value: AccountTypes.Individual,
@@ -137,7 +183,10 @@ export default class KYCComponent extends BaseComponent {
               this.constants.QueryParams.aType +
               "=" +
               this.accountType
-          )
+          ),
+          docs: incomeDocs,
+          basicInfoComponent: IncomeInfoFormComponent,
+          type: ProofTypes.income
         }
       ]
     };

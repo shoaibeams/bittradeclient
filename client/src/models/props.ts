@@ -1,5 +1,6 @@
 import { mdCurrency } from "./currency";
 import { mdCurrencyPair } from "./currency-pair";
+import { mdCountry } from "./country";
 
 export class mdProps {
   params?: any;
@@ -47,6 +48,7 @@ export class mdGlobalProps {
   fullName: string;
   email: string;
   headerHeight: number;
+  countries: mdCountry[];
 }
 
 export class mdPropKeys {
@@ -67,6 +69,7 @@ export class mdPropKeys {
   fullName: string;
   email: string;
   headerHeight: string;
+  countries: string;
   constructor() {
     this.isLoggedIn = "isLoggedIn";
     this.showMainLoader = "showMainLoader";
@@ -85,5 +88,6 @@ export class mdPropKeys {
     this.fullName = "fullName";
     this.email = "email";
     this.headerHeight = "headerHeight";
+    this.countries = "countries";
   }
 }

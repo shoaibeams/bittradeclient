@@ -54,14 +54,16 @@ export default class BasicInfoFormComponent extends BaseComponent {
             </>
           ) : null}
           {this.antd.dateFormItem(this.f.dob, true, null, this.formItemLayout)}
-          {this.antd.selectFormItem(
-            this.f.gender,
-            this.genderSource,
-            true,
-            false,
-            null,
-            this.formItemLayout
-          )}
+          {this.accountType == AccountTypes.Individual
+            ? this.antd.selectFormItem(
+                this.f.gender,
+                this.genderSource,
+                true,
+                false,
+                null,
+                this.formItemLayout
+              )
+            : null}
           {/* {this.antd.selectFormItem(
             this.f.country_id,
             countriesList,

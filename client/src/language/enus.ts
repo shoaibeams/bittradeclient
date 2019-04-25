@@ -19,6 +19,8 @@ export class LangENUS implements LanguageBase {
   UUID = "UUID";
   UUIDNotProvided = this.UUID + " not provided";
   AlreadyExistsFormat = "{0} already exists";
+  SomethingWentWrongTryAgainLater =
+    "Something went wrong, please try again later";
   ContactUsInsertedResponseMessage =
     "Thank you for contacting us. We've received your message and we'll get back to you soon.";
   UUIDAlreadyExists = "UUID already exists";
@@ -71,9 +73,10 @@ export class LangENUS implements LanguageBase {
     this.Email;
   AccountType = "Account Type";
   InvalidValueFormat = "Invalid value for {0}";
-  VerificationEmailSent = "We've Sent You a Verfication Email at";
+  VerificationEmailSent = "We've Sent You a Verfication Email";
   VerificationEmailSentDetail = `Click the link in your email to verify your account
-If you didn't find the email, please check your spam folder or click below to re-send`;
+If you didn't find the email, please check your spam folder or click the link
+below to re-send`;
   Resend = "Resend";
   ResendEmail = this.Resend + " " + this.Email;
   CouldNotVerifyClient = "Could not verify client";
@@ -87,9 +90,8 @@ If you didn't find the email, please check your spam folder or click below to re
   AccountCreatedLoginToContinue =
     "Your account is created. Please login to continue. Redirecting you to login ...";
   Again = "again";
-  VerificationEmailSentAgain =
-    this.VerificationEmailSent + " " + this.Again + " at";
-  Verifying = "Verifying";
+  VerificationEmailSentAgain = this.VerificationEmailSent + " " + this.Again;
+  Verifying = "Verifying ...";
   Forgot = "Forgot";
   ForgotPassword = this.Forgot + " " + this.Password;
   BitVelocity = "BitVelocity";
@@ -240,7 +242,7 @@ If you didn't find the email, please check your spam folder or click below to re
   Branch = "Branch";
   IBAN = "IBAN";
   Address = "Address";
-  Minimum = "Minimum";
+  Minimum = "Minumum";
   WhichEverHigherFormat = "{0} or {1} (which ever is higher)";
   Reference = "Reference";
   Sr = "Sr.";
@@ -303,18 +305,19 @@ If you didn't find the email, please check your spam folder or click below to re
   InnovateSolutionsPara =
     "Innovate solutions using technology that can solve real world problems for humans";
   Years = "Year(s)";
-  Highly = "Highly";
-  Experienced = "Experienced";
-  HighlyExperienced = this.Highly + " " + this.Experienced;
+  Highly = "Highy";
+  Experienced = "Expereinced";
+  HiglyExperienced = this.Highly + " " + this.Experienced;
   Reliable = "Reliable";
   Trustable = "Trustable";
-  ReliableAndTrustable = this.Reliable + " & " + this.Trustable;
+  ReiableAndTrustable = this.Reliable + " & " + this.Trustable;
   Successful = "Successful";
+  Successfully = "Successfully";
   Cooperation = "Cooperation";
   SuccessfulCooperation = this.Successful + " " + this.Cooperation;
   HowItWorks = "How it works";
   TalkToOneofOurPara = "Talk to one of our";
-  IndustryExpertsPara = "industry experts";
+  IndusteryExpertsPara = "industry experts";
   AVelocityDirectorPara = "A Velocity director of engineering will";
   AVelocityDirectorPara2 = "then asses the workload and select";
   AVelocityDirectorPara3 = "suitable resource for the project.";
@@ -608,7 +611,7 @@ If you didn't find the email, please check your spam folder or click below to re
   AWS = "AWS";
   EC2Console = "EC2 Console";
   ERC20Tokens = "ERC20 Tokens";
-  DecentralizedApps = "Decentralized Apps";
+  DecentralisedApps = "Decentralised Apps";
   XenServer = "Xen Server";
   RealTime = "RealTime";
   Applications = "Applications";
@@ -626,6 +629,46 @@ If you didn't find the email, please check your spam folder or click below to re
   Params = "Params";
   MinimumAmountFormat = this.Minimum + " " + this.Amount + " is {0}";
   NotSaved = "Not Saved";
+  EmailSentSuccessfully = this.Email + " sent " + this.Successfully;
+  CannotBeEmptyFormat = "{0} can not be empty";
+  CurrentStatusInvalidFormat = "{0} is not {1}";
+  Funded = "Funded";
+  FundedAmount = this.Funded + " " + this.Amount;
+  MustBeEqualToFormat = "{0} must be equal to {1}";
+  Other = "Other";
+  Deduction = "Deduction";
+  Deductions = this.Deduction + "(s)";
+  OtherDeductions = this.Other + " " + this.Deductions;
+  Received = "Received";
+  AmountReceived = this.Amount + " " + this.Received;
+  CannotBeFormat = "{0} can not be {1}";
+  Rejected = "Rejected";
+  NoAmountReceivedForDepositRequestVerification =
+    "If no " +
+    this.Amount +
+    " is received, then " +
+    this.DepositRequest +
+    " should be " +
+    this.Rejected;
+  Remarks = "Remarks";
+  Approved = "Approved";
+  ApprovedSuccessfullyFormat = "{0} " + this.Approved + " " + this.Successfully;
+  RejectedSuccessfullyFormat = "{0} " + this.Rejected + " " + this.Successfully;
+  Verified = "Verified";
+  AccountEmailIsNotVerified =
+    this.Account + " " + this.Email + " is not " + this.Verified;
+  AccountStatusIsFormat = this.Account + " " + this.Status + " is {0}";
+  Unable = "Unable";
+  UnableToSendEmail = this.Unable + " to send " + this.Email;
+  Updated = "Updated";
+  UpdatedSuccessfullyFormat = "{0} " + this.Updated + " " + this.Successfully;
+  Passwords = this.Password + "(s)";
+  Use = "Use";
+  Cannot = "Can not";
+  Previous = "Previous";
+  CannotUsePreviousPasswords =
+    this.Cannot + " " + this.Use + " " + this.Previous + " " + this.Passwords;
+  DecentralizedApps = "Decentralized Apps";
   or = "or";
   SignIn = "Sign In";
   QuestionMark = "?";
@@ -649,7 +692,6 @@ If you didn't find the email, please check your spam folder or click below to re
   Pending = "Pending";
   Orders = this.Order + "(s)";
   PendingOrders = this.Pending + " " + this.Orders;
-  Previous = "Previous";
   PreviousHistory = this.Previous + " " + this.History;
   Time = "Time";
   Local = "Local";
@@ -662,7 +704,6 @@ If you didn't find the email, please check your spam folder or click below to re
   English = "English";
   German = "German";
   Terms = "Terms";
-  Use = "Use";
   TermsOfUse = this.Terms + " of " + this.Use;
   I = "I";
   Agree = "Agree";
@@ -676,7 +717,7 @@ If you didn't find the email, please check your spam folder or click below to re
   Calculator = "Calculator";
   CurrencyCalculator = this.Currency + " " + this.Calculator;
   MainPageHeader = `Buy your digital assets in native currency pairs to reduce huge conversion cost.
-    Now supporting buying in GBP, Euro and USD`;
+      Now supporting buying in GBP, Euro and USD`;
   Expert = "Expert";
   ExpertSupport = this.Expert + " " + this.Support;
   ExpertSupportPara =
@@ -703,7 +744,6 @@ If you didn't find the email, please check your spam folder or click below to re
   RegisterPara =
     "Registration is easy and will help you keep track of your assets";
   KYC = "KYC";
-  Verified = "Verified";
   GetKYCVerifiedPara =
     "As per regulatoring requirements, we will only allow customers that have passed our KYC criteria";
   Make = "Make";
@@ -860,8 +900,6 @@ If you didn't find the email, please check your spam folder or click below to re
     this.Click + " or " + this.Drag + " " + this.File + " to " + this.Upload;
   PleaseTryAgain = this.Please + " " + this.Try + " " + this.Again;
   SomethingWentWrong = "Something went wrong";
-  SomethingWentWrongTryAgainLater =
-    this.SomethingWentWrong + ", please try again later";
   MaxAttachmentSizeFormat = "Maximum " + this.Attachment + " size is {0}";
   Expired = "Expired";
   SessionExpired = this.Session + " " + this.Expired;
@@ -871,4 +909,22 @@ If you didn't find the email, please check your spam folder or click below to re
   Code = "Code";
   PostalCode = this.Postal + " " + this.Code;
   City = "City";
+  Expected = "Expected";
+  Invest = "Invest";
+  Investment = this.Invest + "ment";
+  ExpectedAmountOfInvestment =
+    this.Expected + " " + this.Amount + " of " + this.Investment;
+  HighlyExperienced = this.Highly + " " + this.Experienced;
+  ReliableAndTrustable = this.Reliable + " & " + this.Trustable;
+  IndustryExpertsPara = "industry experts";
+  Digital = "Digital";
+  Evidence = "Evidence";
+  DigitalEvidence = this.Digital + " " + this.Evidence;
+  PerMonth = "Per Month";
+  IncomePerMonth = this.Income + " " + this.PerMonth;
+  Maximum = "Maximum";
+  Files = this.File + "(s)";
+  Uploaded = this.Upload + "ed";
+  MaximumFilesCanBeUploadedFormat =
+    this.Maximum + " {0} " + this.Files + " can be " + this.Uploaded;
 }

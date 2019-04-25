@@ -104,7 +104,7 @@ export default class HttpClientService {
                 data.message.toUpperCase()
               ) > -1
             ) {
-              StaticHelper.navigateToLogin();
+              throw "redirect";
             }
           }
           return data;
@@ -112,6 +112,10 @@ export default class HttpClientService {
         return {};
       })
       .catch(error => {
+        if (error == "redirect") {
+          StaticHelper.navigateToLogin();
+          return;
+        }
         this.log.debug("url: ", url, error);
         throw error;
       });

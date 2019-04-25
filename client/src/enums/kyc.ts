@@ -15,6 +15,14 @@ export enum DocumentTypes {
   MemorandumOfAssociation = "memorandum_of_association",
   Tax = "tax"
 }
+
+export enum DocumentRecordStatuses {
+  NotSubmitted = "not_submitted",
+  Submitted = "submitted",
+  Approved = "approved",
+  Rejected = "rejected"
+}
+
 export class DocumentTypesWithNames {
   private static pictureExtensions = [".png", ".jpg", ".jpeg", ".pdf"];
   static NIC = {
@@ -147,10 +155,4 @@ export class DocumentTypesWithNames {
       }
     ]
   };
-}
-export enum DocumentRecordStatuses {
-  NotSubmitted = "not_submitted",
-  Submitted = "submitted",
-  Approved = "approved",
-  Rejected = "Rejected"
 }

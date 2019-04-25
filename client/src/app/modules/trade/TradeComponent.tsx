@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import OrderHistoryComponent from "./OrderHistoryComponent";
 import OrderComponent from "./OrderComponent";
@@ -18,7 +17,6 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 
 export default class TradeComponent extends BaseComponent {
-
   render() {
     this.initShorts();
     let currencyPairs = [];
@@ -29,97 +27,94 @@ export default class TradeComponent extends BaseComponent {
     if (this.g.currencyPairs) {
       currencyPairs = this.g.currencyPairs.map((cp: mdCurrencyPair, i) => {
         return new mdKeyValue(cp.fc_name + "/" + cp.tc_name, cp.id);
-      })
+      });
     }
+    const getOrderComponent = action => {
+      return (
+        <OrderComponent
+          {...this.props}
+          params={{
+            onNewOrder: this.newOrderCreated,
+            action: action,
+            currencyPairDetails: this.state.currencyPairDetails,
+            selectedCurrencyPair: this.state.selectedCurrencyPair
+          }}
+        />
+      );
+    };
     return (
       <>
         <Row type="flex" align="middle">
-          {
-            this.antd.colmd4(this.getCPDropDown(currencyPairs, (cp) => {
+          {this.antd.colmd4(
+            this.getCPDropDown(currencyPairs, cp => {
               this.loadBalanceAndFee(cp);
-            }))
-          }
-          {
-            this.antd.colmd4(<LivePriceWidget
-              iconColor={'white'}
+            })
+          )}
+          {this.antd.colmd4(
+            <LivePriceWidget
+              iconColor={"white"}
               cardColor="cyan"
               icon="timeline"
               title={this.lang.Last}
-              subTitle={sbh.tc_symbol + (isNaN(sbh.last) ? '' : sbh.last)} />)
-          }
-          {
-            this.antd.colmd4(<LivePriceWidget
-              iconColor={'white'}
+              subTitle={sbh.tc_symbol + (isNaN(sbh.last) ? "" : sbh.last)}
+            />
+          )}
+          {this.antd.colmd4(
+            <LivePriceWidget
+              iconColor={"white"}
               cardColor="teal"
               icon="long-arrow-up"
               title={this.lang.High}
-              subTitle={sbh.tc_symbol + (isNaN(sbh.high) ? '' : sbh.high)} />)
-          }
-          {
-            this.antd.colmd4(<LivePriceWidget
-              iconColor={'white'}
+              subTitle={sbh.tc_symbol + (isNaN(sbh.high) ? "" : sbh.high)}
+            />
+          )}
+          {this.antd.colmd4(
+            <LivePriceWidget
+              iconColor={"white"}
               cardColor="red"
               icon="long-arrow-down"
               title={this.lang.Low}
-              subTitle={sbh.tc_symbol + (isNaN(sbh.low) ? '' : sbh.low)} />)
-          }
-          {
-            this.antd.colmd4(<LivePriceWidget
-              iconColor={'white'}
+              subTitle={sbh.tc_symbol + (isNaN(sbh.low) ? "" : sbh.low)}
+            />
+          )}
+          {this.antd.colmd4(
+            <LivePriceWidget
+              iconColor={"white"}
               cardColor="orange"
               icon="tasks"
               title={this.lang.Volume24H}
-              subTitle={sbh.tc_symbol + (isNaN(sbh.volume) ? '' : sbh.volume)} />)
-          }
-          {
-            this.antd.colmd4(<LivePriceWidget
-              iconColor={'white'}
+              subTitle={sbh.tc_symbol + (isNaN(sbh.volume) ? "" : sbh.volume)}
+            />
+          )}
+          {this.antd.colmd4(
+            <LivePriceWidget
+              iconColor={"white"}
               cardColor="primary"
               icon="timeline-with-icons"
               title={this.lang.Change}
-              subTitle={sbh.tc_symbol + (isNaN(sbh.change) ? '' : sbh.change)} />)
-          }
+              subTitle={sbh.tc_symbol + (isNaN(sbh.change) ? "" : sbh.change)}
+            />
+          )}
         </Row>
         <Row>
-          {
-            this.antd.collg16(
-              <Row>
-                {
-                  this.antd.colmd12(
-                    <OrderComponent {...this.props} ref={this.orderRef} params={{
-                      onNewOrder: this.newOrderCreated,
-                      action: OrderActions.buy,
-                      currencyPairDetails: this.state.currencyPairDetails,
-                      selectedCurrencyPair: this.state.selectedCurrencyPair,
-                    }} />)
-                }
-                {
-                  this.antd.colmd12(
-                    <OrderComponent {...this.props} ref={this.orderRef} params={{
-                      onNewOrder: this.newOrderCreated,
-                      action: OrderActions.sell,
-                      currencyPairDetails: this.state.currencyPairDetails,
-                      selectedCurrencyPair: this.state.selectedCurrencyPair,
-                    }} />)
-                }
-              </Row>)
-          }
-          {
-            this.antd.collg8(<RecentTradesComponent {...this.props} />)
-          }
+          {this.antd.collg16(
+            <Row>
+              {this.antd.colmd12(getOrderComponent(OrderActions.buy))}
+              {this.antd.colmd12(getOrderComponent(OrderActions.sell))}
+            </Row>
+          )}
+          {this.antd.collg8(<RecentTradesComponent {...this.props} />)}
         </Row>
         <Row>
-          {
-            this.antd.colmd24(<OrderHistoryComponent {...this.props} ref={this.orderHistoryRef} />)
-          }
+          {this.antd.colmd24(
+            <OrderHistoryComponent {...this.props} ref={this.orderHistoryRef} />
+          )}
         </Row>
       </>
     );
-
   }
 
   orderHistoryRef = React.createRef<OrderHistoryComponent>();
-  orderRef = React.createRef<OrderComponent>();
   constructor(props) {
     super(props);
     this.init();
@@ -131,30 +126,28 @@ export default class TradeComponent extends BaseComponent {
       currencyPairDetails: {},
       lastTradeId: 0,
       recentTrades: []
-    }
+    };
     this.loadBalanceAndFee(this.state.selectedCurrencyPair);
   }
 
   newOrderCreated = () => {
     this.loadBalanceAndFee(this.state.selectedCurrencyPair);
-    this.orderHistoryRef.current.recievedNewChanges(this.state.selectedCurrencyPair, true);
-  }
-
-  componentWillReceiveProps(nextProps: mdProps) {
-    if (this.props != nextProps) {
-      this.initShorts();
-    }
-  }
+    this.orderHistoryRef.current.recievedNewChanges(
+      this.state.selectedCurrencyPair,
+      true
+    );
+  };
 
   loadBalanceAndFee = (cp: mdCurrencyPair) => {
     this.updateStateWEvent({
       sellBalance: "",
       buyBalance: "",
-      showSpinner: true,
+      showSpinner: true
     });
 
     if (cp) {
-      this.http.post<mdCallResponse>(this.constants.EndPoints.PostPairDetails, cp.id)
+      this.http
+        .post<mdCallResponse>(this.constants.EndPoints.PostPairDetails, cp.id)
         .then((res: mdCallResponse) => {
           let state = {};
           if (res.isSuccess) {
@@ -164,14 +157,14 @@ export default class TradeComponent extends BaseComponent {
             ...state,
             selectedCurrencyPair: cp,
             showSpinner: false
-          })
-        }).catch((error) => {
+          });
+        })
+        .catch(error => {
           this.log.debug(error);
           this.updateState({
             showSpinner: false
-          })
+          });
         });
     }
-  }
-
+  };
 }

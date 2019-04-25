@@ -487,7 +487,7 @@ export default class ANTDControls {
   colmd1(children) {
     return (
       <Col
-        key={this.instance.generateDynamicKey()}
+        //key={this.instance.generateDynamicKey()}
         xs="12"
         sm="2"
         md="1"
@@ -502,7 +502,7 @@ export default class ANTDControls {
   colmd4(children) {
     return (
       <Col
-        key={this.instance.generateDynamicKey()}
+        //key={this.instance.generateDynamicKey()}
         xs={12}
         sm={8}
         md={4}
@@ -579,7 +579,7 @@ export default class ANTDControls {
     }
     return (
       <Col
-        key={this.instance.generateDynamicKey()}
+        //key={this.instance.generateDynamicKey()}
         style={{ ...style }}
         xs={24}
         sm={12}
@@ -618,7 +618,7 @@ export default class ANTDControls {
     }
     return (
       <Col
-        key={this.instance.generateDynamicKey()}
+        //key={this.instance.generateDynamicKey()}
         style={{ ...style }}
         xs={12}
         sm={12}
@@ -634,7 +634,7 @@ export default class ANTDControls {
   colmd24(children) {
     return (
       <Col
-        key={this.instance.generateDynamicKey()}
+        //key={this.instance.generateDynamicKey()}
         xs={24}
         sm={24}
         md={24}
@@ -649,7 +649,7 @@ export default class ANTDControls {
   colmd48(children) {
     return (
       <Col
-        key={this.instance.generateDynamicKey()}
+        //key={this.instance.generateDynamicKey()}
         xs={48}
         sm={48}
         md={48}
@@ -664,7 +664,7 @@ export default class ANTDControls {
   colmd16(children) {
     return (
       <Col
-        key={this.instance.generateDynamicKey()}
+        //key={this.instance.generateDynamicKey()}
         xs={24}
         sm={24}
         md={16}
@@ -679,7 +679,7 @@ export default class ANTDControls {
   collg16(children) {
     return (
       <Col
-        key={this.instance.generateDynamicKey()}
+        //key={this.instance.generateDynamicKey()}
         xs={24}
         sm={24}
         md={24}
@@ -702,7 +702,7 @@ export default class ANTDControls {
   collg8(children) {
     return (
       <Col
-        key={this.instance.generateDynamicKey()}
+        //key={this.instance.generateDynamicKey()}
         xs={24}
         sm={24}
         md={12}

@@ -10,7 +10,7 @@ export default class MainFooter extends BaseComponent {
     this.initShorts();
     return (
       <>
-        <div className="gx-header-horizontal-dark">
+        <div className="gx-header-horizontal-dark main-footer">
           <div className="gx-container gx-mt-5 gx-mb-5 footer">
             <Row>
               {this.links.map((l, i) => {

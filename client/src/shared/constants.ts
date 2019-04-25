@@ -68,6 +68,9 @@ export class Constants {
     PostDepositRequestHistory: "/deposit/depositRequestHistory",
     PostDepositReceipt: "/deposit/receipt",
     GetStreamSocket: "/stream",
+    GetCountries: "/data/countries",
+    PostKYCSaveDocuments: "/kyc/saveDocuments",
+    GetKYCProofsSummary: "/kyc/proofsSummary",
     PostDigitalEvidence: "/digitalEvidence?type="
   };
   public GrantTypes = {
@@ -183,7 +186,7 @@ export class StaticConstatns {
         this.AccountVerificationProofs + this.Income;
       this.AccountForgotPassword = "/account/forgotPassword";
       this.AccountPasswordRecovery = "/account/passwordRecovery";
-      this.Consulting = "https =//consulting.bitvelocity.io";
+      this.Consulting = "https://consulting.bitvelocity.io";
       this.Funding = "/funding";
       this.FundingDeposit = "/funding/deposit";
       this.FundingWithdrawl = "/funding/withdrawl";

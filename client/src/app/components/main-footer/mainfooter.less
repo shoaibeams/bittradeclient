@@ -1,25 +1,73 @@
 @import "../../../styles/variables.less";
 
-.footer li a:hover{
+.footer li a:hover {
   color: @secondary-color;
   cursor: pointer;
 }
-.footer .h2 { font-size: 22px; color: #fff !important; font-weight: 600; margin-bottom: 20px; 
-  margin-top: 0px; }
-.footer li a { font-size: 17px; color: #fff; padding: 12px 0; display: block; }
-.footer .social li { display: inline-block; }
-.footer li a.fb { display: inline-block; width: 50px; height: 50px; background: #435b67; 
-  margin-right: 10px; border-radius: 50%; text-align: center; color: @nav-dark-bg; 
-  font-size: 26px; 
-  line-height: 25px; transition: all ease-in-out 0.5s; }
-.footer li a:hover.fb { background: #4267b2; color: #fff; }
-.footer li a.tw { display: inline-block; width: 50px; height: 50px; background: #435b67; 
-  margin-right: 10px; border-radius: 50%; text-align: center; color: @nav-dark-bg; font-size: 26px; 
-  line-height: 25px; transition: all ease-in-out 0.5s; }
-.footer li a:hover.tw { background: #1da1f2; color: #fff; }
-.footer ul{
+.footer .h2 {
+  font-size: 22px;
+  color: #fff !important;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 0px;
+}
+.footer li a {
+  font-size: 17px;
+  color: #fff;
+  padding: 12px 0;
+  display: block;
+}
+.footer .social li {
+  display: inline-block;
+}
+.footer li a.fb {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: #435b67;
+  margin-right: 10px;
+  border-radius: 50%;
+  text-align: center;
+  color: @nav-dark-bg;
+  font-size: 26px;
+  line-height: 25px;
+  transition: all ease-in-out 0.5s;
+}
+.footer li a:hover.fb {
+  background: #4267b2;
+  color: #fff;
+}
+.footer li a.tw {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: #435b67;
+  margin-right: 10px;
+  border-radius: 50%;
+  text-align: center;
+  color: @nav-dark-bg;
+  font-size: 26px;
+  line-height: 25px;
+  transition: all ease-in-out 0.5s;
+}
+.footer li a:hover.tw {
+  background: #1da1f2;
+  color: #fff;
+}
+.footer ul {
   list-style: none;
   padding-left: 0;
 }
-.footer .p { padding: 35px 0 0; }
-.copyright { background: #051f2b; width: 100%; padding: 20px 0; color: #fff; text-align: center; }
+.footer .p {
+  padding: 35px 0 0;
+}
+.copyright {
+  background: #051f2b;
+  width: 100%;
+  padding: 20px 0;
+  color: #fff;
+  text-align: center;
+}
+.main-footer::before {
+  content: unset;
+}

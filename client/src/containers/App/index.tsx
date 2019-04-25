@@ -192,10 +192,31 @@ class App extends BaseComponent {
           this.props.updateGlobalProperty(propKeys, propValues);
           setTimeout(() => {
             this.loadbriefHistory();
+            this.loadCountries();
           }, 200);
         }
       })
       .catch(error => {
+        this.log.debug(error);
+      });
+  }
+
+  loadCountries() {
+    this.http
+      .get(this.constants.EndPoints.GetCountries)
+      .then((res: mdCallResponse) => {
+        this.log.debug(res);
+        if (res.isSuccess) {
+          this.props.updateGlobalProperty(
+            global.propKeys.countries,
+            res.extras
+          );
+        }
+      })
+      .catch(error => {
+        if (!error) {
+          return;
+        }
         this.log.debug(error);
       });
   }

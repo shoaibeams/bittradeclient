@@ -23,6 +23,9 @@ export class mdUserAccounts {
   public country_code: string;
   public default_currency_pair_id: number;
   default_currency_id: number;
+  source_of_income: string;
+  income: string;
+  expected_investment: string;
 
   constructor(init?: boolean) {
     if (init === true) {
@@ -54,4 +57,6 @@ export class UserAccountsMetaData {
   public static cityMaxLength: number = 50;
   public static company_nameMaxLength: number = 50;
   public static uuidMaxLength: number = 50;
+  static incomeMaxLength = 20;
+  static expected_investmentMaxLength = 20;
 }
