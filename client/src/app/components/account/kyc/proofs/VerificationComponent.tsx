@@ -21,6 +21,7 @@ export default class VerificationComponent extends BaseComponent {
             {...this.props}
             params={{
               accountType: this.accountType,
+              docDetails: this.doc ? this.doc.docDetails : null,
               onNext: (formData: mdUserAccounts) => {
                 this.updateState({
                   basicInfo: formData,
@@ -85,6 +86,7 @@ export default class VerificationComponent extends BaseComponent {
   };
   accountType: AccountTypes;
   proof: ProofTypes;
+  doc: mdDocument;
   constructor(pps) {
     super(pps);
     this.init();
@@ -93,6 +95,7 @@ export default class VerificationComponent extends BaseComponent {
   init() {
     this.accountType = this.p.accountType;
     this.proof = this.p.proof;
+    this.doc = this.p.doc;
     if (!this.accountType) {
       this.accountType = this.parsedLocation[this.constants.QueryParams.aType];
     }
@@ -154,6 +157,9 @@ export default class VerificationComponent extends BaseComponent {
               this.successNotification(
                 this.lang.Submitted + " " + this.lang.Successfully
               );
+              if (typeof this.p.onDone === "function") {
+                this.p.onDone(res.extras);
+              }
             } else {
               this.errorNotification(res.message, this.lang.Error);
             }

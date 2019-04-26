@@ -26,21 +26,25 @@ export default class AttachmentsComponent extends BaseComponent {
                 {this.lang.SelectDocumentType}
               </h2>
             )}
-            {this.p.docs.map(d => {
-              return this.antd.colmd6(
-                <Widget styleName="gx-ch-capitalize gx-card-sm-px doc-type">
-                  <div
-                    className="gx-text-center gx-pt-sm-3"
-                    onClick={() => {
-                      let selectedDocs = this.state.selectedDocs;
-                      selectedDocs.push(d);
-                      this.updateState({ selectedDocs });
-                    }}
-                  >
-                    <img className="gx-size-60 gx-mb-3" src={d.icon} />
-                    <h2 className="gx-mb-1 gx-mb-sm-1">{d.title}</h2>
-                  </div>
-                </Widget>
+            {this.p.docs.map((d, i) => {
+              return (
+                <React.Fragment key={i}>
+                  {this.antd.colmd6(
+                    <Widget styleName="gx-ch-capitalize gx-card-sm-px doc-type">
+                      <div
+                        className="gx-text-center gx-pt-sm-3"
+                        onClick={() => {
+                          let selectedDocs = this.state.selectedDocs;
+                          selectedDocs.push(d);
+                          this.updateState({ selectedDocs });
+                        }}
+                      >
+                        <img className="gx-size-60 gx-mb-3" src={d.icon} />
+                        <h2 className="gx-mb-1 gx-mb-sm-1">{d.title}</h2>
+                      </div>
+                    </Widget>
+                  )}
+                </React.Fragment>
               );
             })}
           </Row>

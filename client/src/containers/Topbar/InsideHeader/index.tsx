@@ -173,7 +173,7 @@ class InsideHeader extends BaseComponent {
                     <UserInfo {...this.props} />
                   ) : (
                     <ul className="gx-login-list" style={{ paddingLeft: 0 }}>
-                      <li>
+                      <li className="login">
                         <Link
                           to={this.getLink(this.constants.RoutePaths.Login)}
                         >

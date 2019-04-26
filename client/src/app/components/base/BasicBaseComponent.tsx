@@ -123,7 +123,6 @@ export class BasicBaseComponent extends React.Component<mdProps, any> {
 
   componentWillReceiveProps(nextProps: mdProps) {
     this.initShorts(nextProps);
-    this.log.debug("afterReceivingProps", typeof this.afterReceivingProps);
     if (typeof this.afterReceivingProps === "function") {
       this.afterReceivingProps(nextProps != this.props);
     }

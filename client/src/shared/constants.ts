@@ -71,6 +71,7 @@ export class Constants {
     GetCountries: "/data/countries",
     PostKYCSaveDocuments: "/kyc/saveDocuments",
     GetKYCProofsSummary: "/kyc/proofsSummary",
+    PostKYCDocumentHistory: "/kyc/documentHistory",
     PostDigitalEvidence: "/digitalEvidence?type="
   };
   public GrantTypes = {

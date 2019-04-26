@@ -20,7 +20,10 @@ export enum DocumentRecordStatuses {
   NotSubmitted = "not_submitted",
   Submitted = "submitted",
   Approved = "approved",
-  Rejected = "rejected"
+  Rejected = "rejected",
+  PartiallySubmitted = "partially_submitted",
+  PartiallyApproved = "partially_approved",
+  ReSubmitted = "re_submitted"
 }
 
 export class DocumentTypesWithNames {

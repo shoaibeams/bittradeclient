@@ -6,6 +6,7 @@ import {
 import { AccountTypes } from "../enums/general";
 import { mdDigitalEvidence } from "./digital-evidence";
 import { mdUserAccounts } from "./user-accounts";
+import { mdAuthUsers } from "./auth-users";
 
 export class mdDocument {
   id: number;
@@ -21,7 +22,18 @@ export class mdDocument {
 
   requirements: any[];
   userAccounts: mdUserAccounts;
+  docDetails: mdUserAccounts;
   constructor() {
     this.requirements = [];
+    this.userAccounts = new mdUserAccounts();
   }
+}
+
+export class mdDocumentHistoryRequest extends mdDocument {
+  timestampFrom: Date;
+  timestampTo: Date;
+  verification_timestampFrom: Date;
+  verification_timestampTo: Date;
+  page: number;
+  rpp: number;
 }

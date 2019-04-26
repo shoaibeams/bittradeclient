@@ -83,7 +83,10 @@ export default class AddressInfoFormComponent extends BaseComponent {
   init() {
     this.accountType = this.p.accountType;
     this.genderSource = StaticHelper.objectKeyValueArrayArray(Genders);
-    this.model = new mdUserAccounts(true);
+    this.model = this.p.docDetails;
+    if (!this.model) {
+      this.model = new mdUserAccounts(true);
+    }
     this.state = {
       form: {
         address: new mdFormControl(
@@ -134,7 +137,7 @@ export default class AddressInfoFormComponent extends BaseComponent {
 
     if (!this.validateForm()) {
       // this.antd.modalError("InValid Form");
-      // return;
+      return;
     }
     let formData = this.getFormData(this.state.form) as mdUserAccounts;
     this.p.onNext(formData);

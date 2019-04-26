@@ -923,8 +923,21 @@ below to re-send`;
   PerMonth = "Per Month";
   IncomePerMonth = this.Income + " " + this.PerMonth;
   Maximum = "Maximum";
+  MaximumAttachmentsAllowedForRequirementFormat =
+    this.Maximum + " {0} " + this.Attachments + " are allowed for {1}";
+  MinimumAttachmentsRequirementFormat =
+    "At-least {0} " + this.Attachments + " are required for {1}";
+  While = "While";
+  Saving = "Saving";
+  ErrorOccuredWhileSavingFormat =
+    this.ErrorOccured + " " + this.While + " " + this.Saving + " {0}";
   Files = this.File + "(s)";
   Uploaded = this.Upload + "ed";
   MaximumFilesCanBeUploadedFormat =
     this.Maximum + " {0} " + this.Files + " can be " + this.Uploaded;
+  Partially = "Partially";
+  PartiallyApproved = this.Partially + " " + this.Approved;
+  PartiallySubmitted = this.Partially + " " + this.Submitted;
+  PartiallyVerified = this.Partially + " " + this.Verified;
+  Review = "Review";
 }

@@ -1,17 +1,15 @@
 import { Constants } from "../shared/constants";
 import { LangENUS } from "./enus";
-import { LangDE } from "./de";
 
 export function getLanguage(lang: string): LanguageBase {
   if (!lang) {
     return new LangENUS();
   }
   switch (lang) {
-    case Constants.Instance.LanguageKey.ENUS:
+    case Constants.LanguageKey.ENUS:
       return new LangENUS();
 
-    case Constants.Instance.LanguageKey.DE:
-      return new LangENUS();
+    // case Constants.Instance.LanguageKey.DE:
     // return new LangDE();
 
     default:
@@ -651,8 +649,15 @@ export interface LanguageBase {
   ExpectedAmountOfInvestment: string;
   PerMonth: string;
   IncomePerMonth: string;
+  MaximumAttachmentsAllowedForRequirementFormat: string;
   Maximum: string;
-  Files: string;
-  Uploaded: string;
-  MaximumFilesCanBeUploadedFormat: string;
+  MinimumAttachmentsRequirementFormat: string;
+  ErrorOccuredWhileSavingFormat: string;
+  While: string;
+  Saving: string;
+  Partially: string;
+  PartiallyApproved: string;
+  PartiallyVerified: string;
+  PartiallySubmitted: string;
+  Review: string;
 }
