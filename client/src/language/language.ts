@@ -751,4 +751,135 @@ export interface LanguageBase {
   CurrentSession: string;
   CurrentTime: string;
   UpdatePicture: string;
+
+  //SUPPORT CENTER//
+  Money: string;
+  Transfer: string;
+  Appliction: string;
+  Bugs: string;
+  Reporting: string;
+  Authentication: string;
+  Issues: string;
+  title: string;
+
+  ///////////////////////////////////////////////////////////
+  //BLOCKCHAIN////////////
+  // TravelPaper: string
+  BlockChainPageCaption: string;
+  Introduction: string;
+  TravelPaperHeading1: string;
+  TravelPaperHeading2: string;
+  TravelPaperHeading3: string;
+  TravelPaperHeading4: string;
+  TravelPaperPara1: string;
+  TravelPaperPara2: string;
+  TravelPaperPara3: string;
+  TravelPaperPara4: string;
+
+  RealEstatePaperHeading1: string;
+  RealEstatePaperHeading2: string;
+  RealEstatePaperHeading3: string;
+  RealEstatePaperHeading4: string;
+  RealEstatePaperHeading5: string;
+  RealEstatePaperPara1: string;
+  RealEstatePaperPara2: string;
+  RealEstatePaperPara3: string;
+  RealEstatePaperPara4: string;
+  RealEstatePaperPara5: string;
+  ////////////////////////////////////////////////////////////////////////////////
+
+  // COMPANY ROADMAP/////////////////////////
+  //YEARS
+  twoThousandSixteen: string;
+  twoThousandSeventeen: string;
+  twoThousandEighteen: string;
+  twoThousandNineteen: string;
+  twoThousandTwenty: string;
+  //QUATERS
+  quater1: string;
+  quater2: string;
+  quater3: string;
+  quater4: string;
+  //TITLES
+  Incorporated: string;
+  Seed: string;
+  Completed: string;
+  Design: string;
+  Technical: string;
+  Architecture: string;
+  Liquidity: string;
+  Partners: string;
+  Agreement: string;
+  Signed: string;
+  Offering: string;
+  Whitepaper: string;
+  Development: string;
+  DAT: string;
+  Platform: string;
+  Available: string;
+  Public: string;
+  Asset: string;
+  Live: string;
+  Companies: string;
+  Investors: string;
+  ExchangeDesign: string;
+  TechnicalDesign: string;
+  SeedFundingCompleted: string;
+  Completion: string;
+  LiquidityPartners: string;
+  SecurityTokenOffering: string;
+  DigitalAssetTrading: string;
+  DATPlatformAvailable: string;
+  EMoneyLicense: string;
+  STOPlatformDevelopment: string;
+  STOPlatformDevelopmentLive: string;
+  AboutHeading: string;
+
+  ////////////////////////////////////////////////////////////////////////////////
+  ////////////////FAQ/////////////////////////
+  Payment: string;
+  Privacy: string;
+  Getting: string;
+  Started: string;
+  Managment: string;
+
+  GSQuestion1: string;
+  GSQuestion2: string;
+  GSQuestion3: string;
+  GSAnswer1: string;
+  GSAnswer2: string;
+  GSAnswer3: string;
+  AMQuestion1: string;
+  AMQuestion2: string;
+  AMQuestion3: string;
+  AMAnswer1: string;
+  AMAnswer2: string;
+  AMAnswer3: string;
+  TradeQuestion1: string;
+  TradeQuestion2: string;
+  TradeQuestion3: string;
+  TradeAnswer1: string;
+  TradeAnswer2: string;
+  TradeAnswer3: string;
+  FeesQuestion1: string;
+  FeesQuestion2: string;
+  FeesQuestion3: string;
+  FeesAnswer1: string;
+  FeesAnswer2: string;
+  FeesAnswer3: string;
+  SecurityQuestion1: string;
+  SecurityQuestion2: string;
+  SecurityQuestion3: string;
+  SecurityAnswer1: string;
+  SecurityAnswer2: string;
+  SecurityAnswer3: string;
+  PayQuestion1: string;
+  PayQuestion2: string;
+  PayQuestion3: string;
+  PayAnswer1: string;
+  PayAnswer2: string;
+  PayAnswer3: string;
+  ////////////////////////////////////////////////////////////////////////////////
+  InvestorZonePara: string;
+  STO: string;
 }

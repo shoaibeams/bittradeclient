@@ -8,6 +8,12 @@ import NoMatchComponent from "../app/components/base/NoMatchComponent";
 import { MainApp } from "../containers/App/MainApp";
 import { BaseComponent } from "../app/components/base/BaseComponent";
 
+const Blockchain = asyncComponent(() =>
+  import("../app/components/blockchain/Blockchain").then(
+    module => module.default
+  )
+);
+
 const ContactUsComponent = asyncComponent(() =>
   import("../app/components/contact-us/ContactUsComponent").then(
     module => module.default
@@ -129,15 +135,27 @@ const restrictedRouteRenderer = (Comp, props, url) => {
 
 class ThemeImplementedRoutes extends BaseComponent {
   render() {
+    let blockchainSelector;
+    if (this.props) {
+      blockchainSelector = this.props.history.location.pathname.replace(
+        "/blockchain/",
+        ""
+      );
+    }
     return (
       <div
-        className="gx-main-content-wrapper"
+        className={
+          blockchainSelector === "travel" || blockchainSelector === "realEstate"
+            ? "gx-main-content-wrapper-card"
+            : "gx-main-content-wrapper"
+        }
         // style={{
         //   minHeight: 500, // window.innerHeight - this.g.headerHeight,
         //   height: "auto"
         // }}
       >
         <Switch>
+        
           <Route
             exact
             path={`${this.props.match.url}${
@@ -157,13 +175,15 @@ class ThemeImplementedRoutes extends BaseComponent {
           />
           <Route
             path={`${this.props.match.url}${
-              StaticConstants.RoutePaths.Funding
+              StaticConstants.RoutePaths.InvestorsZone
             }`}
             render={() => {
               return restrictedRouteRenderer(
                 FundingComponent,
                 this.props,
-                `${this.props.match.url}${StaticConstants.RoutePaths.Funding}`
+                `${this.props.match.url}${
+                  StaticConstants.RoutePaths.InvestorsZone
+                }`
               );
             }}
           />
@@ -180,6 +200,18 @@ class ThemeImplementedRoutes extends BaseComponent {
             }}
           />
           <Route
+            exact
+            path={`${this.props.match.url}${StaticConstants.RoutePaths.Travel}`}
+            render={() => <Blockchain {...this.props} />}
+          />
+          <Route
+            exact
+            path={`${this.props.match.url}${
+              StaticConstants.RoutePaths.RealEstate
+            }`}
+            render={() => <Blockchain {...this.props} />}
+          />
+          <Route
             path={`${this.props.match.url}/`}
             render={() => {
               if (this.g.isLoggedIn) {
@@ -192,6 +224,7 @@ class ThemeImplementedRoutes extends BaseComponent {
               return <HomeComponent {...this.props} />;
             }}
           />
+         
         </Switch>
       </div>
     );

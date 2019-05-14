@@ -136,6 +136,20 @@ export class StaticConstants {
     OurFees: "our-fees"
   };
   public static RoutePaths = new (class {
+    Travel: string;
+    RealEstate: string;
+    Support: string;
+    InvestorsZone: string;
+    KnowledgeBase: string;
+    Market: string;
+    Trading: string;
+    STO: string;
+    FAQ: string;
+    AboutUs: string;   
+    OurFees: string;
+    Security: string;
+    Investing: string;
+
     Login: string;
     Home: string;
     Trade: string;
@@ -192,6 +206,19 @@ export class StaticConstants {
       this.Withdrawal = "/withdrawal";
       this.FundingDeposit = this.Funding + this.Deposit;
       this.FundingWithdrawal = this.Funding + this.Withdrawal;
+
+      this.InvestorsZone = "/invesotrsZone";
+      this.Security = "/security";
+      this.Travel = "/blockchain/travel";
+      this.RealEstate = "/blockchain/realEstate";
+      this.Support = "/support";
+      this.Market = "/market";
+      this.Trading = "/tradeDemo";
+      this.KnowledgeBase = "/help/knowledgeBase";
+      this.AboutUs = "/help/about";
+      this.FAQ = "/help/faq";
+      this.OurFees = "/fees";
+      this.STO = "/sto";
     }
   })();
   public static RecaptchaSiteKey = "6Lfab3YUAAAAANbb2Lp1WYVMiwyUSCLyeZkbw5HK";

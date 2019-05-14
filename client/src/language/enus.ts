@@ -31,7 +31,8 @@ export class LangENUS implements LanguageBase {
   FirstName = this.First + " " + this.Name;
   LastName = this.Last + " " + this.Name;
   User = "User";
-  UserName = this.User + " " + this.Name;
+  UserName = "Username";
+  // UserName = this.User + " " + this.Name;
   AlphaNumericFormat = "{0} must be alpha numeric";
   MustContainOneSpecialCharFormat =
     "{0} must contain atleast one special character (" +
@@ -1039,4 +1040,278 @@ below to re-send`;
   CurrentSession = this.Current + " " + this.Session;
   CurrentTime = this.Current + " " + this.Time;
   UpdatePicture = this.Update + " " + this.Picture;
+
+  //SUPPORT CENTER//
+  Money = "Money";
+  Transfer = "Transfer";
+  Appliction = "Application";
+  Bugs = "Bugs";
+  Reporting = "Reporting";
+  Authentication = "Authentication";
+  Issues = "Issues";
+  Title = "Title";
+  title = "title";
+  Complaint = "Complaint";
+  SubmitAComplaint = this.Submit + " a " + this.Complaint;
+  ///////////////////////////////////////////////////////////
+
+  // COMPANY ROADMAP/////////////////////////////////////////////
+  InvestorZonePara = `The seed round for Velocity Solutions Ltd. was completed in July
+ 2017. Historically we have not actively looked for external
+ investments, however we are always open to good strategic partners
+ that can help us grow our business. We only welcome investors who
+ are passionate about digital assets and blockchain technologies. For
+ further information in participation of Velocity Solutions as
+ investor, please fill the form below and our team will be in contact
+ with you.`;
+  //YEARS
+  twoThousandSixteen = "2016";
+  twoThousandSeventeen = "2017";
+  twoThousandEighteen = "2018";
+  twoThousandNineteen = "2019";
+  twoThousandTwenty = "2020";
+  quater1 = "Q1";
+  quater2 = "Q2";
+  quater3 = "Q3";
+  quater4 = "Q4";
+
+  STO = "STO";
+  Incorporated = "Incorporated";
+  Seed = "Seed";
+  Completed = "Completed";
+  Design = "Design";
+  Technical = "Technical";
+  Architecture = "Architecture";
+  Liquidity = "Liquidity";
+  Partners = "Partners";
+  Agreement = "Agreement";
+  Signed = "Signed";
+  Offering = "Offering";
+  Whitepaper = "Whitepaper";
+  Development = "Development";
+  DAT = "DAT";
+  Platform = "Platform";
+  Available = "Available";
+  Public = "Public";
+  Asset = "Asset";
+  Live = "Live";
+  Companies = "Companies";
+  Investors = "Investors";
+  Completion = "Completion";
+  Payment = "Payment";
+  SeedFundingCompleted = this.Seed + " " + this.Funding + " " + this.Completed;
+  ExchangeDesign =
+    this.Exchange +
+    " " +
+    this.Design +
+    " & " +
+    this.Technical +
+    " " +
+    this.Architecture;
+  TechnicalDesign =
+    this.Technical +
+    " " +
+    this.Design +
+    " & " +
+    this.Technical +
+    " " +
+    this.Architecture;
+  LiquidityPartners =
+    this.Liquidity +
+    " " +
+    this.Partners +
+    " " +
+    this.Agreement +
+    " " +
+    this.Signed;
+  SecurityTokenOffering =
+    this.Security +
+    " " +
+    this.Token +
+    " " +
+    this.Offering +
+    " " +
+    this.Whitepaper;
+  DigitalAssetTrading =
+    this.Digital +
+    " " +
+    this.Asset +
+    " " +
+    this.Trading +
+    " " +
+    this.Platform +
+    " " +
+    this.Completion;
+  DATPlatformAvailable =
+    this.DAT +
+    " " +
+    this.Platform +
+    " " +
+    this.Available +
+    " for " +
+    this.Public;
+  EMoneyLicense =
+    "E-" + this.Money + " " + this.License + " " + this.Appliction;
+  STOPlatformDevelopment =
+    this.STO + " " + this.Platform + " " + this.Development;
+  STOPlatformDevelopmentLive =
+    this.STO +
+    " " +
+    this.Platform +
+    " " +
+    this.Live +
+    " for " +
+    this.Companies +
+    " & " +
+    this.Investors;
+  AboutHeading = "Digital Asset Exchange Headquatered in UK";
+
+  /////////////////////////////// BLOCKCHAIN PAPERS ///////////////////////////////////////////
+  //----------------------REAL ESTATE CONTENT----------------------//
+  BlockChainPageCaption = "All Roads Lead to Blockchain";
+  RealEstatePaperHeading1 = "Blockchain in Real Estate";
+  RealEstatePaperHeading2 = "Purchasing Real Estate with Crypto";
+  RealEstatePaperHeading3 = "Security and Transparency";
+  RealEstatePaperHeading4 = "BitVelocity as Liquidity Provider";
+  RealEstatePaperHeading5 = "BitVelocity as Liquidity Provider";
+
+  RealEstatePaperPara1 = `Investors who bought Bitcoin and Ethereum at
+ early stages are now sitting on big fortunes and are actively looking to
+ convert these fortunes into tangible assets. Many times buyers want to
+ purchase a real estate from cryptos however sellers are mostly declining as
+ they are not certain how the transaction will work out, and how will they get
+ the real liquidity from their asset sale. This is where BitVelocity will act
+ as a liquidity provider—acting as a middleman in such cases.`;
+  RealEstatePaperPara2 = `The beauty of
+ such solution is that seller will be paid in Fiat currency of their choice
+ (USD, Euro, GBP), hence avoiding crypto volatility risks, and both buyer or
+ seller or even estate agents will not have to fear losing any deal since seller will 
+ be able to seal the deal without having to deal with crypto in the process. 
+ In such cases, we receive the crypto from buyer, perform liquidity at our end 
+ and send fiat to the seller. Actual amount sellers and buyers will also have an option to do the
+ transaction in small tranches in order to gain more trust of all parties/
+ This way all parties get to keep the deal, seller is happy, buyer is
+ happy, hence we are happy.`;
+  RealEstatePaperPara3 = `Blockchain based property offer Echosystem In
+ both commercial and residential real estate market, there is a serious lack
+ of transparency that ultimately defines the sold price. While both sellers
+ and property agents claim that already have real offers higher than the
+ offers made by sellers they get outpriced by artificial hype created by
+ market players. By using blockchain technology, we will place all the real
+ offers onto the blockchain, hence open to public for validation. Using the pattern 
+ and trend recognition algo, we will spot and eliminate the bad players, resulting 
+ a transparent and honest bidding system for property market making more stable and 
+ realistic sale price for each property.`;
+  RealEstatePaperPara4 = `Bidding data and its history will
+ be available to public for future deals. This is in particular very useful
+ in commercial and corporate properties when high worth deals are done well
+ in time before the property gets to the real public. `;
+  RealEstatePaperPara5 = `Acting as Liquidity provider for both buyers and sellers. We believe in solutions that not only
+             bring disruption but also are compatible with existing system. For both
+             buyers and sellers just want to convert their digital assets into cryptos or
+             convert the fiat funds into cryptos after the sale we would act as a
+             conversion platform. Both buyers and sellers can receive the funds in the
+             currency of their choice (GBP, Euro, USD) with fraction of conversation fees.
+ `;
+
+  //----------------------TRAVEL PAPER CONTENT----------------------//
+  Introduction = "Introduction";
+  TravelPaperHeading1 = "Blockchain for Travel";
+  TravelPaperHeading2 = `Problem to Solve`;
+  TravelPaperHeading3 = `Massive Cost Reduction`;
+  TravelPaperHeading4 = `Future Plan`;
+
+  TravelPaperPara1 = `Emergence of blockchain applications and non-financial use cases is
+ expanding everyday, one such promising usecase that is of particular
+ interest to use is travel & tourism. This makes more sense since the
+ company Founder has come from background working in Travel & Tourism
+ industry for many years.`;
+  TravelPaperPara2 = `Our facility will reduce dependency on foreign banks and hence reduce the
+ related, often excessive, fees. A typical speed of buying a foreign
+ currency for traveller’s forex is 2.7% which then becomes 5% once the
+ converted foreign currency is revesed back to original currency on return
+ of travel. With BitVelocity, once live, we will have the infrastruce to
+ reduce this cost to as low as 0.5%. Hence, making it more convenient and
+ hassle free echo system at a fraction of a cost for business and Leisure
+ travellers.`;
+  TravelPaperPara3 = `After a successful launch of social crypto platform we intend
+ to offer our crypto marketplace to travellers and tourists. Users like
+ traders and investors will already benefit from the platform since holding
+ BTC or XRP on the platform they can either pay direct in BTC or XRP. Eventually
+ paying a little fraction of a cost to what a forex exchange would charge.
+ Alternatively, on our platform they can convert their crypto to local
+ currency and then spend, again paying very little of a cost to what a fiat
+ currency would charge. Converting to fiat, they will be able to spend
+ using our digital app as if they were using a debit cards. `;
+  TravelPaperPara4 = `Future plan for
+ travellers includes travel debit card, that will have debit cards
+ with local currency (GBP, Euro, USD) hence eliminating the need to
+ exchange to foreign currency completely.`;
+
+  //////////////////////////////FAQ////////////////////////////////////////////
+  Privacy = "Privacy";
+  Getting = "Getting";
+  Started = "Started";
+  Managment = "Managment";
+
+  GSQuestion1 = "What is BitVelocity?";
+  GSQuestion2 = "How do I get started?";
+  GSQuestion3 =
+    "Which countries are currently where BitVelocity is operational?";
+  GSAnswer1 =
+    "BitVelocity is a secure, real-time, social, crypto trading solution for digital assets.";
+  GSAnswer2 = "To get started, you can start sign up process";
+  GSAnswer3 =
+    "BitVelocity is currently functional in UK, Euro, and US. Soon our platform will go in many other countries.";
+
+  AMQuestion1 = "How to create an account?";
+  AMQuestion2 = "How to retrieve a lost password?";
+  AMQuestion3 = "How to setup two-factor authentication?";
+  AMAnswer1 = "You can create an account on our platform by signing up";
+  AMAnswer2 = `You can retrive your lost password by giving us the recovery email on password-recovery page here. 
+ We will send you an email with a code then you can give us that code back to create a new password.`;
+  AMAnswer3 =
+    "We support Google Authenticator for two-factor authentication. You can setup 2FA under your account. ";
+
+  TradeQuestion1 = "How do I buy crypto assets?";
+  TradeQuestion2 = "How do I buy sell assets?";
+  TradeQuestion3 = "What is the minimum amount for purchasing?";
+  TradeAnswer1 = `First, you need to register on our site. Then, you need to get KYC verified. Once verification process is completed, your account is available for 
+ funding fiat deposits`;
+  TradeAnswer2 = `First, you need to register on our site. Then, you need to get KYC verified. Once verification process is completed, your account is available for 
+ funding fiat deposits`;
+  TradeAnswer3 = "The minimum trading limit is 10£.";
+
+  FeesQuestion1 = "What is the deposit fee?";
+  FeesQuestion2 = "What is the withdrawl fee while trading on BitVelocity?";
+  FeesQuestion3 = "Are there any other charges?";
+  FeesAnswer1 = "";
+  FeesAnswer2 = "";
+  FeesAnswer3 =
+    "We charge on deposits and withdrawls plus there is a small charge on each buy and sell trade.";
+
+  SecurityQuestion1 = "What is KYC?";
+  SecurityQuestion2 = "How can I get KYC verified on BitVelocity?";
+  SecurityQuestion3 = "How are my assets kept secured?";
+  SecurityAnswer1 =
+    "KYC means Know Your Customer. It is a procedure to identify clients and source of income as per the regulations of corresoponding jurisdiction.";
+  SecurityAnswer2 =
+    "To get KYC verified, you need to upload your identity documents, proof of address and source of income.";
+  SecurityAnswer3 = `We keep 95% of assets in storage. We have great record of providing security to our customers, and is safe from external hacks since the first day. 
+ For security reasons, we don't offer crypto withdrawls on trading platform. Users have to make a withdrawl request on email for crypto withdrawls, and it is only done after verification of each withdrawl requests.`;
+
+  PayQuestion1 = "What payment methods are available?";
+  PayQuestion2 = "How long does it take to recieve bank deposits?";
+  PayQuestion3 = "How long does it take to recieve payment?";
+  PayAnswer1 =
+    "We are currently supporting bank deposits. However, we will be support credit and debit card in near future.";
+  PayAnswer2 =
+    "Within UK, we aim to credit the deposits within the week of receiving the payment. For EU and US customers, it can take upto 2 to 4 weeks to recieve deposit.";
+  PayAnswer3 =
+    "Within UK, we aim to credit the withdrawls within the week of receiving the payment. For EU and US customers, it can take upto 2 to 4 weeks to recieve withdrawls.";
+
+  ///////////////////////////////////////////////////////////////////////////////////
+
+  BitVelocityMail = "fk@bitvelocity.io";
+  Contact = "Contact";
 }
