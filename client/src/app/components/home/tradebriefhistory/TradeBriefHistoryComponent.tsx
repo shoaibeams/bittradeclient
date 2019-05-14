@@ -83,7 +83,7 @@ export default class TradeBriefHistoryComponent extends BaseComponent {
               : null}
           </Tabs>
         )}
-        <div className="gx-text-center trading-box gx-mb-4">
+        <div className="gx-text-center trading-box gx-mb-4 shake-horizontal">
           <Link
             to={
               this.g.isLoggedIn
