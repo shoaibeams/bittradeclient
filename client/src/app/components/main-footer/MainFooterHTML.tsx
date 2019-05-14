@@ -48,6 +48,16 @@ export default class MainFooter extends BaseComponent {
                         {/* <i className="fa fa-twitter" aria-hidden="true"></i> */}
                       </a>
                     </li>
+                    <li>
+                      <a href="#" className="yt">
+                        {FontAwesome.faIcon("youtube")}
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="insta">
+                        {FontAwesome.faIcon("instagram")}
+                      </a>
+                    </li>
                   </ul>
                   <p className="p">
                     <Link to={this.getLink(this.constants.RoutePaths.Home)}>
@@ -86,32 +96,16 @@ export default class MainFooter extends BaseComponent {
         heading: this.lang.Features,
         children: [
           {
-            title: this.lang.Trading,
-            link: this.g.isLoggedIn
-              ? this.getLink(this.constants.RoutePaths.Trade)
-              : this.getLink(this.constants.RoutePaths.Login)
+            title: this.lang.TradeDemo,
+            link: this.getLink(this.constants.RoutePaths.Trading)
           },
           {
-            title: this.lang.Funding,
-            link: this.g.isLoggedIn
-              ? this.getLink(this.constants.RoutePaths.Funding)
-              : this.getLink(this.constants.RoutePaths.Login)
+            title: this.lang.InvestorsZone,
+            link: this.getLink(this.constants.RoutePaths.InvestorsZone)
           },
           {
-            title: this.lang.Deposit,
-            link: this.g.isLoggedIn
-              ? this.getLink(this.constants.RoutePaths.FundingDeposit)
-              : this.getLink(this.constants.RoutePaths.Login)
-          },
-          {
-            title: this.lang.Withdraw,
-            link: this.g.isLoggedIn
-              ? this.getLink(this.constants.RoutePaths.FundingWithdrawal)
-              : this.getLink(this.constants.RoutePaths.Login)
-          },
-          {
-            title: this.lang.ManageWallets,
-            link: "#"
+            title: this.lang.OurFees,
+            link: this.getLink(this.constants.RoutePaths.OurFees)
           }
         ]
       },
@@ -120,29 +114,16 @@ export default class MainFooter extends BaseComponent {
         children: [
           {
             title: this.lang.MarketStatistics,
-            link: "#"
+            link: this.getLink(this.constants.RoutePaths.Market)
           },
           {
             title: this.lang.Security,
-            link: "#"
+            link: this.getLink(this.constants.RoutePaths.Security)
           },
-          {
-            title: this.lang.HowItWorks,
-            link:
-              this.getLink(this.constants.RoutePaths.Home) +
-              "#" +
-              this.constants.Ids.HowItWorks
-          },
-          {
-            title: this.lang.OurFees,
-            link:
-              this.getLink(this.constants.RoutePaths.Home) +
-              "#" +
-              this.constants.Ids.OurFees
-          },
+
           {
             title: this.lang.AboutUs,
-            link: "#"
+            link: this.getLink(this.constants.RoutePaths.AboutUs)
           }
         ]
       },
@@ -151,11 +132,15 @@ export default class MainFooter extends BaseComponent {
         children: [
           {
             title: this.lang.SupportCenter,
-            link: "#"
+            link: this.getLink(this.constants.RoutePaths.Support)
           },
           {
             title: this.lang.KnowledgeBase,
-            link: "#"
+            link: this.getLink(this.constants.RoutePaths.KnowledgeBase)
+          },
+          {
+            title: this.lang.FAQ,
+            link: this.getLink(this.constants.RoutePaths.FAQ)
           }
         ]
       }

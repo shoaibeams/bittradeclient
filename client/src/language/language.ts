@@ -882,4 +882,6 @@ export interface LanguageBase {
   ////////////////////////////////////////////////////////////////////////////////
   InvestorZonePara: string;
   STO: string;
+  TradeDemo: string;
+  InvestorsZone: string;
 }

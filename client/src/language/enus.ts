@@ -1314,4 +1314,7 @@ below to re-send`;
 
   BitVelocityMail = "fk@bitvelocity.io";
   Contact = "Contact";
+
+  InvestorsZone = "Investors Zone";
+  TradeDemo = "Trade Demo";
 }
