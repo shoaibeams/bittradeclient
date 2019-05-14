@@ -67,6 +67,7 @@ export default class SignUpComponent extends BaseComponent {
             null,
             <>
               {this.lang.IAgree}
+              &nbsp;
               <Link
                 className="gx-login-form-forgot"
                 to={this.getLink(this.constants.RoutePaths.Home)}
