@@ -75,7 +75,7 @@ export default class ANTDControls {
           </React.Fragment>
         );
       }
-      return <>{e}</>;
+      return <React.Fragment key={i}>{e}</React.Fragment>;
     });
     if (control.errors.length < 1) {
       errors = null;
@@ -255,6 +255,9 @@ export default class ANTDControls {
       if (control.type == InputTypes.Number) {
         return numberInput(control);
       } else if (control.type == InputTypes.Label) {
+        if (typeof control.render === "function") {
+          return control.render(control);
+        }
         return (
           <>
             <label id={id} style={{ width: "100%" }}>
@@ -363,9 +366,11 @@ export default class ANTDControls {
   labelFormItem = (
     control: mdFormControl,
     label: boolean = false,
-    formItemLayout: any = {}
+    formItemLayout: any = {},
+    render?
   ) => {
     control.type = InputTypes.Label;
+    control.render = render;
     return this.formItemInput(control, label, InputTypes.Text, formItemLayout);
   };
 
@@ -380,13 +385,10 @@ export default class ANTDControls {
     placeholder: string = ""
   ) => {
     control.type = InputTypes.Number;
-    control.min = min;
-    control.max = max;
+    control.min = isNaN(min) ? 0 : min;
+    control.max = isNaN(max) ? 0 : max;
+    control.step = isNaN(step) ? 1 : step;
     control.placeholder = placeholder;
-    if (isNaN(step)) {
-      step = 1;
-    }
-    control.step = step;
     return this.formItemInput(control, label, onInput, formItemLayout);
   };
 
@@ -499,6 +501,21 @@ export default class ANTDControls {
     );
   }
 
+  colmd3(children) {
+    return (
+      <Col
+        //key={this.instance.generateDynamicKey()}
+        xs={12}
+        sm={12}
+        md={3}
+        lg={3}
+        xl={3}
+      >
+        {children}
+      </Col>
+    );
+  }
+
   colmd4(children) {
     return (
       <Col
@@ -593,6 +610,21 @@ export default class ANTDControls {
     );
   }
 
+  colmd9(children) {
+    return (
+      <Col
+        //key={this.instance.generateDynamicKey()}
+        xs={12}
+        sm={12}
+        md={9}
+        lg={9}
+        xl={9}
+      >
+        {children}
+      </Col>
+    );
+  }
+
   colsm12(
     children,
     noPaddingLeft = false,
@@ -625,6 +657,54 @@ export default class ANTDControls {
         md={12}
         lg={12}
         xl={12}
+      >
+        {children}
+      </Col>
+    );
+  }
+
+  colsm6(children) {
+    return (
+      <Col
+        //key={this.instance.generateDynamicKey()}
+        xs={6}
+        sm={6}
+        md={6}
+        lg={6}
+        xl={6}
+      >
+        {children}
+      </Col>
+    );
+  }
+
+  colsm8(children) {
+    return (
+      <Col
+        //key={this.instance.generateDynamicKey()}
+        xs={8}
+      >
+        {children}
+      </Col>
+    );
+  }
+
+  colsm16(children) {
+    return (
+      <Col
+        //key={this.instance.generateDynamicKey()}
+        xs={16}
+      >
+        {children}
+      </Col>
+    );
+  }
+
+  colsm18(children) {
+    return (
+      <Col
+        //key={this.instance.generateDynamicKey()}
+        xs={18}
       >
         {children}
       </Col>
@@ -670,6 +750,21 @@ export default class ANTDControls {
         md={16}
         lg={16}
         xl={16}
+      >
+        {children}
+      </Col>
+    );
+  }
+
+  colmd18(children) {
+    return (
+      <Col
+        //key={this.instance.generateDynamicKey()}
+        xs={24}
+        sm={24}
+        md={18}
+        lg={18}
+        xl={18}
       >
         {children}
       </Col>

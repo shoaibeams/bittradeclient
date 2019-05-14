@@ -38,8 +38,8 @@ export enum SelectSizes {
   large = "large"
 }
 export enum AccountTypes {
-  Individual = 1,
-  Business = 2
+  Individual = "individual",
+  Business = "business"
 }
 export enum NavMenuTypes {
   Sidebar = 1,

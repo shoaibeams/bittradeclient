@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseComponent } from "../../base/BaseComponent";
 import { AccountTypes } from "../../../../enums/general";
-import { Button, Table, Card, Row, Col, Badge } from "antd";
+import { Button, Table, Card, Row, Col, Badge, Radio } from "antd";
 import Widget from "../../../../components/Widget";
 import { Link } from "react-router-dom";
 import WidgetHeader from "../../../../components/WidgetHeader";
@@ -19,17 +19,38 @@ import {
   mdDocumentHistoryRequest,
   mdDocument
 } from "../../../../models/document";
+import { StaticHelper } from "../../../../shared/static-helper";
+import AccountTypeSelectionComponent from "./account-type-selection/AccountTypeSelectionComponent";
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 
 export default class KYCComponent extends BaseComponent {
   render() {
-    if (this.state.currentProof == null) {
+    if (this.state.accountType == null) {
+      return (
+        <AccountTypeSelectionComponent
+          {...this.props}
+          params={{
+            onSelect: accountType => {
+              this.setStateBasedOnAccountType(
+                accountType,
+                this.updateProofStatuses
+              );
+            }
+          }}
+        />
+      );
+    } else if (this.state.currentProof == null) {
       return (
         <>
-          <WidgetHeader
-            styleName="gx-flex-row"
-            title={this.lang.Verification}
-            extra={null}
-          />
+          {this.getHeaderTopRightCorner()}
+          {/* <div>
+            <WidgetHeader
+              styleName="gx-flex-row"
+              title={this.lang.Verification}
+              extra={null}
+            /> */}
+          {/* </div> */}
           <Row>
             {this.state.proofs.map((p, i) => {
               return this.antd.colmd8(
@@ -72,7 +93,7 @@ export default class KYCComponent extends BaseComponent {
         <VerificationComponent
           {...this.props}
           params={{
-            accountType: this.accountType,
+            accountType: this.state.accountType,
             docs: proof.docs,
             doc: proof.doc,
             proof: proof.type,
@@ -86,66 +107,140 @@ export default class KYCComponent extends BaseComponent {
     }
   }
 
-  accountType: AccountTypes;
+  getHeaderTopRightCorner = () => {
+    let statuses = this.state.statuses;
+    if (!statuses) {
+      statuses = {};
+    } else if (
+      statuses[AccountTypes.Individual] &&
+      statuses[AccountTypes.Business]
+    ) {
+      return (
+        <div className="gx-mb-3 gx-text-right">
+          <RadioGroup
+            onChange={e => {
+              this.setStateBasedOnAccountType(
+                e.target.value,
+                this.updateProofStatuses
+              );
+            }}
+            value={this.state.accountType}
+          >
+            <RadioButton value={AccountTypes.Individual}>
+              <img className="" src={this.individualLogo} alt="birds" />
+              &nbsp;
+              {this.lang.Individual}
+            </RadioButton>
+            <RadioButton value={AccountTypes.Business}>
+              <img className="" src={this.businessLogo} alt="birds" />
+              &nbsp;
+              {this.lang.Business}
+            </RadioButton>
+          </RadioGroup>
+        </div>
+      );
+    } else {
+      return (
+        <div className="gx-mb-3 gx-text-right">
+          {this.state.accountType == AccountTypes.Business ? (
+            <>
+              <span>{this.lang.AccountType}:</span>&nbsp;
+              <img className="" src={this.businessLogo} alt="birds" />
+              &nbsp;
+              {this.lang.Business}
+            </>
+          ) : (
+            <>
+              <span>{this.lang.AccountType}:</span>&nbsp;
+              <img className="" src={this.individualLogo} alt="birds" />
+              &nbsp;
+              {this.lang.Individual}
+            </>
+          )}
+          &nbsp;
+          <Button
+            type="primary"
+            onClick={_ => {
+              this.updateState({ accountType: null });
+            }}
+          >
+            {this.lang.Change}
+          </Button>
+        </div>
+      );
+    }
+  };
+
+  identityDocs = [];
+  addressDocs = [];
+  incomeDocs = [];
+  individualLogo = "/assets/images/boss24x24.png";
+  businessLogo = "/assets/images/online-store24x24.png";
   constructor(props) {
     super(props);
     this.init();
   }
 
   init() {
-    this.accountType = this.p.accountType;
-    if (!this.accountType) {
+    let accountType = this.p.accountType as AccountTypes;
+    if (!accountType) {
       //load default account type from server
-      this.accountType = AccountTypes.Individual;
+      accountType = AccountTypes.Individual;
     }
-    let identityDocs = [];
-    if (this.accountType == AccountTypes.Business) {
-      identityDocs.push(
+    this.identityDocs = [];
+    if (accountType == AccountTypes.Business) {
+      this.identityDocs.push(
         DocumentTypesWithNames.BusinessIncorporationCertificate
       );
-      identityDocs.push(DocumentTypesWithNames.MemorandumOfAssociation);
+      this.identityDocs.push(DocumentTypesWithNames.MemorandumOfAssociation);
     } else {
-      identityDocs.push(DocumentTypesWithNames.Passport);
-      identityDocs.push(DocumentTypesWithNames.NIC);
-      identityDocs.push(DocumentTypesWithNames.ResidentPermit);
+      this.identityDocs.push(DocumentTypesWithNames.Passport);
+      this.identityDocs.push(DocumentTypesWithNames.NIC);
+      this.identityDocs.push(DocumentTypesWithNames.ResidentPermit);
     }
 
-    let addressDocs = [];
-    if (this.accountType == AccountTypes.Business) {
+    this.addressDocs = [];
+    if (accountType == AccountTypes.Business) {
       let bankStatement = DocumentTypesWithNames.BankStatement;
       bankStatement.title = this.lang.Business + " " + bankStatement.title;
-      addressDocs.push(bankStatement);
-      addressDocs.push(DocumentTypesWithNames.UtilityBill);
-      addressDocs.push(DocumentTypesWithNames.Tax);
+      this.addressDocs.push(bankStatement);
+      this.addressDocs.push(DocumentTypesWithNames.UtilityBill);
+      this.addressDocs.push(DocumentTypesWithNames.Tax);
     } else {
-      addressDocs.push(DocumentTypesWithNames.DrivingLicense);
-      addressDocs.push(DocumentTypesWithNames.UtilityBill);
-      addressDocs.push(DocumentTypesWithNames.Tax);
+      this.addressDocs.push(DocumentTypesWithNames.DrivingLicense);
+      this.addressDocs.push(DocumentTypesWithNames.UtilityBill);
+      this.addressDocs.push(DocumentTypesWithNames.Tax);
     }
 
-    let incomeDocs = [];
-    if (this.accountType == AccountTypes.Business) {
+    this.incomeDocs = [];
+    if (accountType == AccountTypes.Business) {
       let bankStatement = DocumentTypesWithNames.BankStatement;
       bankStatement.title = this.lang.Business + " " + bankStatement.title;
-      incomeDocs.push(bankStatement);
+      this.incomeDocs.push(bankStatement);
     } else {
-      incomeDocs.push(DocumentTypesWithNames.WagesSlip);
-      incomeDocs.push(DocumentTypesWithNames.BankStatement);
+      this.incomeDocs.push(DocumentTypesWithNames.WagesSlip);
+      this.incomeDocs.push(DocumentTypesWithNames.BankStatement);
     }
 
-    this.state = {
+    this.setStateBasedOnAccountType(accountType);
+    this.loadProofStatus();
+  }
+
+  setStateBasedOnAccountType = (accountType, callback?) => {
+    let state = {
       currentProof: null,
       statusChecked: false,
+      accountType,
       proofs: [
         {
           icon:
-            this.accountType == AccountTypes.Business
+            accountType == AccountTypes.Business
               ? "/assets/images/online-store128x128.png"
               : "/assets/images/boss128x128.png",
           title:
-            this.accountType == AccountTypes.Business
+            accountType == AccountTypes.Business
               ? this.lang.ProofOfBusiness
-              : this.accountType == AccountTypes.Individual
+              : accountType == AccountTypes.Individual
               ? this.lang.ProofOfIdentity
               : "",
           buttonText: this.lang.Verify,
@@ -158,9 +253,9 @@ export default class KYCComponent extends BaseComponent {
               "?" +
               this.constants.QueryParams.aType +
               "=" +
-              this.accountType
+              accountType
           ),
-          docs: identityDocs,
+          docs: this.identityDocs,
           basicInfoComponent: BasicInfoFormComponent,
           type: ProofTypes.Identity
         },
@@ -177,9 +272,9 @@ export default class KYCComponent extends BaseComponent {
               "?" +
               this.constants.QueryParams.aType +
               "=" +
-              this.accountType
+              accountType
           ),
-          docs: addressDocs,
+          docs: this.addressDocs,
           basicInfoComponent: AddressInfoFormComponent,
           type: ProofTypes.Address
         },
@@ -197,16 +292,16 @@ export default class KYCComponent extends BaseComponent {
               "?" +
               this.constants.QueryParams.aType +
               "=" +
-              this.accountType
+              accountType
           ),
-          docs: incomeDocs,
+          docs: this.incomeDocs,
           basicInfoComponent: IncomeInfoFormComponent,
           type: ProofTypes.income
         }
       ]
     };
-    this.loadProofStatus();
-  }
+    this.updateState(state, callback);
+  };
 
   getBadgeAndButtonText = (status: DocumentRecordStatuses) => {
     let badgeStatus = "default";
@@ -268,8 +363,20 @@ export default class KYCComponent extends BaseComponent {
     this.updateState({ currentProof: null });
   };
 
-  onDone = statuses => {
+  updateProofStatuses = () => {
     let proofs = this.state.proofs as any[];
+    let statuses = this.state.statuses[this.state.accountType];
+    if (!statuses) {
+      for (let i = 0; i < proofs.length; i++) {
+        statuses = StaticHelper.assignPropertyOfObject(
+          statuses,
+          proofs[i].type,
+          {
+            record_status: DocumentRecordStatuses.NotSubmitted
+          }
+        );
+      }
+    }
     let keys = Object.keys(statuses);
     for (let i = 0; i < keys.length; i++) {
       let proof = proofs.filter(m => m.type == keys[i]);
@@ -291,6 +398,17 @@ export default class KYCComponent extends BaseComponent {
       statusChecked: true,
       proofs: proofs
     });
+  };
+
+  onDone = statuses => {
+    let accountType = this.state.accountType;
+    if (
+      statuses.lastAccountType == AccountTypes.Business ||
+      statuses.lastAccountType == AccountTypes.Individual
+    ) {
+      accountType = statuses.lastAccountType;
+    }
+    this.updateState({ statuses, accountType }, this.updateProofStatuses);
   };
 
   loadProofStatus = () => {

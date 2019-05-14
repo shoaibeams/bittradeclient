@@ -5,15 +5,12 @@ import { StaticHelper } from "../../../shared/static-helper";
 import { mdFormControl } from "../../../shared/form-control";
 import { mdCallResponse } from "../../../models/call-response";
 import { mdSignUp, SignUpMetaData } from "../../../models/sign-up";
-import * as ValidationAttributes from "../../../shared/validation-attributes"
-import ReCAPTCHA from "react-google-recaptcha";
-import { StaticConstatns } from "../../../shared/constants";
-import { Form, Input, Checkbox, Button, Icon, } from "antd";
+import * as ValidationAttributes from "../../../shared/validation-attributes";
+import { Form, Input, Checkbox, Button, Icon } from "antd";
 import { InputTypes } from "../../../enums/general";
 const FormItem = Form.Item;
 
 export class LoginComponent extends BaseComponent {
-
   render() {
     this.initShorts();
     // const {getFieldDecorator} = this.props.form;
@@ -24,10 +21,15 @@ export class LoginComponent extends BaseComponent {
             <div className="gx-app-login-main-content">
               <div className="gx-app-logo-content">
                 <div className="gx-app-logo-content-bg" style={{}}>
-                  <img src="/assets/images/loginpic.jpeg" alt={this.lang.CryptoCoin} />
+                  <img
+                    src="/assets/images/loginpic.jpeg"
+                    alt={this.lang.CryptoCoin}
+                  />
                 </div>
                 <div className="gx-app-logo-wid">
-                  <h1><span>{this.lang.SignIn}</span></h1>
+                  <h1>
+                    <span>{this.lang.SignIn}</span>
+                  </h1>
                   <p>{this.lang.LoginPageSignupPara}</p>
                   <p>{this.lang.GetAnAccount}</p>
                 </div>
@@ -35,29 +37,35 @@ export class LoginComponent extends BaseComponent {
                   <img alt="BitVelocity" src="/assets/images/favicon.ico" />
                 </div> */}
                 <div className="gx-app-logo" style={{}}>
-                  <img src="/assets/images/logo.png" alt={this.lang.CryptoCoin} />
+                  <img
+                    src="/assets/images/logo.png"
+                    alt={this.lang.CryptoCoin}
+                  />
                 </div>
               </div>
               <div className="gx-app-login-content">
-                <h1 style={{ textAlign: 'center' }}>{this.lang.SignIn}</h1>
-                <Form onSubmit={this.onSubmit} className="gx-signin-form gx-form-row0">
-                  {
-                    this.antd.textFormItem(this.f.username)
-                  }
-                  {
-                    this.antd.passwordFormItem(this.f.password, false)
-                  }
+                <h1 style={{ textAlign: "center" }}>{this.lang.SignIn}</h1>
+                <Form
+                  onSubmit={this.onSubmit}
+                  className="gx-signin-form gx-form-row0"
+                >
+                  {this.antd.textFormItem(this.f.username)}
+                  {this.antd.passwordFormItem(this.f.password, false)}
                   <FormItem>
-                    {
-                      global.isDev ? (null) :
-                        this.captchaFormControl(this.f.captcha, this.handleCaptchaInput)
-                    }
+                    {global.isDev
+                      ? null
+                      : this.captchaFormControl(
+                          this.f.captcha,
+                          this.handleCaptchaInput
+                        )}
                   </FormItem>
                   <FormItem>
-                    <Button type="primary"
+                    <Button
+                      type="primary"
                       htmlType="submit"
                       disabled={this.state.diableSubmitButton}
-                      loading={this.state.diableSubmitButton}>
+                      loading={this.state.diableSubmitButton}
+                    >
                       {this.lang.Login}
                     </Button>
                     <span>
@@ -68,7 +76,11 @@ export class LoginComponent extends BaseComponent {
                     </span>
                   </FormItem>
                   <FormItem>
-                    <Link to={this.getLink(this.constants.RoutePaths.AccountForgotPassword)}>
+                    <Link
+                      to={this.getLink(
+                        this.constants.RoutePaths.AccountForgotPassword
+                      )}
+                    >
                       <span className="gx-signup-form-forgot gx-link">
                         {this.lang.ForgotPassword + this.lang.QuestionMark}
                       </span>
@@ -112,35 +124,61 @@ export class LoginComponent extends BaseComponent {
   }
 
   init() {
-    this.redirectURI = this.parsedLocation[this.constants.QueryParams.redirectURI];
+    this.redirectURI = this.parsedLocation[
+      this.constants.QueryParams.redirectURI
+    ];
     if (!this.redirectURI) {
       this.redirectURI = this.getLink(this.constants.RoutePaths.Trade);
     }
     this.model = new mdSignUp(true);
     this.state = {
       form: {
-        username: new mdFormControl(this.model.username, "username", this.lang.UserName, [
-          new ValidationAttributes.RequiredValidator(this.lang.RequiredFormat),
-          new ValidationAttributes.MaxLengthValidator(this.lang.MaxLengthFormat2,
-            SignUpMetaData.userNameMaxLength),
-        ], "user"),
-        password: new mdFormControl(this.model.password, "password", this.lang.Password, [
-          new ValidationAttributes.RequiredValidator(this.lang.RequiredFormat),
-          new ValidationAttributes.MaxLengthValidator(this.lang.MaxLengthFormat2,
-            SignUpMetaData.passwordMaxLength),
-        ], "lock"),
-        captcha: global.isDev ? null : new mdFormControl(null, "captcha", '', [
-          new ValidationAttributes.RequiredValidator(this.lang.CapitchaErrorMessage)
-        ]),
+        username: new mdFormControl(
+          this.model.username,
+          "username",
+          this.lang.UserName,
+          [
+            new ValidationAttributes.RequiredValidator(
+              this.lang.RequiredFormat
+            ),
+            new ValidationAttributes.MaxLengthValidator(
+              this.lang.MaxLengthFormat2,
+              SignUpMetaData.userNameMaxLength
+            )
+          ],
+          "user"
+        ),
+        password: new mdFormControl(
+          this.model.password,
+          "password",
+          this.lang.Password,
+          [
+            new ValidationAttributes.RequiredValidator(
+              this.lang.RequiredFormat
+            ),
+            new ValidationAttributes.MaxLengthValidator(
+              this.lang.MaxLengthFormat2,
+              SignUpMetaData.passwordMaxLength
+            )
+          ],
+          "lock"
+        ),
+        captcha: global.isDev
+          ? null
+          : new mdFormControl(null, "captcha", "", [
+              new ValidationAttributes.RequiredValidator(
+                this.lang.CapitchaErrorMessage
+              )
+            ])
       },
       diableSubmitButton: false,
       showSubmitResponse: false,
-      submitResponseClass: 'text-danger',
-      submitResponse: '',
-    }
+      submitResponseClass: "text-danger",
+      submitResponse: ""
+    };
   }
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault();
     this.showErrors = true;
     // let captchaToken = this.captchaRef.current.getValue();
@@ -149,50 +187,72 @@ export class LoginComponent extends BaseComponent {
     //     return;
     // }
 
-    if (!this.validateForm('form')) {
+    if (!this.validateForm("form")) {
       this.log.debug("invalid form");
       return;
     }
 
     //everything is fine, now save the data
     this.updateState({
-      submitResponse: '',
+      submitResponse: "",
       diableSubmitButton: true
-    })
+    });
     let formData: mdSignUp = this.getFormData(this.state.form) as mdSignUp;
-    this.http.post<mdCallResponse>(this.constants.EndPoints.PostAuthLogin, formData).then((res: mdCallResponse) => {
-      this.log.debug(res);
-      if (res) {
-        if (res.isSuccess) {
-          //signup completed, now sign in
-          if (res.extras) {
-            if (res.extras.status == this.constants.RecordStatus.PendingVerification) {
-              let emailConfirmationRout = "<a href='" + this.constants.RoutePaths.EmailConfirmation + "?" + this.constants.QueryParams.email + "=em'>" + this.lang.Here + "</a>"
-              res.message = StaticHelper.formatString(this.lang.EmailVerificationRequired, emailConfirmationRout);
+    this.http
+      .post<mdCallResponse>(this.constants.EndPoints.PostAuthLogin, formData)
+      .then((res: mdCallResponse) => {
+        this.log.debug(res);
+        if (res) {
+          if (res.isSuccess) {
+            //signup completed, now sign in
+            if (res.extras) {
+              if (
+                res.extras.status ==
+                this.constants.RecordStatus.PendingVerification
+              ) {
+                let emailConfirmationRout =
+                  "<a href='" +
+                  this.constants.RoutePaths.EmailConfirmation +
+                  "?" +
+                  this.constants.QueryParams.email +
+                  "=em'>" +
+                  this.lang.Here +
+                  "</a>";
+                res.message = StaticHelper.formatString(
+                  this.lang.EmailVerificationRequired,
+                  emailConfirmationRout
+                );
 
-              this.hideSpinnerAndShowError(this.bulletList(res.message.split("\n")));
-            }
-            else {
-              if (this.redirectURI) {
-                window.location.href = this.redirectURI;
+                this.hideSpinnerAndShowError(
+                  this.bulletList(res.message.split("\n"))
+                );
+              } else {
+                if (this.redirectURI) {
+                  window.location.href = this.redirectURI;
+                } else {
+                  window.location.href = this.getLink(
+                    this.constants.RoutePaths.Trade
+                  );
+                }
               }
-              else {
-                window.location.href = this.getLink(this.constants.RoutePaths.Trade);
-              }
             }
+          } else {
+            this.errorNotification(
+              this.bulletList(res.message.split("\n")),
+              this.lang.Alert
+            );
+            this.hideSpinnerAndShowError(
+              this.bulletList(res.message.split("\n"))
+            );
           }
         }
-        else {
-          this.errorNotification(this.bulletList(res.message.split("\n")), this.lang.Alert);
-          this.hideSpinnerAndShowError(this.bulletList(res.message.split("\n")));
-        }
-      }
-      this.hideMainSpinner();
-    }).catch((error) => {
-      this.log.debug(error);
-      this.hideSpinnerAndShowError();
-    });
-  }
+        this.hideMainSpinner();
+      })
+      .catch(error => {
+        this.log.debug(error);
+        this.hideSpinnerAndShowError();
+      });
+  };
 
   hideSpinnerAndShowError(message = null) {
     if (!message) {
@@ -203,9 +263,8 @@ export class LoginComponent extends BaseComponent {
       diableSubmitButton: false,
       showSubmitResponse: true,
       submitResponse: message
-    })
+    });
   }
-
 }
 
 export default LoginComponent;

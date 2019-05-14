@@ -17,6 +17,7 @@ import {
   ValidationAttributeResponse,
   Validation
 } from "../../../shared/validations";
+import moment from "moment";
 
 export class BasicBaseComponent extends React.Component<mdProps, any> {
   constants: Constants;
@@ -92,6 +93,12 @@ export class BasicBaseComponent extends React.Component<mdProps, any> {
         callback
       );
     }
+  }
+
+  updateStatePromise(state) {
+    return new Promise(resolve => {
+      this.updateState(state, resolve);
+    });
   }
 
   componentWillUnmount = () => {
@@ -189,7 +196,7 @@ export class BasicBaseComponent extends React.Component<mdProps, any> {
     return StaticHelper.emptyNaN(value);
   }
 
-  handleFormControlInput = (field, e, callback) => {
+  handleFormControlInput = (field, e, callback?) => {
     if (!e) {
       return;
     }
@@ -198,33 +205,22 @@ export class BasicBaseComponent extends React.Component<mdProps, any> {
       e.target.value,
       callback
     );
-    // if (this.isNullOrEmpty(formName)) {
-    //   formName = this.defaultFormName;
-    // }
-    // let form = this.state[formName];
-    // form[field].value = e.target.value;
-    // if (formName == this.defaultFormName) {
-    //   if (this.showErrors) {
-    //     form[field] = this.validateFormControl(form[field]);
-    //   }
-    // }
-    // else {
-    //   if (form.showErrors) {
-    //     form[field] = this.validateFormControl(form[field]);
-    //   }
-    // }
-    // let state = this.state;
-    // StaticHelper.assignPropertyOfObject(state, formName, form);
-    // this.updateState({ ...state });
   };
 
-  handleFormControlInputWithValue = (field, value, callback?) => {
+  getNewStateForControlInput = (field, value) => {
     let formName = this.defaultFormName;
     let form = this.state[formName];
     let control = form[field] as mdFormControl;
     if (control.type == Enums.InputTypes.Number) {
       if (!this.isNullOrEmpty(value)) {
         value = parseFloat(value);
+      }
+    }
+    if (control.type == Enums.InputTypes.Date) {
+      if (!this.isNullOrEmpty(value)) {
+        control.placeholder = StaticHelper.shortDateFormat(
+          moment(value).toDate()
+        );
       }
     }
     form[field].value = value;
@@ -239,7 +235,12 @@ export class BasicBaseComponent extends React.Component<mdProps, any> {
     }
     let state = this.state;
     StaticHelper.assignPropertyOfObject(state, formName, form);
-    this.updateState({ ...state }, callback);
+    return state;
+  };
+
+  handleFormControlInputWithValue = (field, value, callback?) => {
+    let state = this.getNewStateForControlInput(field, value);
+    return this.updateStatePromise(state).then(callback);
   };
 
   validateFormControl(control: mdFormControl) {

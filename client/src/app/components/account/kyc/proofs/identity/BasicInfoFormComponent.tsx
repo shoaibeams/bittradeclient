@@ -14,6 +14,7 @@ import {
 } from "../../../../../../shared/validation-attributes";
 import { mdKeyValue } from "../../../../../../models/key-value";
 import { StaticHelper } from "../../../../../../shared/static-helper";
+import moment from "moment";
 
 export default class BasicInfoFormComponent extends BaseComponent {
   render() {
@@ -98,7 +99,15 @@ export default class BasicInfoFormComponent extends BaseComponent {
     this.accountType = this.p.accountType;
     this.genderSource = StaticHelper.objectKeyValueArrayArray(Genders);
     this.model = this.p.docDetails;
-    if (!this.model) {
+    let dob: any;
+    if (this.model) {
+      if (this.model.dob) {
+        dob = moment(
+          new Date(this.model.dob),
+          this.constants.DefaultDateFormat
+        );
+      }
+    } else {
       this.model = new mdUserAccounts(true);
     }
     this.state = {
@@ -145,7 +154,7 @@ export default class BasicInfoFormComponent extends BaseComponent {
               ]
         ),
         dob: new mdFormControl(
-          this.model.dob,
+          dob,
           "dob",
           this.accountType == AccountTypes.Business
             ? this.lang.DateOfIncorporation
@@ -182,6 +191,11 @@ export default class BasicInfoFormComponent extends BaseComponent {
       return;
     }
     let formData = this.getFormData(this.state.form) as mdUserAccounts;
+    if (formData.dob) {
+      formData.dob = StaticHelper.toLocalDate(
+        moment(formData.dob, this.constants.DefaultDateFormat).toDate()
+      );
+    }
     this.p.onNext(formData);
   };
 }

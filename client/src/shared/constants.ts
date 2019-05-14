@@ -12,11 +12,11 @@ export class Constants {
     return this.getInstance();
   }
 
-  BaseURL: string = "http://localhost:1337"; //"https://api.bitvelocity.io";//"http://localhost:1337";
+  BaseURL: string = "http://localhost:1337"; //"https://api.bitvelocity.io"; //"http://localhost:1337";
   IsDev: boolean = this.BaseURL == "https://api.bitvelocity.io" ? false : true;
   SocketURL: string = "/stream";
   ResponseMessageTimeout = 4; //in seconds
-  RecaptchaSiteKey = StaticConstatns.RecaptchaSiteKey;
+  RecaptchaSiteKey = StaticConstants.RecaptchaSiteKey;
   MaxScale = 10;
   Float = Math.pow(10, this.MaxScale);
   MaxScaleToAvoidScientificNotation = 6;
@@ -24,8 +24,8 @@ export class Constants {
   DefaultValue = "|1|";
   LoadBriefHistoryTimeout = 15 * 1000; //15 seconds
   DefaultDateFormat = "DD/MM/YYYY";
-  SmallLeters = "a-z";
-  CapitalLeters = "A-Z";
+  SmallLetters = "a-z";
+  CapitalLetters = "A-Z";
   SpecialChars = "!@#$%^&*_";
   Numbers = "0-9";
   MaxFileUploadSize = 5; //5 mb
@@ -38,8 +38,8 @@ export class Constants {
     MinLength: `(?=^.{{0},}$)`,
     MaxLength: `(?=^.{,{0}}$)`,
     RangeLength: `(?=^.{{0},{1}}$)`,
-    MustContainSmallLetter: "(?=.*[" + this.SmallLeters + "])",
-    MustContainCapitalLetter: "(?=.*[" + this.CapitalLeters + "])",
+    MustContainSmallLetter: "(?=.*[" + this.SmallLetters + "])",
+    MustContainCapitalLetter: "(?=.*[" + this.CapitalLetters + "])",
     MustContainNumber: "(?=.*[" + this.Numbers + "])",
     MustContainSpecialChar: "(?=.*[" + this.SpecialChars + "])",
     CannotHaveSpace: "(?=^\\S*$)",
@@ -63,12 +63,19 @@ export class Constants {
     PostGetTrades: "/trade/getTrades",
     PostOrderHistory: "/trade/orderHistory",
     GetDepositableCurrencies: "/currencies/depositableCurrencies",
+    GetWithdrawableCurrencies: "/currencies/withdrawableCurrencies",
+    GetWithdrawalPreRequisites: "/withdrawal/preRequisites",
     PostDepositMethods: "/deposit/depositMethods",
     PostDepositRequest: "/deposit/depositRequest",
     PostDepositRequestHistory: "/deposit/depositRequestHistory",
     PostDepositReceipt: "/deposit/receipt",
+    PostWithdrawalRequestHistory: "/withdrawal/withdrawalRequestHistory",
+    PostSaveWithdrawalRequest: "/withdrawal/saveWithdrawalRequest",
+    GetUserBankAccounts: "/bankAccounts/userBankAccounts",
+    PostSaveBankAccount: "/bankAccounts/saveBankAccount",
     GetStreamSocket: "/stream",
     GetCountries: "/data/countries",
+    PostProfilePicture: "/auth/profilePicture",
     PostKYCSaveDocuments: "/kyc/saveDocuments",
     GetKYCProofsSummary: "/kyc/proofsSummary",
     PostKYCDocumentHistory: "/kyc/documentHistory",
@@ -86,20 +93,10 @@ export class Constants {
     LangKey: "langKey"
   };
   DefaultLangKey = this.LanguageKey.ENUS;
-  public NonHeaderRoutePaths = [StaticConstatns.RoutePaths.Consulting];
-  public NonFooterRoutePaths = [StaticConstatns.RoutePaths.Consulting];
-  public RoutePaths = StaticConstatns.RoutePaths;
-  public Ids = StaticConstatns.Ids;
-  // {
-  //     Login: StaticConstatns.RoutePaths.Login,
-  //     Home: StaticConstatns.RoutePaths.Home,
-  //     Trade: StaticConstatns.RoutePaths.Trade,
-  //     SignUp: StaticConstatns.RoutePaths.SignUp,
-  //     ContactUs: StaticConstatns.RoutePaths.ContactUs,
-  //     EmailConfirmation: StaticConstatns.RoutePaths.EmailConfirmation,
-  //     AccountVerify: StaticConstatns.RoutePaths.AccountVerify,
-  //     AccountForgotPassword: StaticConstatns.RoutePaths.AccountForgotPassword,
-  // }
+  public NonHeaderRoutePaths = [StaticConstants.RoutePaths.Consulting];
+  public NonFooterRoutePaths = [StaticConstants.RoutePaths.Consulting];
+  public RoutePaths = StaticConstants.RoutePaths;
+  public Ids = StaticConstants.Ids;
   public QueryParams = {
     email: "email",
     redirectURI: "redirectURI",
@@ -133,12 +130,12 @@ export class Constants {
   ];
 }
 
-export class StaticConstatns {
+export class StaticConstants {
   static Ids = {
     HowItWorks: "how-it-works",
     OurFees: "our-fees"
   };
-  public static RoutePaths = new class {
+  public static RoutePaths = new (class {
     Login: string;
     Home: string;
     Trade: string;
@@ -154,8 +151,10 @@ export class StaticConstatns {
     AccountPasswordRecovery: string;
     Consulting: string;
     Funding: string;
+    Deposit: string;
     FundingDeposit: string;
-    FundingWithdrawl: string;
+    Withdrawal: string;
+    FundingWithdrawal: string;
     Proofs: string;
     Identity: string;
     AccountVerificationProofsIdentity: string;
@@ -189,9 +188,11 @@ export class StaticConstatns {
       this.AccountPasswordRecovery = "/account/passwordRecovery";
       this.Consulting = "https://consulting.bitvelocity.io";
       this.Funding = "/funding";
-      this.FundingDeposit = "/funding/deposit";
-      this.FundingWithdrawl = "/funding/withdrawl";
+      this.Deposit = "/deposit";
+      this.Withdrawal = "/withdrawal";
+      this.FundingDeposit = this.Funding + this.Deposit;
+      this.FundingWithdrawal = this.Funding + this.Withdrawal;
     }
-  }();
+  })();
   public static RecaptchaSiteKey = "6Lfab3YUAAAAANbb2Lp1WYVMiwyUSCLyeZkbw5HK";
 }

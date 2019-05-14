@@ -55,6 +55,9 @@ class NavMenuComponent extends BaseComponent {
   }
 
   FirstContainer = (navMenuType: NavMenuTypes, navStyle, item, children) => {
+    if (item.name == "exchange") {
+      this.log.debug(item);
+    }
     if (navMenuType == NavMenuTypes.Topbar) {
       let titleInner = () => (
         <>
@@ -83,7 +86,7 @@ class NavMenuComponent extends BaseComponent {
       );
     } else {
       let titleInner = () => (
-        <>
+        <div>
           {item.children.length < 1 ? (
             <img
               width="17"
@@ -93,7 +96,7 @@ class NavMenuComponent extends BaseComponent {
             />
           ) : null}
           {item.text}
-        </>
+        </div>
       );
       return item.children.length > 0 ? (
         <SubMenu
@@ -117,14 +120,7 @@ class NavMenuComponent extends BaseComponent {
         //   }
         // </MenuItemGroup>
         <Menu.Item className="gx-text-left" key={item.name}>
-          <div style={{ color: "white !important" }}>
-            {this.linkOrA(
-              item.href,
-              item.routerLink,
-              titleInner(),
-              item.newTab
-            )}
-          </div>
+          {this.linkOrA(item.href, item.routerLink, titleInner(), item.newTab)}
         </Menu.Item>
       );
     }
@@ -257,22 +253,31 @@ class NavMenuComponent extends BaseComponent {
     };
     let exchange = {
       name: "exchange",
+      routerLink: Constants.Instance.RoutePaths.Trade,
       icon: "/assets/images/exchange-icon.png",
       alt: this.lang.Exchange,
       text: this.lang.Exchange,
       requireLogin: true,
-      children: [
-        {
-          name: Constants.Instance.RoutePaths.Trade.substr(1),
-          routerLink: Constants.Instance.RoutePaths.Trade,
-          icon: "money-bill-wave",
-          alt: this.lang.Trade,
-          text: this.lang.Trade,
-          requireLogin: true,
-          children: []
-        }
-      ]
+      children: []
     };
+    // let exchange = {
+    //   name: "exchange",
+    //   icon: "/assets/images/exchange-icon.png",
+    //   alt: this.lang.Exchange,
+    //   text: this.lang.Exchange,
+    //   requireLogin: true,
+    //   children: [
+    //     {
+    //       name: Constants.Instance.RoutePaths.Trade.substr(1),
+    //       routerLink: Constants.Instance.RoutePaths.Trade,
+    //       icon: "money-bill-wave",
+    //       alt: this.lang.Trade,
+    //       text: this.lang.Trade,
+    //       requireLogin: true,
+    //       children: []
+    //     }
+    //   ]
+    // };
     let funding = {
       name: "funding",
       icon: "/assets/images/funds.png",
@@ -290,11 +295,11 @@ class NavMenuComponent extends BaseComponent {
           children: []
         },
         {
-          name: Constants.Instance.RoutePaths.FundingWithdrawl.substr(1),
-          routerLink: Constants.Instance.RoutePaths.FundingWithdrawl,
+          name: Constants.Instance.RoutePaths.FundingWithdrawal.substr(1),
+          routerLink: Constants.Instance.RoutePaths.FundingWithdrawal,
           icon: "angle-double-down",
-          alt: this.lang.Withdrawl,
-          text: this.lang.Withdrawl,
+          alt: this.lang.Withdrawal,
+          text: this.lang.Withdrawal,
           requireLogin: true,
           children: []
         }
@@ -382,7 +387,11 @@ class NavMenuComponent extends BaseComponent {
         }
       ]
     };
-    return [home, exchange, funding, blockchain, consulting, help];
+    let navItems = [];
+    if (!this.g.isLoggedIn) {
+      navItems.push(home);
+    }
+    return [...navItems, exchange, funding, blockchain, consulting, help];
     // if(this.g.isLoggedIn)
     // {
     //   return [trade, charts, funding, help];

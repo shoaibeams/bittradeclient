@@ -27,6 +27,8 @@ library.add(
   solidSVGIcons.faQuestion,
   solidSVGIcons.faFileSignature,
   solidSVGIcons.faArrowLeft,
+  solidSVGIcons.faSave,
+  solidSVGIcons.faTimes,
   solidSVGIcons.faInbox
 );
 

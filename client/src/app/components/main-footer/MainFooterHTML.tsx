@@ -106,7 +106,7 @@ export default class MainFooter extends BaseComponent {
           {
             title: this.lang.Withdraw,
             link: this.g.isLoggedIn
-              ? this.getLink(this.constants.RoutePaths.FundingWithdrawl)
+              ? this.getLink(this.constants.RoutePaths.FundingWithdrawal)
               : this.getLink(this.constants.RoutePaths.Login)
           },
           {

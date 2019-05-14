@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Button, Dropdown, Icon, Layout, Menu, message, Popover } from "antd";
+import {
+  Button,
+  Dropdown,
+  Icon,
+  Layout,
+  Menu,
+  message,
+  Popover,
+  Row
+} from "antd";
 import { connect } from "react-redux";
 
 import UserInfo from "../../../components/UserInfo";
@@ -12,6 +21,10 @@ import {
 } from "../../../appRedux/actions/Setting";
 import { BaseComponent } from "../../../app/components/base/BaseComponent";
 import LanguageMenu from "../LanguageMenu";
+import { mdCurrencyPair } from "../../../models/currency-pair";
+import { mdCurrency } from "../../../models/currency";
+import { StaticHelper } from "../../../shared/static-helper";
+import moment from "moment";
 
 const { Header } = Layout;
 
@@ -29,17 +42,25 @@ function handleMenuClick(e) {
 
 class InsideHeader extends BaseComponent {
   state = {
-    searchText: ""
+    searchText: "",
+    currentSession: 0
   };
   headerDiv;
+  currentSessionTimer;
 
   componentDidMount = () => {
     this.isComponentMounted = true;
     window.addEventListener("resize", this.updateHeaderHeight);
+
+    //this timer is for updating state for current session timer
+    this.currentSessionTimer = setInterval(_ => {
+      this.updateState({ currentSession: ++this.state.currentSession });
+    }, 50);
   };
 
   componentUnMount() {
     window.removeEventListener("resize", this.updateHeaderHeight);
+    clearInterval(this.currentSessionTimer);
   }
 
   updateHeaderHeight = () => {
@@ -56,10 +77,77 @@ class InsideHeader extends BaseComponent {
     });
   };
 
+  currentSession = () => {
+    let currentSession = "";
+    if (this.g.sessionStartedOn) {
+      let seconds = moment().diff(moment(this.g.sessionStartedOn), "seconds");
+      // let duration = moment.duration(seconds, "seconds");
+      // currentSession =
+      //   duration.hours() + ":" + duration.minutes() + ":" + duration.seconds(); // StaticHelper.toTimehhmmss(duration);
+      let hours = Math.floor(seconds / 3600);
+      seconds %= 3600;
+      let minutes = Math.floor(seconds / 60);
+      seconds = seconds % 60;
+      if (hours < 10) {
+        hours = ("0" + hours) as any;
+      }
+      if (minutes < 10) {
+        minutes = ("0" + minutes) as any;
+      }
+      if (seconds < 10) {
+        seconds = ("0" + seconds) as any;
+      }
+      currentSession = hours + ":" + minutes + ":" + seconds;
+    }
+    return (
+      <div className="gx-text-right">
+        <span>{this.lang.CurrentTime}:</span>&nbsp;
+        {StaticHelper.toTimehhmmss(moment().toDate())}
+        <span className="gx-ml-3">{this.lang.CurrentSession}:</span>&nbsp;
+        {currentSession}
+      </div>
+    );
+  };
+
+  topBarContent = () => {
+    let cp = this.g.selectedCurrencyPair as mdCurrencyPair;
+    if (!cp) {
+      return null;
+    }
+    let currencies = this.g.currencies as mdCurrency[];
+    if (!currencies) {
+      return null;
+    }
+    let fc = currencies.filter(m => m.name == cp.fc_name)[0];
+    let tc = currencies.filter(m => m.name == cp.tc_name)[0];
+    if (!fc || !tc) {
+      return null;
+    }
+    let fcBalance = StaticHelper.subtract(fc.balance - fc.hold_balance);
+    fcBalance = fcBalance > 0 ? StaticHelper.unfloatAmount(fcBalance) : 0;
+    let tcBalance = StaticHelper.subtract(tc.balance - tc.hold_balance);
+    tcBalance = tcBalance > 0 ? StaticHelper.unfloatAmount(tcBalance) : 0;
+    return (
+      <div style={{ width: "100%", color: "white" }}>
+        {/* <div className="gx-text-center" >
+        </div> */}
+        <div className="gx-text-right">
+          <span>{this.lang.Balance}</span>&nbsp;
+          <span>{tc.name}:</span>&nbsp;
+          {tc.symbol + tcBalance.toFixed(tc.scale)}
+          <span className="gx-ml-3">{fc.name}:</span>&nbsp;
+          {fc.symbol + fcBalance.toFixed(fc.scale)}
+          <span className="gx-ml-3">{this.lang.LastLogon}:</span>&nbsp;
+          {StaticHelper.longDateFormat(this.g.lastLogon)}
+        </div>
+        {this.currentSession()}
+      </div>
+    );
+  };
+
   render() {
     const { locale, navCollapsed } = this.props as any;
     let lmnu = LanguageMenu(this.props);
-
     return (
       <div
         className="gx-header-horizontal gx-header-horizontal-dark gx-inside-header-horizontal"
@@ -67,20 +155,18 @@ class InsideHeader extends BaseComponent {
           this.headerDiv = element;
         }}
       >
-        <div className="gx-header-horizontal-top">
-          <div className="gx-container">
-            <div className="gx-header-horizontal-top-flex">
-              {/* <div className="gx-header-horizontal-top-left">
-                <i className="icon icon-alert gx-mr-3"/>
-                <p className="gx-mb-0 gx-text-truncate"><IntlMessages id="app.announced"/></p>
-              </div> */}
-              {/* <ul className="gx-login-list">
-                <li><Link to={this.getLink(this.constants.RoutePaths.Login)}>{this.lang.Login}</Link></li>
-                <li><Link to={this.getLink(this.constants.RoutePaths.SignUp)}>{this.lang.SignUp}</Link></li>
-              </ul> */}
+        {this.g.isLoggedIn ? (
+          <div className="gx-header-horizontal-top">
+            <div className="gx-container">
+              <div className="gx-header-horizontal-top-flex">
+                {this.topBarContent()}
+                {/* <p className="gx-mb-0 gx-text-truncate">
+                
+                </p> */}
+              </div>
             </div>
           </div>
-        </div>
+        ) : null}
 
         <Header className="gx-header-horizontal-main">
           <div className="gx-container">

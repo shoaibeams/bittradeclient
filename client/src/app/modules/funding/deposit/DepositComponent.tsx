@@ -1,24 +1,24 @@
 import * as React from "react";
-import { SearchableDropdownSettings } from "../shared/searchable-dropdown/searchable-dropdown-settings";
-import FileUploaderComponent from "../shared/file-uploader/FileUploaderComponent";
-import { mdFileUploaderConfig } from "../shared/file-uploader/file-uploader-config";
-import { BaseComponent } from "../../components/base/BaseComponent";
-import { mdDepositRequests } from "../../../models/deposit-requests";
-import { mdFeeSlabs } from "../../../models/fee-slabs";
-import { mdDepositMethods } from "../../../models/deposit-methods";
-import { mdFormControl } from "../../../shared/form-control";
-import { Transitions } from "../../../models/transitions";
-import { TransitionState } from "../../../enums/transition";
-import { StaticHelper } from "../../../shared/static-helper";
-import { mdDepositRequestHistory } from "../../../models/deposit-request-history";
-import { mdCallResponse } from "../../../models/call-response";
-import { mdDepositRequestHisotryRequest } from "../../../models/deposit-request-history-request";
-import * as ValidationAttributes from "../../../shared/validation-attributes";
-import * as EnumsFeeSlabs from "../../../enums/fee-slabs";
 import { Row, Card, Select, Table, Form, Col, Button, Tag } from "antd";
 import "./deposit-component.css";
-import { DepositRequestRecordStatuses } from "../../../enums/deposit-requests";
-import FontAwesome from "../../components/base/FontAwesome";
+import { DepositRequestRecordStatuses } from "../../../../enums/deposit-requests";
+import { FeeSlabFeeApplyTypes } from "../../../../enums/fee-slabs";
+import { BaseComponent } from "../../../components/base/BaseComponent";
+import FileUploaderComponent from "../../shared/file-uploader/FileUploaderComponent";
+import FontAwesome from "../../../components/base/FontAwesome";
+import { mdDepositRequests } from "../../../../models/deposit-requests";
+import { mdFeeSlabs } from "../../../../models/fee-slabs";
+import { RequiredValidator } from "../../../../shared/validation-attributes";
+import { mdFormControl } from "../../../../shared/form-control";
+import { Transitions } from "../../../../models/transitions";
+import { StaticHelper } from "../../../../shared/static-helper";
+import { mdDepositRequestHistory } from "../../../../models/deposit-request-history";
+import { mdFileUploaderConfig } from "../../shared/file-uploader/file-uploader-config";
+import { SearchableDropdownSettings } from "../../shared/searchable-dropdown/searchable-dropdown-settings";
+import { mdDepositMethods } from "../../../../models/deposit-methods";
+import { TransitionState } from "../../../../enums/transition";
+import { mdCallResponse } from "../../../../models/call-response";
+import { mdDepositRequestHisotryRequest } from "../../../../models/deposit-request-history-request";
 const Option = Select.Option;
 
 export default class DepositComponent extends BaseComponent {
@@ -348,13 +348,13 @@ export default class DepositComponent extends BaseComponent {
     this.state = {
       form: {
         amount: new mdFormControl("", "amount", this.lang.Amount, [
-          new ValidationAttributes.RequiredValidator(this.lang.RequiredFormat)
+          new RequiredValidator(this.lang.RequiredFormat)
         ]),
         deposit_date: new mdFormControl(
           this.model.deposit_date,
           "deposit_date",
           this.lang.DepositDate,
-          [new ValidationAttributes.RequiredValidator(this.lang.RequiredFormat)]
+          [new RequiredValidator(this.lang.RequiredFormat)]
         )
       },
       fileUploaderConfig: new mdFileUploaderConfig(
@@ -513,17 +513,13 @@ export default class DepositComponent extends BaseComponent {
         showNewDespositRequestForm: true,
         form: {
           amount: new mdFormControl("", "amount", this.lang.Amount, [
-            new ValidationAttributes.RequiredValidator(this.lang.RequiredFormat)
+            new RequiredValidator(this.lang.RequiredFormat)
           ]),
           deposit_date: new mdFormControl(
             this.model.deposit_date,
             "deposit_date",
             this.lang.DepositDate,
-            [
-              new ValidationAttributes.RequiredValidator(
-                this.lang.RequiredFormat
-              )
-            ]
+            [new RequiredValidator(this.lang.RequiredFormat)]
           )
         }
       },
@@ -571,13 +567,6 @@ export default class DepositComponent extends BaseComponent {
                   }
                 }
               );
-              // this.depositableCurrenciesDropdown.current.selectionChanged(selectedValue);
-              // if (defaultCurrency.length > 0) {
-              //   this.depositableCurrenciesOnChange({
-              //     newValue: selectedValue,
-              //     previousValue: null
-              //   });
-              // }
             }
           }
         }
@@ -592,11 +581,11 @@ export default class DepositComponent extends BaseComponent {
 
   getFeeStringFromFeeSlab(fs: mdFeeSlabs) {
     let fee = "";
-    if (fs.fee_type == EnumsFeeSlabs.FeeType.amount) {
+    if (fs.fee_type == FeeSlabFeeApplyTypes.amount) {
       fee = this.state.selectedCurrency.symbol + fs.fee;
-    } else if (fs.fee_type == EnumsFeeSlabs.FeeType.percentage) {
+    } else if (fs.fee_type == FeeSlabFeeApplyTypes.percentage) {
       fee = fs.fee_percentage + "%";
-    } else if (fs.fee_type == EnumsFeeSlabs.FeeType.both) {
+    } else if (fs.fee_type == FeeSlabFeeApplyTypes.both) {
       fee = StaticHelper.formatString(
         this.lang.WhichEverHigherFormat,
         this.state.selectedCurrency.symbol + fs.fee,
@@ -776,13 +765,6 @@ export default class DepositComponent extends BaseComponent {
       return;
     }
 
-    this.updateState({
-      showSubmitResponse: true,
-      submitResponseClass: "text-danger",
-      submitResponse: "",
-      disableSubmitButton: true
-    });
-
     let formData: mdDepositRequests = this.getFormData(
       this.state.form
     ) as mdDepositRequests;
@@ -791,6 +773,24 @@ export default class DepositComponent extends BaseComponent {
     formData.reference = this.state.wallet.reference;
     formData.de = this.state.fileUploaderValue.map(m => {
       return m.id;
+    });
+
+    if (formData.de.length < 1) {
+      this.errorNotification(
+        StaticHelper.formatString(
+          this.lang.RequiredFormat,
+          this.lang.DepositReceipt
+        ),
+        this.lang.Success
+      );
+      return;
+    }
+
+    this.updateState({
+      showSubmitResponse: true,
+      submitResponseClass: "text-danger",
+      submitResponse: "",
+      disableSubmitButton: true
     });
 
     this.http

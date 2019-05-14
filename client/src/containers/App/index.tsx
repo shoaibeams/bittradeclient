@@ -40,6 +40,9 @@ import "../../assets/css/animate.css";
 import "../../assets/css/general.less";
 import { OpenRoutes } from "../../routes";
 import { BasicBaseComponent } from "../../app/components/base/BasicBaseComponent";
+import { SocketCustomEvents } from "../../enums/socket";
+import { mdAuthUsers } from "../../models/auth-users";
+import { UserRecordStatuses } from "../../enums/auth-users";
 
 class App extends BaseComponent {
   langKeys = [];
@@ -57,13 +60,17 @@ class App extends BaseComponent {
   }
 
   componentDidMount = () => {
+    this.socket.registerEvent(SocketCustomEvents.ReceivedBalance, () => {});
     this.isComponentMounted = true;
     window.addEventListener("resize", this.updateWidth);
   };
 
-  componentUnMount() {
+  componentUnMount() {}
+
+  componentWillUnmount = () => {
+    this.socket.unregisterEvent(SocketCustomEvents.ReceivedBalance);
     window.removeEventListener("resize", this.updateWidth);
-  }
+  };
 
   updateWidth = () => {
     this.props.updateWindowWidth(window.innerWidth);
@@ -101,12 +108,11 @@ class App extends BaseComponent {
         .then((res: mdCallResponse) => {
           this.props.globals.showMainLoader = false;
           let isLoggedIn: boolean;
+          let user: mdAuthUsers = null;
           if (res.isSuccess) {
             //a user is logged in
-            if (
-              res.extras.status ==
-              this.constants.RecordStatus.PendingVerification
-            ) {
+            user = res.extras.user;
+            if (user.record_status == UserRecordStatuses.pendingVerification) {
               //email is not verified of the user
               isLoggedIn = false;
             } else {
@@ -128,15 +134,17 @@ class App extends BaseComponent {
           this.log.info("isLoggedIn: " + isLoggedIn, res);
           let propKeys = [
             global.propKeys.isLoggedIn,
-            global.propKeys.username,
-            global.propKeys.fullName,
-            global.propKeys.email
+            global.propKeys.user,
+            global.propKeys.sessionExpiry,
+            global.propKeys.sessionStartedOn,
+            global.propKeys.lastLogon
           ];
           let propValues = [
             isLoggedIn,
-            res.extras.username,
-            res.extras.fullName,
-            res.extras.email
+            user,
+            StaticHelper.toLocalDate(res.extras.expires),
+            StaticHelper.toLocalDate(res.extras.timestamp),
+            StaticHelper.toLocalDate(res.extras.lastLogon)
           ];
           this.props.updateGlobalProperty(propKeys, propValues);
           this.updateState({
@@ -191,7 +199,7 @@ class App extends BaseComponent {
           }
           this.props.updateGlobalProperty(propKeys, propValues);
           setTimeout(() => {
-            this.loadbriefHistory();
+            this.loadBriefHistory();
             this.loadCountries();
           }, 200);
         }
@@ -221,7 +229,7 @@ class App extends BaseComponent {
       });
   }
 
-  loadbriefHistory() {
+  loadBriefHistory() {
     this.http
       .get(this.constants.EndPoints.GetTradeBriefRecentHistory)
       .then((res: mdCallResponse) => {
@@ -255,13 +263,13 @@ class App extends BaseComponent {
           }
         }
         setTimeout(() => {
-          this.loadbriefHistory();
+          this.loadBriefHistory();
         }, this.constants.LoadBriefHistoryTimeout);
       })
       .catch(error => {
         this.log.debug(error);
         setTimeout(() => {
-          this.loadbriefHistory();
+          this.loadBriefHistory();
         }, this.constants.LoadBriefHistoryTimeout);
       });
   }

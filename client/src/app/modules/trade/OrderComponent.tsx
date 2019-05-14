@@ -7,7 +7,7 @@ import { mdFormControl } from "../../../shared/form-control";
 import { mdCallResponse } from "../../../models/call-response";
 import { StaticHelper } from "../../../shared/static-helper";
 import { Tabs, Card, Row, Form, Button, Col } from "antd";
-import { OrderActions, CurrencyTypes } from "../../../enums/order";
+import { OrderActions, OrderCurrencyTypes } from "../../../enums/order";
 import { mdKeyValue } from "../../../models/key-value";
 import { mdCurrencyPair } from "../../../models/currency-pair";
 const TabPane = Tabs.TabPane;
@@ -16,14 +16,18 @@ export default class OrderComponent extends BaseComponent {
   render() {
     this.initShorts();
     let cp = this.p.selectedCurrencyPair;
-    let currencyTypeSource: mdKeyValue[] = [];
+    let OrderCurrencyTypesource: mdKeyValue[] = [];
     if (!cp) {
       cp = {
         fc_name: ""
       };
     } else {
-      currencyTypeSource.push(new mdKeyValue(cp.tc_name, CurrencyTypes.Base));
-      currencyTypeSource.push(new mdKeyValue(cp.fc_name, CurrencyTypes.Quote));
+      OrderCurrencyTypesource.push(
+        new mdKeyValue(cp.tc_name, OrderCurrencyTypes.Base)
+      );
+      OrderCurrencyTypesource.push(
+        new mdKeyValue(cp.fc_name, OrderCurrencyTypes.Quote)
+      );
     }
     let balance = "";
     if (
@@ -38,9 +42,9 @@ export default class OrderComponent extends BaseComponent {
       balance = this.state.sellBalance;
     }
     let amountStep = 1;
-    if (this.f.amountCurrency.value == CurrencyTypes.Base) {
+    if (this.f.amountCurrency.value == OrderCurrencyTypes.Base) {
       amountStep = this.state.tcStep;
-    } else if (this.f.amountCurrency.value == CurrencyTypes.Quote) {
+    } else if (this.f.amountCurrency.value == OrderCurrencyTypes.Quote) {
       amountStep = this.state.fcStep;
     }
     return (
@@ -84,13 +88,13 @@ export default class OrderComponent extends BaseComponent {
             {this.antd.numberWithDropDownFormItem(
               this.f.amount,
               this.f.amountCurrency,
-              currencyTypeSource,
+              OrderCurrencyTypesource,
               this.priceAmountKeyup,
               true,
               amountStep,
               0,
               9999999,
-              currencyTypeSource.length < 1,
+              OrderCurrencyTypesource.length < 1,
               this.priceAmountKeyup,
               this.formItemLayout
             )}
@@ -105,6 +109,10 @@ export default class OrderComponent extends BaseComponent {
             {this.getLabelAndValueRow(
               this.lang.Total + ":",
               this.state.limitTotalAmount
+            )}
+            {this.getLabelAndValueRow(
+              this.lang.YouGet + ":",
+              this.state.youGet
             )}
             {
               <Button
@@ -195,6 +203,7 @@ export default class OrderComponent extends BaseComponent {
   model: mdOrder;
   action: OrderActions;
   previousCP: any;
+  previousLast: number;
 
   constructor(props) {
     super(props);
@@ -214,7 +223,10 @@ export default class OrderComponent extends BaseComponent {
         amount: new mdFormControl("", "amount", this.lang.Amount, [
           new ValidationAttributes.RequiredValidator(this.lang.RequiredFormat)
         ]),
-        amountCurrency: new mdFormControl(CurrencyTypes.Base, "amountCurrency"),
+        amountCurrency: new mdFormControl(
+          OrderCurrencyTypes.Base,
+          "amountCurrency"
+        ),
         showErrors: false
       },
       showSpinner: true,
@@ -240,7 +252,14 @@ export default class OrderComponent extends BaseComponent {
     if (newProps) {
       if (this.g.selectedBriefHistory) {
         let last = this.g.selectedBriefHistory.last;
-        this.handleFormControlInputWithValue(this.f.price.name, last);
+        let price = this.f.price as mdFormControl;
+        if (
+          (!price.value || price.value == this.previousLast) &&
+          this.isNullOrEmpty(this.f.amount.value)
+        ) {
+          this.handleFormControlInputWithValue(this.f.price.name, last);
+        }
+        this.previousLast = last;
       }
       this.updateBalances();
       if (this.previousCP) {
@@ -287,7 +306,7 @@ export default class OrderComponent extends BaseComponent {
     }
 
     let formData = this.getFormData(this.state.form) as mdOrder;
-    if (this.state.form.amountCurrency.value == CurrencyTypes.Base) {
+    if (this.state.form.amountCurrency.value == OrderCurrencyTypes.Base) {
       formData.amount = formData.amount / formData.price;
     }
     formData.action = this.action;
@@ -333,7 +352,7 @@ export default class OrderComponent extends BaseComponent {
     let f: any;
     f = this.state.form;
     let grossAmount = f.price.value * f.amount.value;
-    if (f.amountCurrency.value == CurrencyTypes.Base) {
+    if (f.amountCurrency.value == OrderCurrencyTypes.Base) {
       grossAmount = f.amount.value;
     }
     if (!grossAmount) {
@@ -344,7 +363,16 @@ export default class OrderComponent extends BaseComponent {
         grossAmount * (StaticHelper.unfloatAmount(cpDetails.buy_fee) / 100);
       let totalAmount = grossAmount + feeAmount;
       let fee = StaticHelper.bestScale(feeAmount);
+      let youGet: any = f.amount.value;
+      if (f.amountCurrency.value == OrderCurrencyTypes.Base) {
+        youGet = f.amount.value / f.price.value;
+      }
+      if (youGet > 0) {
+        youGet = StaticHelper.bestScale(youGet);
+      }
+
       this.updateState({
+        youGet: youGet + " " + cp.fc_name,
         limitFeeAmount: this.emptyNaN(fee) + " " + cp.tc_name,
         limitGrossAmount:
           this.emptyNaN(StaticHelper.bestScale(grossAmount)) + " " + cp.tc_name,
@@ -359,7 +387,15 @@ export default class OrderComponent extends BaseComponent {
       let feeAmount =
         grossAmount * (StaticHelper.unfloatAmount(cpDetails.sell_fee) / 100);
       let totalAmount = grossAmount + feeAmount;
+      let youGet: any = f.amount.value;
+      if (f.amountCurrency.value == OrderCurrencyTypes.Quote) {
+        youGet = f.amount.value * f.price.value;
+      }
+      if (youGet > 0) {
+        youGet = StaticHelper.bestScale(youGet);
+      }
       this.updateState({
+        youGet: youGet + " " + cp.tc_name,
         limitFeeAmount:
           this.emptyNaN(StaticHelper.bestScale(feeAmount)) + " " + cp.tc_name,
         limitGrossAmount:

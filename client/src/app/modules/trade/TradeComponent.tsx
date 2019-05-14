@@ -55,7 +55,7 @@ export default class TradeComponent extends BaseComponent {
               iconColor={"white"}
               cardColor="cyan"
               icon="timeline"
-              title={this.lang.Last}
+              title={this.lang.Last + " 24H"}
               subTitle={sbh.tc_symbol + (isNaN(sbh.last) ? "" : sbh.last)}
             />
           )}
@@ -64,7 +64,7 @@ export default class TradeComponent extends BaseComponent {
               iconColor={"white"}
               cardColor="teal"
               icon="long-arrow-up"
-              title={this.lang.High}
+              title={this.lang.High + " 24H"}
               subTitle={sbh.tc_symbol + (isNaN(sbh.high) ? "" : sbh.high)}
             />
           )}
@@ -73,7 +73,7 @@ export default class TradeComponent extends BaseComponent {
               iconColor={"white"}
               cardColor="red"
               icon="long-arrow-down"
-              title={this.lang.Low}
+              title={this.lang.Low + " 24H"}
               subTitle={sbh.tc_symbol + (isNaN(sbh.low) ? "" : sbh.low)}
             />
           )}

@@ -1,12 +1,12 @@
 import * as React from "react";
-import { BaseComponent } from "../base/BaseComponent";
+import { BaseComponent } from "../../base/BaseComponent";
 import { Redirect, Route, Switch } from "react-router";
-import asyncComponent from "../base/AsyncComponent";
-import Widget from "../../../components/Widget";
+import asyncComponent from "../../base/AsyncComponent";
+import Widget from "../../../../components/Widget";
 import { Tabs } from "antd";
 import MyAccountComponent from "./MyAccountComponent";
 import { Link } from "react-router-dom";
-import KYCComponent from "./kyc/KYCComponent";
+import KYCComponent from "../kyc/KYCComponent";
 const TabPane = Tabs.TabPane;
 
 export default class MyAccountSwitch extends BaseComponent {

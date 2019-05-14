@@ -9,7 +9,7 @@ export interface ValidationAttribute {
 }
 
 export class RequiredValidator implements ValidationAttribute {
-  constructor(errorMsgFormat: string) {
+  constructor(errorMsgFormat: string = global.lang.RequiredFormat) {
     this.errorMessageFormat = errorMsgFormat;
   }
 

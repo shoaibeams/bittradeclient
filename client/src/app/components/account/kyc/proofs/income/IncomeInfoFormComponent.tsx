@@ -41,7 +41,7 @@ export default class IncomeInfoFormComponent extends BaseComponent {
           )}
           {this.antd.selectFormItem(
             this.f.expected_investment,
-            this.investmentSource,
+            this.expectedInvestments,
             true,
             false,
             null,
@@ -64,7 +64,7 @@ export default class IncomeInfoFormComponent extends BaseComponent {
   accountType: AccountTypes;
   model: mdUserAccounts;
   genderSource: mdKeyValue[];
-  investmentSource: mdKeyValue[] = [];
+  expectedInvestments: mdKeyValue[] = [];
   incomeSource: mdKeyValue[] = [];
   constructor(pps) {
     super(pps);
@@ -72,7 +72,7 @@ export default class IncomeInfoFormComponent extends BaseComponent {
   }
 
   init() {
-    this.incomeSource.push(new mdKeyValue("$500-1000", "$500-1000"));
+    this.incomeSource.push(new mdKeyValue("Up to $1000", "Up to $1000"));
     this.incomeSource.push(new mdKeyValue("$1001-1500", "$1001-1500"));
     this.incomeSource.push(new mdKeyValue("$1501-2500", "$1501-2500"));
     this.incomeSource.push(new mdKeyValue("$2501-5000", "$2501-5000"));
@@ -81,13 +81,19 @@ export default class IncomeInfoFormComponent extends BaseComponent {
       new mdKeyValue("More than $10000", "More than $10000")
     );
 
-    this.investmentSource.push(new mdKeyValue("$5000-10000", "$5000-10000"));
-    this.investmentSource.push(new mdKeyValue("$10001-20000", "$10001-20000"));
-    this.investmentSource.push(new mdKeyValue("$20001-50000", "$20001-50000"));
-    this.investmentSource.push(
+    this.expectedInvestments.push(new mdKeyValue("Up to $1000", "Up to $1000"));
+    this.expectedInvestments.push(new mdKeyValue("$1000-5000", "$1000-5000"));
+    this.expectedInvestments.push(new mdKeyValue("$5000-10000", "$5000-10000"));
+    this.expectedInvestments.push(
+      new mdKeyValue("$10001-20000", "$10001-20000")
+    );
+    this.expectedInvestments.push(
+      new mdKeyValue("$20001-50000", "$20001-50000")
+    );
+    this.expectedInvestments.push(
       new mdKeyValue("$50001-100000", "$50001-100000")
     );
-    this.investmentSource.push(
+    this.expectedInvestments.push(
       new mdKeyValue("More than $100000", "More than $100000")
     );
 

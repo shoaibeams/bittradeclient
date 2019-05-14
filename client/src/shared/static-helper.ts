@@ -120,11 +120,17 @@ export class StaticHelper {
   }
 
   static toLocalDate(date: Date): Date {
-    date = new Date(date);
-    let offset = new Date().getTimezoneOffset();
-    offset *= -1;
-    date.setMinutes(date.getMinutes() + offset);
-    return date;
+    if (!date) {
+      return null;
+    }
+    let mmnt = moment(date);
+    let local = mmnt.local();
+    return local.toDate();
+    // date = new Date(date);
+    // let offset = new Date().getTimezoneOffset();
+    // offset *= -1;
+    // date.setMinutes(date.getMinutes() + offset);
+    // return date;
   }
 
   static getPropNameByValue(obj: object, value: any) {
@@ -319,11 +325,17 @@ export class StaticHelper {
   }
 
   static longDateFormat(date: Date) {
+    if (!date) {
+      return "";
+    }
     let mmnt = moment(date);
     return mmnt.locale("en").format("MMM D, YYYY, hh:mm:ss A");
   }
 
   static toTimehhmmss(date: Date) {
+    if (!date) {
+      return "";
+    }
     let mmnt = moment(date);
     return mmnt.locale("en").format("hh:mm:ss");
   }
@@ -406,4 +418,44 @@ export class StaticHelper {
     }
     return null;
   };
+
+  static getScale(num: number): number {
+    let scale = 0;
+    let nsn = StaticHelper.toFixedNSN(num).toString();
+    if (nsn.indexOf(".") > -1) {
+      scale = nsn.split(".")[1].length;
+    }
+    return scale;
+  }
+
+  static subtract(...args): number {
+    for (let i = 0; i < args.length - 1; i++) {
+      if (this.isNullOrEmpty(arguments[i])) {
+        arguments[i] = 0;
+      }
+    }
+    if (arguments.length == 0) {
+      return 0;
+    }
+    let from = arguments[0] as number;
+    if (arguments.length == 1) {
+      return arguments[0];
+    }
+    let res = from;
+    let biggestScale = StaticHelper.getScale(arguments[0]);
+    let smallestScale = StaticHelper.getScale(arguments[0]);
+    // start with the second argument (i = 1)
+    for (var i = 1; i < arguments.length; i++) {
+      res -= arguments[i];
+      let scale = StaticHelper.getScale(arguments[i]);
+      if (scale > biggestScale) {
+        biggestScale = scale;
+      }
+      if (scale < smallestScale) {
+        smallestScale = scale;
+      }
+    }
+    res = parseFloat(res.toFixed(biggestScale));
+    return res;
+  }
 }

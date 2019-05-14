@@ -1,6 +1,7 @@
 import { Constants } from "../shared/constants";
 import { StaticHelper } from "../shared/static-helper";
 import { UserTypes, UserRecordStatuses } from "../enums/auth-users";
+import { mdUserAccounts } from "./user-accounts";
 
 export class mdAuthUsers {
   public id: number;
@@ -10,12 +11,13 @@ export class mdAuthUsers {
   public record_status: UserRecordStatuses;
   public email: string;
   public timestamp: Date;
-  public tier: number;
 
   first_name: string;
   last_name: string;
+  userAccount: mdUserAccounts;
 
   constructor(init?: boolean) {
+    this.userAccount = new mdUserAccounts();
     if (init === true) {
       this.id = null;
       this.username = "";
@@ -24,7 +26,6 @@ export class mdAuthUsers {
       this.record_status = UserRecordStatuses.active; //active
       this.email = "";
       this.timestamp = new Date();
-      this.tier = null;
     }
   }
 }

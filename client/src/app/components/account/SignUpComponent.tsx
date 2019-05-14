@@ -107,8 +107,8 @@ export default class SignUpComponent extends BaseComponent {
             </div>
             <Tabs
               defaultActiveKey={AccountTypes.Individual.toString()}
-              onChange={e => {
-                this.signupType(parseInt(e));
+              onChange={(e: AccountTypes) => {
+                this.signupType(e);
               }}
             >
               <TabPane
@@ -119,7 +119,7 @@ export default class SignUpComponent extends BaseComponent {
                     {this.lang.Individual}
                   </>
                 }
-                key={AccountTypes.Individual.toString()}
+                key={AccountTypes.Individual}
               >
                 {formItems()}
               </TabPane>
@@ -134,7 +134,7 @@ export default class SignUpComponent extends BaseComponent {
                     {this.lang.Business}
                   </>
                 }
-                key={AccountTypes.Business.toString()}
+                key={AccountTypes.Business}
               >
                 {formItems()}
               </TabPane>
@@ -278,7 +278,7 @@ export default class SignUpComponent extends BaseComponent {
     };
   }
 
-  signupType = (type: number) => {
+  signupType = (type: AccountTypes) => {
     let company_name = this.state.form.company_name as mdFormControl;
     if (type == AccountTypes.Individual) {
       company_name.validators = null;

@@ -1,6 +1,7 @@
 import { mdCurrency } from "./currency";
 import { mdCurrencyPair } from "./currency-pair";
 import { mdCountry } from "./country";
+import { mdAuthUsers } from "./auth-users";
 
 export class mdProps {
   params?: any;
@@ -32,7 +33,7 @@ export class mdProps {
 export class mdGlobalProps {
   isLoggedIn: boolean;
   showMainLoader: boolean;
-  username: string;
+  // username: string;
   currencies: mdCurrency[];
   currencyPairs: mdCurrencyPair[];
   selectedCurrencyPair: any;
@@ -45,16 +46,20 @@ export class mdGlobalProps {
   loadingBriefHistory: boolean;
   old?: mdGlobalProps;
   langKey: string;
-  fullName: string;
-  email: string;
+  // fullName: string;
+  // email: string;
   headerHeight: number;
   countries: mdCountry[];
+  sessionExpiry: Date;
+  sessionStartedOn: Date;
+  lastLogon: Date;
+  user: mdAuthUsers;
 }
 
 export class mdPropKeys {
   isLoggedIn: string;
   showMainLoader: string;
-  username: string;
+  // username: string;
   currencies: string;
   currencyPairs: string;
   defaultCurrencyPairId: string;
@@ -66,14 +71,19 @@ export class mdPropKeys {
   selectedBriefHistory: string;
   loadingBriefHistory: string;
   langKey: string;
-  fullName: string;
-  email: string;
+  // fullName: string;
+  // email: string;
   headerHeight: string;
   countries: string;
+  sessionExpiry: string;
+  sessionStartedOn: string;
+  lastLogon: string;
+  user: string;
+
   constructor() {
     this.isLoggedIn = "isLoggedIn";
     this.showMainLoader = "showMainLoader";
-    this.username = "username";
+    // this.username = "username";
     this.currencyPairs = "currencyPairs";
     this.defaultCurrencyPairId = "defaultCurrencyPairId";
     this.defaultBuyFee = "defaultBuyFee";
@@ -85,9 +95,13 @@ export class mdPropKeys {
     this.loadingBriefHistory = "loadingBriefHistory";
     this.langKey = "langKey";
     this.currencies = "currencies";
-    this.fullName = "fullName";
-    this.email = "email";
+    // this.fullName = "fullName";
+    // this.email = "email";
     this.headerHeight = "headerHeight";
     this.countries = "countries";
+    this.sessionExpiry = "sessionExpiry";
+    this.sessionStartedOn = "sessionStartedOn";
+    this.lastLogon = "lastLogon";
+    this.user = "user";
   }
 }

@@ -35,7 +35,7 @@ export default class EmailConfirmationComponent extends BaseComponent {
               <h1 className="gx-login-title">
                 {this.state.verificationEmailHeader}
               </h1>
-              <h2 className="gx-text-primary">{this.g.email}</h2>
+              <h2 className="gx-text-primary">{this.g.user.email}</h2>
             </div>
             <div className="gx-mb-3">
               {this.animatedCSSDiv(
@@ -50,7 +50,7 @@ export default class EmailConfirmationComponent extends BaseComponent {
               loading={this.state.showLoadingOnResetButton}
               disabled={this.state.disableResendEmailButton}
               type={"primary"}
-              onClick={this.sendSignupVerificatinEmail}
+              onClick={this.sendSignUpVerificationEmail}
             >
               {this.lang.ResendEmail}
             </Button>
@@ -94,7 +94,7 @@ export default class EmailConfirmationComponent extends BaseComponent {
     });
     this.socket.emitEvent(
       SocketCustomEvents.AwaitingEmailVerification,
-      this.g.username
+      this.g.user.username
     );
     // this.socket.emitEvent(this.constants.SocketEvents.WaitEmailVerification, this.g.username);
   };
@@ -103,7 +103,7 @@ export default class EmailConfirmationComponent extends BaseComponent {
     this.socket.unregisterEvent(SocketCustomEvents.EmailVerified);
   };
 
-  sendSignupVerificatinEmail = ev => {
+  sendSignUpVerificationEmail = ev => {
     this.updateState({
       showLoadingOnResetButton: true
     });

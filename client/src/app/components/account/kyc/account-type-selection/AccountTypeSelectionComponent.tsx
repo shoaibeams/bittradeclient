@@ -5,6 +5,7 @@ import { AccountTypes } from "../../../../../enums/general";
 import "./account-type-selection.less";
 import { Link } from "react-router-dom";
 import Widget from "../../../../../components/Widget";
+import WidgetHeader from "../../../../../components/WidgetHeader";
 
 export default class AccountTypeSelectionComponent extends BaseComponent {
   render() {
@@ -43,19 +44,21 @@ export default class AccountTypeSelectionComponent extends BaseComponent {
                     return <li key={i}>{s}</li>;
                   })}
                 </ol>
+                {value == AccountTypes.Business ? (
+                  <span>{this.lang.HigherDepositAndWithdrawalLimits}</span>
+                ) : null}
               </div>
               <div className="align-middle">
-                <Link
-                  to={this.getLink(
-                    this.constants.RoutePaths.AccountVerificationProofs +
-                      "?" +
-                      this.constants.QueryParams.aType +
-                      "=" +
-                      value
-                  )}
+                <Button
+                  type="primary"
+                  onClick={_ => {
+                    if (typeof this.p.onSelect === "function") {
+                      typeof this.p.onSelect(value);
+                    }
+                  }}
                 >
-                  <Button type="primary">{this.lang.Select}</Button>
-                </Link>
+                  {this.lang.Select}
+                </Button>
               </div>
             </div>
           </Widget>
@@ -64,13 +67,18 @@ export default class AccountTypeSelectionComponent extends BaseComponent {
     };
 
     return (
-      <Card title={this.lang.AccountTypeSelection}>
+      <>
+        <WidgetHeader
+          styleName="gx-flex-row"
+          title={this.lang.AccountTypeSelection}
+          extra={null}
+        />
         <Row type="flex" className="" style={{ alignItems: "center" }}>
           {this.state.accountTypeItems.map((m, i) => {
             return AccountTypeSelectionListItem(m);
           })}
         </Row>
-      </Card>
+      </>
     );
   }
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Route, Switch, Redirect } from "react-router";
 
-import { StaticConstatns, Constants } from "../shared/constants";
+import { StaticConstants, Constants } from "../shared/constants";
 import { StaticHelper } from "../shared/static-helper";
 import asyncComponent from "../app/components/base/AsyncComponent";
 import NoMatchComponent from "../app/components/base/NoMatchComponent";
@@ -58,7 +58,7 @@ const PasswordRecoveryComponent = asyncComponent(() =>
 );
 
 const MyAccountSwitch = asyncComponent(() =>
-  import("../app/components/account/MyAccountSwitch").then(
+  import("../app/components/account/my-account/MyAccountSwitch").then(
     module => module.default
   )
 );
@@ -68,43 +68,43 @@ const OpenRoutes = props => {
     <Switch>
       <Route
         exact
-        path={`${props.match.url}${StaticConstatns.RoutePaths.Login}`}
+        path={`${props.match.url}${StaticConstants.RoutePaths.Login}`}
         render={() => <LoginComponent {...props} />}
       />
       <Route
         exact
-        path={`${props.match.url}${StaticConstatns.RoutePaths.SignUp}`}
+        path={`${props.match.url}${StaticConstants.RoutePaths.SignUp}`}
         render={() => <SignUpComponent {...props} />}
       />
       <Route
         exact
-        path={`${props.match.url}${StaticConstatns.RoutePaths.AccountVerify}`}
+        path={`${props.match.url}${StaticConstants.RoutePaths.AccountVerify}`}
         render={() => <AccountVerificationComponent {...props} />}
       />
       <Route
         exact
         path={`${props.match.url}${
-          StaticConstatns.RoutePaths.EmailConfirmation
+          StaticConstants.RoutePaths.EmailConfirmation
         }`}
         render={() => <EmailConfirmationComponent {...props} />}
       />
       <Route
         exact
         path={`${props.match.url}${
-          StaticConstatns.RoutePaths.AccountForgotPassword
+          StaticConstants.RoutePaths.AccountForgotPassword
         }`}
         render={() => <ForgotPasswordComponent {...props} />}
       />
       <Route
         exact
         path={`${props.match.url}${
-          StaticConstatns.RoutePaths.AccountPasswordRecovery
+          StaticConstants.RoutePaths.AccountPasswordRecovery
         }`}
         render={() => <PasswordRecoveryComponent {...props} />}
       />
       <Route
         exact
-        path={`${props.match.url}${StaticConstatns.RoutePaths.Home}*`}
+        path={`${props.match.url}${StaticConstants.RoutePaths.Home}*`}
         render={() => <MainApp {...props} />}
       />
       {/* <Route path="*" render={() => <MainApp {...props} match={{ url: "/" }} />} /> */}
@@ -116,7 +116,7 @@ const restrictedRouteRenderer = (Comp, props, url) => {
   if (!props.globals.isLoggedIn) {
     let redirectURI = encodeURIComponent(window.location.href);
     let to = StaticHelper.getLink(
-      StaticConstatns.RoutePaths.Login +
+      StaticConstants.RoutePaths.Login +
         "?" +
         Constants.Instance.QueryParams.redirectURI +
         "=" +
@@ -141,29 +141,29 @@ class ThemeImplementedRoutes extends BaseComponent {
           <Route
             exact
             path={`${this.props.match.url}${
-              StaticConstatns.RoutePaths.ContactUs
+              StaticConstants.RoutePaths.ContactUs
             }`}
             render={() => <ContactUsComponent {...this.props} />}
           />
           <Route
-            path={`${this.props.match.url}${StaticConstatns.RoutePaths.Trade}`}
+            path={`${this.props.match.url}${StaticConstants.RoutePaths.Trade}`}
             render={() => {
               return restrictedRouteRenderer(
                 TradeComponent,
                 this.props,
-                `${this.props.match.url}${StaticConstatns.RoutePaths.Trade}`
+                `${this.props.match.url}${StaticConstants.RoutePaths.Trade}`
               );
             }}
           />
           <Route
             path={`${this.props.match.url}${
-              StaticConstatns.RoutePaths.Funding
+              StaticConstants.RoutePaths.Funding
             }`}
             render={() => {
               return restrictedRouteRenderer(
                 FundingComponent,
                 this.props,
-                `${this.props.match.url}${StaticConstatns.RoutePaths.Funding}`
+                `${this.props.match.url}${StaticConstants.RoutePaths.Funding}`
               );
             }}
           />
@@ -181,7 +181,16 @@ class ThemeImplementedRoutes extends BaseComponent {
           />
           <Route
             path={`${this.props.match.url}/`}
-            render={() => <HomeComponent {...this.props} />}
+            render={() => {
+              if (this.g.isLoggedIn) {
+                return (
+                  <Redirect
+                    to={this.getLink(this.constants.RoutePaths.Trade)}
+                  />
+                );
+              }
+              return <HomeComponent {...this.props} />;
+            }}
           />
         </Switch>
       </div>

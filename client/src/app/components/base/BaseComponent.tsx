@@ -1,6 +1,6 @@
 import * as React from "react";
 import { mdProps, mdPropKeys, mdGlobalProps } from "../../../models/props";
-import { Constants, StaticConstatns } from "../../../shared/constants";
+import { Constants, StaticConstants } from "../../../shared/constants";
 import { mdFormControl } from "../../../shared/form-control";
 import {
   ValidateParams,
@@ -27,6 +27,7 @@ import DatePickerComponent from "../../modules/shared/date-picker/DatePickerComp
 import NBSpinnerComponent from "../../modules/shared/spinner/NBSpinnerComponent";
 import { mdKeyValue } from "../../../models/key-value";
 import moment from "moment";
+import "moment/locale/en-gb";
 import { mdAnimControl } from "../../../models/anim-control";
 import FontAwesome from "./FontAwesome";
 import { IconName } from "@fortawesome/fontawesome-common-types";
@@ -163,7 +164,6 @@ export class BaseComponent extends BasicBaseComponent {
   }
 
   getFormData(form) {
-
     let keys = Object.keys(form);
     let fd = {};
     keys.forEach(k => {
@@ -406,7 +406,7 @@ export class BaseComponent extends BasicBaseComponent {
             className={`no-form-control ${
               control.errors.length > 0 ? "is-invalid" : ""
             }`}
-            sitekey={StaticConstatns.RecaptchaSiteKey}
+            sitekey={this.constants.RecaptchaSiteKey}
             onChange={inputHandler}
           />
           {this.getErrorsDiv(control.errors)}
@@ -508,9 +508,9 @@ export class BaseComponent extends BasicBaseComponent {
         global.propKeys.selectedCurrencyPair,
         cps[0]
       );
-      let histr = this.g.briefHistory;
-      if (histr) {
-        let sbh = histr.filter(m => m.id == id);
+      let history = this.g.briefHistory;
+      if (history) {
+        let sbh = history.filter(m => m.id == id);
         if (sbh.length > 0) {
           let data = sbh[0];
           if (data.data) {

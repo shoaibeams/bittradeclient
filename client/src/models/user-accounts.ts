@@ -26,6 +26,9 @@ export class mdUserAccounts {
   source_of_income: string;
   income: string;
   expected_investment: string;
+  kyc_verified: boolean;
+
+  picture: string;
 
   constructor(init?: boolean) {
     if (init === true) {

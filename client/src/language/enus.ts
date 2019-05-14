@@ -2,6 +2,8 @@ import { Constants } from "../shared/constants";
 import { LanguageBase } from "./language";
 
 export class LangENUS implements LanguageBase {
+  Profile = "Profile";
+  Settings = "Settings";
   Name = "Name";
   Email = "Email";
   ContactNo = "Contact Number";
@@ -37,11 +39,11 @@ export class LangENUS implements LanguageBase {
     ")";
   MustContainOneCapitalLetterFormat =
     "{0} must contain atleast one capital letter (" +
-    Constants.Instance.CapitalLeters +
+    Constants.Instance.CapitalLetters +
     ")";
   MustContainOneSmallLetterFormat =
     "{0} must contain atleast one small letter (" +
-    Constants.Instance.SmallLeters +
+    Constants.Instance.SmallLetters +
     ")";
   MustContainOneNumberFormat =
     "{0} must contain atleast one number (" + Constants.Instance.Numbers + ")";
@@ -228,7 +230,7 @@ below to re-send`;
   BackToHome = this.Back + " to " + this.Home;
   Deposit = "Deposit";
   Withdraw = "Withdraw";
-  Withdrawl = "Withdrawl";
+  Withdrawal = "Withdrawal";
   SelectCurrencyTodeposit = "Select " + this.Currency + " to " + this.Deposit;
   Balance = "Balance";
   TotalBalance = this.Total + " " + this.Balance;
@@ -242,7 +244,7 @@ below to re-send`;
   Branch = "Branch";
   IBAN = "IBAN";
   Address = "Address";
-  Minimum = "Minumum";
+  Minimum = "Minimum";
   WhichEverHigherFormat = "{0} or {1} (which ever is higher)";
   Reference = "Reference";
   Sr = "Sr.";
@@ -629,18 +631,88 @@ below to re-send`;
   Params = "Params";
   MinimumAmountFormat = this.Minimum + " " + this.Amount + " is {0}";
   NotSaved = "Not Saved";
+  SignIn = "Sign In";
+  Your = "Your";
+  SignInToYourAccount = this.SignIn + " to " + this.Your + " " + this.Account;
+  Age = "Age";
+  CNIC = "CNIC";
+  Guardian = "Guardian";
+  GuardianName = this.Guardian + " " + this.Name;
+  Relationship = "Relationship";
+  GuardianRelationship = this.Guardian + " " + this.Relationship;
+  Gender = "Gender";
+  Middle = "Middle";
+  MiddleName = this.Middle + " " + this.Name;
+  Patient = "Patient";
+  NewPatient = this.New + " " + this.Patient;
+  DateofBirth = this.Date + " of Birth";
+  Months = "Month(s)";
+  Days = "Day(s)";
+  Reset = "Reset";
+  Find = "Find";
+  FindOrder = this.Find + " " + this.Order;
+  AmountFrom = this.Amount + " From";
+  AmountTo = this.Amount + " To";
+  Created = "Created";
+  Range = "Range";
+  DateRange = this.Date + " " + this.Range;
+  Origin = "Origin";
+  Exchange = "Exchange";
+  ExchangeOrigin = this.Exchange + " " + this.Origin;
+  FeeCurrency = this.Fee + " " + this.Currency;
+  FeePercentage = this.Fee + " Percentage";
+  From = "From";
+  FeePercentageFrom = this.FeePercentage + " " + this.From;
+  To = "To";
+  FeePercentageTo = this.FeePercentage + " " + this.To;
+  Filters = "Filters";
+  LoginHeaderMessage = "Hello! Log in with your email";
+  CreatedDateRange = this.Created + " " + this.DateRange;
+  MoveTo = "Move to";
+  MoveToFormat = this.MoveTo + " {0}";
+  PriceFrom = this.Price + " " + this.From;
+  PriceTo = this.Price + " " + this.To;
+  RemainingAmount = "Remaining " + this.Amount;
+  RemainingAmountFrom = this.RemainingAmount + " " + this.From;
+  RemainingAmountTo = this.RemainingAmount + " " + this.To;
+  Target = "Target";
+  TargetOrigin = this.Target + " " + this.Origin;
+  Orders = "Order(s)";
+  Serial = "Serial";
+  SerialNo = this.Serial + " No.";
+  CreatedOn = this.Created + " On";
+  Updated = "Updated";
+  LastUpdated = this.Last + " " + this.Updated;
+  CancelledOn = "Cancelled On";
+  DepositDateRange = this.DepositDate + " " + this.Range;
+  FeeFrom = this.Fee + " " + this.From;
+  FeeTo = this.Fee + " " + this.To;
+  OK = "OK";
+  Alert = "Alert";
+  Details = "Details";
+  Error = "Error";
+  Close = "Close";
+  DepositRequestId = this.DepositRequest + " " + this.Id;
+  UserId = this.User + " " + this.Id;
+  Approve = "Approve";
+  Reject = "Reject";
+  Fund = "Fund";
+  AmountToFund = this.Amount + " to " + this.Fund;
+  Other = "Other";
+  Deduction = "Deduction";
+  Deductions = this.Deduction + "(s)";
+  OtherDeductions = this.Other + " " + this.Deductions;
+  Remarks = "Remarks";
+  Received = "Received";
+  AmountReceived = this.Amount + " " + this.Received;
+  AmountAddedToUsersWallet =
+    "This " + this.Amount + "'ll be added to user's " + this.Wallet;
   EmailSentSuccessfully = this.Email + " sent " + this.Successfully;
   CannotBeEmptyFormat = "{0} can not be empty";
   CurrentStatusInvalidFormat = "{0} is not {1}";
   Funded = "Funded";
   FundedAmount = this.Funded + " " + this.Amount;
   MustBeEqualToFormat = "{0} must be equal to {1}";
-  Other = "Other";
-  Deduction = "Deduction";
-  Deductions = this.Deduction + "(s)";
-  OtherDeductions = this.Other + " " + this.Deductions;
-  Received = "Received";
-  AmountReceived = this.Amount + " " + this.Received;
   CannotBeFormat = "{0} can not be {1}";
   Rejected = "Rejected";
   NoAmountReceivedForDepositRequestVerification =
@@ -650,7 +722,6 @@ below to re-send`;
     this.DepositRequest +
     " should be " +
     this.Rejected;
-  Remarks = "Remarks";
   Approved = "Approved";
   ApprovedSuccessfullyFormat = "{0} " + this.Approved + " " + this.Successfully;
   RejectedSuccessfullyFormat = "{0} " + this.Rejected + " " + this.Successfully;
@@ -660,7 +731,6 @@ below to re-send`;
   AccountStatusIsFormat = this.Account + " " + this.Status + " is {0}";
   Unable = "Unable";
   UnableToSendEmail = this.Unable + " to send " + this.Email;
-  Updated = "Updated";
   UpdatedSuccessfullyFormat = "{0} " + this.Updated + " " + this.Successfully;
   Passwords = this.Password + "(s)";
   Use = "Use";
@@ -670,7 +740,6 @@ below to re-send`;
     this.Cannot + " " + this.Use + " " + this.Previous + " " + this.Passwords;
   DecentralizedApps = "Decentralized Apps";
   or = "or";
-  SignIn = "Sign In";
   QuestionMark = "?";
   Crypto = "Crypto";
   Coin = "Coin";
@@ -678,19 +747,15 @@ below to re-send`;
   LoginPageSignupPara =
     "Signing Up and start trading on a secure crypto trade platform";
   GetAnAccount = "Get an account!!!";
-  Alert = "Alert";
-  Exchange = "Exchange";
   Volume24H = "24H " + this.Volume;
   Change24H = "24H " + this.Change;
   High24H = "24H " + this.High;
   Low24H = "24H " + this.Low;
-  Error = "Error";
   History = "History";
   OrderHistory = this.Order + " " + this.History;
   Detailed = "Detailed";
   DetailedHistory = this.Detailed + " " + this.History;
   Pending = "Pending";
-  Orders = this.Order + "(s)";
   PendingOrders = this.Pending + " " + this.Orders;
   PreviousHistory = this.Previous + " " + this.History;
   Time = "Time";
@@ -717,7 +782,7 @@ below to re-send`;
   Calculator = "Calculator";
   CurrencyCalculator = this.Currency + " " + this.Calculator;
   MainPageHeader = `Buy your digital assets in native currency pairs to reduce huge conversion cost.
-      Now supporting buying in GBP, Euro and USD`;
+        Now supporting buying in GBP, Euro and USD`;
   Expert = "Expert";
   ExpertSupport = this.Expert + " " + this.Support;
   ExpertSupportPara =
@@ -793,7 +858,6 @@ below to re-send`;
   KnowledgeBase = this.Knowledge + " " + this.Base;
   Social = "Social";
   OurFees = this.Our + " " + this.Fees;
-  Your = "Your";
   ForgotYourPassword = this.Forgot + " " + this.Your + " " + this.Password;
   ForgotYourPasswordPara =
     "Don't worry. Recovering the password is easy. Just tell us the email you have registered with";
@@ -812,7 +876,6 @@ below to re-send`;
   Update = "Update";
   Token = "Token";
   Try = "Try";
-  OK = "OK";
   Warning = "Warning";
   My = "My";
   MyAccount = this.My + " " + this.Account;
@@ -832,13 +895,10 @@ below to re-send`;
   Country = "Country";
   Operation = "Operation";
   CountryOfOperation = this.Country + " " + this.Operation;
-  Middle = "Middle";
-  MiddleName = this.Middle + " " + this.Name;
   Incorporation = "Incorporation";
   DateOfIncorporation = this.Date + " of " + this.Incorporation;
   Birth = "Birth";
   BirthDate = this.Birth + " " + this.Date;
-  Gender = "Gender";
   Submitted = this.Submit + "ted";
   Not = "Not";
   NotSubmitted = this.Not + " " + this.Submitted;
@@ -940,4 +1000,43 @@ below to re-send`;
   PartiallySubmitted = this.Partially + " " + this.Submitted;
   PartiallyVerified = this.Partially + " " + this.Verified;
   Review = "Review";
+  Higher = "Higher";
+  Limits = this.Limit + "(s)";
+  HigherDepositAndWithdrawalLimits =
+    this.Higher +
+    " " +
+    this.Deposit +
+    " and " +
+    this.Withdrawal +
+    " " +
+    this.Limits;
+  BankAccount = this.Bank + " " + this.Account;
+  WithdrawalRequest = this.Withdrawal + " " + this.Request;
+  Currencies = "Currencies";
+  CryptoCurrencies = this.Crypto + " " + this.Currencies;
+  FiatCurrencies = this.Fiat + " " + this.Currencies;
+  WithdrawalRequests = this.WithdrawalRequest + "(s)";
+  Add = "Add";
+  AddBankAccount = this.Add + " " + this.BankAccount;
+  BranchCode = this.Branch + " " + this.Code;
+  Saved = "Saved";
+  SavedSuccessfully = this.Saved + " " + this.Successfully;
+  NewBankAccountAlert =
+    "Please enter your bank account details properly and double check it. In case of wrong bank account details, you may lost your funds"; // or withdrawal process may take more time than usual";
+  WithdrawalMethod = this.Withdrawal + " " + this.Method;
+  Daily = "Daily";
+  Monthly = "Monthly";
+  DailyLimit = this.Daily + " " + this.Limit;
+  MonthlyLimit = this.Monthly + " " + this.Limit;
+  ExchangeFee = this.Exchange + " " + this.Fee;
+  ThirdParty = "Third Party";
+  ThirdPartyFee = this.ThirdParty + " " + this.Fee;
+  Charges = "Charges";
+  BankCharges = this.Bank + " " + this.Charges;
+  Logon = "Logon";
+  LastLogon = this.Last + " " + this.Logon;
+  Current = "Current";
+  CurrentSession = this.Current + " " + this.Session;
+  CurrentTime = this.Current + " " + this.Time;
+  UpdatePicture = this.Update + " " + this.Picture;
 }

@@ -382,7 +382,7 @@ export default class BannerComponent extends BaseComponent {
     if (this.showErrors) {
       form[field] = this.validateFormControl(form[field]);
     }
-    this.updateState({ form: form });
+    return this.updateStatePromise({ form });
   };
 
   calculatorInput = (

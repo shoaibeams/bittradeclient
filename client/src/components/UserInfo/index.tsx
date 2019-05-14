@@ -29,6 +29,14 @@ class UserInfo extends BaseComponent {
       </ul>
     );
 
+    let picture = "/assets/images/boss64x64.png";
+    if (this.g.user) {
+      if (this.g.user.userAccount) {
+        if (!this.isNullOrEmpty(this.g.user.userAccount.picture)) {
+          picture = this.constants.BaseURL + this.g.user.userAccount.picture;
+        }
+      }
+    }
     return (
       <Popover
         overlayClassName="gx-popover-horizantal"
@@ -40,11 +48,7 @@ class UserInfo extends BaseComponent {
         }}
         trigger="click"
       >
-        <Avatar
-          src="/assets/images/boss64x64.png"
-          className="gx-avatar gx-pointer"
-          alt=""
-        />
+        <Avatar src={picture} className="gx-avatar gx-pointer" alt="" />
       </Popover>
     );
   }
