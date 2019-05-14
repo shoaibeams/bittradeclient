@@ -884,4 +884,11 @@ export interface LanguageBase {
   STO: string;
   TradeDemo: string;
   InvestorsZone: string;
+  Withdrawl: string;
+  SubmitAComplaint: string;
+  Phone: string;
+  Mobile: string;
+  Articles: string;
+  BitVelocityMail: string;
+  Contact: string;
 }

@@ -1311,10 +1311,12 @@ below to re-send`;
     "Within UK, we aim to credit the withdrawls within the week of receiving the payment. For EU and US customers, it can take upto 2 to 4 weeks to recieve withdrawls.";
 
   ///////////////////////////////////////////////////////////////////////////////////
-
   BitVelocityMail = "fk@bitvelocity.io";
   Contact = "Contact";
-
   InvestorsZone = "Investors Zone";
   TradeDemo = "Trade Demo";
+  Withdrawl = "Withdrawl";
+  Phone = "Phone";
+  Mobile = "Mobile";
+  Articles = "Articles";
 }
