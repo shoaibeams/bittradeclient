@@ -18,6 +18,8 @@ import {
 import { NavMenuTypes } from "../../../enums/general";
 import { Link } from "react-router-dom";
 import FontAwesome from "../base/FontAwesome";
+import { faFileExcel } from "@fortawesome/free-solid-svg-icons";
+
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -150,7 +152,12 @@ class NavMenuComponent extends BaseComponent {
       let titleInner = () => {
         return (
           <>
-            <span style={{ marginRight: "20px" }}>
+            <span  style={
+                item.text === this.lang.ContactUs
+                  ? { marginRight: 10 }
+                  : { marginRight: 21 }
+              }
+            >
               {FontAwesome.faIcon(item.icon)}
             </span>
             {item.text}
@@ -340,6 +347,15 @@ class NavMenuComponent extends BaseComponent {
     //   requireLogin: true,
     //   children: [],
     // }
+    let STO = {
+      name: "sto",
+      routerLink: Constants.Instance.RoutePaths.STO,
+      icon: "/assets/images/casino-chip.svg",
+      alt: this.lang.STO,
+      text: this.lang.STO,
+      requireLogin: false,
+      children: []
+    };
     let consulting = {
       name: "consulting",
       routerLink: null,
@@ -360,7 +376,7 @@ class NavMenuComponent extends BaseComponent {
       children: [
         {
           name: "help/faq",
-          routerLink: Constants.Instance.RoutePaths.ContactUs,
+          routerLink: Constants.Instance.RoutePaths.FAQ,
           icon: "question",
           alt: this.lang.FAQ,
           text: this.lang.FAQ,
@@ -369,7 +385,7 @@ class NavMenuComponent extends BaseComponent {
         },
         {
           name: "help/aboutUs",
-          routerLink: Constants.Instance.RoutePaths.ContactUs,
+          routerLink: Constants.Instance.RoutePaths.AboutUs,
           icon: "info",
           alt: this.lang.AboutUs,
           text: this.lang.AboutUs,
@@ -391,7 +407,7 @@ class NavMenuComponent extends BaseComponent {
     if (!this.g.isLoggedIn) {
       navItems.push(home);
     }
-    return [...navItems, exchange, funding, blockchain, consulting, help];
+    return [...navItems, exchange, funding, blockchain, STO, consulting, help];
     // if(this.g.isLoggedIn)
     // {
     //   return [trade, charts, funding, help];
