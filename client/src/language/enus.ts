@@ -1342,9 +1342,7 @@ below to re-send`;
   modern available techniques, our engineers have made sure that
   BitVelocity is as secured as it can be.`;
   TwoFactorAuthHeading = "Two-Factor Auth";
-  TwoFactorAuthPara = `A security scheme to confirm users' identity via two methods.
-  One through email verification and the other through sms
-  verification.`;
+  TwoFactorAuthPara = `Users can setup 2-factor authentication by installing google authenticator in the mobile app.`;
   DDosHeading = `DDoS Protection`;
   DDosPara = `Diligently designed, highly protected crypto network against
   DDOS attacks and all other network attacks.`;
