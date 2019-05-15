@@ -891,4 +891,46 @@ export interface LanguageBase {
   Articles: string;
   BitVelocityMail: string;
   Contact: string;
+  Roadmap: string;
+  SupportIntro: string;
+  SupportIntroPara: string;
+  Popular: string;
+  ArticleHeading1: string;
+  ArticleHeading2: string;
+  BitVelocityPhone: string;
+  BitVelocityMobile: string;
+
+  SecurityIntroPara: string;
+  TwoFactorAuthHeading: string;
+  TwoFactorAuthPara: string;
+  DDosHeading: string;
+  DDosPara: string;
+  OfflineStoragePara1: string;
+  Multisig: string;
+  MultisigWalletPara: string;
+  Today: string;
+  SaveMoney1: string;
+  SaveMoney2: string;
+  SaveMoney3: string;
+
+  Mission: string;
+  AboutIntroPara: string;
+  AboutMission: string;
+  Why: string;
+  Bit: string;
+  Velocity: string;
+  Tokenization: string;
+  AI: string;
+  TA: string;
+  Forecast: string;
+  Tools: string;
+
+  AboutPara1: string;
+  AboutPara2: string;
+  AboutPara3: string;
+  AboutPara4: string;
+  AboutPara5: string;
+  AboutPara6: string;
+  CEOPara: string;
+  TeamPara: string;
 }

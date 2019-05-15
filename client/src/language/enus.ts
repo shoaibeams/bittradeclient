@@ -1319,4 +1319,89 @@ below to re-send`;
   Phone = "Phone";
   Mobile = "Mobile";
   Articles = "Articles";
+  Roadmap = "Roadmap";
+  Popular = "Popular";
+  SupportIntro = "How can we help?";
+  SupportIntroPara = `Our Team is ready to assist you 24/7. If you need any help getting
+  started, request a feature, or have trouble finding a tool, get in
+  touch so we can help you.`;
+  ArticleHeading1 = "How Blockchain is going to change the way people travel";
+  ArticleHeading2 = "Blockchain, Real Estate, and a new Future";
+
+  BitVelocityPhone = "+44 203 620 7120";
+  BitVelocityMobile = "+44 79 15 220 209";
+
+  SecurityIntroPara = `At BitVelocity, we put security and privacy of users' data at the
+  top of our priority list. Securing users data and protecting the
+  integrity of every execution of deal that is made on our platform is
+  paramount to us. Our network and security engineers are working
+  assiduously every day to make the system impenetrable so users' data
+  is never misused or exposed to any malicous party whatsoever. Using
+  modern available techniques, our engineers have made sure that
+  BitVelocity is as secured as it can be.`;
+  TwoFactorAuthHeading = "Two-Factor Auth";
+  TwoFactorAuthPara = `A security scheme to confirm users' identity via two methods.
+  One through email verification and the other through sms
+  verification.`;
+  DDosHeading = `DDoS Protection`;
+  DDosPara = `Diligently designed, highly protected crypto network against
+  DDOS attacks and all other network attacks.`;
+  OfflineStoragePara1 = ` Offline Storage of 95% assets to ensure peace of mind to
+  investors and traders`;
+  Multisig = "Multisig";
+  MultisigWalletPara = `Enhanced security by multisignature wallet to promote
+  decentralization in exchange.`;
+  Today = "Today";
+
+  SaveMoney1 = `Saving cost of fiat conversion from GBP, Euro and USD. Buying
+  digital assets directly from local fiat currency (initially to
+  be launched in UK , then Europe and finally US and Asia).`;
+  SaveMoney2 = ` As low as 0.49% on buy/sell spreads (for trades on internal
+    exchange only)`;
+  SaveMoney3 = `Upto 90% savings on buying/selling fee on trades compared to
+  market.`;
+
+  Mission = "Mission";
+  AboutIntroPara = `BitVelocity is a secure, real-time, social, crypto trading solution
+  for digital assets. BitTrade will be our the first commercial
+  product targeted to be launched by Q2 2019 in production. Based on
+  our smart proprietary trading system using Artificial Intelligence
+  to analyze critical data and predict market trends.`;
+
+  AboutMission = `Innovate solutions using blockchain technology that can solve real
+  world problems for humans by offering easy access to digital assets,
+  reduce cost and effort for startups and established institution’s to
+  raise capital in tokenized economy.`;
+
+  Why = "Why";
+  Bit = "Bit";
+  Velocity = "Velocity";
+  Tokenization = "Tokenization";
+  AI = "AI";
+  TA = "TA";
+  Tools = "Tools";
+  Forecast = "Forecast";
+
+  AboutPara1 = `Diligently designed, highly secure crypto framework to prevent
+  any network hack.`;
+  AboutPara2 = `Offline Storage of 95% assets to ensure peace of mind to
+  investors and traders`;
+  AboutPara3 = ` Enhanced security by multisignature wallet to promote
+  decentralization in exchange.`;
+  AboutPara4 = `Bringing digital tokenization of real world assets in for of
+  STOs`;
+  AboutPara5 = ` AI to forecast market trends, algorithms based on fundamentals
+  and technical`;
+  AboutPara6 = `Market standard TA tools available for all the listed assets.`;
+
+  CEOPara = ` Fahad Sheikh is a technology evangelist, an enterprenuer who has built
+  successful startups previously; has run 3 development studios in 3 different
+  cities at a given time; an investor, a technology consultant and someone who
+  believes in solving real world problems using technology.`;
+
+  TeamPara = `Our team is a collection of people who are working day in, day out to make a
+  product that lives up to not only the expectations of its users, but also to
+  their own expectations. It's a diverse group of people from different
+  backgrounds and areas of experties, recruited by the founder of the company to
+  work in tandem to build his promising platform in the light of his vision.`;
 }
