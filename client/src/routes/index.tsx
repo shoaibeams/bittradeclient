@@ -42,6 +42,18 @@ const Blockchain = asyncComponent(() =>
   )
 );
 
+const TradeHistoryTable = asyncComponent(() =>
+  import("../app/components/home/tradebriefhistory/TradeHistoryTable").then(
+    module => module.default
+  )
+);
+
+const TradingViewComponent = asyncComponent(() =>
+  import("../app/modules/trade/TradingViewComponent").then(
+    module => module.default
+  )
+);
+
 const ContactUsComponent = asyncComponent(() =>
   import("../app/components/contact-us/ContactUsComponent").then(
     module => module.default
@@ -204,20 +216,6 @@ class ThemeImplementedRoutes extends BaseComponent {
           />
           <Route
             path={`${this.props.match.url}${
-              StaticConstants.RoutePaths.InvestorsZone
-            }`}
-            render={() => {
-              return restrictedRouteRenderer(
-                FundingComponent,
-                this.props,
-                `${this.props.match.url}${
-                  StaticConstants.RoutePaths.InvestorsZone
-                }`
-              );
-            }}
-          />
-          <Route
-            path={`${this.props.match.url}${
               this.constants.RoutePaths.MyAccount
             }`}
             render={() => {
@@ -240,7 +238,7 @@ class ThemeImplementedRoutes extends BaseComponent {
             }`}
             render={() => <Blockchain {...this.props} />}
           />
-           <Route
+          <Route
             exact
             path={`${this.props.match.url}${
               StaticConstants.RoutePaths.InvestorsZone
@@ -270,8 +268,33 @@ class ThemeImplementedRoutes extends BaseComponent {
           />
           <Route
             exact
+            path={`${this.props.match.url}${
+              StaticConstants.RoutePaths.KnowledgeBase
+            }`}
+            render={() => <TradeHistoryTable {...this.props} />}
+          />
+          <Route
+            exact
+            path={`${this.props.match.url}${StaticConstants.RoutePaths.Market}`}
+            render={() => <TradeHistoryTable {...this.props} />}
+          />
+           <Route
+            path={`${this.props.match.url}${
+              StaticConstants.RoutePaths.Trading
+            }`}
+            render={() => <TradingViewComponent {...this.props} />}
+          />
+          <Route
+            exact
             path={`${this.props.match.url}${StaticConstants.RoutePaths.FAQ}`}
             render={() => <Faq {...this.props} />}
+          />
+          <Route
+            exact
+            path={`${this.props.match.url}${
+              StaticConstants.RoutePaths.Security
+            }`}
+            render={() => <Security {...this.props} />}
           />
           <Route
             path={`${this.props.match.url}/`}
@@ -286,13 +309,6 @@ class ThemeImplementedRoutes extends BaseComponent {
               return <HomeComponent {...this.props} />;
             }}
           />
-          <Route
-            exact
-            path={`${this.props.match.url}${
-              StaticConstants.RoutePaths.Security
-            }`}
-            render={() => <Security {...this.props} />}
-          />         
         </Switch>
       </div>
     );

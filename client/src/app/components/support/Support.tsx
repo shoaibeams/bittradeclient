@@ -7,7 +7,6 @@ import ContactUsComponent from "../contact-us/ContactUsComponent";
 
 export default class Support extends BaseComponent {
   render() {
-    this.props.globals.title = this.lang.SubmitAComplaint;
     return (
       <>
         <Card className="gx-text-center">
@@ -53,7 +52,7 @@ export default class Support extends BaseComponent {
           </div>
         </Card>
         <Card>
-          <ContactUsComponent globals={this.props.globals} />
+          <ContactUsComponent params={{ title: this.lang.SubmitAComplaint }} />
         </Card>
       </>
     );

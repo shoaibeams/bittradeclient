@@ -16,11 +16,7 @@ export default class ContactUsComponent extends BaseComponent {
         {this.antd.colmd12(
           <Card
             className="gx-card form-header"
-            title={
-              this.props.globals.title
-                ? this.props.globals.title
-                : this.lang.ContactUs
-            }
+            title={this.p.title || this.lang.ContactUs}
             style={{ fontSize: 25, textAlign: "center" }}
           >
             <Form

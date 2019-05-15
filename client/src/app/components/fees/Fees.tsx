@@ -13,7 +13,7 @@ export default class Fees extends BaseComponent {
         <SaveMoneyCard />
         {/*-----------------------------FEE TABLES--------------=======-----------*/}
         <div className="fee-tables-container">
-          <Card className="gx-card">
+          <Card className="">
             {/*-----------------------TABLE #1----------------------------------*/}
             <div>
               <h1 className="heading-medium">{this.lang.Deposit}&nbsp;</h1>

@@ -6,8 +6,7 @@ import ContactUsComponent from "../contact-us/ContactUsComponent";
 
 export default class InvestorZone extends BaseComponent {
   render() {
-    const { InvestorsZone, InvestorZonePara, ContactUs } = this.lang;
-    this.props.globals.title = ContactUs;
+    const { InvestorsZone, InvestorZonePara } = this.lang;
     return (
       <div>
         <Card>
@@ -15,7 +14,7 @@ export default class InvestorZone extends BaseComponent {
           <p className="text-medium">{InvestorZonePara}</p>
         </Card>
         <Card>
-          <ContactUsComponent globals={this.props.globals} />
+          <ContactUsComponent params={{ title: this.lang.SubmitAComplaint }} />
         </Card>
         <Card>
           <Roadmap />
