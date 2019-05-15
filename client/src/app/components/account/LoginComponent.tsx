@@ -18,7 +18,7 @@ export class LoginComponent extends BaseComponent {
       <>
         <div className="gx-app-login-wrap">
           <div className="gx-app-login-container">
-            <div className="gx-app-login-main-content">
+            <div className="gx-app-login-main-content slide-in-fwd-center">
               <div className="gx-app-logo-content">
                 <div className="gx-app-logo-content-bg" style={{}}>
                   <img
@@ -28,7 +28,7 @@ export class LoginComponent extends BaseComponent {
                 </div>
                 <div className="gx-app-logo-wid">
                   <h1>
-                    <span>{this.lang.SignIn}</span>
+                    <span>{this.lang.Login}</span>
                   </h1>
                   <p>{this.lang.LoginPageSignupPara}</p>
                   <p>{this.lang.GetAnAccount}</p>
@@ -44,7 +44,7 @@ export class LoginComponent extends BaseComponent {
                 </div>
               </div>
               <div className="gx-app-login-content">
-                <h1 style={{ textAlign: "center" }}>{this.lang.SignIn}</h1>
+                <h1 style={{ textAlign: "center" }}>{this.lang.Login}</h1>
                 <Form
                   onSubmit={this.onSubmit}
                   className="gx-signin-form gx-form-row0"
@@ -60,22 +60,6 @@ export class LoginComponent extends BaseComponent {
                         )}
                   </FormItem>
                   <FormItem>
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      disabled={this.state.diableSubmitButton}
-                      loading={this.state.diableSubmitButton}
-                    >
-                      {this.lang.Login}
-                    </Button>
-                    <span>
-                      {this.lang.or + " "}
-                      <Link to={this.getLink(this.constants.RoutePaths.SignUp)}>
-                        {this.lang.SignUp}
-                      </Link>
-                    </span>
-                  </FormItem>
-                  <FormItem>
                     <Link
                       to={this.getLink(
                         this.constants.RoutePaths.AccountForgotPassword
@@ -86,6 +70,21 @@ export class LoginComponent extends BaseComponent {
                       </span>
                     </Link>
                   </FormItem>
+                  <FormItem>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      disabled={this.state.diableSubmitButton}
+                      loading={this.state.diableSubmitButton}
+                      className="gx-login-login-btn"
+                    >
+                      {this.lang.Login}
+                    </Button>                    
+                  </FormItem>    
+                  <Link to={this.getLink(this.constants.RoutePaths.SignUp)} className="gx-login-signup">
+                        {this.lang.DontHaveAccount}
+                        
+                      </Link>                                
                 </Form>
               </div>
             </div>
