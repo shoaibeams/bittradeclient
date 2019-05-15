@@ -57,16 +57,15 @@ export default class Faq extends BaseComponent {
     } = this.lang;
 
     return (
-      <Card className="faq-card">
+      <div className="faq-container">
         <h1 className="faq-heading heading-big gx-text-center">
           {FAQ}
           <img src="/assets/images/help.svg" alt="FAQ" />
         </h1>
+
         <Row className="row">
-          {/******************************COLUMN #1*************************************/}
-          <Col span={12} className="col-1">
+          {this.antd.colmd12(
             <Collapse
-              bordered={false}
               defaultActiveKey={["-1"]}
               className="collapse text-medium"
             >
@@ -78,7 +77,7 @@ export default class Faq extends BaseComponent {
               </Panel>
               <Panel header={GSQuestion2} key="2">
                 <p>
-                  {GSAnswer2} &nbsp;
+                  {GSAnswer2}&nbsp;
                   <Link to={this.getLink(this.constants.RoutePaths.SignUp)}>
                     here
                   </Link>
@@ -88,44 +87,10 @@ export default class Faq extends BaseComponent {
                 <p>{GSAnswer3}</p>
               </Panel>
             </Collapse>
-            <Collapse
-              bordered={false}
-              defaultActiveKey={["-1"]}
-              className="collapse text-medium"
-            >
-              <h2>{Trading}</h2>
-              <Panel header={TradeQuestion1} key="1">
-                <p>{TradeAnswer1}</p>
-              </Panel>
-              <Panel header={TradeQuestion2} key="2">
-                <p>{TradeAnswer2}</p>
-              </Panel>
-              <Panel header={TradeQuestion3} key="3">
-                <p>{TradeAnswer3}</p>
-              </Panel>
-            </Collapse>
-            <Collapse
-              bordered={false}
-              defaultActiveKey={["-1"]}
-              className="collapse text-medium"
-            >
-              <h2>{Security}</h2>
-              <Panel header={SecurityQuestion1} key="1">
-                <p>{SecurityAnswer1}</p>
-              </Panel>
-              <Panel header={SecurityQuestion2} key="2">
-                <p>{SecurityAnswer2}</p>
-              </Panel>
-              <Panel header={SecurityQuestion3} key="3">
-                <p>{SecurityAnswer3}</p>
-              </Panel>
-            </Collapse>
-          </Col>
+          )}
 
-          {/************************COLUMN #2****************************************/}
-          <Col span={12} className="col-2">
+          {this.antd.colmd12(
             <Collapse
-              bordered={false}
               defaultActiveKey={["-1"]}
               className="collapse text-medium"
             >
@@ -147,8 +112,50 @@ export default class Faq extends BaseComponent {
                 <p>{AMAnswer3}</p>
               </Panel>
             </Collapse>
+          )}
+        </Row>
+
+        <Row className="row">
+          {this.antd.colmd12(
             <Collapse
-              bordered={false}
+              defaultActiveKey={["-1"]}
+              className="collapse text-medium"
+            >
+              <h2>{Trading}</h2>
+              <Panel header={TradeQuestion1} key="1">
+                <p>{TradeAnswer1}</p>
+              </Panel>
+              <Panel header={TradeQuestion2} key="2">
+                <p>{TradeAnswer2}</p>
+              </Panel>
+              <Panel header={TradeQuestion3} key="3">
+                <p>{TradeAnswer3}</p>
+              </Panel>
+            </Collapse>
+          )}
+
+          {this.antd.colmd12(
+            <Collapse
+              defaultActiveKey={["-1"]}
+              className="collapse text-medium"
+            >
+              <h2>{Payment}</h2>
+              <Panel header={PayQuestion1} key="1">
+                <p>{PayAnswer1}</p>
+              </Panel>
+              <Panel header={PayQuestion2} key="2">
+                <p>{PayAnswer2}</p>
+              </Panel>
+              <Panel header={PayQuestion3} key="3">
+                <p>{PayAnswer3}</p>
+              </Panel>
+            </Collapse>
+          )}
+        </Row>
+
+        <Row className="row" style={{ marginBottom: "100px" }}>
+          {this.antd.colmd12(
+            <Collapse
               defaultActiveKey={["-1"]}
               className="collapse text-medium"
             >
@@ -173,25 +180,27 @@ export default class Faq extends BaseComponent {
                 <p>{FeesAnswer3}</p>
               </Panel>
             </Collapse>
+          )}
+
+          {this.antd.colmd12(
             <Collapse
-              bordered={false}
               defaultActiveKey={["-1"]}
               className="collapse text-medium"
             >
-              <h2>{Payment}</h2>
-              <Panel header={PayQuestion1} key="1">
-                <p>{PayAnswer1}</p>
+              <h2>{Security}</h2>
+              <Panel header={SecurityQuestion1} key="1">
+                <p>{SecurityAnswer1}</p>
               </Panel>
-              <Panel header={PayQuestion2} key="2">
-                <p>{PayAnswer2}</p>
+              <Panel header={SecurityQuestion2} key="2">
+                <p>{SecurityAnswer2}</p>
               </Panel>
-              <Panel header={PayQuestion3} key="3">
-                <p>{PayAnswer3}</p>
+              <Panel header={SecurityQuestion3} key="3">
+                <p>{SecurityAnswer3}</p>
               </Panel>
             </Collapse>
-          </Col>
+          )}
         </Row>
-      </Card>
+      </div>
     );
   }
 }

@@ -1280,7 +1280,7 @@ below to re-send`;
  funding fiat deposits`;
   TradeAnswer2 = `First, you need to register on our site. Then, you need to get KYC verified. Once verification process is completed, your account is available for 
  funding fiat deposits`;
-  TradeAnswer3 = "The minimum trading limit is 10£.";
+  TradeAnswer3 = "The minimum trading limit is £10.";
 
   FeesQuestion1 = "What is the deposit fee?";
   FeesQuestion2 = "What is the withdrawl fee while trading on BitVelocity?";
