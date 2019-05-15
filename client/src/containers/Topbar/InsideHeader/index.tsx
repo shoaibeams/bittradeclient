@@ -168,6 +168,7 @@ class InsideHeader extends BaseComponent {
           </div>
         ) : null}
 
+        {/* ---------------LOGO AND TITLE------------------*/}
         <Header className="gx-header-horizontal-main">
           <div className="gx-container">
             <div className="gx-header-horizontal-main-flex">
@@ -197,6 +198,7 @@ class InsideHeader extends BaseComponent {
                 />
               </Link>
 
+              {/*-------------HORIZONTAL NAVIGATION OF HEADER-----------------*/}
               <div className="gx-header-horizontal-nav gx-header-horizontal-nav-curve gx-d-none gx-d-lg-block">
                 <HorizontalNav {...this.props} />
               </div>
@@ -220,19 +222,6 @@ class InsideHeader extends BaseComponent {
                   </Popover>
                 </li> */}
 
-                <li className="gx-notify">
-                  <Popover
-                    overlayClassName="gx-popover-horizantal"
-                    placement="bottomRight"
-                    content={<AppNotification />}
-                    trigger="click"
-                  >
-                    <span className="gx-pointer gx-d-block">
-                      <i className="icon icon-notification" />
-                    </span>
-                  </Popover>
-                </li>
-
                 {/* <li className="gx-msg">
                   <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight"
                     content={<MailNotification />} trigger="click">
@@ -242,18 +231,7 @@ class InsideHeader extends BaseComponent {
                     </span>
                   </Popover>
                 </li> */}
-                <li className="gx-language">
-                  <Popover
-                    overlayClassName="gx-popover-horizantal"
-                    placement="bottomRight"
-                    content={lmnu.menu}
-                    trigger="click"
-                  >
-                    <span className="gx-pointer gx-flex-row gx-align-items-center">
-                      <i className={`flag flag-24 flag-${lmnu.current.icon}`} />
-                    </span>
-                  </Popover>
-                </li>
+
                 <li className="gx-user-nav">
                   {this.g.isLoggedIn ? (
                     <UserInfo {...this.props} />
@@ -266,12 +244,44 @@ class InsideHeader extends BaseComponent {
                           {this.lang.Login}
                         </Link>
                       </li>
-                      <li>
+                      <li className="gx-login-list signup-btn">
                         <Link
                           to={this.getLink(this.constants.RoutePaths.SignUp)}
                         >
-                          {this.lang.SignUp}
+                          <Button style={{ marginTop: "10px", color: "white" }}>
+                            {this.lang.SignUp}
+                          </Button>
                         </Link>
+                      </li>
+
+          {/*------------NOTIFICATION RING BELL AND LANGUAGE FLAG----------*/}                      
+                      <li className="gx-notify">
+                        <Popover
+                          overlayClassName="gx-popover-horizantal"
+                          placement="bottomRight"
+                          content={<AppNotification />}
+                          trigger="click"
+                        >
+                          <span className="gx-pointer gx-d-block">
+                            <i className="icon icon-notification" />
+                          </span>
+                        </Popover>
+                      </li>
+                      <li className="gx-language">
+                        <Popover
+                          overlayClassName="gx-popover-horizantal"
+                          placement="bottomRight"
+                          content={lmnu.menu}
+                          trigger="click"
+                        >
+                          <span className="gx-pointer gx-flex-row gx-align-items-center">
+                            <i
+                              className={`flag flag-24 flag-${
+                                lmnu.current.icon
+                              }`}
+                            />
+                          </span>
+                        </Popover>
                       </li>
                     </ul>
                   )}
