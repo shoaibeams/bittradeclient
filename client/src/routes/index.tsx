@@ -7,6 +7,34 @@ import asyncComponent from "../app/components/base/AsyncComponent";
 import NoMatchComponent from "../app/components/base/NoMatchComponent";
 import { MainApp } from "../containers/App/MainApp";
 import { BaseComponent } from "../app/components/base/BaseComponent";
+import ScrollToTop from "../util/ScrollToTop";
+
+
+const Security = asyncComponent(() =>
+  import("../app/components/security/Security").then(module => module.default)
+);
+
+const InvestorsZone = asyncComponent(() =>
+  import("../app/components/investor-zone/InvestorZone").then(
+    module => module.default
+  )
+);
+
+const Support = asyncComponent(() =>
+  import("../app/components/support/Support").then(module => module.default)
+);
+
+const AboutUs = asyncComponent(() =>
+  import("../app/components/about/About").then(module => module.default)
+);
+
+const Fees = asyncComponent(() =>
+  import("../app/components/fees/Fees").then(module => module.default)
+);
+
+const Faq = asyncComponent(() =>
+  import("../app/components/faq/Faq").then(module => module.default)
+);
 
 const Blockchain = asyncComponent(() =>
   import("../app/components/blockchain/Blockchain").then(
@@ -71,50 +99,52 @@ const MyAccountSwitch = asyncComponent(() =>
 
 const OpenRoutes = props => {
   return (
-    <Switch>
-      <Route
-        exact
-        path={`${props.match.url}${StaticConstants.RoutePaths.Login}`}
-        render={() => <LoginComponent {...props} />}
-      />
-      <Route
-        exact
-        path={`${props.match.url}${StaticConstants.RoutePaths.SignUp}`}
-        render={() => <SignUpComponent {...props} />}
-      />
-      <Route
-        exact
-        path={`${props.match.url}${StaticConstants.RoutePaths.AccountVerify}`}
-        render={() => <AccountVerificationComponent {...props} />}
-      />
-      <Route
-        exact
-        path={`${props.match.url}${
-          StaticConstants.RoutePaths.EmailConfirmation
-        }`}
-        render={() => <EmailConfirmationComponent {...props} />}
-      />
-      <Route
-        exact
-        path={`${props.match.url}${
-          StaticConstants.RoutePaths.AccountForgotPassword
-        }`}
-        render={() => <ForgotPasswordComponent {...props} />}
-      />
-      <Route
-        exact
-        path={`${props.match.url}${
-          StaticConstants.RoutePaths.AccountPasswordRecovery
-        }`}
-        render={() => <PasswordRecoveryComponent {...props} />}
-      />
-      <Route
-        exact
-        path={`${props.match.url}${StaticConstants.RoutePaths.Home}*`}
-        render={() => <MainApp {...props} />}
-      />
-      {/* <Route path="*" render={() => <MainApp {...props} match={{ url: "/" }} />} /> */}
-    </Switch>
+    <ScrollToTop>
+      <Switch>
+        <Route
+          exact
+          path={`${props.match.url}${StaticConstants.RoutePaths.Login}`}
+          render={() => <LoginComponent {...props} />}
+        />
+        <Route
+          exact
+          path={`${props.match.url}${StaticConstants.RoutePaths.SignUp}`}
+          render={() => <SignUpComponent {...props} />}
+        />
+        <Route
+          exact
+          path={`${props.match.url}${StaticConstants.RoutePaths.AccountVerify}`}
+          render={() => <AccountVerificationComponent {...props} />}
+        />
+        <Route
+          exact
+          path={`${props.match.url}${
+            StaticConstants.RoutePaths.EmailConfirmation
+          }`}
+          render={() => <EmailConfirmationComponent {...props} />}
+        />
+        <Route
+          exact
+          path={`${props.match.url}${
+            StaticConstants.RoutePaths.AccountForgotPassword
+          }`}
+          render={() => <ForgotPasswordComponent {...props} />}
+        />
+        <Route
+          exact
+          path={`${props.match.url}${
+            StaticConstants.RoutePaths.AccountPasswordRecovery
+          }`}
+          render={() => <PasswordRecoveryComponent {...props} />}
+        />
+        <Route
+          exact
+          path={`${props.match.url}${StaticConstants.RoutePaths.Home}*`}
+          render={() => <MainApp {...props} />}
+        />
+        {/* <Route path="*" render={() => <MainApp {...props} match={{ url: "/" }} />} /> */}
+      </Switch>
+    </ScrollToTop>
   );
 };
 
@@ -155,7 +185,6 @@ class ThemeImplementedRoutes extends BaseComponent {
         // }}
       >
         <Switch>
-        
           <Route
             exact
             path={`${this.props.match.url}${
@@ -211,6 +240,39 @@ class ThemeImplementedRoutes extends BaseComponent {
             }`}
             render={() => <Blockchain {...this.props} />}
           />
+           <Route
+            exact
+            path={`${this.props.match.url}${
+              StaticConstants.RoutePaths.InvestorsZone
+            }`}
+            render={() => <InvestorsZone {...this.props} />}
+          />
+          <Route
+            exact
+            path={`${this.props.match.url}${
+              StaticConstants.RoutePaths.AboutUs
+            }`}
+            render={() => <AboutUs {...this.props} />}
+          />
+          <Route
+            exact
+            path={`${this.props.match.url}${
+              StaticConstants.RoutePaths.OurFees
+            }`}
+            render={() => <Fees {...this.props} />}
+          />
+          <Route
+            exact
+            path={`${this.props.match.url}${
+              StaticConstants.RoutePaths.Support
+            }`}
+            render={() => <Support {...this.props} />}
+          />
+          <Route
+            exact
+            path={`${this.props.match.url}${StaticConstants.RoutePaths.FAQ}`}
+            render={() => <Faq {...this.props} />}
+          />
           <Route
             path={`${this.props.match.url}/`}
             render={() => {
@@ -224,7 +286,13 @@ class ThemeImplementedRoutes extends BaseComponent {
               return <HomeComponent {...this.props} />;
             }}
           />
-         
+          <Route
+            exact
+            path={`${this.props.match.url}${
+              StaticConstants.RoutePaths.Security
+            }`}
+            render={() => <Security {...this.props} />}
+          />         
         </Switch>
       </div>
     );
