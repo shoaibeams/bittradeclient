@@ -31,6 +31,7 @@ export class mdProps {
 }
 
 export class mdGlobalProps {
+  title: string;
   isLoggedIn: boolean;
   showMainLoader: boolean;
   // username: string;
