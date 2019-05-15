@@ -1285,8 +1285,10 @@ below to re-send`;
   FeesQuestion1 = "What is the deposit fee?";
   FeesQuestion2 = "What is the withdrawl fee while trading on BitVelocity?";
   FeesQuestion3 = "Are there any other charges?";
-  FeesAnswer1 = "";
-  FeesAnswer2 = "";
+  FeesAnswer1 =
+    "Deposit fee for the deposit of 10 to 25 euros is 1.99£. For 25 to 100 euros is 4.99£, and for more than 100£, it is 10£. To view other fees, click";
+  FeesAnswer2 = `When the amount traded is less than 250£, buying fee is 0.9% and selling fee is 0.49%.  
+  When the amount traded is more than 250£, buying fee is 0.3% and selling fee is 0.19%. To view other fees, click`;
   FeesAnswer3 =
     "We charge on deposits and withdrawls plus there is a small charge on each buy and sell trade.";
 
@@ -1413,4 +1415,6 @@ below to re-send`;
   rates may apply through the relavant currency-conversion service
   provider or by the laws and authorities of user's current
   location`;
+
+  DontHaveAccount = "Don't have an account? Create a new account";
 }

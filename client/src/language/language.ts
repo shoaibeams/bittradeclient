@@ -938,6 +938,7 @@ export interface LanguageBase {
   FeeLine2: string;
   FeeLine3: string;
   FeeLine4: string;
-
   FeeFooter: string;
+  
+  DontHaveAccount: string;
 }
