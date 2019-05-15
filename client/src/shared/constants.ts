@@ -12,7 +12,10 @@ export class Constants {
     return this.getInstance();
   }
 
-  BaseURL: string = "http://localhost:1337"; //"https://api.bitvelocity.io"; //"http://localhost:1337";
+  BaseURL: string =
+    process.env.NODE_ENV === "production"
+      ? "https://api.bitvelocity.io"
+      : "http://localhost:1337";
   IsDev: boolean = this.BaseURL == "https://api.bitvelocity.io" ? false : true;
   SocketURL: string = "/stream";
   ResponseMessageTimeout = 4; //in seconds
@@ -145,7 +148,7 @@ export class StaticConstants {
     Trading: string;
     STO: string;
     FAQ: string;
-    AboutUs: string;   
+    AboutUs: string;
     OurFees: string;
     Security: string;
     Investing: string;

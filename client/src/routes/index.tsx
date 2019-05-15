@@ -216,6 +216,18 @@ class ThemeImplementedRoutes extends BaseComponent {
           />
           <Route
             path={`${this.props.match.url}${
+              StaticConstants.RoutePaths.Funding
+            }`}
+            render={() => {
+              return restrictedRouteRenderer(
+                FundingComponent,
+                this.props,
+                `${this.props.match.url}${StaticConstants.RoutePaths.Funding}`
+              );
+            }}
+          />
+          <Route
+            path={`${this.props.match.url}${
               this.constants.RoutePaths.MyAccount
             }`}
             render={() => {
