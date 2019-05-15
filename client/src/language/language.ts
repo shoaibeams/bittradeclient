@@ -933,4 +933,11 @@ export interface LanguageBase {
   AboutPara6: string;
   CEOPara: string;
   TeamPara: string;
+
+  FeeLine1: string;
+  FeeLine2: string;
+  FeeLine3: string;
+  FeeLine4: string;
+
+  FeeFooter: string;
 }

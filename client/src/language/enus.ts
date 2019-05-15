@@ -1404,4 +1404,13 @@ below to re-send`;
   their own expectations. It's a diverse group of people from different
   backgrounds and areas of experties, recruited by the founder of the company to
   work in tandem to build his promising platform in the light of his vision.`;
+
+  FeeLine1 = "Most reasonable rates in the market.";
+  FeeLine2 = "Only upfront charges. No hidden fees.";
+  FeeLine3 = "Most of the services without any charges.";
+  FeeLine4 = "Charges only for the buy/sell spreads.";
+  FeeFooter = `For transactons that are international, currency convertion
+  rates may apply through the relavant currency-conversion service
+  provider or by the laws and authorities of user's current
+  location`;
 }
