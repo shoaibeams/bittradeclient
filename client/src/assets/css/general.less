@@ -131,3 +131,234 @@ a.no-decor:hover {
   line-height: 1.5;
   border-radius: 0.2rem;
 }
+
+
+//NEW STYLES ADDED BY SHOAIB
+
+//TYPOGRAPHY
+
+.heading-huge {
+  font-size: 55px;
+}
+
+.heading-big {
+  font-size: 40px;
+}
+
+.heading-medium {
+  font-size: 30px;
+}
+
+.list-big {
+  font-size: 25px;
+}
+
+.text-medium {
+  font-size: 20px;
+}
+/////////////////////////////////////////////////////////////////////////////////
+
+.gx-language {
+  transform: translateY(6px);
+}
+
+.gx-notify {
+  margin-left: 30px;
+}
+
+.gx-login-signup {
+  color: @primary-color;   
+
+  &:hover {
+    color: @secondary-color;
+  }
+}
+
+.gx-login-login-btn {
+transform: translateY(3px);
+}
+
+.gx-header {
+  font-size: 40px;
+  padding-right: 15px;
+  text-align: center;
+
+  .bit-text {
+      color: orangered;
+  }
+
+  .rocket {
+      transform: translateY(-5px);
+  }
+
+  &:hover {
+      .rocket {
+          transition: 3s ease-in;
+          animation: bouncingRocket 2s infinite;
+      }
+  }
+}
+
+.gx-login-list {
+  .signup-btn {
+    button {
+        background-color: @primary-color;
+        border-color: @primary-color;
+    }
+ }
+  & li {
+     
+    a {
+            color: @white-color;
+            font-size: @font-size-lg;
+        }
+
+        a:hover {
+            color: @secondary-color;
+            transition: .2s;
+        }
+  }
+}
+
+
+@keyframes bouncingRocket {
+  0% {
+    transform: translate3d(0px, 0px, 0);
+  }
+
+  50% {
+    transform: translate3d(0px, -10px, 0);
+  }
+
+  100% {
+    transform: translate3d(0px, 0px, 0);
+  }
+}
+
+@keyframes movingRocket {
+
+  0%,
+  100% {
+    transform: translate3d(0px, 0px, 0) rotate(90deg);
+  }
+
+  50% {
+    transform: translate3d(-10px, 0px, 0) rotate(90deg);
+  }
+}
+
+//////////////////ANIMISTA CLASSES/////////////////////
+
+.fade-in-bottom {
+  animation: fade-in-bottom .6s cubic-bezier(.39, .575, .565, 1.000) both;
+  animation-delay: 2s;
+}
+
+.slide-in-right {
+  animation: slide-in-right .5s cubic-bezier(.25, .46, .45, .94) both
+}
+
+.slide-in-left {
+  animation: slide-in-left .5s cubic-bezier(.25, .46, .45, .94) both
+}
+
+.slide-in-fwd-center {
+  animation: slide-in-fwd-center .4s cubic-bezier(.25, .46, .45, .94) both
+}
+
+.scale-in-center {
+  -webkit-animation: scale-in-center .5s cubic-bezier(.25, .46, .45, .94) both;
+  animation: scale-in-center .5s cubic-bezier(.25, .46, .45, .94) both
+}
+
+//////////////////ANIMISTA ANIMATIONS///////////////////
+@keyframes fade-in-bottom {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-1000px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shake-horizontal {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateX(-10px);
+  }
+
+  20%,
+  40%,
+  60% {
+    transform: translateX(10px);
+  }
+
+  80% {
+    transform: translateX(8px);
+  }
+
+  90% {
+    transform: translateX(-8px);
+  }
+}
+
+@keyframes slide-in-fwd-center {
+  0% {
+    -webkit-transform: translateZ(-1400px);
+    transform: translateZ(-1400px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in-center {
+  0% {
+    transform: scale(0);
+    opacity: 1
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1
+  }
+}
