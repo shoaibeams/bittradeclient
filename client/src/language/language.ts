@@ -941,4 +941,8 @@ export interface LanguageBase {
   FeeFooter: string;
   
   DontHaveAccount: string;
+  
+  Coming: string;
+  Soon: string;
+  STOPlaceholder: string;
 }

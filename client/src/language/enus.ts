@@ -1275,7 +1275,7 @@ below to re-send`;
 
   TradeQuestion1 = "How do I buy crypto assets?";
   TradeQuestion2 = "How do I buy sell assets?";
-  TradeQuestion3 = "What is the minimum amount for purchasing?";
+  TradeQuestion3 = "What is the minimum amount for trading?";
   TradeAnswer1 = `First, you need to register on our site. Then, you need to get KYC verified. Once verification process is completed, your account is available for 
  funding fiat deposits`;
   TradeAnswer2 = `First, you need to register on our site. Then, you need to get KYC verified. Once verification process is completed, your account is available for 
@@ -1286,9 +1286,9 @@ below to re-send`;
   FeesQuestion2 = "What is the withdrawl fee while trading on BitVelocity?";
   FeesQuestion3 = "Are there any other charges?";
   FeesAnswer1 =
-    "Deposit fee for the deposit of 10 to 25 euros is 1.99£. For 25 to 100 euros is 4.99£, and for more than 100£, it is 10£. To view other fees, click";
+    "Deposit fee for the deposit of 10 to 25 euros is £1.99. For 25 to 100 euros is £4.99, and for more than 100£, it is 10£. To view other fees, click";
   FeesAnswer2 = `When the amount traded is less than 250£, buying fee is 0.9% and selling fee is 0.49%.  
-  When the amount traded is more than 250£, buying fee is 0.3% and selling fee is 0.19%. To view other fees, click`;
+  When the amount traded is more than £250, buying fee is 0.3% and selling fee is 0.19%. To view other fees, click`;
   FeesAnswer3 =
     "We charge on deposits and withdrawls plus there is a small charge on each buy and sell trade.";
 
@@ -1415,4 +1415,7 @@ below to re-send`;
   location`;
 
   DontHaveAccount = "Don't have an account? Create a new account";
+  Coming = "Coming";
+  Soon = "Soon";
+  STOPlaceholder = "Come back soon to find a Security Token Offering (STO) page here.";
 }

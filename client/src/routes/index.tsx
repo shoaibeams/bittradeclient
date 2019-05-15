@@ -9,6 +9,9 @@ import { MainApp } from "../containers/App/MainApp";
 import { BaseComponent } from "../app/components/base/BaseComponent";
 import ScrollToTop from "../util/ScrollToTop";
 
+const STO = asyncComponent(() =>
+  import("../app/components/sto/STO").then(module => module.default)
+);
 
 const Security = asyncComponent(() =>
   import("../app/components/security/Security").then(module => module.default)
@@ -200,6 +203,13 @@ class ThemeImplementedRoutes extends BaseComponent {
           <Route
             exact
             path={`${this.props.match.url}${
+              StaticConstants.RoutePaths.STO
+            }`}
+            render={() => <STO {...this.props} />}
+          />
+          <Route
+            exact
+            path={`${this.props.match.url}${
               StaticConstants.RoutePaths.ContactUs
             }`}
             render={() => <ContactUsComponent {...this.props} />}
@@ -290,7 +300,7 @@ class ThemeImplementedRoutes extends BaseComponent {
             path={`${this.props.match.url}${StaticConstants.RoutePaths.Market}`}
             render={() => <TradeHistoryTable {...this.props} />}
           />
-           <Route
+          <Route
             path={`${this.props.match.url}${
               StaticConstants.RoutePaths.Trading
             }`}
