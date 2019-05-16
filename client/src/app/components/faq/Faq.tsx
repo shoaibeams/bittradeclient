@@ -63,7 +63,7 @@ export default class Faq extends BaseComponent {
           <img src="/assets/images/help.svg" alt="FAQ" />
         </h1>
 
-        <Row className="row">
+        <Row className="faq-row">
           {this.antd.colmd12(
             <Collapse
               defaultActiveKey={["-1"]}
@@ -115,7 +115,7 @@ export default class Faq extends BaseComponent {
           )}
         </Row>
 
-        <Row className="row">
+        <Row className="faq-row">
           {this.antd.colmd12(
             <Collapse
               defaultActiveKey={["-1"]}
@@ -153,7 +153,7 @@ export default class Faq extends BaseComponent {
           )}
         </Row>
 
-        <Row className="row" style={{ marginBottom: "100px" }}>
+        <Row className="faq-row" style={{ marginBottom: "100px" }}>
           {this.antd.colmd12(
             <Collapse
               defaultActiveKey={["-1"]}
