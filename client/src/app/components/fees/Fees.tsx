@@ -4,13 +4,13 @@ import { withdrawlDataSource, withdrawlColumns } from "./staticDataWithdrawl";
 import { depositDataSource, depositColumns } from "./staticDataDeposit";
 import "./fees.less";
 import { BaseComponent } from "../base/BaseComponent";
-import SaveMoneyCard from "./SaveMoneyCard/SaveMoneyCard";
+import FeeCard from "./feeCard/FeeCard";
 
 export default class Fees extends BaseComponent {
   render() {
     return (
       <>
-        <SaveMoneyCard />
+        <FeeCard />
         {/*-----------------------------FEE TABLES--------------=======-----------*/}
         <div className="fee-tables-container">
           <Card className="">

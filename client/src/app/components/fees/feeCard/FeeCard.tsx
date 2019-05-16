@@ -2,13 +2,13 @@ import * as React from "react";
 import { Card } from "antd";
 import { BaseComponent } from "../../base/BaseComponent";
 import ImageAndCaption from "../../blockchain/ImageAndCaption";
-import "./SaveMoneyCard.less";
+import "./FeeCard.less";
 
 export default class SaveCardMoney extends BaseComponent {
   render() {
     return (
       <Card>
-        <div className="card-saving">
+        <div className="fee-card">
           <div className="col-left">
             <div>
               <h1>
