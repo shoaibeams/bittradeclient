@@ -24,10 +24,7 @@ export default class SaveCardMoney extends BaseComponent {
           </div>
 
           <div className="col-right">
-            <ImageAndCaption
-              src={"/assets/images/save-money.svg"}
-              caption="  "
-            />
+            <ImageAndCaption src={"/assets/images/save-money.svg"} />
           </div>
         </div>
       </Card>

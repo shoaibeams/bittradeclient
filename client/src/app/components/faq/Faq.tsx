@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Card, Row, Col, Collapse } from "antd";
+import { Row, Collapse } from "antd";
 import { BaseComponent } from "../base/BaseComponent";
 import "./Faq.less";
 import { Link } from "react-router-dom";
@@ -88,7 +88,7 @@ export default class Faq extends BaseComponent {
               </Panel>
             </Collapse>
           )}
-
+  
           {this.antd.colmd12(
             <Collapse
               defaultActiveKey={["-1"]}
@@ -114,7 +114,7 @@ export default class Faq extends BaseComponent {
             </Collapse>
           )}
         </Row>
-
+  
         <Row className="faq-row">
           {this.antd.colmd12(
             <Collapse
@@ -152,7 +152,7 @@ export default class Faq extends BaseComponent {
             </Collapse>
           )}
         </Row>
-
+        
         <Row className="faq-row" style={{ marginBottom: "100px" }}>
           {this.antd.colmd12(
             <Collapse
