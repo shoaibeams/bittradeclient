@@ -37,10 +37,12 @@ export class LoginComponent extends BaseComponent {
                   <img alt="BitVelocity" src="/assets/images/favicon.ico" />
                 </div> */}
                 <div className="gx-app-logo" style={{}}>
-                  <img
-                    src="/assets/images/logo.png"
-                    alt={this.lang.CryptoCoin}
-                  />
+                  <Link to={this.getLink(this.constants.RoutePaths.Home)}>
+                    <img
+                      src="/assets/images/logo.png"
+                      alt={this.lang.CryptoCoin}
+                    />
+                  </Link>
                 </div>
               </div>
               <div className="gx-app-login-content">
@@ -79,12 +81,14 @@ export class LoginComponent extends BaseComponent {
                       className="gx-login-login-btn"
                     >
                       {this.lang.Login}
-                    </Button>                    
-                  </FormItem>    
-                  <Link to={this.getLink(this.constants.RoutePaths.SignUp)} className="gx-login-signup">
-                        {this.lang.DontHaveAccount}
-                        
-                      </Link>                                
+                    </Button>
+                  </FormItem>
+                  <Link
+                    to={this.getLink(this.constants.RoutePaths.SignUp)}
+                    className="gx-login-signup"
+                  >
+                    {this.lang.DontHaveAccount}
+                  </Link>
                 </Form>
               </div>
             </div>

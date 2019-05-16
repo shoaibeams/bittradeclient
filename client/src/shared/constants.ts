@@ -139,6 +139,9 @@ export class StaticConstants {
     OurFees: "our-fees"
   };
   public static RoutePaths = new (class {
+    Terms: string;
+    Privacy: string;
+
     Travel: string;
     RealEstate: string;
     Support: string;
@@ -222,6 +225,8 @@ export class StaticConstants {
       this.FAQ = "/help/faq";
       this.OurFees = "/fees";
       this.STO = "/sto";
+      this.Terms = "/legal/terms";
+      this.Privacy = "/legal/privacy";
     }
   })();
   public static RecaptchaSiteKey = "6Lfab3YUAAAAANbb2Lp1WYVMiwyUSCLyeZkbw5HK";

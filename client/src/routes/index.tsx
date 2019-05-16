@@ -9,6 +9,10 @@ import { MainApp } from "../containers/App/MainApp";
 import { BaseComponent } from "../app/components/base/BaseComponent";
 import ScrollToTop from "../util/ScrollToTop";
 
+const Legal = asyncComponent(() =>
+  import("../app/components/legal/Legal").then(module => module.default)
+);
+
 const STO = asyncComponent(() =>
   import("../app/components/sto/STO").then(module => module.default)
 );
@@ -317,6 +321,20 @@ class ThemeImplementedRoutes extends BaseComponent {
               StaticConstants.RoutePaths.Security
             }`}
             render={() => <Security {...this.props} />}
+          />
+          <Route
+            exact
+            path={`${this.props.match.url}${
+              StaticConstants.RoutePaths.Terms
+            }`}
+            render={() => <Legal {...this.props} />}
+          />
+           <Route
+            exact
+            path={`${this.props.match.url}${
+              StaticConstants.RoutePaths.Privacy
+            }`}
+            render={() => <Legal {...this.props} />}
           />
           <Route
             path={`${this.props.match.url}/`}

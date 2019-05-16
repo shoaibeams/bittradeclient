@@ -66,13 +66,19 @@ export default class SignUpComponent extends BaseComponent {
             false,
             null,
             <>
-              {this.lang.IAgree}
-              &nbsp;
+              {this.lang.TermsOfUse}&nbsp;
               <Link
                 className="gx-login-form-forgot"
-                to={this.getLink(this.constants.RoutePaths.Home)}
+                to={this.getLink(this.constants.RoutePaths.Terms)}
               >
-                {this.lang.TermsOfUse}
+                {this.lang.TermsAndConditions}
+              </Link>
+              &nbsp;{this.lang.And}&nbsp;
+              <Link
+                className="gx-login-form-forgot"
+                to={this.getLink(this.constants.RoutePaths.Privacy)}
+              >
+                {this.lang.PrivacyPolicy}
               </Link>
             </>
           )}
@@ -91,12 +97,14 @@ export default class SignUpComponent extends BaseComponent {
     return (
       <>
         <div className="gx-text-center">
-          <img
-            className="gx-mt-2"
-            src="/assets/images/footer-logo.png"
-            width={180}
-            height={88}
-          />
+          <Link to={this.getLink(this.constants.RoutePaths.Home)}>
+            <img
+              className="gx-mt-2"
+              src="/assets/images/footer-logo.png"
+              width={180}
+              height={88}
+            />
+          </Link>
         </div>
         <div
           className="gx-login-container"
