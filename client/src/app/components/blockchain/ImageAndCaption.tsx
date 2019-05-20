@@ -14,7 +14,12 @@ const ImageAndCaption: React.FC<ImageAndCaptionProps> = ({
   return (
     <>
       <div className="paper-container scale-in-center">
-        <img src={src} alt={caption} height={height} />
+        <img
+          src={src}
+          alt={caption}
+          height={height}
+          className="img-responsive"
+        />
       </div>
     </>
   );

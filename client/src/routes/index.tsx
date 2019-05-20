@@ -13,6 +13,7 @@ const Legal = asyncComponent(() =>
   import("../app/components/legal/Legal").then(module => module.default)
 );
 
+
 const STO = asyncComponent(() =>
   import("../app/components/sto/STO").then(module => module.default)
 );

@@ -9,8 +9,8 @@ export default class SaveCardMoney extends BaseComponent {
     return (
       <Card>
         <div className="card-saving">
-          <div className="col-left">
-            <div>
+          {this.antd.colmd12(
+            <div className="text-col">
               <h1 className="heading-huge">
                 {this.lang.Start} {this.lang.Saving} {this.lang.Money}&nbsp;
                 {this.lang.Today}
@@ -21,11 +21,13 @@ export default class SaveCardMoney extends BaseComponent {
                 <li>{this.lang.SaveMoney3}</li>
               </ul>
             </div>
-          </div>
+          )}
 
-          <div className="col-right fade-in-bottom">
-            <ImageAndCaption src={"/assets/images/save-money.svg"} caption="" />
-          </div>
+          {this.antd.colmd12(
+            <div className="image-col">
+              <img src={"/assets/images/save-money.svg"} />
+            </div>
+          )}
         </div>
       </Card>
     );

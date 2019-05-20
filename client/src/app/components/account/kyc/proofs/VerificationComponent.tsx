@@ -1,16 +1,15 @@
 import * as React from "react";
-import { Row, Col, Card, Button, Spin } from "antd";
+import { Button, Spin } from "antd";
 import { BaseComponent } from "../../../base/BaseComponent";
 import { mdUserAccounts } from "../../../../../models/user-accounts";
 import WidgetHeader from "../../../../../components/WidgetHeader";
-import FontAwesome from "../../../base/FontAwesome";
 import { AccountTypes } from "../../../../../enums/general";
-import { DocumentTypesWithNames, ProofTypes } from "../../../../../enums/kyc";
+import { ProofTypes } from "../../../../../enums/kyc";
 import AttachmentsComponent from "./AttachmentsComponent";
 import { mdDocument } from "../../../../../models/document";
-import { mdDigitalEvidence } from "../../../../../models/digital-evidence";
-import { faIgloo } from "@fortawesome/free-solid-svg-icons";
 import { mdCallResponse } from "../../../../../models/call-response";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 export default class VerificationComponent extends BaseComponent {
   render() {
@@ -64,7 +63,7 @@ export default class VerificationComponent extends BaseComponent {
                   }
                 }}
               >
-                {FontAwesome.faIcon("arrow-left")}&nbsp;
+              <FontAwesomeIcon icon={["fas", "arrow-left"]} />&nbsp;
               </Button>
               {this.p.proofTitle}
             </>

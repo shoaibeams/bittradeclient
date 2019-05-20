@@ -1,6 +1,5 @@
 import { Constants } from "../shared/constants";
 import { LanguageBase } from "./language";
-import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 export class LangENUS implements LanguageBase {
   Profile = "Profile";
@@ -1179,7 +1178,7 @@ below to re-send`;
   RealEstatePaperHeading1 = "Blockchain in Real Estate";
   RealEstatePaperHeading2 = "Purchasing Real Estate with Crypto";
   RealEstatePaperHeading3 = "Security and Transparency";
-  RealEstatePaperHeading4 = "BitVelocity as Liquidity Provider";
+  RealEstatePaperHeading4 = "Data for Everyone";
   RealEstatePaperHeading5 = "BitVelocity as Liquidity Provider";
 
   RealEstatePaperPara1 = `Investors who bought Bitcoin and Ethereum at
@@ -1199,16 +1198,12 @@ below to re-send`;
  transaction in small tranches in order to gain more trust of all parties/
  This way all parties get to keep the deal, seller is happy, buyer is
  happy, hence we are happy.`;
-  RealEstatePaperPara3 = `Blockchain based property offer Echosystem In
- both commercial and residential real estate market, there is a serious lack
- of transparency that ultimately defines the sold price. While both sellers
- and property agents claim that already have real offers higher than the
- offers made by sellers they get outpriced by artificial hype created by
- market players. By using blockchain technology, we will place all the real
- offers onto the blockchain, hence open to public for validation. Using the pattern 
- and trend recognition algo, we will spot and eliminate the bad players, resulting 
- a transparent and honest bidding system for property market making more stable and 
- realistic sale price for each property.`;
+  RealEstatePaperPara3 = `Blockchain based property offer Echosystem In both commercial and residential 
+  real estate market, there is a serious lack of transparency that ultimately defines the sold price. 
+  While both sellers and property agents claim that already have real offers higher than the offers made 
+  by sellers, they get outpriced by hype created by market players. With blockchain technology, we will place real offers onto the blockchain, hence open to public for validation. Using the pattern 
+  and trend recognition algo, we will eliminate the bad players, resulting a transparent and honest bidding system for property market making more stable and 
+  realistic sale price for each property.`;
   RealEstatePaperPara4 = `Bidding data and its history will
  be available to public for future deals. This is in particular very useful
  in commercial and corporate properties when high worth deals are done well
@@ -1238,18 +1233,15 @@ below to re-send`;
  currency for traveller’s forex is 2.7% which then becomes 5% once the
  converted foreign currency is revesed back to original currency on return
  of travel. With BitVelocity, once live, we will have the infrastruce to
- reduce this cost to as low as 0.5%. Hence, making it more convenient and
- hassle free echo system at a fraction of a cost for business and Leisure
- travellers.`;
+ reduce this cost to as low as 0.5%.`;
   TravelPaperPara3 = `After a successful launch of social crypto platform we intend
  to offer our crypto marketplace to travellers and tourists. Users like
  traders and investors will already benefit from the platform since holding
  BTC or XRP on the platform they can either pay direct in BTC or XRP. Eventually
- paying a little fraction of a cost to what a forex exchange would charge.
- Alternatively, on our platform they can convert their crypto to local
- currency and then spend, again paying very little of a cost to what a fiat
- currency would charge. Converting to fiat, they will be able to spend
- using our digital app as if they were using a debit cards. `;
+ paying a little fraction of a cost to what a forex exchange would charge. On our platform, users 
+ can convert their crypto to local currency and then spend, again paying very little of a cost to 
+ what a fiat currency would charge. Converting to fiat, they will be able to spend
+ using our digital app as if they were using a debit cards.`;
   TravelPaperPara4 = `Future plan for
  travellers includes travel debit card, that will have debit cards
  with local currency (GBP, Euro, USD) hence eliminating the need to
@@ -1361,9 +1353,9 @@ below to re-send`;
 
   SaveMoney1 = `Saving cost of fiat conversion from GBP, Euro and USD. Buying
   digital assets directly from local fiat currency (initially to
-  be launched in UK , then Europe and finally US and Asia).`;
-  SaveMoney2 = ` As low as 0.49% on buy/sell spreads (for trades on internal
-    exchange only)`;
+  be launched in UK, then Europe and finally US and Asia).`;
+  SaveMoney2 = ` As low as 0.49% on buy/sell spreads for trades on internal
+    exchange`;
   SaveMoney3 = `Upto 90% savings on buying/selling fee on trades compared to
   market.`;
 
@@ -1401,8 +1393,8 @@ below to re-send`;
   AboutPara6 = `Market standard TA tools available for all the listed assets.`;
 
   CEOPara = ` Fahad Sheikh is a technology evangelist, an enterprenuer who has built
-  successful startups previously; has run 3 development studios in 3 different
-  cities at a given time; an investor, a technology consultant and someone who
+  successful startups previously, has run 3 development studios in 3 different
+  cities at a given time, an investor, a technology consultant and someone who
   believes in solving real world problems using technology.`;
 
   TeamPara = `Our team is a collection of people who are working day in, day out to make a
@@ -1665,4 +1657,26 @@ below to re-send`;
   PrivacyPara9 = `BitVelocity has implemented a number of security measures to ensure that your information is not lost, abused, or altered. Our data is stored offline to ensure that it is protected against all network hacks.
   Our data security measures include, but are not limited to: PCI Scanning, Secured Sockets Layered encryption technology, pseudonymisation, internal data access restrictions, and strict physical access controls to buildings & files. Please note that it is impossible to guarantee 100% secure transmission of data over the Internet nor method of electronic storage. As such, we request that you understand the responsibility to independently take safety precautions to protect your own personal information.
   If you suspect that your personal information has been compromised, especially account and/or password information, please lock your account and contact BitVelocity customer service immediately.`;
+
+  Inaam = "Inaam ur Rehman";
+  Shoaib = "Shoaib Khalid";
+
+  Senior = "Senior";
+  Junior = "Junior";
+  TeamDescription1 = `Senior Javascript Developer who likes to work on the whole specturm of development. 
+  He has previously worked on the blockchain technolgies for years. Now he is leading the BitVelocity development team on making 
+  a well-secured trading platform.`;
+  TeamDescription2 = `Junior Full-Stack Developer. Before joining the BitVelocity team, he developed smart contracts for Etherem Network. 
+                      He loves to work with modern technologies and tools to provide solutions that are effective and reliable.`;
+  CompanyNumber = "10744902";
+
+  Loans = "Loans";
+  Shares = "Shares";
+  Funds = "Funds";
+  Instant = "Instant";
+  Approval = "Approval";
+  TwentyFourHours = "24-hours";
+  Easy = "Easy";
+  Application = "Application";
+  STOFeaturesHeading = "Why you should choose BitVelocity";
 }

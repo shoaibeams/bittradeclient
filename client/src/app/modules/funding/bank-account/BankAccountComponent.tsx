@@ -11,6 +11,7 @@ import {
   MaxLengthValidator
 } from "../../../../shared/validation-attributes";
 import FontAwesome from "../../../components/base/FontAwesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { mdCallResponse } from "../../../../models/call-response";
 
 export default class BankAccountComponent extends BaseComponent {
@@ -59,7 +60,7 @@ export default class BankAccountComponent extends BaseComponent {
               htmlType={"submit"}
               loading={this.state.disableSubmitButton}
             >
-              {FontAwesome.faIcon("save")}&nbsp;
+            <FontAwesomeIcon icon="save"/>
               {this.lang.Submit}
             </Button>
             <Button
@@ -70,7 +71,7 @@ export default class BankAccountComponent extends BaseComponent {
                 }
               }}
             >
-              {FontAwesome.faIcon("times")}&nbsp;
+            <FontAwesomeIcon icon="times"/>
               {this.lang.Cancel}
             </Button>
           </div>

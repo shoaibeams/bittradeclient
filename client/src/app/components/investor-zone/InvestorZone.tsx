@@ -14,7 +14,7 @@ export default class InvestorZone extends BaseComponent {
           <p className="text-medium">{InvestorZonePara}</p>
         </Card>
         <Card>
-          <ContactUsComponent params={{ title: this.lang.SubmitAComplaint }} />
+          <ContactUsComponent params={{ title: this.lang.ContactUs }} />
         </Card>
         <Card>
           <Roadmap />

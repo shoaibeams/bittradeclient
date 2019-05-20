@@ -16,7 +16,6 @@ import {
 // import IntlMessages from "../../util/IntlMessages";
 import { connect } from "react-redux";
 import { BaseComponent } from "../../app/components/base/BaseComponent";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NavMenuComponent from "../../app/components/main-header/NavMenu";
 import { NavMenuTypes } from "../../enums/general";
 

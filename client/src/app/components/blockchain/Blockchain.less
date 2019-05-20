@@ -1,55 +1,44 @@
-// Row 1 has 2 columns, one with intro & other with image
-@import '../../../styles/variables.less';
-
 .row {
-    display: flex;
+  display: flex;
 
-    & .col-blue,
-    .col-white {
-        padding: 40px 50px;
-        height: 100vh;
-        width: 50%;
+  & .col-left,
+  .col-right {
+    padding: 40px 50px;
+    height: 100vh;
+    width: 50%;
 
-        img {
-            margin-bottom: 20%;
-        }
-
-        .paper-container {
-            p {
-                font-size: 20px;
-                line-height: 35px;
-            }
-
-            h1,
-            h2 {
-                color: white;
-                font-size: 35px;
-                margin: 35px 0;
-            }         
-        }
+    img {
+      margin-bottom: 20%;
     }
 
-    & .col-blue {
-        background-color: #003366;
+    .paper-container {
+      p {
+        line-height: 33px;
+      }
+
+      h1 {
         color: white;
-
+        margin: 35px 0;
+      }
     }
+  }
 
-    & .col-white {
-        background-color: white;
-        display: flex;
-        align-items: center;
+  & .col-left {
+    background-color: #003366;
+    color: white;
 
-        & .paper-container {
-            position: relative;
-
-            .image-text {
-                font-size: 16px;
-                position: absolute;
-                left: 35%;
-                top: 76%;
-                color: black;
-            }
-        }
+    @media screen and (max-width: 800px) {
+      width: 100%;
     }
+  }
+
+  & .col-right {
+    background-color: white;
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
+  }
 }

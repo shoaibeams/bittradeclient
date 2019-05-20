@@ -19,6 +19,9 @@ import { mdDepositMethods } from "../../../../models/deposit-methods";
 import { TransitionState } from "../../../../enums/transition";
 import { mdCallResponse } from "../../../../models/call-response";
 import { mdDepositRequestHisotryRequest } from "../../../../models/deposit-request-history-request";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 const Option = Select.Option;
 
 export default class DepositComponent extends BaseComponent {
@@ -273,7 +276,7 @@ export default class DepositComponent extends BaseComponent {
                     style={{ alignContent: "right" }}
                     size={"small"}
                   >
-                    {FontAwesome.faIcon("plus")}
+                    <FontAwesomeIcon icon="plus"/>
                     <i className="fa fa-plus" />
                     &nbsp;
                     <span>{this.lang.NewDepositRequest}</span>

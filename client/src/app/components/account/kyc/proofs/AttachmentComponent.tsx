@@ -1,11 +1,10 @@
 import * as React from "react";
-import { Card, Upload, Row, Col, Button, Alert, Modal, Spin } from "antd";
+import { Card, Upload, Row, Col, Button, Alert, Modal } from "antd";
 import { BaseComponent } from "../../../base/BaseComponent";
-import FontAwesome from "../../../base/FontAwesome";
-import { DocumentTypes } from "../../../../../enums/kyc";
 import { mdCallResponse } from "../../../../../models/call-response";
 import { StaticHelper } from "../../../../../shared/static-helper";
-// import { StaticHelper } from "../../../../../../shared/static-helper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 export default class AttachmentComponent extends BaseComponent {
   render() {
@@ -21,7 +20,7 @@ export default class AttachmentComponent extends BaseComponent {
     }
     const uploadButton = (
       <div>
-        {FontAwesome.faIcon("plus")}
+        <FontAwesomeIcon icon={["fas", "plus"]} />
         <div className="ant-upload-text">{this.lang.Upload}</div>
       </div>
     );

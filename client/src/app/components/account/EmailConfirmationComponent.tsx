@@ -9,6 +9,7 @@ import { Button } from "antd";
 import { SocketCustomEvents } from "../../../enums/socket";
 import { mdRegisterSocketEvent } from "../../../models/register-socket-event";
 import FontAwesome from "../base/FontAwesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class EmailConfirmationComponent extends BaseComponent {
   render() {
@@ -39,7 +40,7 @@ export default class EmailConfirmationComponent extends BaseComponent {
             </div>
             <div className="gx-mb-3">
               {this.animatedCSSDiv(
-                FontAwesome.faIcon("envelope-open-text", "10x"),
+                <FontAwesomeIcon icon={["fas", "envelope-open-text"]} />,
                 this.state.animValues.mail_img
               )}
             </div>

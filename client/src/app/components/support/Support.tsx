@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import FontAwesome from "../base/FontAwesome";
 import { BaseComponent } from "../base/BaseComponent";
 import ContactUsComponent from "../contact-us/ContactUsComponent";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 export default class Support extends BaseComponent {
   render() {
@@ -12,7 +14,7 @@ export default class Support extends BaseComponent {
         <Card className="gx-text-center">
           {/*------------------CARD HEADING-----------------------------*/}
           <h1 className="heading-big">{this.lang.SupportIntro}</h1>
-          <p className="gx-text-center" style={{ fontSize: "20px" }}>
+          <p className="gx-text-center text-medium">
             {this.lang.SupportIntroPara}
           </p>
 
@@ -38,16 +40,17 @@ export default class Support extends BaseComponent {
           <div className="text-medium">
             <p>
               {this.lang.Phone}: {this.lang.BitVelocityPhone}&nbsp;
-              {FontAwesome.faIcon("phone")}
+              <FontAwesomeIcon icon="phone"/>
+    
             </p>
 
             <p>
               {this.lang.Mobile}: {this.lang.BitVelocityMobile}&nbsp;
-              {FontAwesome.faIcon("mobile-alt")}
+              <FontAwesomeIcon icon="mobile-alt"/>
             </p>
             <p>
-              {this.lang.Email}: {this.lang.BitVelocityMail}&nbsp;
-              {FontAwesome.faIcon("envelope")}
+              {this.lang.Email}: {this.lang.BitVelocityMail}&nbsp;          
+              <FontAwesomeIcon icon="envelope"/>
             </p>
           </div>
         </Card>

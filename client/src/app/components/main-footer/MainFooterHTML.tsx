@@ -3,7 +3,8 @@ import * as React from "react";
 import { Row } from "antd";
 import { Link } from "react-router-dom";
 import "./mainfooter.less";
-import FontAwesome from "../base/FontAwesome";
+// import FontAwesome from "../base/FontAwesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class MainFooter extends BaseComponent {
   render() {
@@ -39,23 +40,22 @@ export default class MainFooter extends BaseComponent {
                   <ul>
                     <li>
                       <a href="#" className="fb">
-                        {FontAwesome.faIcon("facebook-f")}
+                        <FontAwesomeIcon icon={["fab", "facebook-f"]} />
                       </a>
                     </li>
                     <li>
                       <a href="https://twitter.com/bit_velocity" className="tw">
-                        {FontAwesome.faIcon("twitter")}
-                        {/* <i className="fa fa-twitter" aria-hidden="true"></i> */}
+                        <FontAwesomeIcon icon={["fab", "twitter"]} />
                       </a>
                     </li>
                     <li>
                       <a href="#" className="yt">
-                        {FontAwesome.faIcon("youtube")}
+                        <FontAwesomeIcon icon={["fab", "youtube"]} />
                       </a>
                     </li>
                     <li>
                       <a href="#" className="insta">
-                        {FontAwesome.faIcon("instagram")}
+                        <FontAwesomeIcon icon={["fab", "instagram"]} />
                       </a>
                     </li>
                   </ul>
@@ -78,7 +78,7 @@ export default class MainFooter extends BaseComponent {
         <div className="copyright">
           <div className="container">{`${this.lang.Copyrights} ${
             this.lang.SiteCompanyName
-          } © ${new Date().getFullYear()}`}</div>
+          } ${this.lang.CompanyNumber} © ${new Date().getFullYear()}`}</div>
         </div>
       </>
     );

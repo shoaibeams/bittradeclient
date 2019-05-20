@@ -1083,4 +1083,24 @@ export interface LanguageBase {
   PrivacyPara7: string;
   PrivacyPara8: string;
   PrivacyPara9: string;
+  ////////////////////////////////////////////////////
+
+  Inaam: string;
+  Shoaib: string;
+  Senior: string;
+  Junior: string;
+  TeamDescription1: string;
+  TeamDescription2: string;
+  CompanyNumber: string;
+
+  Loans: string;
+  Shares: string;
+  Funds: string;
+
+  STOFeaturesHeading: string;
+  Instant: string;
+  Approval: string;
+  TwentyFourHours: string;
+  Easy: string;
+  Application: string;
 }

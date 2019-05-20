@@ -6,6 +6,8 @@ import { BaseComponent } from "../../../components/base/BaseComponent";
 import { mdFeeSlabs } from "../../../../models/fee-slabs";
 import { mdFormControl } from "../../../../shared/form-control";
 import { StaticHelper } from "../../../../shared/static-helper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   Row,
   Card,
@@ -156,7 +158,7 @@ export default class WithdrawalComponent extends BaseComponent {
                       this.updateState({ newBankAccountForm: true });
                     }}
                   >
-                    {FontAwesome.faIcon("plus")}&nbsp;
+                    <FontAwesomeIcon icon="plus" />
                     {this.lang.AddBankAccount}
                   </p>
                 }
@@ -277,7 +279,7 @@ export default class WithdrawalComponent extends BaseComponent {
                       htmlType={"submit"}
                       loading={this.state.disableSubmitButton}
                     >
-                      {FontAwesome.faIcon("save")}&nbsp;
+                      <FontAwesomeIcon icon="save" />
                       {this.lang.Submit}
                     </Button>
                     <Button
@@ -286,7 +288,7 @@ export default class WithdrawalComponent extends BaseComponent {
                         this.updateState({ selectedCurrency: null });
                       }}
                     >
-                      {FontAwesome.faIcon("times")}&nbsp;
+                      <FontAwesomeIcon icon="times" />
                       {this.lang.Cancel}
                     </Button>
                   </div>

@@ -137,25 +137,120 @@ a.no-decor:hover {
 
 //TYPOGRAPHY
 
+@heading-huge: 55px;
+@heading-big: 40px;
+@heading-medium: 30px;
+@heading-small: 20px;
+@heading-tiny: 17px;
+@heading-so-tiny: 14.5px;
+
+@text-medium: 20px;
+@text-small: 18px;
+@text-tiny: 15px;
+@text-so-tiny: 12px;
+
 .heading-huge {
   font-size: 55px;
+
+  @media screen and (max-width: 900px) {
+    font-size: @heading-big;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: @heading-medium;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: @heading-small;
+  }
 }
 
 .heading-big {
-  font-size: 40px;
+  font-size: @heading-big;
+
+  @media screen and (max-width: 900px) {
+    font-size: @heading-medium;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: @heading-small;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: @heading-tiny;
+  }
 }
 
 .heading-medium {
-  font-size: 30px;
+  font-size: @heading-medium;
+  
+  @media screen and (max-width: 900px) {
+    font-size: @heading-small;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: @heading-tiny;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: @heading-so-tiny;
+  }
+}
+
+.heading-small {
+  font-size: @heading-small;
+  
+  @media screen and (max-width: 600px) {
+    font-size: @heading-tiny;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: @heading-so-tiny;
+  }
+}
+
+.text-medium {
+  font-size: @text-medium;
+
+  @media screen and (max-width: 900px) {
+    font-size: @text-small;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: @text-tiny;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: @text-so-tiny;
+  }
+}
+
+.text-small {
+  font-size: @text-small;
+
+  @media screen and (max-width: 900px) {
+    font-size: @text-small;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: @text-tiny;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: @text-so-tiny;
+  }
 }
 
 .list-big {
   font-size: 25px;
+
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 15px;
+  }
 }
 
-.text-medium {
-  font-size: 20px;
-}
 /////////////////////////////////////////////////////////////////////////////////
 
 .gx-language {
@@ -178,13 +273,23 @@ a.no-decor:hover {
 transform: translateY(3px);
 }
 
+
 .gx-header {
   font-size: 40px;
   padding-right: 15px;
   text-align: center;
+  // height: ;
+
+  @media screen  and (max-width: 800px) {
+    font-size: 32px;
+  }
+
+  @media screen  and (max-width: 400px) {
+    font-size: 25px;
+  }
 
   .bit-text {
-      color: orangered;
+      color: #f0655c;
   }
 
   .rocket {
@@ -218,6 +323,15 @@ transform: translateY(3px);
             transition: .2s;
         }
   }
+}
+
+
+.heading-bottom-line {
+  width: 180px;
+  border-top-width: 2px;
+  border-color: #ca655c;
+  margin: 0 auto;
+  margin-bottom: 50px;
 }
 
 

@@ -1,17 +1,18 @@
 import { BaseComponent } from "../base/BaseComponent";
 import * as React from "react";
-import { Link, Redirect } from "react-router-dom";
-import { StaticHelper } from "../../../shared/static-helper";
+import { Link } from "react-router-dom";
 import { mdFormControl } from "../../../shared/form-control";
 import { mdCallResponse } from "../../../models/call-response";
 import { mdSignUp, SignUpMetaData } from "../../../models/sign-up";
 import * as ValidationAttributes from "../../../shared/validation-attributes";
-import { Form, Input, Checkbox, Button, Icon } from "antd";
+import { Form, Button } from "antd";
 import { mdAnimControl } from "../../../models/anim-control";
 import { TransitionState } from "../../../enums/transition";
 import { Transitions } from "../../../models/transitions";
 import { SocketCustomEvents } from "../../../enums/socket";
 import FontAwesome from "../base/FontAwesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const FormItem = Form.Item;
 
 export class ForgotPasswordComponent extends BaseComponent {
@@ -45,7 +46,7 @@ export class ForgotPasswordComponent extends BaseComponent {
               <div className="gx-text-center">
                 <div className="gx-mb-3">
                   {this.animatedCSSDiv(
-                    FontAwesome.faIcon("envelope-open-text", "10x"),
+                    <FontAwesomeIcon icon={["fas", "envelope-open-text"]} />,
                     this.state.animValues.mail_img
                   )}
                 </div>

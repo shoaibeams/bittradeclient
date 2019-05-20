@@ -25,6 +25,7 @@ import { mdCurrencyPair } from "../../../models/currency-pair";
 import { mdCurrency } from "../../../models/currency";
 import { StaticHelper } from "../../../shared/static-helper";
 import moment from "moment";
+import Logo from "./Logo";
 
 const { Header } = Layout;
 
@@ -186,16 +187,8 @@ class InsideHeader extends BaseComponent {
               >
                 <img alt="" src={"/assets/images/goto.png"} />
               </Link>
-              <Link
-                to={this.getLink(this.constants.RoutePaths.Home)}
-                className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
-              >
-                <img
-                  alt=""
-                  src={"/assets/images/logo.png"}
-                  width={200}
-                  height={70}
-                />
+              <Link to={this.getLink(this.constants.RoutePaths.Home)}>
+                <Logo />
               </Link>
 
               {/*-------------HORIZONTAL NAVIGATION OF HEADER-----------------*/}
@@ -254,7 +247,7 @@ class InsideHeader extends BaseComponent {
                         </Link>
                       </li>
 
-          {/*------------NOTIFICATION RING BELL AND LANGUAGE FLAG----------*/}                      
+                      {/*------------NOTIFICATION RING BELL AND LANGUAGE FLAG----------*/}
                       <li className="gx-notify">
                         <Popover
                           overlayClassName="gx-popover-horizantal"

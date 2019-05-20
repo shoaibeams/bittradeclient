@@ -38,19 +38,18 @@ class Blockchain extends BaseComponent {
         return (
           <>
             <div className="row">
-              <div className="col-blue">
+              <div className="col-left">
                 <div className="paper-container">
                   <TextAndHeading
                     heading={TravelPaperHeading1}
                     para={TravelPaperPara1}
-                    headingStyle={{ fontSize: "50px" }}
                   >
-                    <h2>{Introduction}</h2>
+                    <h1>{Introduction}</h1>
                   </TextAndHeading>
                 </div>
               </div>
 
-              <div className="col-white">
+              <div className="col-right">
                 <ImageAndCaption
                   src={"/assets/images/travel.jpg"}
                   caption={BlockChainPageCaption}
@@ -58,11 +57,11 @@ class Blockchain extends BaseComponent {
               </div>
             </div>
             <div className="row">
-              <div className="col-white">
+              <div className="col-right">
                 <ImageAndCaption src={"/assets/images/problem.jpg"} />
               </div>
 
-              <div className="col-blue">
+              <div className="col-left">
                 <TextAndHeading
                   heading={TravelPaperHeading2}
                   para={TravelPaperPara2}
@@ -70,35 +69,33 @@ class Blockchain extends BaseComponent {
               </div>
             </div>
             <div className="row">
-              <div className="col-blue">
+              <div className="col-left">
                 <div className="paper-container">
                   <TextAndHeading
                     heading={TravelPaperHeading3}
                     para={TravelPaperPara3}
-                    headingStyle={{ fontSize: "40px" }}
                   />
                 </div>
               </div>
 
-              <div className="col-white">
+              <div className="col-right">
                 <div className="paper-container image scale-in-center">
                   <ImageAndCaption src={"/assets/images/coins.png"} />
                 </div>
               </div>
             </div>
             <div className="row">
-              <div className="col-white">
+              <div className="col-right">
                 <div className="paper-container image scale-in-center">
                   <ImageAndCaption src={"/assets/images/plans.jpg"} />
                 </div>
               </div>
 
-              <div className="col-blue">
+              <div className="col-left">
                 <div className="paper-container">
                   <TextAndHeading
                     heading={TravelPaperHeading4}
                     para={TravelPaperPara4}
-                    headingStyle={{ marginTop: "75px" }}
                   />
                 </div>
               </div>
@@ -109,26 +106,26 @@ class Blockchain extends BaseComponent {
         return (
           <>
             <div className="row">
-              <div className="col-blue">
+              <div className="col-left">
                 <TextAndHeading
                   heading={RealEstatePaperHeading1}
                   para={RealEstatePaperPara1}
                 />
               </div>
 
-              <div className="col-white">
+              <div className="col-right">
                 <ImageAndCaption
-                  src={"/assets/images/travel.jpg"}
+                  src={"/assets/images/scotland-edinburgh.jpg"}
                   caption={BlockChainPageCaption}
                 />
               </div>
             </div>
             <div className="row">
-              <div className="col-white">
-                <ImageAndCaption src={"/assets/images/problem.jpg"} />
+              <div className="col-right">
+                <ImageAndCaption src={"/assets/images/scotland-edinburgh-city-centre.jpg"} />
               </div>
 
-              <div className="col-blue">
+              <div className="col-left">
                 <div className="paper-container">
                   <TextAndHeading
                     heading={RealEstatePaperHeading2}
@@ -138,7 +135,7 @@ class Blockchain extends BaseComponent {
               </div>
             </div>
             <div className="row">
-              <div className="col-blue">
+              <div className="col-left">
                 <div className="paper-container">
                   <TextAndHeading
                     heading={RealEstatePaperHeading3}
@@ -147,20 +144,20 @@ class Blockchain extends BaseComponent {
                 </div>
               </div>
 
-              <div className="col-white">
+              <div className="col-right">
                 <div className="paper-container image scale-in-center">
-                  <ImageAndCaption src={"/assets/images/coins.png"} />
+                  <ImageAndCaption src={"/assets/images/chain.jpg"} />
                 </div>
               </div>
             </div>
             <div className="row">
-              <div className="col-white">
+              <div className="col-right">
                 <div className="paper-container image scale-in-center">
-                  <ImageAndCaption src={"/assets/images/plans.jpg"} />
+                  <ImageAndCaption src={"/assets/images/emergence.jpg"} />
                 </div>
               </div>
 
-              <div className="col-blue">
+              <div className="col-left">
                 <div className="paper-container">
                   <TextAndHeading
                     heading={RealEstatePaperHeading4}
@@ -170,7 +167,7 @@ class Blockchain extends BaseComponent {
               </div>
             </div>
             <div className="row">
-              <div className="col-blue">
+              <div className="col-left">
                 <div className="paper-container">
                   <TextAndHeading
                     heading={RealEstatePaperHeading5}
@@ -179,10 +176,10 @@ class Blockchain extends BaseComponent {
                 </div>
               </div>
 
-              <div className="col-white">
+              <div className="col-right">
                 <div className="paper-container">
                   <div className="paper-container image scale-in-center">
-                    <ImageAndCaption src={"/assets/images/plans.jpg"} />
+                    <ImageAndCaption src={"/assets/images/outside-london-office.png"} />
                   </div>
                 </div>
               </div>

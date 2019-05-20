@@ -4,23 +4,29 @@
 
   & .col-left,
   .col-right {
-    padding: 40px 50px;
-    width: 50%;
+    padding: 40px;
     display: flex;
+    flex-direction: column;
     color: #212323;
+
+
+    @media screen and (max-width: 600px) {
+      padding: 20px;
+    }
 
     img {
       margin-bottom: 20%;
     }
 
-    li {
-      font-size: 25px;
-    }
-
     h1 {
       color: #212323;
-      font-size: 55px;
       margin: 35px 0;
+    }
+  }
+
+  .col-right {
+    @media screen and (max-width: 900px) {
+      display: none;
     }
   }
 }

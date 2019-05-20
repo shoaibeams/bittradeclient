@@ -69,7 +69,7 @@ export default class Faq extends BaseComponent {
               defaultActiveKey={["-1"]}
               className="collapse text-medium"
             >
-              <h2>
+              <h2 className="heading-small">
                 {Getting} {Started}
               </h2>
               <Panel header={GSQuestion1} key="1">
@@ -88,13 +88,13 @@ export default class Faq extends BaseComponent {
               </Panel>
             </Collapse>
           )}
-  
+
           {this.antd.colmd12(
             <Collapse
               defaultActiveKey={["-1"]}
               className="collapse text-medium"
             >
-              <h2>
+              <h2 className="heading-small">
                 {Account} {Managment}
               </h2>
               <Panel header={AMQuestion1} key="1">
@@ -114,14 +114,14 @@ export default class Faq extends BaseComponent {
             </Collapse>
           )}
         </Row>
-  
+
         <Row className="faq-row">
           {this.antd.colmd12(
             <Collapse
               defaultActiveKey={["-1"]}
               className="collapse text-medium"
             >
-              <h2>{Trading}</h2>
+              <h2 className="heading-small">{Trading}</h2>
               <Panel header={TradeQuestion1} key="1">
                 <p>{TradeAnswer1}</p>
               </Panel>
@@ -139,7 +139,7 @@ export default class Faq extends BaseComponent {
               defaultActiveKey={["-1"]}
               className="collapse text-medium"
             >
-              <h2>{Payment}</h2>
+              <h2 className="heading-small">{Payment}</h2>
               <Panel header={PayQuestion1} key="1">
                 <p>{PayAnswer1}</p>
               </Panel>
@@ -152,14 +152,14 @@ export default class Faq extends BaseComponent {
             </Collapse>
           )}
         </Row>
-        
+
         <Row className="faq-row" style={{ marginBottom: "100px" }}>
           {this.antd.colmd12(
             <Collapse
               defaultActiveKey={["-1"]}
               className="collapse text-medium"
             >
-              <h2>{Fees}</h2>
+              <h2 className="heading-small">{Fees}</h2>
               <Panel header={FeesQuestion1} key="1">
                 <p>
                   {FeesAnswer1}&nbsp;
@@ -187,7 +187,7 @@ export default class Faq extends BaseComponent {
               defaultActiveKey={["-1"]}
               className="collapse text-medium"
             >
-              <h2>{Security}</h2>
+              <h2 className="heading-small">{Security}</h2>
               <Panel header={SecurityQuestion1} key="1">
                 <p>{SecurityAnswer1}</p>
               </Panel>

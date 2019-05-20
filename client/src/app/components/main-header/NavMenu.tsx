@@ -19,6 +19,8 @@ import { NavMenuTypes } from "../../../enums/general";
 import { Link } from "react-router-dom";
 import FontAwesome from "../base/FontAwesome";
 import { faFileExcel } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 
 const SubMenu = Menu.SubMenu;
@@ -158,7 +160,7 @@ class NavMenuComponent extends BaseComponent {
                   : { marginRight: 21 }
               }
             >
-              {FontAwesome.faIcon(item.icon)}
+              <FontAwesomeIcon icon={item.icon}/>
             </span>
             {item.text}
           </>

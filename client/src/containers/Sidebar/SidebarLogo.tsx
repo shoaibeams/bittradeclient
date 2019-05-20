@@ -1,6 +1,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
+import Logo from '../Topbar/InsideHeader/Logo';
 
 import {onNavStyleChange, toggleCollapsedSideNav} from "../../appRedux/actions/Setting";
 import {
@@ -45,10 +46,10 @@ class SidebarLogo extends BaseComponent {
 
         <Link to="/" className="gx-site-logo">
           {navStyle === NAV_STYLE_NO_HEADER_MINI_SIDEBAR && width >= TAB_SIZE ?
-            <img alt="" src={"/assets/images/w-logo.png"}/> :
+            <Logo/>:
             themeType === THEME_TYPE_LITE ?
-              <img alt="" src={"/assets/images/logo-white.png"}/> :
-              <img alt="" src={"/assets/images/logo.png"}/>}
+            <Logo/> :
+            <Logo/>}
 
         </Link>
 

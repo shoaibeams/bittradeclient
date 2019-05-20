@@ -15,8 +15,8 @@ import { InputTypes } from "../../../enums/general";
 import moment from "moment";
 import { StaticHelper } from "../../../shared/static-helper";
 import { Constants } from "../../../shared/constants";
-import FontAwesome from "./FontAwesome";
-import { mdProps } from "../../../models/props";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { BasicBaseComponent } from "./BasicBaseComponent";
 import NBSpinnerComponent from "../../modules/shared/spinner/NBSpinnerComponent";
 import { LanguageBase } from "../../../language/language";
@@ -243,9 +243,10 @@ export default class ANTDControls {
           type={ctrl.type}
           disabled={disabled}
           prefix={
-            StaticHelper.isNullOrEmpty(ctrl.icon)
-              ? null
-              : FontAwesome.faIcon(ctrl.icon as any)
+            StaticHelper.isNullOrEmpty(ctrl.icon) ? null : (
+              <FontAwesomeIcon icon={["fas", ctrl.icon as any]} />
+            )
+            // FontAwesome.faIcon(ctrl.icon as any)
           }
           // <Icon type={control.icon} style={{ color: 'rgba(0,0,0,.25)' }} />}
         />

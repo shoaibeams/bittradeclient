@@ -11,9 +11,9 @@ export default class Fees extends BaseComponent {
     return (
       <>
         <FeeCard />
-        {/*-----------------------------FEE TABLES--------------=======-----------*/}
+        {/*-----------------------------FEE TABLES------------------------------*/}
         <div className="fee-tables-container">
-          <Card className="">
+          <Card>
             {/*-----------------------TABLE #1----------------------------------*/}
             <div>
               <h1 className="heading-medium">{this.lang.Deposit}&nbsp;</h1>

@@ -7,7 +7,7 @@ const WithIconTimeLineItem = ({styleName, color, timeLine, children}) => {
       <div className="gx-timeline-time">{time}</div>
       <div className={`gx-timeline-badge gx-bg-${color}`}>{children}</div>
       <div className="gx-timeline-panel">
-        <h4 className={`gx-timeline-tile gx-text-${color}`}>{title}</h4>
+        <h4 className={`gx-timeline-tile gx-text-${color} heading-medium`}>{title}</h4>
         <p>{description}</p>
       </div>
     </div>
