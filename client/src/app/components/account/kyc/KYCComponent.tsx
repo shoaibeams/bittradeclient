@@ -144,25 +144,26 @@ export default class KYCComponent extends BaseComponent {
         <div className="gx-mb-3 gx-text-right">
           {this.state.accountType == AccountTypes.Business ? (
             <>
-              <span>{this.lang.AccountType}:</span>&nbsp;
+              <span style={{marginRight:'7px'}}>{this.lang.AccountType}:</span>&nbsp;
               <img className="" src={this.businessLogo} alt="birds" />
               &nbsp;
               {this.lang.Business}
             </>
           ) : (
             <>
-              <span>{this.lang.AccountType}:</span>&nbsp;
+              <span style={{marginRight:'7px'}}>{this.lang.AccountType}:</span>&nbsp;
               <img className="" src={this.individualLogo} alt="birds" />
               &nbsp;
               {this.lang.Individual}
             </>
           )}
-          &nbsp;
+          &nbsp;&nbsp;
           <Button
             type="primary"
             onClick={_ => {
               this.updateState({ accountType: null });
             }}
+            style={{ marginTop: "15px" }}
           >
             {this.lang.Change}
           </Button>
@@ -174,7 +175,7 @@ export default class KYCComponent extends BaseComponent {
   identityDocs = [];
   addressDocs = [];
   incomeDocs = [];
-  individualLogo = "/assets/images/boss24x24.png";
+  individualLogo = "/assets/images/boss32x32.png";
   businessLogo = "/assets/images/online-store24x24.png";
   constructor(props) {
     super(props);

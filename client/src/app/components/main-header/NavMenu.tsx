@@ -2,7 +2,6 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Constants } from "../../../shared/constants";
 import { mdProps } from "../../../models/props";
-import HeaderComponentHTML from "./MainHeaderHTML";
 import { BaseComponent } from "../base/BaseComponent";
 import { mdCallResponse } from "../../../models/call-response";
 import { Menu } from "antd";
@@ -16,9 +15,7 @@ import {
   NAV_STYLE_INSIDE_HEADER_HORIZONTAL
 } from "../../../constants/ThemeSetting";
 import { NavMenuTypes } from "../../../enums/general";
-import { Link } from "react-router-dom";
 import FontAwesome from "../base/FontAwesome";
-import { faFileExcel } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 

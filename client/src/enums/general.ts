@@ -47,7 +47,7 @@ export enum NavMenuTypes {
 }
 export enum Genders {
   Male = "male",
-  FeMale = "female",
+  Female = "female",
   Other = "Other"
 }
 

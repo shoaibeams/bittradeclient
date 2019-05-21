@@ -51,13 +51,14 @@ export default class About extends BaseComponent {
             className="gx-text-center heading-big"
             style={{ marginBottom: "30px" }}
           >
-            {this.lang.AboutHeading}
+            All Regulatory Stuff Handled For You
           </h1>
+          <hr className="heading-bottom-line gx-text-center" />
           <p className="gx-text-center text-medium">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro sed
-            corrupti exercitationem dolor atque esse cumque, necessitatibus ab
-            expedita quae, dolore totam possimus at eius temporibus provident
-            illum numquam error!
+            Our platform is developed in accordance with most countries of the
+            world. It can hanlde all the investor KYC, collection of investment,
+            issuing the securities, and taking care of administrive work for
+            users on their behalf.
           </p>
         </Card>
         <Card>
@@ -67,6 +68,10 @@ export default class About extends BaseComponent {
           >
             Assets That Can Be Tokenized
           </h1>
+          <p className="gx-text-center text-medium">
+            Tokenization is a modern way of securing assets with blockchain. We
+            can tokenize almost anything
+          </p>
           <hr className="heading-bottom-line gx-text-center" />
 
           <Row className="about-row gx-text-center">
