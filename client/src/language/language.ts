@@ -1157,4 +1157,27 @@ export interface LanguageBase {
   already: string;
   enabled: string;
   AuthenticatorAlreadyEnabledFormat: string;
+  AmountToCharge: string;
+  AmountDeductedFromUsersWallet: string;
+  IncludeBankCharges: string;
+  UserGets: string;
+  BankCode: string;
+  BranchAddress: string;
+  TotalAmountCharged: string;
+  VerifiedOn: string;
+  CreatedUserId: string;
+  Proofs: string;
+  DocumentId: string;
+  Field: string;
+  Fields: string;
+  Properties: string;
+  LastApproved: string;
+  Attempt: string;
+  CurrentAttempt: string;
+  Open: string;
+  Tab: string;
+  NewTab: string;
+  OpenInNewTab: string;
+  Requests: string;
+  VerifiedBy: string;
 }

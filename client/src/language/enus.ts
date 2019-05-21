@@ -1758,4 +1758,27 @@ below to re-send`;
   enabled = "enabled";
   AuthenticatorAlreadyEnabledFormat =
     "{0} " + this.Authenticator + " " + this.already + " " + this.enabled;
+  AmountToCharge = this.Amount + " to Charge";
+  AmountDeductedFromUsersWallet = this.Amount + " deducted from user's wallet";
+  IncludeBankCharges = "Include Bank Charges";
+  UserGets = this.User + " gets";
+  BankCode = this.Bank + " " + this.Code;
+  BranchAddress = this.Branch + " " + this.Address;
+  TotalAmountCharged = this.Total + " " + this.Amount + " charged";
+  VerifiedOn = this.Verified + " On";
+  CreatedUserId = this.Created + " " + this.UserId;
+  Proofs = this.Proof + "(s)";
+  DocumentId = this.Document + " " + this.Id;
+  Field = "Field";
+  Fields = this.Field + "(s)";
+  Properties = "Properties";
+  LastApproved = this.Last + " " + this.Approved;
+  Attempt = "Attempt";
+  CurrentAttempt = this.Current + " " + this.Attempt;
+  Open = "Open";
+  Tab = "Tab";
+  NewTab = this.New + " " + this.Tab;
+  OpenInNewTab = this.Open + " in " + this.NewTab;
+  Requests = this.Request + "(s)";
+  VerifiedBy = this.Verified + " by";
 }
