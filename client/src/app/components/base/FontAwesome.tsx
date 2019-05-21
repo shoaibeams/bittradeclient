@@ -1,4 +1,4 @@
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { library, IconName, SizeProp } from "@fortawesome/fontawesome-svg-core";
 import {
   faFacebookF,
   faTwitter,
@@ -31,6 +31,7 @@ import {
   faTimes,
   faInbox
 } from "@fortawesome/free-solid-svg-icons";
+import { StaticHelper } from "../../../shared/static-helper";
 
 export default library.add(
   faFacebookF,

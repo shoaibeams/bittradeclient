@@ -337,10 +337,11 @@ export default class ANTDControls {
   passwordFormItem = (
     control: mdFormControl,
     label: boolean = false,
-    onInput?
+    onInput?,
+    formItemLayout = null
   ) => {
     control.type = InputTypes.Password;
-    return this.formItemInput(control, label, onInput);
+    return this.formItemInput(control, label, onInput, formItemLayout);
   };
 
   dateFormItem = (
@@ -502,12 +503,13 @@ export default class ANTDControls {
     );
   }
 
-  colmd3(children) {
+  colmd3(children, className?) {
     return (
       <Col
+        className={className}
         //key={this.instance.generateDynamicKey()}
-        xs={12}
-        sm={12}
+        xs={24}
+        sm={24}
         md={3}
         lg={3}
         xl={3}
@@ -526,6 +528,22 @@ export default class ANTDControls {
         md={4}
         lg={4}
         xl={4}
+      >
+        {children}
+      </Col>
+    );
+  }
+
+  colmd10(children, className?) {
+    return (
+      <Col
+        className={className}
+        //key={this.instance.generateDynamicKey()}
+        xs={24}
+        sm={24}
+        md={10}
+        lg={10}
+        xl={10}
       >
         {children}
       </Col>
@@ -712,9 +730,10 @@ export default class ANTDControls {
     );
   }
 
-  colmd24(children) {
+  colmd24(children, className?) {
     return (
       <Col
+        className={className}
         //key={this.instance.generateDynamicKey()}
         xs={24}
         sm={24}
@@ -805,6 +824,22 @@ export default class ANTDControls {
         lg={8}
         xl={8}
       >
+        {children}
+      </Col>
+    );
+  }
+
+  collg12(children) {
+    return (
+      <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+        {children}
+      </Col>
+    );
+  }
+
+  colxl12(children) {
+    return (
+      <Col xs={24} sm={24} md={24} lg={24} xl={12}>
         {children}
       </Col>
     );

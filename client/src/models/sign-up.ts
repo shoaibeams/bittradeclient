@@ -12,6 +12,7 @@ export class mdSignUp {
   public company_name: string;
   public account_type: AccountTypes;
   public uuid: string;
+  two_fa_code: string;
 
   constructor(init?: boolean) {
     if (init === true) {
@@ -44,6 +45,7 @@ export class SignUpMetaData {
   public static passwordMaxLength: number = 32;
   public static passwordMinLength: number = 8;
   public static companyNameMaxLength: number = 50;
+  public static two_fa_codeMaxLength: number = 6;
   public static userNameRegex: string =
     Constants.Instance.Regex.MustStartWithSmallLetter +
     Constants.Instance.Regex.MustBeAlphaNumericSmallLetters +

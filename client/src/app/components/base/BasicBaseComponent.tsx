@@ -37,6 +37,7 @@ export class BasicBaseComponent extends React.Component<mdProps, any> {
   isComponentMounted: boolean;
   antd: ANTDControls;
   afterReceivingProps;
+  afterComponentDidMount;
   constructor(props, extractFromProp?: boolean) {
     super(props);
     this.initClasses(extractFromProp);
@@ -107,6 +108,9 @@ export class BasicBaseComponent extends React.Component<mdProps, any> {
 
   componentDidMount = () => {
     this.isComponentMounted = true;
+    if (typeof this.afterComponentDidMount === "function") {
+      this.afterComponentDidMount();
+    }
   };
 
   updateStateWEvent(state, e = null, callback?) {

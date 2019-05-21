@@ -179,6 +179,11 @@ export default class DepositComponent extends BaseComponent {
                     className="gx-card"
                     title={this.lang.New + " " + this.lang.Deposit}
                   >
+                    <ul>
+                      {this.depositInstructions.map((d, i) => {
+                        return <li key={i}>{d}</li>;
+                      })}
+                    </ul>
                     <Form
                       onSubmit={this.submitDepositRequest}
                       className="gx-signin-form gx-form-row0"
@@ -267,7 +272,7 @@ export default class DepositComponent extends BaseComponent {
                   null,
                   this.state.animValues.newDepositRequest
                 )}
-                <Col span={8} offset={16}>
+                {/* <Col span={8} offset={16}>
                   <Button
                     loading={false}
                     type={"primary"}
@@ -281,28 +286,30 @@ export default class DepositComponent extends BaseComponent {
                     &nbsp;
                     <span>{this.lang.NewDepositRequest}</span>
                   </Button>
-                </Col>
-                <Card
-                  className="gx-card"
-                  title={this.lang.DepositRequests}
-                  extra={
-                    <p className="gx-text-primary gx-mb-0 gx-pointer">
-                      {this.lang.DetailedHistory}
-                    </p>
-                  }
-                >
-                  <Table
-                    className="gx-table-responsive"
-                    columns={this.depositRequestsTableSettings.columns}
-                    dataSource={this.state.depositRequestHistory}
-                    size="small"
-                    pagination={false}
-                  />
-                </Card>
+                </Col> */}
               </>,
               null,
               this.state.animValues.depositRequests
             )
+          )}
+          {this.antd.colmd24(
+            <Card
+              className="gx-card"
+              title={this.lang.DepositRequests}
+              extra={
+                <p className="gx-text-primary gx-mb-0 gx-pointer">
+                  {this.lang.DetailedHistory}
+                </p>
+              }
+            >
+              <Table
+                className="gx-table-responsive"
+                columns={this.depositRequestsTableSettings.columns}
+                dataSource={this.state.depositRequestHistory}
+                size="small"
+                pagination={false}
+              />
+            </Card>
           )}
         </Row>
       </>
@@ -340,6 +347,13 @@ export default class DepositComponent extends BaseComponent {
   depositReceiptFileUploader = React.createRef<FileUploaderComponent>();
   feeSlabsTableSettings: any;
   depositRequestsTableSettings: any;
+  depositInstructions: string[] = [
+    this.lang.DepositInstruction1,
+    this.lang.DepositInstruction2,
+    this.lang.DepositInstruction3,
+    this.lang.DepositInstruction4,
+    this.lang.DepositInstruction5
+  ];
 
   constructor(props) {
     super(props);
@@ -625,10 +639,12 @@ export default class DepositComponent extends BaseComponent {
       m["key"] = i;
       return m;
     });
-    this.updateState({
+    this.updateStatePromise({
       selectedDepositMethod: newMethod,
       depositMethodFeeSlabs: depositMethodFeeSlabs,
       fee: fee
+    }).then(_ => {
+      this.newDepositRequestClicked();
     });
   }
 

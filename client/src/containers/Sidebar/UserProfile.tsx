@@ -6,7 +6,12 @@ import { BaseComponent } from "../../app/components/base/BaseComponent";
 
 class UserProfile extends BaseComponent {
   render() {
-    let userAccount = this.g.user.userAccount;
+    let userAccount = null;
+    if (this.g) {
+      if (this.g.user) {
+        userAccount = this.g.user.userAccount;
+      }
+    }
     let fullName = "";
     if (userAccount) {
       fullName =

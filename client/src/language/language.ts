@@ -10,7 +10,7 @@ export function getLanguage(lang: string): LanguageBase {
     case Constants.Instance.LanguageKey.ENUS:
       return new LangENUS();
 
-    // case Constants.Instance.LanguageKey.DE:
+    // case Constants.LanguageKey.DE:
     // return new LangDE();
 
     default:
@@ -942,10 +942,6 @@ export interface LanguageBase {
   FeeFooter: string;
 
   DontHaveAccount: string;
-  Coming: string;
-  Soon: string;
-  STOPlaceholder: string;
-
   ////////////////////////////---TERMS & CONDITIONS---////////////////////////////////////////////
   TermsAndConditions: string;
   PrivacyPolicy: string;
@@ -1103,4 +1099,62 @@ export interface LanguageBase {
   TwentyFourHours: string;
   Easy: string;
   Application: string;
+  Coming: string;
+  Soon: string;
+  STOPlaceholder: string;
+  Google: string;
+  Authenticator: string;
+  GoogleAuthenticator: string;
+  PasswordChange: string;
+  Sensitive: string;
+  SensitiveAccountSettingsChange: string;
+  GoogleAuthenticatorUsedFor: string;
+  Enable: string;
+  Disable: string;
+  TwoFactorAuthentication: string;
+  Download: string;
+  App: string;
+  DownloadApp: string;
+  Subscribe: string;
+  Backup: string;
+  Finish: string;
+  Step: string;
+  DownloadAndInstallFormat: string;
+  DownloadGoogleAuthAppPara: string;
+  GoogleSupport: string;
+  Scan: string;
+  QRCode: string;
+  ScanQRCode: string;
+  OR: string;
+  ScanThisQRCode: string;
+  EnterTokenManuallyTwoFAPara: string;
+  Key: string;
+  BackupKey: string;
+  BackupKeyPara: string;
+  Enabled: string;
+  IfEnabled: string;
+  SuccessfullyFormat: string;
+  Disabled: string;
+  DepositInstruction1: string;
+  DepositInstruction2: string;
+  DepositInstruction3: string;
+  DepositInstruction4: string;
+  DepositInstruction5: string;
+  CouldNotValidateDocumentStatus: string;
+  AccountVerificationIsRequiredBeforeThisTransaction: string;
+  MaximumAmountForFormat: string;
+  MinimumAmountForFormat: string;
+  BankAccountWithSameIBAN: string;
+  CurrencyType: string;
+  CryptoDepositNotAvailable: string;
+  CannotExceedsDailyWithdrawalLimit: string;
+  CannotExceedsMonthlyWithdrawalLimit: string;
+  NoAmountSentForWithdrawalRequestVerification: string;
+  Sent: string;
+  AmountSent: string;
+  AmountChargedShouldBeLessThanOrEqualToAmount: string;
+  UnableToFundAdminWalletForFee: string;
+  already: string;
+  enabled: string;
+  AuthenticatorAlreadyEnabledFormat: string;
 }

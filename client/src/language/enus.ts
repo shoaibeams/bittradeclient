@@ -1417,7 +1417,6 @@ below to re-send`;
   Soon = "Soon";
   STOPlaceholder =
     "Come back soon to find a Security Token Offering (STO) page here.";
-
   ////////////////////////////---TERMS & CONDITIONS---////////////////////////////////////////////
   TermsContent = ` `;
 
@@ -1679,4 +1678,84 @@ below to re-send`;
   Easy = "Easy";
   Application = "Application";
   STOFeaturesHeading = "Why you should choose BitVelocity";
+  Google = "Google";
+  Authenticator = "Authenticator";
+  GoogleAuthenticator = this.Google + " " + this.Authenticator;
+  PasswordChange = this.Password + " " + this.Change;
+  Sensitive = "Sensitive";
+  SensitiveAccountSettingsChange =
+    this.Sensitive +
+    " " +
+    this.Account +
+    " " +
+    this.Settings +
+    " " +
+    this.Change;
+  GoogleAuthenticatorUsedFor =
+    "Used for Login, Withdrawals and Security modifications";
+  Enable = "Enable";
+  Disable = "Disable";
+  TwoFactorAuthentication = "Two-Factor Authentication";
+  Download = "Download";
+  App = "App";
+  DownloadApp = this.Download + " " + this.App;
+  Subscribe = "Subscribe";
+  Backup = "Backup";
+  Finish = "Finish";
+  Step = "Step";
+  DownloadAndInstallFormat = this.Download + " and install {0}";
+  DownloadGoogleAuthAppPara = "If you need help getting started, please visit";
+  GoogleSupport = this.Google + " " + this.Support;
+  Scan = "Scan";
+  QRCode = "QR Code";
+  ScanQRCode = this.Scan + " " + this.QRCode;
+  OR = "OR";
+  ScanThisQRCode = this.Scan + " this " + this.QRCode;
+  EnterTokenManuallyTwoFAPara = "Enter this code manually into the app";
+  Key = "Key";
+  BackupKey = this.Backup + " " + this.Key;
+  BackupKeyPara = `Please save this key somewhere. This key shall be used to recover your Google Authentication in case you lose access to Google Authenticator App`;
+  Enabled = "Enabled";
+  IfEnabled = "If " + this.Enabled;
+  SuccessfullyFormat = "{0} " + this.Successfully;
+  Disabled = "Disabled";
+  DepositInstruction1 = `Your deposit reference number is unique and must be added as a reference number on payments sent to us. Failure to provide correct reference number may result in delay of  your funds credited into your BitVelocity account`;
+  DepositInstruction2 = `There will be deduction of our exchange fee on any deposits made, please see the fee table for exact charge on each deposit`;
+  DepositInstruction3 = `External bank may incur additional charges, hence it is advised to pay all bank charges at your end  in additional to the amount that you would like your account to be funded with`;
+  DepositInstruction4 = `As per the regulations you must deposit from the same account under which your account is registered at BitVelocity.  For Business users account title of sender must match your company name on BitVelocity account`;
+  DepositInstruction5 = `If you are making an international payment, please give us 2 weeks (in exceptional cases upto 4 weeks)before your funds will be shown in your BitVelocity account`;
+  CouldNotValidateDocumentStatus = "Could Not validate document(s) statuses";
+  AccountVerificationIsRequiredBeforeThisTransaction =
+    this.Account +
+    " " +
+    this.Verification +
+    " is required before this transaction";
+  MaximumAmountForFormat = this.Maximum + " " + this.Amount + " for {0} is {1}";
+  MinimumAmountForFormat = this.Minimum + " " + this.Amount + " for {0} is {1}";
+  BankAccountWithSameIBAN = this.BankAccount + " with same " + this.IBAN;
+  CurrencyType = this.Currency + " " + this.Type;
+  CryptoDepositNotAvailable =
+    this.Crypto + " " + this.Deposit + " not available";
+  CannotExceedsDailyWithdrawalLimit =
+    "Can not exceeds daily " + this.Withdrawal + " limit";
+  CannotExceedsMonthlyWithdrawalLimit =
+    "Can not exceeds monthly " + this.Withdrawal + " limit";
+  NoAmountSentForWithdrawalRequestVerification =
+    "If no " +
+    this.Amount +
+    " is sent, then " +
+    this.Withdrawal +
+    " " +
+    this.Request +
+    " should be " +
+    this.Rejected;
+  Sent = "Sent";
+  AmountSent = this.Amount + " " + this.Sent;
+  AmountChargedShouldBeLessThanOrEqualToAmount =
+    "Amount charged should be less than or equal to {0} because we've hold {1} from user's wallet";
+  UnableToFundAdminWalletForFee = "Unable to fund admin wallet for fee";
+  already = "already";
+  enabled = "enabled";
+  AuthenticatorAlreadyEnabledFormat =
+    "{0} " + this.Authenticator + " " + this.already + " " + this.enabled;
 }

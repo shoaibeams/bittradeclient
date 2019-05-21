@@ -33,9 +33,6 @@ export class LoginComponent extends BaseComponent {
                   <p>{this.lang.LoginPageSignupPara}</p>
                   <p>{this.lang.GetAnAccount}</p>
                 </div>
-                {/* <div className="gx-app-logo">
-                  <img alt="BitVelocity" src="/assets/images/favicon.ico" />
-                </div> */}
                 <div className="gx-app-logo" style={{}}>
                   <Link to={this.getLink(this.constants.RoutePaths.Home)}>
                     <img
@@ -53,6 +50,7 @@ export class LoginComponent extends BaseComponent {
                 >
                   {this.antd.textFormItem(this.f.username)}
                   {this.antd.passwordFormItem(this.f.password, false)}
+                  {this.antd.textFormItem(this.f.two_fa_code)}
                   <FormItem>
                     {global.isDev
                       ? null
@@ -94,27 +92,6 @@ export class LoginComponent extends BaseComponent {
             </div>
           </div>
         </div>
-
-        {/* <div className="gx-login-container">
-          <div className="gx-login-content">
-            <div className="gx-login-header gx-text-center">
-              <h1 className="gx-login-title">{this.lang.Login}</h1>
-            </div>
-            <Form onSubmit={this.onSubmit} className="gx-login-form gx-form-row0">
-              {
-                this.textFormItem(this.f.username)
-              }
-              {
-                this.formItemInput(this.f.password, false, InputTypes.password)
-              }
-              <FormItem className="gx-text-center">
-                <Button type="primary" htmlType="submit" loading={this.state.diableSubmitButton}>
-                  {this.lang.Login}
-                </Button>
-              </FormItem>
-            </Form>
-          </div>
-        </div> */}
       </>
     );
   }
@@ -165,6 +142,18 @@ export class LoginComponent extends BaseComponent {
             )
           ],
           "lock"
+        ),
+        two_fa_code: new mdFormControl(
+          this.model.two_fa_code,
+          "two_fa_code",
+          this.lang.TwoFactorAuthentication + " (" + this.lang.IfEnabled + ")",
+          [
+            new ValidationAttributes.MaxLengthValidator(
+              this.lang.MaxLengthFormat2,
+              SignUpMetaData.two_fa_codeMaxLength
+            )
+          ],
+          "mobile-alt"
         ),
         captcha: global.isDev
           ? null

@@ -50,3 +50,8 @@ export enum Genders {
   FeMale = "female",
   Other = "Other"
 }
+
+export enum TwoFactorAuthTypes {
+  None = "none",
+  Google = "google"
+}

@@ -163,7 +163,10 @@ export class BaseComponent extends BasicBaseComponent {
     return isValid;
   }
 
-  getFormData(form) {
+  getFormData(form?) {
+    if (!form) {
+      form = this.state.form;
+    }
     let keys = Object.keys(form);
     let fd = {};
     keys.forEach(k => {

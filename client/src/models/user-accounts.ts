@@ -1,5 +1,5 @@
 import { Constants } from "../shared/constants";
-import { RecordStatuses, Genders } from "../enums/general";
+import { RecordStatuses, Genders, TwoFactorAuthTypes } from "../enums/general";
 
 export class mdUserAccounts {
   public id: number;
@@ -27,6 +27,7 @@ export class mdUserAccounts {
   income: string;
   expected_investment: string;
   kyc_verified: boolean;
+  two_fa: TwoFactorAuthTypes;
 
   picture: string;
 

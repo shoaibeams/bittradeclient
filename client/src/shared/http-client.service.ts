@@ -59,8 +59,7 @@ export default class HttpClientService {
   post<T>(url: string, data: any, options?: any) {
     let requestHeaders = { "Content-Type": "application/json" };
     let body: any = {
-      model: data,
-      lang: null
+      model: data
       // ip: global.ip,
     };
     if (url == this.constants.EndPoints.PostAuthLogin) {
@@ -72,6 +71,10 @@ export default class HttpClientService {
       //     sorted : true
       //   })
     }
+    body = {
+      ...body,
+      lang: null
+    };
     url = this.constants.BaseURL + url;
     return Axios.post(url, body, {
       headers: requestHeaders,
