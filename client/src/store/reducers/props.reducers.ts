@@ -1,6 +1,7 @@
 import { mdProps, mdGlobalProps } from "../../models/props";
 import { StaticHelper } from "../../shared/static-helper";
 import { mdAuthUsers } from "../../models/auth-users";
+import { mdPreferences } from "../../models/user-preference";
 
 let initialState = new mdGlobalProps();
 initialState.isLoggedIn = false;
@@ -11,6 +12,7 @@ initialState.headerHeight = 0;
 initialState.countries = [];
 initialState.currencies = [];
 initialState.selectedBriefHistory = [];
+initialState.preferences = mdPreferences.defaultPreferences();
 
 const propsRedcuer = (state = initialState, action) => {
   if (action.type == "UPDATE_GLBOALS_INSTANCE") {

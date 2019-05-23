@@ -2,6 +2,7 @@ import { mdCurrency } from "./currency";
 import { mdCurrencyPair } from "./currency-pair";
 import { mdCountry } from "./country";
 import { mdAuthUsers } from "./auth-users";
+import { mdPreferences } from "./user-preference";
 
 export class mdProps {
   params?: any;
@@ -54,6 +55,7 @@ export class mdGlobalProps {
   sessionStartedOn: Date;
   lastLogon: Date;
   user: mdAuthUsers;
+  preferences: mdPreferences;
 }
 
 export class mdPropKeys {
@@ -79,6 +81,7 @@ export class mdPropKeys {
   sessionStartedOn: string;
   lastLogon: string;
   user: string;
+  preferences: string;
 
   constructor() {
     this.isLoggedIn = "isLoggedIn";
@@ -103,5 +106,6 @@ export class mdPropKeys {
     this.sessionStartedOn = "sessionStartedOn";
     this.lastLogon = "lastLogon";
     this.user = "user";
+    this.preferences = "preferences";
   }
 }

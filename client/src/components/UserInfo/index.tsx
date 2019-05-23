@@ -19,7 +19,7 @@ class UserInfo extends BaseComponent {
       <ul className="gx-user-popover">
         <li onClick={this.hide}>
           <Link
-            to={this.getLink(this.constants.RoutePaths.MyAccount)}
+            to={this.getLink(this.constants.RoutePaths.MyAccountAccount)}
             className="w-fill-available"
           >
             {this.lang.MyAccount}

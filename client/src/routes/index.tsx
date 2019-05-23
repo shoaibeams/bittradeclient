@@ -13,7 +13,6 @@ const Legal = asyncComponent(() =>
   import("../app/components/legal/Legal").then(module => module.default)
 );
 
-
 const STO = asyncComponent(() =>
   import("../app/components/sto/STO").then(module => module.default)
 );
@@ -207,9 +206,7 @@ class ThemeImplementedRoutes extends BaseComponent {
         <Switch>
           <Route
             exact
-            path={`${this.props.match.url}${
-              StaticConstants.RoutePaths.STO
-            }`}
+            path={`${this.props.match.url}${StaticConstants.RoutePaths.STO}`}
             render={() => <STO {...this.props} />}
           />
           <Route
@@ -325,12 +322,10 @@ class ThemeImplementedRoutes extends BaseComponent {
           />
           <Route
             exact
-            path={`${this.props.match.url}${
-              StaticConstants.RoutePaths.Terms
-            }`}
+            path={`${this.props.match.url}${StaticConstants.RoutePaths.Terms}`}
             render={() => <Legal {...this.props} />}
           />
-           <Route
+          <Route
             exact
             path={`${this.props.match.url}${
               StaticConstants.RoutePaths.Privacy

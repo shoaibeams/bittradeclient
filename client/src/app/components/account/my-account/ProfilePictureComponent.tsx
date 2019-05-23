@@ -46,7 +46,7 @@ export default class ProfilePictureComponent extends BaseComponent {
                   onClick={() => {
                     this.props.history.push(
                       this.getLink(
-                        this.constants.RoutePaths.AccountVerification
+                        this.constants.RoutePaths.MyAccountVerification
                       )
                     );
                   }}

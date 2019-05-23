@@ -1180,4 +1180,28 @@ export interface LanguageBase {
   OpenInNewTab: string;
   Requests: string;
   VerifiedBy: string;
+  Preference: string;
+  Preferences: string;
+  Save: string;
+  Default: string;
+  DefaultCurrency: string;
+  DefaultCurrencyPair: string;
+  When: string;
+  Fulfilled: string;
+  OnSuccessfulDeposit: string;
+  OnSuccessfulWithdrawal: string;
+  WhenOrderFulfilled: string;
+  OnDepositVerification: string;
+  OnWithdrawalVerification: string;
+  OnOrderFulfilled: string;
+  Defaults: string;
+  Yes: string;
+  No: string;
+  OnOrderExecution: string;
+  OnWithdrawal: string;
+  Notification: string;
+  Zone: string;
+  TimeZone: string;
+  Preferred: string;
+  PreferredTimeZone: string;
 }

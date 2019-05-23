@@ -51,17 +51,20 @@ export class Constants {
   public EndPoints = {
     PostContactUs: "/contactUs/contactUs",
     PostAccountRegister: "/account/register",
-    PostAuthLogin: "/auth/login",
-    PostEnableTwoFA: "/auth/enableTwoFA",
-    PostDisableTwoFA: "/auth/disableTwoFA",
+    PostAuthLogin: "/user/login",
+    PostEnableTwoFA: "/user/enableTwoFA",
+    PostDisableTwoFA: "/user/disableTwoFA",
+    GetAuthUser: "/user/user",
+    GetLogout: "/user/logout",
+    GetCodeForTwoFA: "/user/codeForTwoFA",
+    PostProfilePicture: "/user/profilePicture",
+    GetUserPreferences: "/user/userPreferences",
+    PostSavePreferences: "/user/saveUserPreferences",
     GetSendSignUpVerificationEmail: "/account/sendSignUpVerificationEmail",
     PostAccountVerify: "/account/verify",
     PostAccountForgotPassword: "/account/forgotPassword",
     PostAccountUpdatePassword: "/account/updatePassword",
     PostAccountPasswordRecoveryToken: "/account/verifyPasswordRecoveryToken",
-    GetAuthUser: "/auth/user",
-    GetLogout: "/auth/logout",
-    GetCodeForTwoFA: "/auth/codeForTwoFA",
     GetCurrenciesCurrencyPairs: "/currencies/currencyPairs",
     GetTradeBriefRecentHistory: "/trade/briefRecentHistory",
     PostOrder: "/trade/order",
@@ -81,7 +84,6 @@ export class Constants {
     PostSaveBankAccount: "/bankAccounts/saveBankAccount",
     GetStreamSocket: "/stream",
     GetCountries: "/data/countries",
-    PostProfilePicture: "/auth/profilePicture",
     PostKYCSaveDocuments: "/kyc/saveDocuments",
     GetKYCProofsSummary: "/kyc/proofsSummary",
     PostKYCDocumentHistory: "/kyc/documentHistory",
@@ -168,8 +170,8 @@ export class StaticConstants {
     AccountVerify: string;
     MyAccount: string;
     Verification: string;
-    AccountVerification: string;
-    AccountVerificationProofs: string;
+    MyAccountVerification: string;
+    MyAccountVerificationProofs: string;
     AccountForgotPassword: string;
     AccountPasswordRecovery: string;
     Consulting: string;
@@ -180,35 +182,41 @@ export class StaticConstants {
     FundingWithdrawal: string;
     Proofs: string;
     Identity: string;
-    AccountVerificationProofsIdentity: string;
+    MyAccountVerificationProofsIdentity: string;
     Address: string;
-    AccountVerificationProofsAddress: string;
+    MyAccountVerificationProofsAddress: string;
     Income: string;
-    AccountVerificationProofsIncome: string;
+    MyAccountVerificationProofsIncome: string;
+    Preferences: string;
+    MyAccountPreferences: string;
+    Account: string;
+    MyAccountAccount: string;
     constructor() {
+      this.Account = "/account";
       this.Home = "";
-      this.Login = "/account/login";
+      this.Login = this.Account + "/login";
       this.Trade = "/exchange/trade";
-      this.SignUp = "/account/signUp";
+      this.SignUp = this.Account + "/signUp";
       this.ContactUs = "/help/contactUs";
-      this.EmailConfirmation = "/account/emailConfirmation";
-      this.AccountVerify = "/account/verify";
-      this.MyAccount = "/account";
+      this.EmailConfirmation = this.Account + "/emailConfirmation";
+      this.AccountVerify = this.Account + "/verify";
+      this.MyAccount = "/myAccount";
       this.Verification = "/verification";
       this.Proofs = "/proofs";
       this.Identity = "/identity";
       this.Address = "/address";
       this.Income = "/income";
-      this.AccountVerification = "/account" + this.Verification;
-      this.AccountVerificationProofs = this.AccountVerification + this.Proofs;
-      this.AccountVerificationProofsIdentity =
-        this.AccountVerificationProofs + this.Identity;
-      this.AccountVerificationProofsAddress =
-        this.AccountVerificationProofs + this.Address;
-      this.AccountVerificationProofsIncome =
-        this.AccountVerificationProofs + this.Income;
-      this.AccountForgotPassword = "/account/forgotPassword";
-      this.AccountPasswordRecovery = "/account/passwordRecovery";
+      this.MyAccountVerification = this.MyAccount + this.Verification;
+      this.MyAccountVerificationProofs =
+        this.MyAccountVerification + this.Proofs;
+      this.MyAccountVerificationProofsIdentity =
+        this.MyAccountVerificationProofs + this.Identity;
+      this.MyAccountVerificationProofsAddress =
+        this.MyAccountVerificationProofs + this.Address;
+      this.MyAccountVerificationProofsIncome =
+        this.MyAccountVerificationProofs + this.Income;
+      this.AccountForgotPassword = this.Account + "/forgotPassword";
+      this.AccountPasswordRecovery = this.Account + "/passwordRecovery";
       this.Consulting = "https://consulting.bitvelocity.io";
       this.Funding = "/funding";
       this.Deposit = "/deposit";
@@ -230,6 +238,9 @@ export class StaticConstants {
       this.STO = "/sto";
       this.Terms = "/legal/terms";
       this.Privacy = "/legal/privacy";
+      this.Preferences = "/preferences";
+      this.MyAccountPreferences = this.MyAccount + this.Preferences;
+      this.MyAccountAccount = this.MyAccount + this.Account;
     }
   })();
   public static RecaptchaSiteKey = "6Lfab3YUAAAAANbb2Lp1WYVMiwyUSCLyeZkbw5HK";

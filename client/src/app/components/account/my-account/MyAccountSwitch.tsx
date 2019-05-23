@@ -7,6 +7,7 @@ import { Tabs } from "antd";
 import MyAccountComponent from "./MyAccountComponent";
 import { Link } from "react-router-dom";
 import KYCComponent from "../kyc/KYCComponent";
+import PreferencesComponent from "../preferences/PreferencesComponent";
 const TabPane = Tabs.TabPane;
 
 export default class MyAccountSwitch extends BaseComponent {
@@ -35,15 +36,32 @@ export default class MyAccountSwitch extends BaseComponent {
             }}
           />
           <Route
+            path={`${this.props.match.url}${
+              this.constants.RoutePaths.Preferences
+            }`}
+            render={() => {
+              return (
+                <PreferencesComponent
+                  {...this.props as any}
+                  match={{
+                    url: `${this.props.match.url}${
+                      this.constants.RoutePaths.Preferences
+                    }`
+                  }}
+                />
+              );
+            }}
+          />
+          <Route
             exact
-            path={`${this.props.match.url}`}
+            path={`${this.props.match.url}${this.constants.RoutePaths.Account}`}
             render={() => {
               return (
                 <MyAccountComponent
                   {...this.props as any}
                   match={{
                     url: `${this.props.match.url}${
-                      this.constants.RoutePaths.Verification
+                      this.constants.RoutePaths.MyAccount
                     }`
                   }}
                 />
@@ -64,25 +82,33 @@ export default class MyAccountSwitch extends BaseComponent {
               this.props.history.push(key);
             }}
           >
-            <TabPane tab={this.lang.Account} key={this.tabKeys.account}>
-              {getTabContent()}
-            </TabPane>
-            <TabPane
-              tab={this.lang.Verification}
-              key={this.tabKeys.verification}
-            >
-              {getTabContent()}
-            </TabPane>
+            {this.tabs.map(t => {
+              return (
+                <TabPane tab={t.title} key={t.key}>
+                  {getTabContent()}
+                </TabPane>
+              );
+            })}
           </Tabs>
         </Widget>
       </>
     );
   }
 
-  tabKeys = {
-    account: this.constants.RoutePaths.MyAccount,
-    verification: this.constants.RoutePaths.AccountVerification
-  };
+  tabs = [
+    {
+      key: this.constants.RoutePaths.MyAccountAccount,
+      title: this.lang.Account
+    },
+    {
+      key: this.constants.RoutePaths.MyAccountVerification,
+      title: this.lang.Verification
+    },
+    {
+      key: this.constants.RoutePaths.MyAccountPreferences,
+      title: this.lang.Preferences
+    }
+  ];
 
   constructor(props) {
     super(props);
@@ -92,13 +118,20 @@ export default class MyAccountSwitch extends BaseComponent {
   init() {}
 
   getActiveTabKey = () => {
-    let activeTabKey = this.tabKeys.account;
-    if (
-      new RegExp(".*?(" + this.tabKeys.verification + ").*").test(
-        window.location.href
-      )
-    ) {
-      activeTabKey = this.tabKeys.verification;
+    let keys = this.tabs.map(t => {
+      return t.key;
+    });
+    let activeTabKey = keys[0];
+    let match = false;
+    let iterator = 0;
+    while (!match && iterator < keys.length) {
+      if (
+        new RegExp(".*?(" + keys[iterator] + ").*").test(window.location.href)
+      ) {
+        activeTabKey = keys[iterator];
+        match = true;
+      }
+      iterator++;
     }
     return activeTabKey;
   };

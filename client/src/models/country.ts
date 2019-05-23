@@ -7,4 +7,5 @@ export class mdCountry {
   calling_code: string;
   default_currency_id: number;
   default_currency_pair_id: number;
+  timezone_offset: number;
 }

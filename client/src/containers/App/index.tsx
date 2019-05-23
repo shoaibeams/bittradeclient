@@ -43,6 +43,7 @@ import { BasicBaseComponent } from "../../app/components/base/BasicBaseComponent
 import { SocketCustomEvents } from "../../enums/socket";
 import { mdAuthUsers } from "../../models/auth-users";
 import { UserRecordStatuses } from "../../enums/auth-users";
+import "moment/locale/en-gb";
 
 class App extends BaseComponent {
   langKeys = [];
@@ -201,10 +202,31 @@ class App extends BaseComponent {
           setTimeout(() => {
             this.loadBriefHistory();
             this.loadCountries();
+            this.loadPreferences();
           }, 200);
         }
       })
       .catch(error => {
+        this.log.debug(error);
+      });
+  }
+
+  loadPreferences() {
+    this.http
+      .get(this.constants.EndPoints.GetUserPreferences)
+      .then((res: mdCallResponse) => {
+        this.log.debug(res);
+        if (res.isSuccess) {
+          this.props.updateGlobalProperty(
+            global.propKeys.preferences,
+            res.extras
+          );
+        }
+      })
+      .catch(error => {
+        if (!error) {
+          return;
+        }
         this.log.debug(error);
       });
   }

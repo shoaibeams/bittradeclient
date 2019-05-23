@@ -27,7 +27,6 @@ import DatePickerComponent from "../../modules/shared/date-picker/DatePickerComp
 import NBSpinnerComponent from "../../modules/shared/spinner/NBSpinnerComponent";
 import { mdKeyValue } from "../../../models/key-value";
 import moment from "moment";
-import "moment/locale/en-gb";
 import { mdAnimControl } from "../../../models/anim-control";
 import FontAwesome from "./FontAwesome";
 import { IconName } from "@fortawesome/fontawesome-common-types";

@@ -21,7 +21,6 @@ import { mdCallResponse } from "../../../../models/call-response";
 import { mdDepositRequestHisotryRequest } from "../../../../models/deposit-request-history-request";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 const Option = Select.Option;
 
 export default class DepositComponent extends BaseComponent {
@@ -832,13 +831,15 @@ export default class DepositComponent extends BaseComponent {
             );
             this.updateState({
               submitResponseClass: "text-success",
-              showNewDespositRequestForm: false
+              disableSubmitButton: false,
+              // showNewDespositRequestForm: false
             });
-            this.updateAnimValue(
-              this.state.animValues.newDepositRequest.name,
-              Transitions.bounseOutHide2s,
-              TransitionState.Running
-            );
+            this.newDepositRequestClicked();
+            // this.updateAnimValue(
+            //   this.state.animValues.newDepositRequest.name,
+            //   Transitions.bounseOutHide2s,
+            //   TransitionState.Running
+            // );
             if (res.extras) {
               if (res.extras.id) {
                 let depositRequestHistory = this.state.depositRequestHistory;

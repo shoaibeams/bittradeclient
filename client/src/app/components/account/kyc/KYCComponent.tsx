@@ -249,7 +249,7 @@ export default class KYCComponent extends BaseComponent {
             text: this.lang.NotVerified
           },
           link: this.getLink(
-            this.constants.RoutePaths.AccountVerificationProofsIdentity +
+            this.constants.RoutePaths.MyAccountVerificationProofsIdentity +
               "?" +
               this.constants.QueryParams.aType +
               "=" +
@@ -268,7 +268,7 @@ export default class KYCComponent extends BaseComponent {
             text: this.lang.NotVerified
           },
           link: this.getLink(
-            this.constants.RoutePaths.AccountVerificationProofsIdentity +
+            this.constants.RoutePaths.MyAccountVerificationProofsIdentity +
               "?" +
               this.constants.QueryParams.aType +
               "=" +
@@ -288,7 +288,7 @@ export default class KYCComponent extends BaseComponent {
             text: this.lang.NotVerified
           },
           link: this.getLink(
-            this.constants.RoutePaths.AccountVerificationProofsIdentity +
+            this.constants.RoutePaths.MyAccountVerificationProofsIdentity +
               "?" +
               this.constants.QueryParams.aType +
               "=" +

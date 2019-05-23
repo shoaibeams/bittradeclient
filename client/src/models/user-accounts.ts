@@ -21,8 +21,6 @@ export class mdUserAccounts {
   public uuid: string;
   public country_name: string;
   public country_code: string;
-  public default_currency_pair_id: number;
-  default_currency_id: number;
   source_of_income: string;
   income: string;
   expected_investment: string;
@@ -46,7 +44,6 @@ export class mdUserAccounts {
       this.uuid = "";
       this.country_name = "";
       this.country_code = "";
-      this.default_currency_pair_id = null;
     }
   }
 }
