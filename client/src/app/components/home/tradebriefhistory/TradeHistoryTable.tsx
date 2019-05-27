@@ -9,6 +9,7 @@ import Widget from "../../../../components/Widget/index";
 import { Card } from "antd";
 import "./tradebriefhistory-component.less";
 import { Table } from "antd";
+import BlogsCard from "../../sto/BlogsCard/BlogsCard";
 
 export default class TradeHistoryTable extends BaseComponent {
   render() {
@@ -73,22 +74,7 @@ export default class TradeHistoryTable extends BaseComponent {
     }
     return (
       <>
-        <Card className="gx-text-center">
-          {/*------------------CARD HEADING-----------------------------*/}
-          <h1 className="heading-big">
-            {this.lang.Popular} {this.lang.Articles}
-          </h1>
-          <div className="text-medium">
-            <Link to={this.getLink(this.constants.RoutePaths.Travel)}>
-              {this.lang.ArticleHeading1}
-            </Link>
-          </div>
-          <div className="text-medium">
-            <Link to={this.getLink(this.constants.RoutePaths.RealEstate)}>
-              {this.lang.ArticleHeading2}
-            </Link>
-          </div>
-        </Card>
+        <BlogsCard />
       </>
     );
   }

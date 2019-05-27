@@ -31,6 +31,7 @@ export default class Team extends BaseComponent {
                 src="/assets/images/inaam.jpeg"
                 width={200}
                 alt={this.lang.Inaam}
+                id="inaam"
               />
               <h1>{this.lang.Inaam}</h1>
               <figcaption>{this.lang.TeamDescription1}</figcaption>

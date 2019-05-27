@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { mdContactUs, ContactUsMetaData } from "../../../models/contact-us";
 import { StaticHelper } from "../../../shared/static-helper";
 import * as ValidationAttributes from "../../../shared/validation-attributes";
@@ -16,9 +16,9 @@ export default class ContactUsComponent extends BaseComponent {
         {this.antd.colmd12(
           <Card
             className="gx-card form-header"
-            title={this.p.title || this.lang.ContactUs}
             style={{ fontSize: 25, textAlign: "center" }}
           >
+            <p className="text-medium">{this.p.title || this.lang.ContactUs}</p>
             <Form
               onSubmit={this.onSubmit}
               className="gx-signin-form gx-form-row0 large-size-form"

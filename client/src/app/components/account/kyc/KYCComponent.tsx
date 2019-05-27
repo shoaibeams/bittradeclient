@@ -1,10 +1,8 @@
-import * as React from "react";
+import React from "react";
 import { BaseComponent } from "../../base/BaseComponent";
 import { AccountTypes } from "../../../../enums/general";
-import { Button, Table, Card, Row, Col, Badge, Radio } from "antd";
+import { Button, Row, Badge, Radio } from "antd";
 import Widget from "../../../../components/Widget";
-import { Link } from "react-router-dom";
-import WidgetHeader from "../../../../components/WidgetHeader";
 import {
   DocumentTypesWithNames,
   ProofTypes,

@@ -1,14 +1,12 @@
 import React from "react";
+import "./Logo.less";
 
 const Logo = () => {
   return (
-    <div className="gx-header gx-link">
-      {/* <img
-        alt="BitVelocity"
-        src={"/assets/images/rocket.png"}
-        className="gx-header gx-link rocket"
-      /> */}
-      <span className="bit-text">Bit</span>Velocity
+    <div className="logo">
+      <img src="/assets/images/go-to.png" width={10} alt="" />
+      <span>Bit</span>
+      <span className="logo-v">V</span>elocity
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Constants } from '../../../shared/constants';
 import { mdProps } from "../../../models/props";
 import HeaderComponentHTML from './MainHeaderHTML';

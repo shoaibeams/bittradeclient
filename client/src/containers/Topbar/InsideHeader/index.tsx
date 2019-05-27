@@ -228,18 +228,8 @@ class InsideHeader extends BaseComponent {
                 <li className="gx-user-nav">
                   {this.g.isLoggedIn ? (
                     <ul className="gx-login-list" style={{ paddingLeft: 0 }}>
-                      <li><UserInfo {...this.props} /></li>
-                      <li className="gx-notify">
-                        <Popover
-                          overlayClassName="gx-popover-horizantal"
-                          placement="bottomRight"
-                          content={<AppNotification />}
-                          trigger="click"
-                        >
-                          <span className="gx-pointer gx-d-block">
-                            <i className="icon icon-notification" />
-                          </span>
-                        </Popover>
+                      <li>
+                        <UserInfo {...this.props} />
                       </li>
                     </ul>
                   ) : (
@@ -262,7 +252,7 @@ class InsideHeader extends BaseComponent {
                       </li>
 
                       {/*------------NOTIFICATION RING BELL AND LANGUAGE FLAG----------*/}
-                      <li className="gx-notify">
+                      {/* <li className="gx-notify">
                         <Popover
                           overlayClassName="gx-popover-horizantal"
                           placement="bottomRight"
@@ -273,8 +263,8 @@ class InsideHeader extends BaseComponent {
                             <i className="icon icon-notification" />
                           </span>
                         </Popover>
-                      </li>
-                      <li className="gx-language">
+                      </li> */}
+                      <li className="gx-language" style={{marginLeft:'20px'}}>
                         <Popover
                           overlayClassName="gx-popover-horizantal"
                           placement="bottomRight"

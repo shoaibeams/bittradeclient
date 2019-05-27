@@ -1,8 +1,4 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-// import { Link } from "react-router-dom";
-
-import { mdProps } from "../../../models/props";
+import React from "react";
 import { Link } from "react-router-dom";
 import { BaseComponent } from "../base/BaseComponent";
 

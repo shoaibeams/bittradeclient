@@ -1,16 +1,27 @@
-import * as React from "react";
+import React from "react";
 import { Table, Card, Divider } from "antd";
 import { withdrawlDataSource, withdrawlColumns } from "./staticDataWithdrawl";
 import { depositDataSource, depositColumns } from "./staticDataDeposit";
-import "./fees.less";
 import { BaseComponent } from "../base/BaseComponent";
-import FeeCard from "./feeCard/FeeCard";
+import BigCard from "./BigCard/BigCard";
+import "./fees.less";
 
 export default class Fees extends BaseComponent {
   render() {
     return (
       <>
-        <FeeCard />
+        <BigCard params={{ image: "/assets/images/save-money.svg" }}>
+          <h1 className="heading-huge">
+            {this.lang.Our} {this.lang.Fees}
+          </h1>
+          <ul className="list-big">
+            <li>{this.lang.FeeLine1}</li>
+            <li>{this.lang.FeeLine2}</li>
+            <li>{this.lang.FeeLine3}</li>
+            <li>{this.lang.FeeLine4}</li>
+          </ul>
+        </BigCard>
+
         {/*-----------------------------FEE TABLES------------------------------*/}
         <div className="fee-tables-container">
           <Card>

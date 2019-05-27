@@ -122,7 +122,7 @@ export default class ProfilePictureComponent extends BaseComponent {
       event.target.value = null;
       return;
     }
-    let name = file.name;
+    let name = file.name.toLowerCase();
     let splittedName = name.split(".");
     let extension = splittedName[splittedName.length - 1];
     if (this.formatsAllowed.indexOf(extension) < 0) {

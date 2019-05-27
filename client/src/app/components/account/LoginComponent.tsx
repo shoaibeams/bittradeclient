@@ -1,13 +1,12 @@
 import { BaseComponent } from "../base/BaseComponent";
-import * as React from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { StaticHelper } from "../../../shared/static-helper";
 import { mdFormControl } from "../../../shared/form-control";
 import { mdCallResponse } from "../../../models/call-response";
 import { mdSignUp, SignUpMetaData } from "../../../models/sign-up";
 import * as ValidationAttributes from "../../../shared/validation-attributes";
-import { Form, Input, Checkbox, Button, Icon } from "antd";
-import { InputTypes } from "../../../enums/general";
+import { Form, Button} from "antd";
 const FormItem = Form.Item;
 
 export class LoginComponent extends BaseComponent {

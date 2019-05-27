@@ -1,9 +1,8 @@
 import { BaseComponent } from "../base/BaseComponent";
-import * as React from "react";
+import React from "react";
 import { Row } from "antd";
 import { Link } from "react-router-dom";
 import "./mainfooter.less";
-// import FontAwesome from "../base/FontAwesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class MainFooter extends BaseComponent {

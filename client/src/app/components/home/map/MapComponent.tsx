@@ -18,7 +18,7 @@ export default class MapComponent extends BaseComponent {
         <div className="worldwrap">
           <div className="container gx-text-center">
             <h1>{this.lang.MapComponentHeading}</h1>
-            <div className="world-txt">{this.lang.MapComponentPara}</div>
+            <div className="world-txt text-big">{this.lang.MapComponentPara}</div>
           </div>
           <div className="container-fluid">
             <img

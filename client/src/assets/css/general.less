@@ -143,6 +143,7 @@ a.no-decor:hover {
 @heading-tiny: 17px;
 @heading-so-tiny: 14.5px;
 
+@text-big: 24px;
 @text-medium: 20px;
 @text-small: 18px;
 @text-tiny: 15px;
@@ -205,6 +206,21 @@ a.no-decor:hover {
 
   @media screen and (max-width: 400px) {
     font-size: @heading-so-tiny;
+  }
+}
+
+.text-big {
+  font-size: @text-big;
+
+  @media screen and (max-width: 900px) {
+    font-size: @text-medium;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: @text-small;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: @text-so-tiny;
   }
 }
 
@@ -362,7 +378,7 @@ a.no-decor:hover {
 
 .fade-in-bottom {
   animation: fade-in-bottom 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-  animation-delay: 2s;
+  animation-delay: 1s;
 }
 
 .slide-in-right {

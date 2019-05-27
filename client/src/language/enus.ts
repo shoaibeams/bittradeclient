@@ -1665,7 +1665,7 @@ below to re-send`;
   TeamDescription1 = `Senior Javascript Developer who likes to work on the whole specturm of development. 
   He has previously worked on the blockchain technolgies for years. Now he is leading the BitVelocity development team on making 
   a well-secured trading platform.`;
-  TeamDescription2 = `Junior Full-Stack Developer. Before joining the BitVelocity team, he developed smart contracts for Etherem Network. 
+  TeamDescription2 = `Junior Full Stack Developer who, before joining the BitVelocity team, developed smart contracts for Etherem Network. 
                       He loves to work with modern technologies and tools to provide solutions that are effective and reliable.`;
   CompanyNumber = "10744902";
 

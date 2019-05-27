@@ -1,5 +1,5 @@
 import { BaseComponent } from "../base/BaseComponent";
-import * as React from "react";
+import React from "react";
 import { mdCallResponse } from "../../../models/call-response";
 import { Transitions } from "../../../models/transitions";
 import { TransitionState } from "../../../enums/transition";
@@ -39,7 +39,7 @@ export default class AccountVerificationComponent extends BaseComponent {
             <div className="gx-mb-3 gx-text-center">
               {this.animatedCSSDiv(
                 this.state.verified == 0 ? (
-                  <FontAwesomeIcon icon={["fas", "envelope-open-text"]} />
+                  <FontAwesomeIcon icon={["fas", "envelope-open-text"]} style={{ fontSize: "100px" }}/>
                 ) : (
                   <Progress
                     {...progressStatus}
