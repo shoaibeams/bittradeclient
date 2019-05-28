@@ -19,7 +19,8 @@ import history from "../../../shared/history";
 import {
   InputTypes,
   NotificationTypes,
-  SelectSizes
+  SelectSizes,
+  TwoFactorAuthTypes
 } from "../../../enums/general";
 import { NotificationManager } from "react-notifications";
 import { mdCallResponse } from "../../../models/call-response";
@@ -958,5 +959,47 @@ export class BaseComponent extends BasicBaseComponent {
 
   sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  getUserTFA = () => {
+    let utfa = TwoFactorAuthTypes.None;
+    if (this.props.globals) {
+      if (this.props.globals.user) {
+        if (this.props.globals.user.userAccount) {
+          utfa = this.props.globals.user.userAccount.two_fa;
+        }
+      }
+    }
+    return utfa;
+  };
+
+  submitResponseDiv(
+    showSubmitResponse?: boolean,
+    isSuccessSubmitResponse?: boolean,
+    submitResponse?: string
+  ) {
+    if (showSubmitResponse == null) {
+      showSubmitResponse = this.state.showSubmitResponse;
+      isSuccessSubmitResponse = this.state.isSuccessSubmitResponse;
+      submitResponse = this.state.submitResponse;
+    }
+    let classs = "";
+    if(isSuccessSubmitResponse)
+    {
+      classs = "gx-text-success";
+    }
+    else
+    {
+      classs = "gx-text-danger";
+    }
+    return (
+      <strong>
+        {showSubmitResponse ? (
+          <div className={`${classs} text-bold`}>
+            {submitResponse}
+          </div>
+        ) : null}
+      </strong>
+    );
   }
 }

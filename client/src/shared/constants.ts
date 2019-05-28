@@ -32,6 +32,7 @@ export class Constants {
   SpecialChars = "!@#$%^&*_";
   Numbers = "0-9";
   MaxFileUploadSize = 5; //5 mb
+  PhoneNumberVerificationCodeLength = 6;
   public Regex = {
     MustStartWithSmallLetter: "(?=^[a-z]+)",
     MustStartWithCapitalLetter: "(?=^[A-Z]+)",
@@ -60,10 +61,15 @@ export class Constants {
     PostProfilePicture: "/user/profilePicture",
     GetUserPreferences: "/user/userPreferences",
     PostSavePreferences: "/user/saveUserPreferences",
+    GetUserPhoneNumber: "/user/getPhoneNumber",
+    PostSaveUserPhoneNumber: "/user/saveUserPhoneNumber",
+    PostResendSMSVerificationCode: "/user/resendSMSVerificationCode",
+    PostVerifyPhoneNumberSMSCode: "/user/verifyPhoneNumberSMSCode",
     GetSendSignUpVerificationEmail: "/account/sendSignUpVerificationEmail",
     PostAccountVerify: "/account/verify",
     PostAccountForgotPassword: "/account/forgotPassword",
     PostAccountUpdatePassword: "/account/updatePassword",
+    PostAccountChangePassword: "/account/changePassword",
     PostAccountPasswordRecoveryToken: "/account/verifyPasswordRecoveryToken",
     GetCurrenciesCurrencyPairs: "/currencies/currencyPairs",
     GetTradeBriefRecentHistory: "/trade/briefRecentHistory",

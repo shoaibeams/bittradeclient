@@ -18,6 +18,7 @@ export class mdWithdrawalRequest {
   verification_timestamp: Date;
 
   bankAccount: mdBankAccount;
+  two_fa_code: string;
 }
 
 export class WithdrawalRequestMedataData {

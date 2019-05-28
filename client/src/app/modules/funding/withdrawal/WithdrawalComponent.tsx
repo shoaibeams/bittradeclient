@@ -39,6 +39,7 @@ import { mdLimit } from "../../../../models/limit";
 import { mdWallet } from "../../../../models/wallet";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { mdWithdrawalRequest } from "../../../../models/withdrawal-request";
+import { TwoFactorAuthTypes } from "../../../../enums/general";
 const Option = Select.Option;
 const MenuItem = Menu.Item;
 
@@ -273,6 +274,16 @@ export default class WithdrawalComponent extends BaseComponent {
                         }
                       )
                     : null}
+
+                  {this.g.preferences.two_fa_on_withdrawal &&
+                  this.getUserTFA() != TwoFactorAuthTypes.None
+                    ? this.antd.textFormItem(
+                        this.f.two_fa_code,
+                        true,
+                        null,
+                        this.formItemLayout
+                      )
+                    : null}
                   <div className="gx-text-center">
                     <Button
                       type="primary"
@@ -368,6 +379,21 @@ export default class WithdrawalComponent extends BaseComponent {
     this.resetForm(true);
   }
 
+  afterReceivingProps = _ => {
+    let two_fa_code = this.state.form.two_fa_code as mdFormControl;
+    if (
+      this.g.preferences.two_fa_on_withdrawal &&
+      this.getUserTFA() != TwoFactorAuthTypes.None
+    ) {
+      two_fa_code.validators = [
+        new RequiredValidator(this.lang.RequiredFormat)
+      ];
+    } else {
+      two_fa_code.validators = [];
+    }
+    this.updateState({ form: { ...this.state.form, two_fa_code } });
+  };
+
   resetForm(loadWithdrawableCurrencies: boolean = false) {
     let state = {
       form: {
@@ -385,6 +411,14 @@ export default class WithdrawalComponent extends BaseComponent {
           "withdrawal_method_id",
           this.lang.Withdrawal,
           [new RequiredValidator(this.lang.RequiredFormat)]
+        ),
+        two_fa_code: new mdFormControl(
+          this.model.two_fa_code,
+          "two_fa_code",
+          this.lang.TwoFactorAuthentication,
+          this.g.preferences.two_fa_on_withdrawal
+            ? [new RequiredValidator(this.lang.RequiredFormat)]
+            : []
         )
       },
       disableSubmitButton: false,

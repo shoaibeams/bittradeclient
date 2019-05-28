@@ -43,7 +43,8 @@ export default class GoogleAuthenticatorComponent extends BaseComponent {
                           ? this.lang.Enabled
                           : this.lang.Not + " " + this.lang.Enabled}
                       </Tag>
-                      <p>{this.lang.GoogleAuthenticatorUsedFor}</p>
+                      <br />
+                      <span>{this.lang.GoogleAuthenticatorUsedFor}</span>
                     </>
                   )}
                   {/* {this.protectedActions.map(a => {
@@ -86,7 +87,8 @@ export default class GoogleAuthenticatorComponent extends BaseComponent {
                       {ua.two_fa == TwoFactorAuthTypes.Google
                         ? this.lang.Disable
                         : this.lang.Enable}
-                    </Button>
+                    </Button>,
+                    "align-middle"
                   )}
                 </Row>
               </div>

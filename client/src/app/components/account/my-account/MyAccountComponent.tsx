@@ -1,12 +1,10 @@
 import * as React from "react";
 import { BaseComponent } from "../../base/BaseComponent";
-import { Redirect, Route, Switch } from "react-router";
-import MyAccountSwitch from "./MyAccountSwitch";
-import Widget from "../../../../components/Widget";
-import { Tabs, Col, Button, Row } from "antd";
-import { AccountTypes } from "../../../../enums/general";
+import { Tabs, Row } from "antd";
 import ProfilePictureComponent from "./ProfilePictureComponent";
 import GoogleAuthenticatorComponent from "./google-authenticator/GoogleAuthenticatorComponent";
+import PhoneNumberComponent from "./phone-number/PhoneNumberComponent";
+import ChangePasswordBlockComponent from "./change-password/ChangePasswordBlockComponent";
 const TabPane = Tabs.TabPane;
 
 export default class MyAccountComponent extends BaseComponent {
@@ -14,8 +12,9 @@ export default class MyAccountComponent extends BaseComponent {
     return (
       <Row>
         {this.antd.colxl12(<ProfilePictureComponent {...this.props} />)}
-        {this.antd.colxl12(<></>)}
+        {this.antd.colxl12(<PhoneNumberComponent {...this.props} />)}
         {this.antd.colxl12(<GoogleAuthenticatorComponent {...this.props} />)}
+        {this.antd.colxl12(<ChangePasswordBlockComponent {...this.props} />)}
       </Row>
     );
   }

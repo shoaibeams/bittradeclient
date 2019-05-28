@@ -24,7 +24,8 @@ export enum InputTypes {
   Label = "label",
   NumberWithDropdown = "number-with-dropdown",
   Date = "date",
-  Checkbox = "checkbox"
+  Checkbox = "checkbox",
+  TextWithChild = "text-with-child"
 }
 export enum NotificationTypes {
   success = "success",
@@ -54,4 +55,10 @@ export enum Genders {
 export enum TwoFactorAuthTypes {
   None = "none",
   Google = "google"
+}
+
+export enum UserPhoneNumberStatuses {
+  Pending = "pending",
+  Verified = "verified",
+  Deleted = "deleted"
 }

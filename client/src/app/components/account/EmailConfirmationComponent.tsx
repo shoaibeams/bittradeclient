@@ -40,10 +40,7 @@ export default class EmailConfirmationComponent extends BaseComponent {
             </div>
             <div className="gx-mb-3">
               {this.animatedCSSDiv(
-                <FontAwesomeIcon
-                  icon={["fas", "envelope-open-text"]}
-                  style={{ fontSize: "100px" }}
-                />,
+                <FontAwesomeIcon icon={["fas", "envelope-open-text"]} size="10x" />,
                 this.state.animValues.mail_img
               )}
             </div>

@@ -3,6 +3,7 @@ import * as uuid from "uuid";
 import history from "../shared/history";
 import moment from "moment";
 import { mdKeyValue } from "../models/key-value";
+import { mdUserPhoneNumber } from "../models/user-phone-number";
 
 export class StaticHelper {
   static navigateToLogin() {
@@ -458,4 +459,19 @@ export class StaticHelper {
     res = parseFloat(res.toFixed(biggestScale));
     return res;
   }
+
+  static getHiddenPhoneNumber = (callingCode, phoneNumber) => {
+    if (!phoneNumber || !callingCode) {
+      return null;
+    }
+    let pn = callingCode + " " + phoneNumber;
+    let original = pn;
+    for (let i = 1; i < pn.length; i++) {
+      let code = original.substr(0, i);
+      if (i + 2 < pn.length && code != callingCode) {
+        pn = pn.substr(0, i) + "x" + pn.substr(i + 1);
+      }
+    }
+    return pn;
+  };
 }

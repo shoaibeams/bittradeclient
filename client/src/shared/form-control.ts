@@ -20,6 +20,7 @@ export class mdFormControl {
   dropDownControl?: mdFormControl;
   onDropDownInput?: any;
   rows?: number;
+  width?: any;
   render?;
   constructor(_value?, _name?, _title?, _validators?, _icon?: string) {
     this.value = _value;

@@ -254,8 +254,9 @@ export default class OrderComponent extends BaseComponent {
         let last = this.g.selectedBriefHistory.last;
         let price = this.f.price as mdFormControl;
         if (
-          (!price.value || price.value == this.previousLast) &&
-          this.isNullOrEmpty(this.f.amount.value)
+          ((!price.value || price.value == this.previousLast) &&
+            this.isNullOrEmpty(this.f.amount.value)) ||
+          this.previousCP != this.p.selectedCurrencyPair
         ) {
           this.handleFormControlInputWithValue(this.f.price.name, last);
         }

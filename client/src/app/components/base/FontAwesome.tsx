@@ -29,7 +29,10 @@ import {
   faArrowLeft,
   faSave,
   faTimes,
-  faInbox
+  faInbox,
+  faArrowRight,
+  faRedo,
+  faRedoAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { StaticHelper } from "../../../shared/static-helper";
 
@@ -59,7 +62,10 @@ export default library.add(
   faQuestion,
   faFileSignature,
   faArrowLeft,
+  faArrowRight,
   faSave,
   faTimes,
+  faRedo,
+  faRedoAlt,
   faInbox
 );

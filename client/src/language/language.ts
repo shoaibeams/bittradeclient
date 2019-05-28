@@ -1204,4 +1204,18 @@ export interface LanguageBase {
   TimeZone: string;
   Preferred: string;
   PreferredTimeZone: string;
+  PhoneNumber: string;
+  Added: string;
+  NotAdded: string;
+  EnterVerificationCodeForContactPara: string;
+  DidNot: string;
+  Receive: string;
+  SMS: string;
+  DidNotReceiveSMS: string;
+  VerificationCodeResent: string;
+  Sort: string;
+  SortCode: string;
+  IncludeReferenceOnDepositPara: string;
+  ChangePassword: string;
+  ChangePasswordBlockPara: string;
 }

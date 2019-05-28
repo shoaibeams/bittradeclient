@@ -41,7 +41,6 @@ export default class ANTDControls {
     label: boolean = false,
     onInput?,
     formItemLayout: any = {},
-    disabled: boolean = false,
     dropDownSource: mdKeyValue[] = [],
     showSpinner = false,
     format: string = Constants.Instance.DefaultDateFormat,
@@ -85,7 +84,7 @@ export default class ANTDControls {
         style = formItemLayout.inputStyle;
       }
       if (!style) {
-        style = { width: "100%" };
+        style = { width: ctrl.width };
       }
       let classes = "";
       if (!StaticHelper.isNullOrEmpty(formItemLayout.inputClassName)) {
@@ -102,7 +101,7 @@ export default class ANTDControls {
           style={{ ...style }}
           placeholder={ctrl.placeholder}
           value={value}
-          disabled={disabled}
+          disabled={ctrl.disabled}
           min={ctrl.min}
           max={ctrl.max}
           step={ctrl.step}
@@ -119,7 +118,7 @@ export default class ANTDControls {
       style?
     ) => {
       if (!style) {
-        style = { width: "100%" };
+        style = { width: sControl.width };
       }
       return (
         <Select
@@ -138,6 +137,7 @@ export default class ANTDControls {
           }
           value={sControl.value}
           size={sControl.size}
+          disabled={sControl.disabled}
         >
           {ctrlSrc.map((s: mdKeyValue, i) => {
             return (
@@ -154,7 +154,7 @@ export default class ANTDControls {
       ctrl.type = InputTypes.Select;
       ctrl.dropDownControl.type = InputTypes.Select;
       return (
-        <InputGroup compact style={{ width: "100%", display: "flex" }}>
+        <InputGroup compact style={{ width: ctrl.width, display: "flex" }}>
           {dropDownInput(
             control.dropDownControl,
             dropDownSource,
@@ -165,9 +165,20 @@ export default class ANTDControls {
         </InputGroup>
       );
     };
+    let textWithDropdown = (ctrl: mdFormControl) => {
+      control.type = InputTypes.Text;
+      ctrl.type = InputTypes.Text;
+      ctrl.dropDownControl.width = "auto";
+      return (
+        <InputGroup compact style={{ width: ctrl.width, display: "flex" }}>
+          {InputElement(ctrl.dropDownControl)}
+          {generalInput(ctrl)}
+        </InputGroup>
+      );
+    };
     let dateInput = (ctrl: mdFormControl, style?) => {
       if (!style) {
-        style = { width: "100%" };
+        style = { width: ctrl.width };
       }
       return (
         <DatePicker
@@ -175,7 +186,7 @@ export default class ANTDControls {
           style={{ ...style }}
           placeholder={ctrl.placeholder}
           value={ctrl.value ? moment(ctrl.value, format) : null}
-          disabled={disabled}
+          disabled={ctrl.disabled}
           onChange={e => {
             inputHandler({ target: { value: e } }, ctrl);
           }}
@@ -197,7 +208,7 @@ export default class ANTDControls {
             );
           }}
           value={control.value ? control.value : ""}
-          disabled={disabled}
+          disabled={ctrl.disabled}
         >
           {control.placeholder}
         </Checkbox>
@@ -212,7 +223,7 @@ export default class ANTDControls {
           }}
           placeholder={control.title}
           value={control.value ? control.value : ""}
-          disabled={disabled}
+          disabled={ctrl.disabled}
           rows={ctrl.rows}
         />
       );
@@ -221,12 +232,12 @@ export default class ANTDControls {
       return (
         <RangePicker
           id={id}
-          style={{ width: "100%" }}
+          style={{ width: ctrl.width }}
           onChange={e => {
             inputHandler({ target: { value: e } }, ctrl);
           }}
           value={ctrl.value ? ctrl.value : ""}
-          disabled={disabled}
+          disabled={ctrl.disabled}
         />
       );
     };
@@ -234,14 +245,18 @@ export default class ANTDControls {
       return (
         <Input
           id={id}
-          style={{ width: "100%" }}
+          style={{ width: ctrl.width }}
           onChange={e => {
             inputHandler(e, ctrl);
           }}
-          placeholder={ctrl.title}
+          placeholder={
+            StaticHelper.isNullOrEmpty(ctrl.placeholder)
+              ? ctrl.title
+              : ctrl.placeholder
+          }
           value={ctrl.value ? ctrl.value : ""}
           type={ctrl.type}
-          disabled={disabled}
+          disabled={ctrl.disabled}
           prefix={
             StaticHelper.isNullOrEmpty(ctrl.icon) ? null : (
               <FontAwesomeIcon icon={["fas", ctrl.icon as any]} />
@@ -252,39 +267,44 @@ export default class ANTDControls {
         />
       );
     };
-    let InputElement = () => {
-      if (control.type == InputTypes.Number) {
-        return numberInput(control);
-      } else if (control.type == InputTypes.Label) {
-        if (typeof control.render === "function") {
-          return control.render(control);
+    let InputElement = (ctrl: mdFormControl) => {
+      if (!ctrl.width) {
+        ctrl.width = "100%";
+      }
+      if (ctrl.type == InputTypes.Number) {
+        return numberInput(ctrl);
+      } else if (ctrl.type == InputTypes.Label) {
+        if (typeof ctrl.render === "function") {
+          return ctrl.render(ctrl);
         }
         return (
           <>
-            <label id={id} style={{ width: "100%" }}>
-              {control.value ? control.value : ""}
+            <label id={id} style={{ width: ctrl.width }}>
+              {ctrl.value ? ctrl.value : ""}
             </label>
             {/* <Input style={{ display: 'hidden' }}/> */}
           </>
         );
-      } else if (control.type == InputTypes.NumberWithDropdown) {
-        return numberWithDropdown(control);
-      } else if (control.type == InputTypes.Date) {
-        return dateInput(control);
-      } else if (control.type == InputTypes.Checkbox) {
-        return checkboxInput(control);
-      } else if (control.type == InputTypes.TextArea) {
-        return textAreaInput(control);
-      } else if (control.type == InputTypes.Daterange) {
-        return dateRangePicker(control);
-      } else if (control.type == InputTypes.Select) {
-        return dropDownInput(control, dropDownSource);
+      } else if (ctrl.type == InputTypes.NumberWithDropdown) {
+        return numberWithDropdown(ctrl);
+      } else if (ctrl.type == InputTypes.TextWithChild) {
+        return textWithDropdown(ctrl);
+      } else if (ctrl.type == InputTypes.Date) {
+        return dateInput(ctrl);
+      } else if (ctrl.type == InputTypes.Checkbox) {
+        return checkboxInput(ctrl);
+      } else if (ctrl.type == InputTypes.TextArea) {
+        return textAreaInput(ctrl);
+      } else if (ctrl.type == InputTypes.Daterange) {
+        return dateRangePicker(ctrl);
+      } else if (ctrl.type == InputTypes.Select) {
+        return dropDownInput(ctrl, dropDownSource);
       } else {
-        return generalInput(control);
+        return generalInput(ctrl);
       }
     };
     if (!formItem) {
-      return InputElement();
+      return InputElement(control);
     }
     return (
       <FormItem
@@ -293,7 +313,7 @@ export default class ANTDControls {
         label={label ? control.title : ""}
         validateStatus={control.errors.length > 0 ? "error" : "success"}
       >
-        {InputElement()}
+        {InputElement(control)}
         <NBSpinnerComponent params={{ show: showSpinner }} />
       </FormItem>
     );
@@ -353,12 +373,12 @@ export default class ANTDControls {
     disabled: boolean = false
   ) => {
     control.type = InputTypes.Date;
+    control.disabled = disabled;
     return this.formItemInput(
       control,
       label,
       onInput,
       formItemLayout,
-      disabled,
       null,
       false,
       format
@@ -417,11 +437,31 @@ export default class ANTDControls {
       label,
       onInput,
       formItemLayout,
-      false,
       [],
       false,
       null,
       false
+    );
+  };
+
+  textWithChildFormItem = (
+    control: mdFormControl,
+    dropDownControl: mdFormControl,
+    dropDownSource: mdKeyValue[],
+    onDropDownInput,
+    label: boolean = false,
+    onInput?,
+    formItemLayout = null
+  ) => {
+    control.type = InputTypes.TextWithChild;
+    control.onDropDownInput = onDropDownInput;
+    control.dropDownControl = dropDownControl;
+    return this.formItemInput(
+      control,
+      label,
+      onInput,
+      formItemLayout,
+      dropDownSource
     );
   };
 
@@ -452,7 +492,6 @@ export default class ANTDControls {
       label,
       onControlInput,
       formItemLayout,
-      false,
       dropDownSource,
       showSpinner
     );
@@ -472,7 +511,6 @@ export default class ANTDControls {
       label,
       onInput,
       formItemLayout,
-      false,
       source,
       showSpinner
     );
@@ -697,10 +735,11 @@ export default class ANTDControls {
     );
   }
 
-  colsm8(children) {
+  colsm8(children, className = "") {
     return (
       <Col
         //key={this.instance.generateDynamicKey()}
+        className={className}
         xs={8}
       >
         {children}

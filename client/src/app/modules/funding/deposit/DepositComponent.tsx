@@ -115,24 +115,46 @@ export default class DepositComponent extends BaseComponent {
                         <td>{sdm ? sdm.account_name : ""}</td>
                       </tr>
                       <tr>
+                        <th>{this.lang.BankName}</th>
+                        <td>{sdm ? sdm.bank_name : ""}</td>
+                      </tr>
+                      {/* <tr>
                         <th>{this.lang.Address}</th>
                         <td>{sdm ? sdm.address : ""}</td>
+                      </tr> */}
+                      <tr>
+                        <th>{this.lang.AccountNumber}</th>
+                        <td>{sdm ? sdm.account_no : ""}</td>
+                      </tr>
+                      <tr>
+                        <th>{this.lang.SortCode}</th>
+                        <td>{sdm ? sdm.branch_code : ""}</td>
                       </tr>
                       <tr>
                         <th>{this.lang.IBAN}</th>
                         <td>{sdm ? sdm.iban : ""}</td>
                       </tr>
-                      <tr>
-                        <th>{this.lang.BankName}</th>
-                        <td>{sdm ? sdm.bank_name : ""}</td>
-                      </tr>
-                      <tr>
+                      {/* <tr>
                         <th>{this.lang.Branch}</th>
                         <td>{sdm ? sdm.branch_address : ""}</td>
-                      </tr>
+                      </tr> */}
                       <tr>
-                        <th>{this.lang.Reference}</th>
-                        <td>{wallet ? wallet.reference : ""}</td>
+                        <th style={{ verticalAlign: "top" }}>
+                          {this.lang.Reference}
+                        </th>
+                        <td>
+                          {wallet ? (
+                            <>
+                              {wallet.reference}
+                              <br />
+                              <Tag color="red" style={{ whiteSpace: "normal" }}>
+                                {this.lang.IncludeReferenceOnDepositPara}
+                              </Tag>
+                            </>
+                          ) : (
+                            ""
+                          )}
+                        </td>
                       </tr>
                       <tr>
                         <th>{this.lang.Minimum}</th>
@@ -831,7 +853,7 @@ export default class DepositComponent extends BaseComponent {
             );
             this.updateState({
               submitResponseClass: "text-success",
-              disableSubmitButton: false,
+              disableSubmitButton: false
               // showNewDespositRequestForm: false
             });
             this.newDepositRequestClicked();

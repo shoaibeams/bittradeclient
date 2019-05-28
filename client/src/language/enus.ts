@@ -1805,4 +1805,20 @@ below to re-send`;
   TimeZone = this.Time + " " + this.Zone;
   Preferred = "Preferred";
   PreferredTimeZone = this.Preferred + " " + this.TimeZone;
+  PhoneNumber = this.Phone + " " + this.Number;
+  Added = "Added";
+  NotAdded = this.Not + " " + this.Added;
+  EnterVerificationCodeForContactPara =
+    "Please enter the {0} digit verification code we sent to {1}";
+  DidNot = "Didn't";
+  Receive = "Receive";
+  SMS = "SMS";
+  DidNotReceiveSMS = this.DidNot + " " + this.Receive + " the " + this.SMS;
+  VerificationCodeResent = "Verification Code Resent";
+  Sort = "Sort";
+  SortCode = this.Sort + " " + this.Code;
+  IncludeReferenceOnDepositPara =
+    "Please ensure to include this as a reference for deposit. Otherwise, your funds may be delayed.";
+  ChangePassword = this.Change + " " + this.Password;
+  ChangePasswordBlockPara = "Change password frequently to secure your account";
 }
