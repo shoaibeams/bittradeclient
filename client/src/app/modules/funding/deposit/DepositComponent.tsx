@@ -1,11 +1,10 @@
-import * as React from "react";
+import React from "react";
 import { Row, Card, Select, Table, Form, Col, Button, Tag } from "antd";
 import "./deposit-component.css";
 import { DepositRequestRecordStatuses } from "../../../../enums/deposit-requests";
 import { FeeSlabFeeApplyTypes } from "../../../../enums/fee-slabs";
 import { BaseComponent } from "../../../components/base/BaseComponent";
 import FileUploaderComponent from "../../shared/file-uploader/FileUploaderComponent";
-import FontAwesome from "../../../components/base/FontAwesome";
 import { mdDepositRequests } from "../../../../models/deposit-requests";
 import { mdFeeSlabs } from "../../../../models/fee-slabs";
 import { RequiredValidator } from "../../../../shared/validation-attributes";

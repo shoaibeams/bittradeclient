@@ -1,23 +1,29 @@
 import { BaseComponent } from "../base/BaseComponent";
-import * as React from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, Redirect } from "react-router-dom";
 import { mdFormControl } from "../../../shared/form-control";
 import { mdCallResponse } from "../../../models/call-response";
 import { mdSignUp, SignUpMetaData } from "../../../models/sign-up";
-import * as ValidationAttributes from "../../../shared/validation-attributes";
 import { Form, Button } from "antd";
 import { mdAnimControl } from "../../../models/anim-control";
 import { TransitionState } from "../../../enums/transition";
 import { Transitions } from "../../../models/transitions";
 import { SocketCustomEvents } from "../../../enums/socket";
-import FontAwesome from "../base/FontAwesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const FormItem = Form.Item;
+import {
+  MailValidator,
+  MaxLengthValidator
+} from "../../../shared/validation-attributes";
 
 export class ForgotPasswordComponent extends BaseComponent {
   render() {
     this.initShorts();
+    if (!this.g.loginChecked) {
+      return null;
+    }
+    if (this.g.isLoggedIn) {
+      return <Redirect to={this.getLink(this.constants.RoutePaths.Trade)} />;
+    }
     // const {getFieldDecorator} = this.props.form;
     return (
       <>
@@ -99,8 +105,8 @@ export class ForgotPasswordComponent extends BaseComponent {
           "email",
           this.lang.Email,
           [
-            new ValidationAttributes.MailValidator(this.lang.InvalidEmail),
-            new ValidationAttributes.MaxLengthValidator(
+            new MailValidator(this.lang.InvalidEmail),
+            new MaxLengthValidator(
               this.lang.MaxLengthFormat2,
               SignUpMetaData.emailMaxLength
             )

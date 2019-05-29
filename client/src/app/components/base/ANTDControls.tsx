@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { mdFormControl } from "../../../shared/form-control";
 import { mdKeyValue } from "../../../models/key-value";
 import {

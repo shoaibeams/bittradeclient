@@ -1,10 +1,9 @@
-import * as React from "react";
+import React from "react";
 import { BaseComponent } from "../../components/base/BaseComponent";
 import { StaticHelper } from "../../../shared/static-helper";
 import { mdCallResponse } from "../../../models/call-response";
 import { OrderActions } from "../../../enums/order";
-import { Table, Tabs, Card, Pagination } from "antd";
-const TabPane = Tabs.TabPane;
+import { Table, Card } from "antd";
 
 export default class RecentTradesComponent extends BaseComponent {
   render() {

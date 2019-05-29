@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { BaseComponent } from "../../../base/BaseComponent";
 import { Button, Row, Card, Tag, Modal } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,6 +22,7 @@ export default class ChangePasswordBlockComponent extends BaseComponent {
               <div className="gx-description">
                 <h2>{this.lang.Password}</h2>
                 {this.lang.ChangePasswordBlockPara}
+                <br />
                 <br />
                 <Button
                   type="primary"

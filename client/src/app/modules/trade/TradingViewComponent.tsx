@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import OrderHistoryComponent from "./OrderHistoryComponent";
 import OrderComponent from "./OrderComponent";
 import { BaseComponent } from "../../components/base/BaseComponent";

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { BaseComponent } from "../../base/BaseComponent";
 import Widget from "../../../../components/Widget/index";
 import "./map-component.less";
@@ -18,11 +18,13 @@ export default class MapComponent extends BaseComponent {
         <div className="worldwrap">
           <div className="container gx-text-center">
             <h1>{this.lang.MapComponentHeading}</h1>
-            <div className="world-txt text-big">{this.lang.MapComponentPara}</div>
+            <div className="world-txt text-big">
+              {this.lang.MapComponentPara}
+            </div>
           </div>
           <div className="container-fluid">
             <img
-              src="/assets/images/world-map.png"
+              src="/assets/images/world-map.webp"
               className="img-responsive"
               alt="World Map"
             />

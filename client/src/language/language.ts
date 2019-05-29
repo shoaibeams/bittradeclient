@@ -60,7 +60,7 @@ export interface LanguageBase {
   Company: string;
   CompanyName: string;
   UserNameRequirement: string[];
-  UserNameNotAavailable: string;
+  UserNameNotAvailable: string;
   EmailAlreadyRegistered: string;
   AccountType: string;
   InvalidValueFormat: string;
@@ -1218,4 +1218,8 @@ export interface LanguageBase {
   IncludeReferenceOnDepositPara: string;
   ChangePassword: string;
   ChangePasswordBlockPara: string;
+  ExpiredFormat: string;
+  PleaseRequestNewOne: string;
+  VerificationCode: string;
+  VerificationCodeTextMessageFormat: string;
 }

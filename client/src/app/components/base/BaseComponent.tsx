@@ -1,23 +1,13 @@
-import * as React from "react";
-import { mdProps, mdPropKeys, mdGlobalProps } from "../../../models/props";
-import { Constants, StaticConstants } from "../../../shared/constants";
+import React from "react";
+import { Constants } from "../../../shared/constants";
 import { mdFormControl } from "../../../shared/form-control";
-import {
-  ValidateParams,
-  ValidationAttributeResponse,
-  Validation
-} from "../../../shared/validations";
 import { StaticHelper } from "../../../shared/static-helper";
-import mdTransitions, {
-  Transitions,
-  mdTransition
-} from "../../../models/transitions";
+import { Transitions, mdTransition } from "../../../models/transitions";
 import ReCAPTCHA from "react-google-recaptcha";
 import { BasicBaseComponent } from "./BasicBaseComponent";
 import { TransitionState } from "../../../enums/transition";
 import history from "../../../shared/history";
 import {
-  InputTypes,
   NotificationTypes,
   SelectSizes,
   TwoFactorAuthTypes
@@ -27,28 +17,10 @@ import { mdCallResponse } from "../../../models/call-response";
 import DatePickerComponent from "../../modules/shared/date-picker/DatePickerComponent";
 import NBSpinnerComponent from "../../modules/shared/spinner/NBSpinnerComponent";
 import { mdKeyValue } from "../../../models/key-value";
-import moment from "moment";
 import { mdAnimControl } from "../../../models/anim-control";
-import FontAwesome from "./FontAwesome";
-import { IconName } from "@fortawesome/fontawesome-common-types";
-import { SizeProp } from "@fortawesome/fontawesome-svg-core";
 import { Link } from "react-router-dom";
-import {
-  Form,
-  Input,
-  Checkbox,
-  Button,
-  Icon,
-  DatePicker,
-  Select,
-  InputNumber,
-  Col
-} from "antd";
-const FormItem = Form.Item;
+import { Select } from "antd";
 const Option = Select.Option;
-const RangePicker = DatePicker.RangePicker;
-const InputGroup = Input.Group;
-const TextArea = Input.TextArea;
 
 export class BaseComponent extends BasicBaseComponent {
   constructor(props, extractFromProp?: boolean) {
@@ -984,20 +956,15 @@ export class BaseComponent extends BasicBaseComponent {
       submitResponse = this.state.submitResponse;
     }
     let classs = "";
-    if(isSuccessSubmitResponse)
-    {
+    if (isSuccessSubmitResponse) {
       classs = "gx-text-success";
-    }
-    else
-    {
+    } else {
       classs = "gx-text-danger";
     }
     return (
       <strong>
         {showSubmitResponse ? (
-          <div className={`${classs} text-bold`}>
-            {submitResponse}
-          </div>
+          <div className={`${classs} text-bold`}>{submitResponse}</div>
         ) : null}
       </strong>
     );

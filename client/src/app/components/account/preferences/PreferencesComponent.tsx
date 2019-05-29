@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Progress, Form, Button } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BaseComponent } from "../../base/BaseComponent";

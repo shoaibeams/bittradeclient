@@ -1,7 +1,6 @@
-import * as React from "react";
+import React from "react";
 import "./file-uploader.component.css";
 import axios from "axios";
-import ProgressBarComponent from "../progress-bar/ProgressBarComponent";
 import { BaseComponent } from "../../../components/base/BaseComponent";
 import { mdDigitalEvidence } from "../../../../models/digital-evidence";
 import { StaticHelper } from "../../../../shared/static-helper";

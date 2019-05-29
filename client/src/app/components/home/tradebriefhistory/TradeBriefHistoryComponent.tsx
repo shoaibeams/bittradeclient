@@ -1,5 +1,5 @@
 import { BaseComponent } from "../../base/BaseComponent";
-import * as React from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { StaticHelper } from "../../../../shared/static-helper";
 import { mdFormControl } from "../../../../shared/form-control";
@@ -7,7 +7,7 @@ import { Transitions } from "../../../../models/transitions";
 import { mdProps } from "../../../../models/props";
 import Widget from "../../../../components/Widget/index";
 import "./tradebriefhistory-component.less";
-import { Tabs, Table, Button } from "antd";
+import { Tabs, Table } from "antd";
 const TabPane = Tabs.TabPane;
 
 export default class TradeBriefHistoryComponent extends BaseComponent {

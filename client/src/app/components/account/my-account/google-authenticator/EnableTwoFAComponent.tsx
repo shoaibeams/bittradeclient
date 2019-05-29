@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Tabs, Col, Button, Row, Card, Tag, Steps, Icon, Form } from "antd";
 import { BaseComponent } from "../../../base/BaseComponent";
 import { StaticHelper } from "../../../../../shared/static-helper";

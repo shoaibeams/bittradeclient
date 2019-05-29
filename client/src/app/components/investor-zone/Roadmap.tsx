@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import WithIconTimeLineItem from "../../../components/timeline/WithIconTimeLineItem";
 import "./Roadmap.less";
 import { BaseComponent } from "../base/BaseComponent";

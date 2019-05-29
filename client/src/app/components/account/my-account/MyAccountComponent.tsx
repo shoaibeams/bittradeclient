@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { BaseComponent } from "../../base/BaseComponent";
 import { Tabs, Row } from "antd";
 import ProfilePictureComponent from "./ProfilePictureComponent";

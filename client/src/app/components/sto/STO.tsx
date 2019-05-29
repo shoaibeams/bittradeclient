@@ -8,14 +8,13 @@ import BigCard from "../fees/BigCard/BigCard";
 import "./STO.less";
 
 export default class STO extends BaseComponent {
-
   componentWillMount = () => {
     document.body.style.backgroundColor = "white";
-  }
+  };
 
   componentWillUnmount = () => {
     document.body.style.backgroundColor = "#f5f5f5";
-  }
+  };
 
   render() {
     return (

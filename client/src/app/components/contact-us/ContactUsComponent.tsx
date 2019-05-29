@@ -1,11 +1,15 @@
 import React from "react";
 import { mdContactUs, ContactUsMetaData } from "../../../models/contact-us";
 import { StaticHelper } from "../../../shared/static-helper";
-import * as ValidationAttributes from "../../../shared/validation-attributes";
 import { mdFormControl } from "../../../shared/form-control";
 import { mdCallResponse } from "../../../models/call-response";
 import { BaseComponent } from "../base/BaseComponent";
 import { Row, Card, Form, Button } from "antd";
+import {
+  RequiredValidator,
+  MaxLengthValidator,
+  MailValidator
+} from "../../../shared/validation-attributes";
 
 export default class ContactUsComponent extends BaseComponent {
   render() {
@@ -58,8 +62,8 @@ export default class ContactUsComponent extends BaseComponent {
     this.state = {
       form: {
         name: new mdFormControl(this.model.name, "name", this.lang.Name, [
-          new ValidationAttributes.RequiredValidator(this.lang.RequiredFormat),
-          new ValidationAttributes.MaxLengthValidator(
+          new RequiredValidator(this.lang.RequiredFormat),
+          new MaxLengthValidator(
             this.lang.MaxLengthFormat2,
             ContactUsMetaData.nameMaxLength
           )
@@ -69,18 +73,16 @@ export default class ContactUsComponent extends BaseComponent {
           "contact_no",
           this.lang.ContactNo,
           [
-            new ValidationAttributes.RequiredValidator(
-              this.lang.RequiredFormat
-            ),
-            new ValidationAttributes.MaxLengthValidator(
+            new RequiredValidator(this.lang.RequiredFormat),
+            new MaxLengthValidator(
               this.lang.MaxLengthFormat2,
               ContactUsMetaData.contactNoMaxLength
             )
           ]
         ),
         email: new mdFormControl(this.model.email, "email", this.lang.Email, [
-          new ValidationAttributes.MailValidator(this.lang.InvalidEmail),
-          new ValidationAttributes.MaxLengthValidator(
+          new MailValidator(this.lang.InvalidEmail),
+          new MaxLengthValidator(
             this.lang.MaxLengthFormat2,
             ContactUsMetaData.emailMaxLength
           )
@@ -90,10 +92,8 @@ export default class ContactUsComponent extends BaseComponent {
           "message",
           this.lang.Message,
           [
-            new ValidationAttributes.RequiredValidator(
-              this.lang.RequiredFormat
-            ),
-            new ValidationAttributes.MaxLengthValidator(
+            new RequiredValidator(this.lang.RequiredFormat),
+            new MaxLengthValidator(
               this.lang.MaxLengthFormat2,
               ContactUsMetaData.messageMaxLength
             )

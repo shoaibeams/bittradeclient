@@ -1,5 +1,5 @@
 import { Switch } from "react-router";
-import * as React from "react";
+import React from "react";
 import { StaticHelper } from "../../../shared/static-helper";
 
 export default function FragmentSupportingSwitch({ children }) {

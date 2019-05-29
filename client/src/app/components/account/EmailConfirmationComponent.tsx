@@ -1,5 +1,5 @@
 import { BaseComponent } from "../base/BaseComponent";
-import * as React from "react";
+import React from "react";
 import { mdCallResponse } from "../../../models/call-response";
 import { mdFormControl } from "../../../shared/form-control";
 import { Transitions, mdTransition } from "../../../models/transitions";
@@ -10,10 +10,17 @@ import { SocketCustomEvents } from "../../../enums/socket";
 import { mdRegisterSocketEvent } from "../../../models/register-socket-event";
 import FontAwesome from "../base/FontAwesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Redirect } from "react-router";
 
 export default class EmailConfirmationComponent extends BaseComponent {
   render() {
     this.initShorts();
+    if (!this.g.loginChecked) {
+      return null;
+    }
+    if (this.g.isLoggedIn) {
+      return <Redirect to={this.getLink(this.constants.RoutePaths.Trade)} />;
+    }
     return (
       <>
         <div className="gx-text-center">
@@ -40,7 +47,10 @@ export default class EmailConfirmationComponent extends BaseComponent {
             </div>
             <div className="gx-mb-3">
               {this.animatedCSSDiv(
-                <FontAwesomeIcon icon={["fas", "envelope-open-text"]} size="10x" />,
+                <FontAwesomeIcon
+                  icon={["fas", "envelope-open-text"]}
+                  size="10x"
+                />,
                 this.state.animValues.mail_img
               )}
             </div>

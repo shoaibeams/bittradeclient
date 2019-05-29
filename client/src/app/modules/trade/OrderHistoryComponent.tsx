@@ -1,11 +1,9 @@
-import * as React from "react";
-import NBSpinnerComponent from "../shared/spinner/NBSpinnerComponent";
+import React from "react";
 import { BaseComponent } from "../../components/base/BaseComponent";
 import { mdOrderHistory } from "../../../models/order-history";
 import { StaticHelper } from "../../../shared/static-helper";
 import { mdCallResponse } from "../../../models/call-response";
 import { OrderRecordStatuses } from "../../../enums/order";
-import { mdOrder } from "../../../models/order";
 import Widget from "../../../components/Widget/index";
 import { Table, Tabs } from "antd";
 const TabPane = Tabs.TabPane;

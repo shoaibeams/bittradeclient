@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { BaseComponent } from "../../base/BaseComponent";
 import { Redirect, Route, Switch } from "react-router";
 import asyncComponent from "../../base/AsyncComponent";
@@ -72,12 +72,10 @@ export default class ProfilePictureComponent extends BaseComponent {
                 </label>,
                 this.state.savingPicture
               )}
-              <p>
-                {StaticHelper.formatString(
-                  this.lang.MaxAttachmentSizeFormat,
-                  this.constants.MaxFileUploadSize + "MB"
-                )}
-              </p>
+              {StaticHelper.formatString(
+                this.lang.MaxAttachmentSizeFormat,
+                this.constants.MaxFileUploadSize + "MB"
+              )}
               {/* <Button size="small" type="primary" style={{ marginBottom: 0 }}>
                 {this.lang.UpdatePicture}
               </Button> */}

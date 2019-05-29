@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { BaseComponent } from "../../../components/base/BaseComponent";
 import { Card, Form, Button, Alert } from "antd";
 import {
@@ -10,7 +10,6 @@ import {
   RequiredValidator,
   MaxLengthValidator
 } from "../../../../shared/validation-attributes";
-import FontAwesome from "../../../components/base/FontAwesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { mdCallResponse } from "../../../../models/call-response";
 
@@ -60,7 +59,7 @@ export default class BankAccountComponent extends BaseComponent {
               htmlType={"submit"}
               loading={this.state.disableSubmitButton}
             >
-            <FontAwesomeIcon icon="save"/>
+              <FontAwesomeIcon icon="save" />
               {this.lang.Submit}
             </Button>
             <Button
@@ -71,7 +70,7 @@ export default class BankAccountComponent extends BaseComponent {
                 }
               }}
             >
-            <FontAwesomeIcon icon="times"/>
+              <FontAwesomeIcon icon="times" />
               {this.lang.Cancel}
             </Button>
           </div>

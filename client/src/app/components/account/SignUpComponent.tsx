@@ -1,19 +1,30 @@
 import { BaseComponent } from "../base/BaseComponent";
-import * as React from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, Redirect } from "react-router-dom";
 import { StaticHelper } from "../../../shared/static-helper";
 import { mdFormControl } from "../../../shared/form-control";
 import { mdSignUp, SignUpMetaData } from "../../../models/sign-up";
-import * as ValidationAttributes from "../../../shared/validation-attributes";
 import { mdCallResponse } from "../../../models/call-response";
 import { Form, Tabs, Button, Row } from "antd";
 import { AccountTypes } from "../../../enums/general";
-const FormItem = Form.Item;
+import {
+  RequiredValidator,
+  MaxLengthValidator,
+  MailValidator,
+  RegexValidator,
+  RegexpValidator
+} from "../../../shared/validation-attributes";
 const TabPane = Tabs.TabPane;
 
 export default class SignUpComponent extends BaseComponent {
   render() {
     this.initShorts();
+    if (!this.g.loginChecked) {
+      return null;
+    }
+    if (this.g.isLoggedIn) {
+      return <Redirect to={this.getLink(this.constants.RoutePaths.Trade)} />;
+    }
     let formItems = () => {
       return (
         <Form
@@ -180,10 +191,8 @@ export default class SignUpComponent extends BaseComponent {
           "first_name",
           this.lang.FirstName,
           [
-            new ValidationAttributes.RequiredValidator(
-              this.lang.RequiredFormat
-            ),
-            new ValidationAttributes.MaxLengthValidator(
+            new RequiredValidator(this.lang.RequiredFormat),
+            new MaxLengthValidator(
               this.lang.MaxLengthFormat2,
               SignUpMetaData.firstNameMaxLength
             )
@@ -195,10 +204,8 @@ export default class SignUpComponent extends BaseComponent {
           "last_name",
           this.lang.LastName,
           [
-            new ValidationAttributes.RequiredValidator(
-              this.lang.RequiredFormat
-            ),
-            new ValidationAttributes.MaxLengthValidator(
+            new RequiredValidator(this.lang.RequiredFormat),
+            new MaxLengthValidator(
               this.lang.MaxLengthFormat2,
               SignUpMetaData.lastNameMaxLength
             )
@@ -217,8 +224,8 @@ export default class SignUpComponent extends BaseComponent {
           "email",
           this.lang.Email,
           [
-            new ValidationAttributes.MailValidator(this.lang.InvalidEmail),
-            new ValidationAttributes.MaxLengthValidator(
+            new MailValidator(this.lang.InvalidEmail),
+            new MaxLengthValidator(
               this.lang.MaxLengthFormat2,
               SignUpMetaData.emailMaxLength
             )
@@ -230,8 +237,8 @@ export default class SignUpComponent extends BaseComponent {
           "password",
           this.lang.Password,
           [
-            // new ValidationAttributes.RequiredValidator(this.lang.RequiredFormat),
-            new ValidationAttributes.RegexValidator( //length rage
+            // new RequiredValidator(this.lang.RequiredFormat),
+            new RegexValidator( //length rage
               StaticHelper.formatString(
                 this.constants.Regex.RangeLength,
                 SignUpMetaData.passwordMinLength,
@@ -241,23 +248,23 @@ export default class SignUpComponent extends BaseComponent {
               SignUpMetaData.passwordMinLength,
               SignUpMetaData.passwordMaxLength
             ),
-            new ValidationAttributes.RegexValidator(
+            new RegexValidator(
               this.constants.Regex.MustContainSmallLetter, //must contain small letter
               this.lang.MustContainOneSmallLetterFormat
             ),
-            new ValidationAttributes.RegexValidator(
+            new RegexValidator(
               this.constants.Regex.MustContainCapitalLetter, //must contain capital letter
               this.lang.MustContainOneCapitalLetterFormat
             ),
-            new ValidationAttributes.RegexValidator(
+            new RegexValidator(
               this.constants.Regex.MustContainSpecialChar, //special char
               this.lang.MustContainOneSpecialCharFormat
             ),
-            new ValidationAttributes.RegexValidator(
+            new RegexValidator(
               this.constants.Regex.MustContainNumber, //number
               this.lang.MustContainOneNumberFormat
             )
-            // new ValidationAttributes.RegexValidator(this.lang.PasswordRequirement, SignUpMetaData.passwordRegex, this.lang.Password, SignUpMetaData.passwordMinLength,
+            // new RegexValidator(this.lang.PasswordRequirement, SignUpMetaData.passwordRegex, this.lang.Password, SignUpMetaData.passwordMinLength,
             //   SignUpMetaData.passwordMaxLength)
           ],
           "lock"
@@ -270,13 +277,10 @@ export default class SignUpComponent extends BaseComponent {
           "lock"
         ),
         agreement: new mdFormControl(0, "agreement", this.lang.TermsOfUse, [
-          new ValidationAttributes.RegexpValidator(
-            this.lang.RequiredFormat,
-            new RegExp("true")
-          )
+          new RegexpValidator(this.lang.RequiredFormat, new RegExp("true"))
         ])
         // captcha: global.isDev ? null : new mdFormControl(null, "captcha", '', [
-        //     new ValidationAttributes.RequiredValidator(this.lang.CapitchaErrorMessage)
+        //     new RequiredValidator(this.lang.CapitchaErrorMessage)
         // ])
       },
       disableSubmitButton: false,
@@ -293,8 +297,8 @@ export default class SignUpComponent extends BaseComponent {
       company_name.validators = null;
     } else {
       company_name.validators = [
-        new ValidationAttributes.RequiredValidator(this.lang.RequiredFormat),
-        new ValidationAttributes.MaxLengthValidator(
+        new RequiredValidator(this.lang.RequiredFormat),
+        new MaxLengthValidator(
           this.lang.MaxLengthFormat2,
           SignUpMetaData.companyNameMaxLength
         )

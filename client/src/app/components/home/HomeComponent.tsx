@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { BaseComponent } from "../base/BaseComponent";
 import BannerComponent from "./banner/BannerComponent";
 import WalletComponent from "./wallet/WalletComponent";

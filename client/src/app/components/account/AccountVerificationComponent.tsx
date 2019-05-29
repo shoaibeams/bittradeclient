@@ -6,10 +6,17 @@ import { TransitionState } from "../../../enums/transition";
 import { mdAnimControl } from "../../../models/anim-control";
 import { Progress } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Redirect } from "react-router";
 
 export default class AccountVerificationComponent extends BaseComponent {
   render() {
     this.initShorts();
+    if (!this.g.loginChecked) {
+      return null;
+    }
+    if (this.g.isLoggedIn) {
+      return <Redirect to={this.getLink(this.constants.RoutePaths.Trade)} />;
+    }
     let progressStatus = {};
     if (this.state.verified == 1 && this.state.progress == 100) {
       progressStatus["status"] = "success";
@@ -39,7 +46,10 @@ export default class AccountVerificationComponent extends BaseComponent {
             <div className="gx-mb-3 gx-text-center">
               {this.animatedCSSDiv(
                 this.state.verified == 0 ? (
-                  <FontAwesomeIcon icon={["fas", "envelope-open-text"]} style={{ fontSize: "100px" }}/>
+                  <FontAwesomeIcon
+                    icon={["fas", "envelope-open-text"]}
+                    style={{ fontSize: "100px" }}
+                  />
                 ) : (
                   <Progress
                     {...progressStatus}

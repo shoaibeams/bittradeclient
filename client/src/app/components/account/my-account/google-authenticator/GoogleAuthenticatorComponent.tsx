@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Tabs, Col, Button, Row, Card, Tag, Modal } from "antd";
 import { BaseComponent } from "../../../base/BaseComponent";
 import { StaticHelper } from "../../../../../shared/static-helper";
@@ -29,68 +29,68 @@ export default class GoogleAuthenticatorComponent extends BaseComponent {
             {this.antd.colsm16(
               <div className="gx-description">
                 <h2>{this.lang.GoogleAuthenticator}</h2>
-                <Row>
+                {/* <Row>
                   {this.antd.colsm16(
-                    <>
-                      <Tag
-                        color={
-                          ua.two_fa == TwoFactorAuthTypes.Google
-                            ? "green"
-                            : "orange"
+                    <> */}
+                <Tag
+                  color={
+                    ua.two_fa == TwoFactorAuthTypes.Google ? "green" : "orange"
+                  }
+                >
+                  {ua.two_fa == TwoFactorAuthTypes.Google
+                    ? this.lang.Enabled
+                    : this.lang.Not + " " + this.lang.Enabled}
+                </Tag>
+                <Button
+                  type={
+                    ua.two_fa == TwoFactorAuthTypes.Google
+                      ? "default"
+                      : "primary"
+                  }
+                  style={{ marginBottom: 0 }}
+                  onClick={e => {
+                    e.preventDefault();
+                    if (ua.two_fa == TwoFactorAuthTypes.Google) {
+                      //disable
+                      this.updateState({
+                        showDisableModal: true,
+                        modalParams: {
+                          userAccount: ua,
+                          onDone: this.onDisabled
                         }
-                      >
-                        {ua.two_fa == TwoFactorAuthTypes.Google
-                          ? this.lang.Enabled
-                          : this.lang.Not + " " + this.lang.Enabled}
-                      </Tag>
-                      <br />
-                      <span>{this.lang.GoogleAuthenticatorUsedFor}</span>
-                    </>
-                  )}
-                  {/* {this.protectedActions.map(a => {
+                      });
+                    } else {
+                      this.updateState({
+                        showEnableModal: true,
+                        modalParams: {
+                          userAccount: ua,
+                          onDone: this.onEnabled
+                        }
+                      });
+                    }
+                  }}
+                >
+                  {ua.two_fa == TwoFactorAuthTypes.Google
+                    ? this.lang.Disable
+                    : this.lang.Enable}
+                </Button>
+
+                <br />
+                <span>{this.lang.GoogleAuthenticatorUsedFor}</span>
+                {/* </>
+                  )} */}
+                {/* {this.protectedActions.map(a => {
                 return (
                   <Tag key={a} color="green">
                     {a}
                   </Tag>
                 );
               })} */}
-                  {this.antd.colsm8(
-                    <Button
-                      type={
-                        ua.two_fa == TwoFactorAuthTypes.Google
-                          ? "default"
-                          : "primary"
-                      }
-                      style={{ marginBottom: 0 }}
-                      onClick={e => {
-                        e.preventDefault();
-                        if (ua.two_fa == TwoFactorAuthTypes.Google) {
-                          //disable
-                          this.updateState({
-                            showDisableModal: true,
-                            modalParams: {
-                              userAccount: ua,
-                              onDone: this.onDisabled
-                            }
-                          });
-                        } else {
-                          this.updateState({
-                            showEnableModal: true,
-                            modalParams: {
-                              userAccount: ua,
-                              onDone: this.onEnabled
-                            }
-                          });
-                        }
-                      }}
-                    >
-                      {ua.two_fa == TwoFactorAuthTypes.Google
-                        ? this.lang.Disable
-                        : this.lang.Enable}
-                    </Button>,
-                    "align-middle"
-                  )}
-                </Row>
+                {/* {this.antd.colsm8( */}
+                {/* ,
+                    "align-middle" */}
+                {/* )}
+                </Row> */}
               </div>
             )}
           </Row>

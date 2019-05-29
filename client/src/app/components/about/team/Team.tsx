@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Card } from "antd";
 import { BaseComponent } from "../../base/BaseComponent";
 import "./Team.less";

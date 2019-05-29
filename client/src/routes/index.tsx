@@ -1,10 +1,9 @@
-import * as React from "react";
+import React from "react";
 import { Route, Switch, Redirect } from "react-router";
 
 import { StaticConstants, Constants } from "../shared/constants";
 import { StaticHelper } from "../shared/static-helper";
 import asyncComponent from "../app/components/base/AsyncComponent";
-import NoMatchComponent from "../app/components/base/NoMatchComponent";
 import { MainApp } from "../containers/App/MainApp";
 import { BaseComponent } from "../app/components/base/BaseComponent";
 import ScrollToTop from "../util/ScrollToTop";
@@ -168,7 +167,7 @@ const OpenRoutes = props => {
 };
 
 const restrictedRouteRenderer = (Comp, props, url) => {
-  if (!props.globals.isLoggedIn) {
+  if (!props.globals.isLoggedIn && props.globals.loginChecked) {
     let redirectURI = encodeURIComponent(window.location.href);
     let to = StaticHelper.getLink(
       StaticConstants.RoutePaths.Login +

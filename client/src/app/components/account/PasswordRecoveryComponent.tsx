@@ -1,6 +1,6 @@
 import { BaseComponent } from "../base/BaseComponent";
-import * as React from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, Redirect } from "react-router-dom";
 import { StaticHelper } from "../../../shared/static-helper";
 import { mdFormControl } from "../../../shared/form-control";
 import { mdCallResponse } from "../../../models/call-response";
@@ -15,6 +15,12 @@ const FormItem = Form.Item;
 export class PasswordRecoveryComponent extends BaseComponent {
   render() {
     this.initShorts();
+    if (!this.g.loginChecked) {
+      return null;
+    }
+    if (this.g.isLoggedIn) {
+      return <Redirect to={this.getLink(this.constants.RoutePaths.Trade)} />;
+    }
     return (
       <>
         <div

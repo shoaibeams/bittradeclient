@@ -50,7 +50,8 @@ class App extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = {
-      checkedLogin: false
+      checkedLogin: false,
+      langKey: null
     };
     this.langKeys = StaticHelper.objectToValuesArray(
       Constants.Instance.LanguageKey
@@ -119,38 +120,46 @@ class App extends BaseComponent {
             } else {
               isLoggedIn = true;
             }
-
-            if (
-              window.location.href.indexOf(this.constants.RoutePaths.Login) > -1
-            ) {
-              this.props.history.push(this.constants.RoutePaths.Trade);
-            }
           } else {
             isLoggedIn = false;
           }
           this.initSocket();
-          if (res.extras == true) {
-            this.navigateToLogin();
-          }
           this.log.info("isLoggedIn: " + isLoggedIn, res);
           let propKeys = [
             global.propKeys.isLoggedIn,
             global.propKeys.user,
             global.propKeys.sessionExpiry,
             global.propKeys.sessionStartedOn,
-            global.propKeys.lastLogon
+            global.propKeys.lastLogon,
+            global.propKeys.loginChecked
           ];
           let propValues = [
             isLoggedIn,
             user,
             StaticHelper.toLocalDate(res.extras.expires),
             StaticHelper.toLocalDate(res.extras.timestamp),
-            StaticHelper.toLocalDate(res.extras.lastLogon)
+            StaticHelper.toLocalDate(res.extras.lastLogon),
+            true
           ];
           this.props.updateGlobalProperty(propKeys, propValues);
           this.updateState({
             checkedLogin: true
           });
+          if (res.extras == true) {
+            this.navigateToLogin();
+          }
+          //redirect to trade view if user is logged in and going to login
+          if (
+            isLoggedIn &&
+            window.location.href.indexOf(this.constants.RoutePaths.Login) > -1
+          ) {
+            this.props.history.push(this.constants.RoutePaths.Trade);
+          }
+          setTimeout(() => {
+            if (isLoggedIn) {
+              this.loadPreferences();
+            }
+          }, 50);
         })
         .catch(error => {
           this.log.debug(error);
@@ -202,7 +211,6 @@ class App extends BaseComponent {
           setTimeout(() => {
             this.loadBriefHistory();
             this.loadCountries();
-            this.loadPreferences();
           }, 200);
         }
       })
@@ -323,6 +331,7 @@ class App extends BaseComponent {
       lkey = this.constants.DefaultLangKey;
     }
     this.loadLanguage(lkey);
+    this.updateState({ langKey: lkey });
     this.props.updateGlobalProperty(global.propKeys.langKey, lkey);
   }
 
@@ -386,9 +395,10 @@ class App extends BaseComponent {
 
     this.initShorts();
 
-    return this.state.checkedLogin && !this.isNullOrEmpty(this.g.langKey) ? (
+    // return this.state.checkedLogin && !this.isNullOrEmpty(this.g.langKey) ? (
+    return !this.isNullOrEmpty(this.state.langKey) ? (
       <>
-        <ClipLoaderComponent {...this.props} />
+        {/* <ClipLoaderComponent {...this.props} /> */}
         <Switch>
           {this.langKeys.map((k, i) => {
             if (k != this.constants.DefaultLangKey) {

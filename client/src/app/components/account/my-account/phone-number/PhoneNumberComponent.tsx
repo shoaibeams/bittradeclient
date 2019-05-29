@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { BaseComponent } from "../../../base/BaseComponent";
 import { Tabs, Col, Button, Row, Card, Tag, Modal } from "antd";
 import { mdCallResponse } from "../../../../../models/call-response";

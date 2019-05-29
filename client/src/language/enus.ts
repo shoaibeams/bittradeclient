@@ -13,7 +13,7 @@ export class LangENUS implements LanguageBase {
   MaxLengthFormat = "Maximum {0} character(s)";
   MaxLengthFormat2 = "{0} accept maximum {1} character(s)";
   RangeLengthFormat = "Minimum {0} and Maximum {1} character(s)";
-  RangeLengthFormat2 = "{0} accpet minimum {1} and Maximum {2} character(s)";
+  RangeLengthFormat2 = "{0} accept minimum {1} and Maximum {2} character(s)";
   RequiredFormat = "{0} is required";
   ErrorOccured = "An error occured";
   ErrorOccuredWhileValidationFormat = "An error occured while validating {0}";
@@ -35,19 +35,19 @@ export class LangENUS implements LanguageBase {
   // UserName = this.User + " " + this.Name;
   AlphaNumericFormat = "{0} must be alpha numeric";
   MustContainOneSpecialCharFormat =
-    "{0} must contain atleast one special character (" +
+    "{0} must contain at-least one special character (" +
     Constants.Instance.SpecialChars +
     ")";
   MustContainOneCapitalLetterFormat =
-    "{0} must contain atleast one capital letter (" +
+    "{0} must contain at-least one capital letter (" +
     Constants.Instance.CapitalLetters +
     ")";
   MustContainOneSmallLetterFormat =
-    "{0} must contain atleast one small letter (" +
+    "{0} must contain at-least one small letter (" +
     Constants.Instance.SmallLetters +
     ")";
   MustContainOneNumberFormat =
-    "{0} must contain atleast one number (" + Constants.Instance.Numbers + ")";
+    "{0} must contain at-least one number (" + Constants.Instance.Numbers + ")";
   PasswordRequirement = [
     this.RangeLengthFormat2,
     this.MustContainOneCapitalLetterFormat,
@@ -68,7 +68,7 @@ export class LangENUS implements LanguageBase {
     this.AlphaNumericFormat,
     this.CannotStartWithNumberFormat
   ];
-  UserNameNotAavailable = this.UserName + " not available";
+  UserNameNotAvailable = this.UserName + " not available";
   EmailAlreadyRegistered =
     "An account with this " +
     this.Email +
@@ -76,7 +76,7 @@ export class LangENUS implements LanguageBase {
     this.Email;
   AccountType = "Account Type";
   InvalidValueFormat = "Invalid value for {0}";
-  VerificationEmailSent = "We've Sent You a Verfication Email";
+  VerificationEmailSent = "We've Sent You a Verification Email";
   VerificationEmailSentDetail = `Click the link in your email to verify your account
 If you didn't find the email, please check your spam folder or click the link
 below to re-send`;
@@ -176,12 +176,12 @@ below to re-send`;
   NoRecordFound = "No record found";
   OrderPlacedSuccessfully = "Order placed successfully";
   LangKey = Constants.Instance.LanguageKey.ENUS;
-  CouldNotBeginTransaction = "Could not begin trnsaction";
+  CouldNotBeginTransaction = "Could not begin transaction";
   CouldNotCompleteTransaction = "Could not complete transaction";
   CouldNotExecuteQuery = "Could not execute Query";
   OrderCompleted = "Order Completed";
   UserWalletNotFoundForOneOfThePairCurrencies =
-    "User wallet for one of the pair currencie was not found";
+    "User wallet for one of the pair currencies was not found";
   CouldNotGetResponseFromKraken = "Could not get response from kraken";
   PairKrakenMinOrderVolumeNotDefined =
     "Kraken minimum order volume not defined for this pair";
@@ -1821,4 +1821,9 @@ below to re-send`;
     "Please ensure to include this as a reference for deposit. Otherwise, your funds may be delayed.";
   ChangePassword = this.Change + " " + this.Password;
   ChangePasswordBlockPara = "Change password frequently to secure your account";
+  ExpiredFormat = "{0} " + this.Expired;
+  PleaseRequestNewOne = "Please request a new one";
+  VerificationCode = this.Verification + " " + this.Code;
+  VerificationCodeTextMessageFormat =
+    "Your verification code is {0}. Please keep it safe and do not share this code with anyone";
 }

@@ -1,16 +1,13 @@
-import * as React from "react";
+import React from "react";
 import * as ValidationAttributes from "../../../shared/validation-attributes";
-import NBSpinnerComponent from "../shared/spinner/NBSpinnerComponent";
 import { BaseComponent } from "../../components/base/BaseComponent";
 import { mdOrder } from "../../../models/order";
 import { mdFormControl } from "../../../shared/form-control";
 import { mdCallResponse } from "../../../models/call-response";
 import { StaticHelper } from "../../../shared/static-helper";
-import { Tabs, Card, Row, Form, Button, Col } from "antd";
+import { Card, Row, Form, Button, Col } from "antd";
 import { OrderActions, OrderCurrencyTypes } from "../../../enums/order";
 import { mdKeyValue } from "../../../models/key-value";
-import { mdCurrencyPair } from "../../../models/currency-pair";
-const TabPane = Tabs.TabPane;
 
 export default class OrderComponent extends BaseComponent {
   render() {

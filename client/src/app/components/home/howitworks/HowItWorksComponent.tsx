@@ -1,5 +1,5 @@
 import { BaseComponent } from "../../base/BaseComponent";
-import * as React from "react";
+import React from "react";
 import { Card, Row, Col } from "antd";
 import "./howitworks-component.less";
 

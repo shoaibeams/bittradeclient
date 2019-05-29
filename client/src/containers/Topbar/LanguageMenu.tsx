@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import CustomScrollbars from "../../util/CustomScrollbars";
 import { Constants } from "../../shared/constants";
 import { StaticHelper } from "../../shared/static-helper";

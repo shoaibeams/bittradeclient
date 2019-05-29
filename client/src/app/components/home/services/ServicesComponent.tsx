@@ -1,5 +1,5 @@
 import { BaseComponent } from "../../base/BaseComponent";
-import * as React from "react";
+import React from "react";
 import { Row, Col, Card } from "antd";
 import "./services.component.less";
 

@@ -56,6 +56,7 @@ export class mdGlobalProps {
   lastLogon: Date;
   user: mdAuthUsers;
   preferences: mdPreferences;
+  loginChecked: boolean;
 }
 
 export class mdPropKeys {
@@ -82,6 +83,7 @@ export class mdPropKeys {
   lastLogon: string;
   user: string;
   preferences: string;
+  loginChecked: string;
 
   constructor() {
     this.isLoggedIn = "isLoggedIn";
@@ -107,5 +109,6 @@ export class mdPropKeys {
     this.lastLogon = "lastLogon";
     this.user = "user";
     this.preferences = "preferences";
+    this.loginChecked = "loginChecked";
   }
 }

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Constants } from "../../../shared/constants";
 import { mdProps } from "../../../models/props";
@@ -15,10 +15,7 @@ import {
   NAV_STYLE_INSIDE_HEADER_HORIZONTAL
 } from "../../../constants/ThemeSetting";
 import { NavMenuTypes } from "../../../enums/general";
-import FontAwesome from "../base/FontAwesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -151,13 +148,14 @@ class NavMenuComponent extends BaseComponent {
       let titleInner = () => {
         return (
           <>
-            <span  style={
+            <span
+              style={
                 item.text === this.lang.ContactUs
                   ? { marginRight: 10 }
                   : { marginRight: 21 }
               }
             >
-              <FontAwesomeIcon icon={item.icon}/>
+              <FontAwesomeIcon icon={item.icon} />
             </span>
             {item.text}
           </>

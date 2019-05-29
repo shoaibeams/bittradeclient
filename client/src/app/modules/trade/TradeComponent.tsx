@@ -1,20 +1,14 @@
-import * as React from "react";
+import React from "react";
 import OrderHistoryComponent from "./OrderHistoryComponent";
 import OrderComponent from "./OrderComponent";
 import { BaseComponent } from "../../components/base/BaseComponent";
-import { mdFormControl } from "../../../shared/form-control";
 import { mdKeyValue } from "../../../models/key-value";
 import { mdCurrencyPair } from "../../../models/currency-pair";
-import { SelectSizes } from "../../../enums/general";
-import { Select, Form, Row, Card, Pagination } from "antd";
-import IconWithTextCard from "../../../components/dashboard/CRM/IconWithTextCard";
+import { Row } from "antd";
 import LivePriceWidget from "../../t-components/LivePriceCard";
 import { OrderActions } from "../../../enums/order";
 import { mdCallResponse } from "../../../models/call-response";
-import { mdProps } from "../../../models/props";
 import RecentTradesComponent from "./RecentTradesComponent";
-const FormItem = Form.Item;
-const Option = Select.Option;
 
 export default class TradeComponent extends BaseComponent {
   render() {

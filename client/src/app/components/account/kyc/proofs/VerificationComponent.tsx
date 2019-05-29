@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Button, Spin } from "antd";
 import { BaseComponent } from "../../../base/BaseComponent";
 import { mdUserAccounts } from "../../../../../models/user-accounts";

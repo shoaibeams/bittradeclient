@@ -1,6 +1,5 @@
-import * as React from "react";
-import { Row, Col, Card, Form, Button } from "antd";
-import { Route, Switch } from "react-router";
+import React from "react";
+import { Form, Button } from "antd";
 import { BaseComponent } from "../../../../base/BaseComponent";
 import { AccountTypes, Genders } from "../../../../../../enums/general";
 import {

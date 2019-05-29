@@ -1,17 +1,26 @@
 import { BaseComponent } from "../base/BaseComponent";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { StaticHelper } from "../../../shared/static-helper";
 import { mdFormControl } from "../../../shared/form-control";
 import { mdCallResponse } from "../../../models/call-response";
 import { mdSignUp, SignUpMetaData } from "../../../models/sign-up";
-import * as ValidationAttributes from "../../../shared/validation-attributes";
-import { Form, Button} from "antd";
+import { Form, Button } from "antd";
+import {
+  RequiredValidator,
+  MaxLengthValidator
+} from "../../../shared/validation-attributes";
 const FormItem = Form.Item;
 
 export class LoginComponent extends BaseComponent {
   render() {
     this.initShorts();
+    if (!this.g.loginChecked) {
+      return null;
+    }
+    if (this.g.isLoggedIn) {
+      return <Redirect to={this.getLink(this.constants.RoutePaths.Trade)} />;
+    }
     // const {getFieldDecorator} = this.props.form;
     return (
       <>
@@ -117,10 +126,8 @@ export class LoginComponent extends BaseComponent {
           "username",
           this.lang.UserName,
           [
-            new ValidationAttributes.RequiredValidator(
-              this.lang.RequiredFormat
-            ),
-            new ValidationAttributes.MaxLengthValidator(
+            new RequiredValidator(this.lang.RequiredFormat),
+            new MaxLengthValidator(
               this.lang.MaxLengthFormat2,
               SignUpMetaData.userNameMaxLength
             )
@@ -132,10 +139,8 @@ export class LoginComponent extends BaseComponent {
           "password",
           this.lang.Password,
           [
-            new ValidationAttributes.RequiredValidator(
-              this.lang.RequiredFormat
-            ),
-            new ValidationAttributes.MaxLengthValidator(
+            new RequiredValidator(this.lang.RequiredFormat),
+            new MaxLengthValidator(
               this.lang.MaxLengthFormat2,
               SignUpMetaData.passwordMaxLength
             )
@@ -147,7 +152,7 @@ export class LoginComponent extends BaseComponent {
           "two_fa_code",
           this.lang.TwoFactorAuthentication + " (" + this.lang.IfEnabled + ")",
           [
-            new ValidationAttributes.MaxLengthValidator(
+            new MaxLengthValidator(
               this.lang.MaxLengthFormat2,
               SignUpMetaData.two_fa_codeMaxLength
             )
@@ -157,9 +162,7 @@ export class LoginComponent extends BaseComponent {
         captcha: global.isDev
           ? null
           : new mdFormControl(null, "captcha", "", [
-              new ValidationAttributes.RequiredValidator(
-                this.lang.CapitchaErrorMessage
-              )
+              new RequiredValidator(this.lang.CapitchaErrorMessage)
             ])
       },
       diableSubmitButton: false,

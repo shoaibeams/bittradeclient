@@ -1,26 +1,12 @@
-import * as React from "react";
-import { SearchableDropdownSettings } from "../../shared/searchable-dropdown/searchable-dropdown-settings";
+import React from "react";
 import FileUploaderComponent from "../../shared/file-uploader/FileUploaderComponent";
-import { mdFileUploaderConfig } from "../../shared/file-uploader/file-uploader-config";
 import { BaseComponent } from "../../../components/base/BaseComponent";
 import { mdFeeSlabs } from "../../../../models/fee-slabs";
 import { mdFormControl } from "../../../../shared/form-control";
 import { StaticHelper } from "../../../../shared/static-helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {
-  Row,
-  Card,
-  Select,
-  Table,
-  Form,
-  Col,
-  Button,
-  Tag,
-  Menu,
-  Alert,
-  Popover
-} from "antd";
+import { Row, Card, Select, Table, Form, Button, Tag, Menu, Alert } from "antd";
 import FontAwesome from "../../../components/base/FontAwesome";
 import { RequiredValidator } from "../../../../shared/validation-attributes";
 import { mdCallResponse } from "../../../../models/call-response";
@@ -33,12 +19,12 @@ import { mdWithdrawalRequestHistory } from "../../../../models/withdrawal-reques
 import { mdBankAccount } from "../../../../models/bank-account";
 import { WithdrawalRequestRecordStatuses } from "../../../../enums/withdrawal";
 import { mdKeyValue } from "../../../../models/key-value";
-import BankAccountComponent from "../bank-account/BankAccountComponent";
 import { mdWithdrawalMethod } from "../../../../models/withdrawal-method";
 import { mdLimit } from "../../../../models/limit";
 import { mdWallet } from "../../../../models/wallet";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { mdWithdrawalRequest } from "../../../../models/withdrawal-request";
+import BankAccountComponent from "../bank-account/BankAccountComponent";
 import { TwoFactorAuthTypes } from "../../../../enums/general";
 const Option = Select.Option;
 const MenuItem = Menu.Item;

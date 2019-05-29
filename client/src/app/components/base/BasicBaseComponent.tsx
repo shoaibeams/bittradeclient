@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { mdProps, mdGlobalProps, mdPropKeys } from "../../../models/props";
 import { Constants } from "../../../shared/constants";
 import LoggerService from "../../../shared/logger";
@@ -6,7 +6,6 @@ import HttpClientService from "../../../shared/http-client.service";
 import { LanguageBase } from "../../../language/language";
 import mdSpinnerConfig from "../../../models/spinner-config";
 import mdTransitions from "../../../models/transitions";
-import * as Enums from "../../../enums/general";
 import * as queryString from "query-string";
 import Socket from "../../../shared/socket";
 import { StaticHelper } from "../../../shared/static-helper";
@@ -18,6 +17,7 @@ import {
   Validation
 } from "../../../shared/validations";
 import moment from "moment";
+import { SpinnerSize, InputTypes } from "../../../enums/general";
 
 export class BasicBaseComponent extends React.Component<mdProps, any> {
   constants: Constants;
@@ -50,7 +50,7 @@ export class BasicBaseComponent extends React.Component<mdProps, any> {
       global.propKeys = new mdPropKeys();
       global.mainSpinnerConfig = new mdSpinnerConfig();
       global.mainSpinnerConfig.bdColor = "rgba(51, 51, 51, 0.8)";
-      global.mainSpinnerConfig.size = Enums.SpinnerSize.medium;
+      global.mainSpinnerConfig.size = SpinnerSize.medium;
       global.mainSpinnerConfig.color = "rgb(243, 103, 93)";
       global.mainSpinnerConfig.type = "ball-fussion";
       global.langKey = this.g ? this.g.langKey : null;
@@ -215,12 +215,12 @@ export class BasicBaseComponent extends React.Component<mdProps, any> {
     let formName = this.defaultFormName;
     let form = this.state[formName];
     let control = form[field] as mdFormControl;
-    if (control.type == Enums.InputTypes.Number) {
+    if (control.type == InputTypes.Number) {
       if (!this.isNullOrEmpty(value)) {
         value = parseFloat(value);
       }
     }
-    if (control.type == Enums.InputTypes.Date) {
+    if (control.type == InputTypes.Date) {
       if (!this.isNullOrEmpty(value)) {
         control.placeholder = StaticHelper.shortDateFormat(
           moment(value).toDate()

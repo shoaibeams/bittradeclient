@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Avatar, Popover } from "antd";
 import { userSignOut } from "../../appRedux/actions/Auth";

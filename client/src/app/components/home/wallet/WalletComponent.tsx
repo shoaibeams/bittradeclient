@@ -1,19 +1,11 @@
 import { BaseComponent } from "../../base/BaseComponent";
-import * as React from "react";
+import React from "react";
 import { Transitions } from "../../../../models/transitions";
 import { mdFormControl } from "../../../../shared/form-control";
 import ChartCard from "../../../../components/dashboard/Listing/ChartCard";
-import {
-  Area,
-  AreaChart,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip
-} from "recharts";
-import { Col, Row } from "antd";
+import { Area, AreaChart, ResponsiveContainer, Tooltip } from "recharts";
+import { Row } from "antd";
 import "./wallet-component.less";
-import { mdProps } from "../../../../models/props";
 import { mdCallResponse } from "../../../../models/call-response";
 import { StaticHelper } from "../../../../shared/static-helper";
 

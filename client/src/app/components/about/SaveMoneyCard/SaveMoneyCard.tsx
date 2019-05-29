@@ -1,7 +1,6 @@
-import * as React from "react";
+import React from "react";
 import { Card } from "antd";
 import { BaseComponent } from "../../base/BaseComponent";
-import ImageAndCaption from "../../blockchain/ImageAndCaption";
 import "./SaveMoneyCard.less";
 
 export default class SaveCardMoney extends BaseComponent {

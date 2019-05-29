@@ -1,10 +1,10 @@
-import * as React from "react";
+import React from "react";
 import { BaseComponent } from "../../../base/BaseComponent";
 import { Row } from "antd";
 import Widget from "../../../../../components/Widget";
 import { AccountTypes } from "../../../../../enums/general";
 import { mdFormControl } from "../../../../../shared/form-control";
-import { DocumentTypesWithNames, ProofTypes } from "../../../../../enums/kyc";
+import { ProofTypes } from "../../../../../enums/kyc";
 import AttachmentComponent from "./AttachmentComponent";
 
 export default class AttachmentsComponent extends BaseComponent {
