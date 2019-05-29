@@ -21,7 +21,7 @@ const render = Component => {
 // registerServiceWorker();
 
 // Render once
-// render(NextApp);
+render(NextApp);
 
 // Webpack Hot Module Replacement API
 if (module.hot) {
