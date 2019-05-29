@@ -21,7 +21,7 @@ export default class STO extends BaseComponent {
       <>
         <HeaderBanner size={this.g.isLoggedIn ? "fat" : "thin"} />
         <Card className="placeholder-card" />
-        <Card>
+        <Card className="gx-card">
           <h1
             className="gx-text-center heading-big"
             style={{ marginBottom: "30px" }}
@@ -36,10 +36,11 @@ export default class STO extends BaseComponent {
             cost-effective way to get access to global financing.
           </p>
         </Card>
-        <Card>
+        <Card className="gx-card">
           <h1 className="logo-text heading-big gx-text-center">
             {this.lang.STOFeaturesHeading}
           </h1>
+          <hr className="heading-bottom-line gx-text-center" />
           <Row className="sto-row gx-text-center fade-in-bottom">
             {this.antd.colmd8(
               <Card>
@@ -81,7 +82,7 @@ export default class STO extends BaseComponent {
             )}
           </Row>
         </Card>
-        <Card>
+        <Card className="gx-card">
           <h1
             className="gx-text-center heading-big"
             style={{ marginBottom: "30px" }}
@@ -99,7 +100,52 @@ export default class STO extends BaseComponent {
             time—developed in accordance with most countries of the world.
           </p>
         </Card>
-        <Card>
+        <Card className="gx-card">
+          <h1 className="logo-text heading-big gx-text-center">
+            Types of Tokenization Platforms
+          </h1>
+          <hr className="heading-bottom-line gx-text-center" />
+          <Row className="sto-row gx-text-center fade-in-bottom">
+            {this.antd.colmd8(
+              <Card>
+                <img src="/assets/images/ico-coin.svg" alt="Secured" />
+                <h1 className="heading-medium">ICO Token</h1>
+                <p className="text-medium">
+                  ICO tokens are utility tokens that are built as a way to raise
+                  funds. These tokens can be build upon any blockchain platform
+                  such as Hyperledger, EOS or stellar.
+                </p>
+              </Card>
+            )}
+
+            {this.antd.colmd8(
+              <Card className="security-feature-card">
+                <img src="/assets/images/security.svg" alt="DDOS Protection" />
+                <h1 className="heading-medium">Security Token</h1>
+                <p className="text-medium">
+                  These tokens are regulated and are bound by federal law and
+                  securities. They derive their value from external, tradable
+                  assets. These tokens can be built on existing blockchain, or
+                  can also be built on a custom-made blockchain platform.
+                </p>
+              </Card>
+            )}
+
+            {this.antd.colmd8(
+              <Card className="security-feature-card">
+                <img src="/assets/images/asset.svg" alt="Application" />
+                <h1 className="heading-medium">Asset Tokenization</h1>
+                <p className="text-medium">
+                  Backed up by real world assets such as real estate, gold, or
+                  art, anything can be converted into tokens. The token either
+                  live on existing blockchain or on tailor-made blockchain
+                  platform.
+                </p>
+              </Card>
+            )}
+          </Row>
+        </Card>
+        <Card className="gx-card">
           <h1
             className="gx-text-center heading-big"
             style={{ marginBottom: "30px" }}
@@ -179,6 +225,18 @@ export default class STO extends BaseComponent {
                 </p>
               </Card>
             )}
+          </Row>
+        </Card>
+        <Card className="gx-card">
+          <h1 className="gx-text-center">
+            How Tokenization For Real Estate Works
+          </h1>
+          <hr className="heading-bottom-line gx-text-center" />
+          <Row className="usecase">
+            <img
+              src="/assets/images/real-estate-usecase-explained.png"
+              alt={this.lang.Shares}
+            />
           </Row>
         </Card>
         <BigCard params={{ image: "/assets/images/automation.svg" }}>

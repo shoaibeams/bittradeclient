@@ -1061,6 +1061,7 @@ export interface LanguageBase {
   PrivacyHeading10: string;
   PrivacyHeading11: string;
   PrivacyHeading12: string;
+  PrivacyTransparencyPara: string;
 
   PrivacyPara11: string;
   PrivacyPara12: string;
@@ -1079,7 +1080,7 @@ export interface LanguageBase {
   PrivacyPara7: string;
   PrivacyPara8: string;
   PrivacyPara9: string;
-  ////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////
 
   Inaam: string;
   Shoaib: string;
@@ -1218,8 +1219,15 @@ export interface LanguageBase {
   IncludeReferenceOnDepositPara: string;
   ChangePassword: string;
   ChangePasswordBlockPara: string;
+
   ExpiredFormat: string;
   PleaseRequestNewOne: string;
   VerificationCode: string;
   VerificationCodeTextMessageFormat: string;
+
+  SupportEmail: string;
+
+  /////////////////////////////////////----STO------/////////////////////////////////////////////
+  
+
 }

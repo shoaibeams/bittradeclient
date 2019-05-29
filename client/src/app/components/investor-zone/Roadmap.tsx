@@ -18,7 +18,7 @@ export default class Roadmap extends BaseComponent {
             styleName="gx-timeline-not-inverted text-medium"
             color="blue"
             timeLine={{
-              time: `${this.lang.quater2} ${this.lang.twoThousandSixteen}`,
+              time: `${this.lang.quater1} ${this.lang.twoThousandSeventeen}`,
               title: `${this.lang.Company} ${this.lang.Incorporated}`
             }}
           >

@@ -8,7 +8,7 @@ export default class BlogsCard extends BaseComponent {
   render() {
     return (
       <>
-        <Card>
+        <Card className="gx-card">
           <h1 className="logo-text heading-big gx-text-center">
             Blogs To Read
           </h1>

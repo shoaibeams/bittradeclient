@@ -9,7 +9,6 @@ interface TextAndHeadingProps {
 const TextAndHeading: React.FC<TextAndHeadingProps> = ({
   heading,
   para,
-
   children
 }) => {
   return (

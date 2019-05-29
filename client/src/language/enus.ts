@@ -1392,7 +1392,7 @@ below to re-send`;
   and technical`;
   AboutPara6 = `Market standard TA tools available for all the listed assets.`;
 
-  CEOPara = ` Fahad Sheikh is a technology evangelist, an enterprenuer who has built
+  CEOPara = `Fahad Sheikh is a technology evangelist and a serial enterprenuer who has built
   successful startups previously, has run 3 development studios in 3 different
   cities at a given time, an investor, a technology consultant and someone who
   believes in solving real world problems using technology.`;
@@ -1656,15 +1656,17 @@ below to re-send`;
   PrivacyPara9 = `BitVelocity has implemented a number of security measures to ensure that your information is not lost, abused, or altered. Our data is stored offline to ensure that it is protected against all network hacks.
   Our data security measures include, but are not limited to: PCI Scanning, Secured Sockets Layered encryption technology, pseudonymisation, internal data access restrictions, and strict physical access controls to buildings & files. Please note that it is impossible to guarantee 100% secure transmission of data over the Internet nor method of electronic storage. As such, we request that you understand the responsibility to independently take safety precautions to protect your own personal information.
   If you suspect that your personal information has been compromised, especially account and/or password information, please lock your account and contact BitVelocity customer service immediately.`;
+  PrivacyTransparencyPara = `We do not charge users any hidden fees. We do not lure users into anything 
+  that can financially harm them in any way. Our exchange process in transparent. We are open about everything we do.`;
 
   Inaam = "Inaam ur Rehman";
   Shoaib = "Shoaib Khalid";
 
   Senior = "Senior";
   Junior = "Junior";
-  TeamDescription1 = `Senior Javascript Developer who likes to work on the whole specturm of development. 
-  He has previously worked on the blockchain technolgies for years. Now he is leading the BitVelocity development team on making 
-  a well-secured trading platform.`;
+  TeamDescription1 = `Senior Javascript Server Developer who likes to work on the whole specturm of development. 
+  Working as a core team member at BitVelocity, he delivers scalable, secure and reliable solutions for our platform.
+  Inaam finds interesting ways of online payments for crypto, and wants to see cryptos into mainstream.`;
   TeamDescription2 = `Junior Full Stack Developer who, before joining the BitVelocity team, developed smart contracts for Etherem Network. 
                       He loves to work with modern technologies and tools to provide solutions that are effective and reliable.`;
   CompanyNumber = "10744902";
@@ -1821,9 +1823,15 @@ below to re-send`;
     "Please ensure to include this as a reference for deposit. Otherwise, your funds may be delayed.";
   ChangePassword = this.Change + " " + this.Password;
   ChangePasswordBlockPara = "Change password frequently to secure your account";
+
   ExpiredFormat = "{0} " + this.Expired;
   PleaseRequestNewOne = "Please request a new one";
   VerificationCode = this.Verification + " " + this.Code;
   VerificationCodeTextMessageFormat =
     "Your verification code is {0}. Please keep it safe and do not share this code with anyone";
+
+  SupportEmail = "support@bitvelocity.io";
+
+  /////////////////////////////////////----STO------/////////////////////////////////////////////
+  
 }

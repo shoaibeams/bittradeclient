@@ -7,7 +7,7 @@ import "./BigCard.less";
 export default class BigCard extends BaseComponent {
   render() {
     return (
-      <Card>
+      <Card className="gx-card">
         <div className="big-card">
           {this.antd.colmd12(
             <div className="col-left">{this.props.children}</div>

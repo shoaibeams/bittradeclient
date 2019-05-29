@@ -158,9 +158,11 @@ export default class About extends BaseComponent {
             <h1 className="gx-text-center" style={{ marginBottom: "30px" }}>
               {this.lang.PrivacyPolicy}
             </h1>
+            
             <p>{this.lang.PrivacyPara11}</p>
             <p>{this.lang.PrivacyPara12}</p>
             <p>{this.lang.PrivacyPara13}</p>
+            <p>{this.lang.PrivacyTransparencyPara}</p>
             <h1>{this.lang.PrivacyHeading1}</h1>
             <h1>{this.lang.PrivacyHeading2}</h1>
             <div>

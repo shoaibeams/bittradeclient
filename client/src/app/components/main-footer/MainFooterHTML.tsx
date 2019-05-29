@@ -4,6 +4,7 @@ import { Row } from "antd";
 import { Link } from "react-router-dom";
 import "./mainfooter.less";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Logo from "../../../containers/Logo/Logo";
 
 export default class MainFooter extends BaseComponent {
   render() {
@@ -60,13 +61,7 @@ export default class MainFooter extends BaseComponent {
                   </ul>
                   <p className="p">
                     <Link to={this.getLink(this.constants.RoutePaths.Home)}>
-                      {
-                        <img
-                          src="/assets/images/logo.png"
-                          className="img-responsive"
-                          alt="BitVelocity"
-                        />
-                      }
+                      <Logo />
                     </Link>
                   </p>
                 </div>
@@ -75,9 +70,18 @@ export default class MainFooter extends BaseComponent {
           </div>
         </div>
         <div className="copyright">
-          <div className="container">{`${this.lang.Copyrights} ${
-            this.lang.SiteCompanyName
-          } ${this.lang.CompanyNumber} © ${new Date().getFullYear()}`}</div>
+          <div className="container">
+            <p>
+              {this.lang.Phone}:&nbsp;{this.lang.BitVelocityMobile}&nbsp;
+              <FontAwesomeIcon icon="phone" />
+              &nbsp;|&nbsp;{this.lang.Email}:&nbsp;
+              {this.lang.SupportEmail}&nbsp;
+              <FontAwesomeIcon icon="envelope" />
+            </p>
+            {`${this.lang.Copyrights} ${this.lang.SiteCompanyName}, ${
+              this.lang.Company
+            } # ${this.lang.CompanyNumber}, © ${new Date().getFullYear()}`}
+          </div>
         </div>
       </>
     );

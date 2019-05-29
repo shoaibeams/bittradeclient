@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import Logo from '../Topbar/InsideHeader/Logo';
+import Logo from '../Logo/Logo';
 
 import {onNavStyleChange, toggleCollapsedSideNav} from "../../appRedux/actions/Setting";
 import {

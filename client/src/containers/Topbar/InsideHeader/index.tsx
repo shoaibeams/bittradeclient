@@ -25,7 +25,7 @@ import { mdCurrencyPair } from "../../../models/currency-pair";
 import { mdCurrency } from "../../../models/currency";
 import { StaticHelper } from "../../../shared/static-helper";
 import moment from "moment";
-import Logo from "./Logo";
+import Logo from "../../Logo/Logo";
 
 const { Header } = Layout;
 

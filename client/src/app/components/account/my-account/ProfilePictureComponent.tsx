@@ -32,7 +32,8 @@ export default class ProfilePictureComponent extends BaseComponent {
             <img
               alt="avatar"
               src={this.constants.BaseURL + userAccount.picture}
-              className="gx-avatar-img gx-avatar-img-lg gx-border-0"
+              className="gx-border-0"
+              style={{ width: "100px", borderRadius: "50%" }}
             />
           )}
           {this.antd.colsm16(
