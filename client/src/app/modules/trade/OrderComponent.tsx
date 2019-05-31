@@ -1,13 +1,17 @@
 import React from "react";
-import * as ValidationAttributes from "../../../shared/validation-attributes";
 import { BaseComponent } from "../../components/base/BaseComponent";
 import { mdOrder } from "../../../models/order";
 import { mdFormControl } from "../../../shared/form-control";
 import { mdCallResponse } from "../../../models/call-response";
 import { StaticHelper } from "../../../shared/static-helper";
 import { Card, Row, Form, Button, Col } from "antd";
-import { OrderActions, OrderCurrencyTypes } from "../../../enums/order";
+import {
+  OrderActions,
+  OrderCurrencyTypes,
+  OrderTypes
+} from "../../../enums/order";
 import { mdKeyValue } from "../../../models/key-value";
+import { RequiredValidator } from "../../../shared/validation-attributes";
 
 export default class OrderComponent extends BaseComponent {
   render() {
@@ -215,10 +219,10 @@ export default class OrderComponent extends BaseComponent {
     let state = {
       form: {
         price: new mdFormControl(defaultPrice, "price", this.lang.Price, [
-          new ValidationAttributes.RequiredValidator(this.lang.RequiredFormat)
+          new RequiredValidator(this.lang.RequiredFormat)
         ]),
         amount: new mdFormControl("", "amount", this.lang.Amount, [
-          new ValidationAttributes.RequiredValidator(this.lang.RequiredFormat)
+          new RequiredValidator(this.lang.RequiredFormat)
         ]),
         amountCurrency: new mdFormControl(
           OrderCurrencyTypes.Base,
@@ -309,7 +313,7 @@ export default class OrderComponent extends BaseComponent {
     }
     formData.action = this.action;
     formData.currencyPair = this.p.selectedCurrencyPair.id;
-    formData.type = this.constants.Order.Type.limit;
+    formData.type = OrderTypes.limit;
     if (!formData.currencyPair) {
       this.antd.modalError(this.lang.Error);
       return;
@@ -352,6 +356,9 @@ export default class OrderComponent extends BaseComponent {
     let grossAmount = f.price.value * f.amount.value;
     if (f.amountCurrency.value == OrderCurrencyTypes.Base) {
       grossAmount = f.amount.value;
+    }
+    if (typeof grossAmount !== "number") {
+      grossAmount = 0;
     }
     if (!grossAmount) {
       grossAmount = 0;

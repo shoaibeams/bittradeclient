@@ -106,7 +106,7 @@ below to re-send`;
   Credentials = "Credentials";
   AlreadyHaveAnAccount = "Already have a " + this.BitVelocity + " Account?";
   EmailVerificationRequired =
-    "Email not verified. Please check your mail box. If it isn't in your inbox, check your Spam, Junk, Trash, Deleted Items, or Archive folder or click {0} to resend.";
+    "Email not verified. Please check your mail box. If it isn't in your inbox, check your Spam, Junk, Trash, Deleted Items, or Archive folder or click below to resend.";
   Here = "here";
   VerificationKey = "Verification Key";
   VerificationKeyExpired =

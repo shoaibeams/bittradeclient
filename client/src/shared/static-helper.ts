@@ -85,7 +85,11 @@ export class StaticHelper {
     let index = amnt.indexOf(".");
     let currentScale = amnt.substr(index + 1, amnt.length - (index + 1)).length;
     let scale = StaticHelper.minScale(currentScale);
-    return amount.toFixed(scale);
+    if (typeof amount.toFixed === "function") {
+      return amount.toFixed(scale);
+    } else {
+      return amount.toString();
+    }
   }
 
   static toFixedNSN(x) {

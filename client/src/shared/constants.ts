@@ -117,27 +117,6 @@ export class Constants {
     key: "key",
     aType: "atype"
   };
-  public RecordStatus = {
-    Active: 1,
-    Deleted: 2,
-    PendingVerification: 3
-  };
-  public Order = {
-    Type: {
-      limit: 1,
-      market: 2
-    },
-    Action: {
-      buy: 1,
-      sell: 2
-    },
-    RecordStatus: {
-      open: 1,
-      cancelled: 2,
-      partially_completed: 3,
-      completed: 4
-    }
-  };
   RedirectToLoginMessages = [
     "Invalid token: access token is invalid".toUpperCase(),
     "Unauthorized request: no authentication given".toUpperCase()

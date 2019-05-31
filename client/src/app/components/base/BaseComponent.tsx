@@ -19,7 +19,7 @@ import NBSpinnerComponent from "../../modules/shared/spinner/NBSpinnerComponent"
 import { mdKeyValue } from "../../../models/key-value";
 import { mdAnimControl } from "../../../models/anim-control";
 import { Link } from "react-router-dom";
-import { Select } from "antd";
+import { Select, Tag } from "antd";
 const Option = Select.Option;
 
 export class BaseComponent extends BasicBaseComponent {
@@ -795,7 +795,7 @@ export class BaseComponent extends BasicBaseComponent {
 
   errorNotification(
     content: any,
-    title: any = this.lang.Error,
+    title: any = this.lang.Alert,
     timeout: number = 5000,
     callback?
   ) {
@@ -961,12 +961,10 @@ export class BaseComponent extends BasicBaseComponent {
     } else {
       classs = "gx-text-danger";
     }
-    return (
-      <strong>
-        {showSubmitResponse ? (
-          <div className={`${classs} text-bold`}>{submitResponse}</div>
-        ) : null}
-      </strong>
-    );
+    return showSubmitResponse ? (
+      <Tag color="red" style={{ whiteSpace: "normal" }}>
+        {submitResponse}
+      </Tag>
+    ) : null;
   }
 }

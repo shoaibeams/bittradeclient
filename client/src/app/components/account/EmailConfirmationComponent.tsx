@@ -18,9 +18,6 @@ export default class EmailConfirmationComponent extends BaseComponent {
     if (!this.g.loginChecked) {
       return null;
     }
-    if (this.g.isLoggedIn) {
-      return <Redirect to={this.getLink(this.constants.RoutePaths.Trade)} />;
-    }
     return (
       <>
         <div className="gx-text-center">

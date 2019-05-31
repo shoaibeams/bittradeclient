@@ -115,11 +115,15 @@ export default class SavePhoneNumberComponent extends BaseComponent {
     let countriesSource = [];
     if (countries) {
       countriesSource = countries.map(m => {
+        let code2 = "";
+        if (m.iso_code2) {
+          code2 = m.iso_code2.toLowerCase();
+        }
         return new mdKeyValue(
           (
             <>
               <img
-                src={"/assets/images/countries/4x3/" + m.iso_code2 + ".svg"}
+                src={"/assets/images/countries/4x3/" + code2 + ".svg"}
                 width={50}
                 height={25}
               />

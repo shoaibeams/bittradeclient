@@ -117,6 +117,9 @@ class App extends BaseComponent {
             if (user.record_status == UserRecordStatuses.pendingVerification) {
               //email is not verified of the user
               isLoggedIn = false;
+              // this.props.history.push(
+              //   this.getLink(this.constants.RoutePaths.EmailConfirmation)
+              // );
             } else {
               isLoggedIn = true;
             }
@@ -176,7 +179,10 @@ class App extends BaseComponent {
         ...this.state,
         checkedLogin: true
       };
-      this.props.updateGlobalProperty(global.propKeys.isLoggedIn, false);
+      this.props.updateGlobalProperty(
+        [global.propKeys.isLoggedIn, global.propKeys.loginChecked],
+        [false, true]
+      );
     }
   }
 

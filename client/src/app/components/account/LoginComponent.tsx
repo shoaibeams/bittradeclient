@@ -10,6 +10,7 @@ import {
   RequiredValidator,
   MaxLengthValidator
 } from "../../../shared/validation-attributes";
+import { UserRecordStatuses } from "../../../enums/auth-users";
 const FormItem = Form.Item;
 
 export class LoginComponent extends BaseComponent {
@@ -59,14 +60,14 @@ export class LoginComponent extends BaseComponent {
                   {this.antd.textFormItem(this.f.username)}
                   {this.antd.passwordFormItem(this.f.password, false)}
                   {this.antd.textFormItem(this.f.two_fa_code)}
-                  <FormItem>
-                    {global.isDev
-                      ? null
-                      : this.captchaFormControl(
-                          this.f.captcha,
-                          this.handleCaptchaInput
-                        )}
-                  </FormItem>
+                  {global.isDev ? null : (
+                    <FormItem>
+                      {this.captchaFormControl(
+                        this.f.captcha,
+                        this.handleCaptchaInput
+                      )}
+                    </FormItem>
+                  )}
                   <FormItem>
                     <Link
                       to={this.getLink(
@@ -82,8 +83,8 @@ export class LoginComponent extends BaseComponent {
                     <Button
                       type="primary"
                       htmlType="submit"
-                      disabled={this.state.diableSubmitButton}
-                      loading={this.state.diableSubmitButton}
+                      disabled={this.state.disableSubmitButton}
+                      loading={this.state.disableSubmitButton}
                       className="gx-login-login-btn"
                     >
                       {this.lang.Login}
@@ -96,6 +97,13 @@ export class LoginComponent extends BaseComponent {
                     {this.lang.DontHaveAccount}
                   </Link>
                 </Form>
+                <div className="gx-w-100">
+                  {this.submitResponseDiv(
+                    this.state.showSubmitResponse,
+                    this.state.isSuccessSubmitResponse,
+                    this.state.submitResponse
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -165,7 +173,7 @@ export class LoginComponent extends BaseComponent {
               new RequiredValidator(this.lang.CapitchaErrorMessage)
             ])
       },
-      diableSubmitButton: false,
+      disableSubmitButton: false,
       showSubmitResponse: false,
       submitResponseClass: "text-danger",
       submitResponse: ""
@@ -189,7 +197,7 @@ export class LoginComponent extends BaseComponent {
     //everything is fine, now save the data
     this.updateState({
       submitResponse: "",
-      diableSubmitButton: true
+      disableSubmitButton: true
     });
     let formData: mdSignUp = this.getFormData(this.state.form) as mdSignUp;
     this.http
@@ -200,26 +208,9 @@ export class LoginComponent extends BaseComponent {
           if (res.isSuccess) {
             //signup completed, now sign in
             if (res.extras) {
-              if (
-                res.extras.status ==
-                this.constants.RecordStatus.PendingVerification
-              ) {
-                let emailConfirmationRout =
-                  "<a href='" +
-                  this.constants.RoutePaths.EmailConfirmation +
-                  "?" +
-                  this.constants.QueryParams.email +
-                  "=em'>" +
-                  this.lang.Here +
-                  "</a>";
-                res.message = StaticHelper.formatString(
-                  this.lang.EmailVerificationRequired,
-                  emailConfirmationRout
-                );
-
-                this.hideSpinnerAndShowError(
-                  this.bulletList(res.message.split("\n"))
-                );
+              if (res.extras.status == UserRecordStatuses.pendingVerification) {
+                this.errorNotification(this.lang.AccountEmailIsNotVerified);
+                this.hideSpinnerAndShowError(this.resendButton(false));
               } else {
                 if (this.redirectURI) {
                   window.location.href = this.redirectURI;
@@ -254,11 +245,74 @@ export class LoginComponent extends BaseComponent {
     }
     this.hideMainSpinner();
     this.updateState({
-      diableSubmitButton: false,
+      disableSubmitButton: false,
       showSubmitResponse: true,
       submitResponse: message
     });
   }
+
+  resendButton = (loading: boolean) => {
+    let emailConfirmationRout = (
+      <Button
+        loading={loading}
+        disabled={this.state.disableResendEmailButton}
+        type={"primary"}
+        onClick={this.sendSignUpVerificationEmail}
+      >
+        {this.lang.ResendEmail}
+      </Button>
+    );
+    return (
+      <>
+        {this.lang.EmailVerificationRequired}
+        <br />
+        {emailConfirmationRout}
+      </>
+    );
+  };
+
+  sendSignUpVerificationEmail = ev => {
+    this.hideSpinnerAndShowError(this.resendButton(true));
+    this.http
+      .get<mdCallResponse>(
+        this.constants.EndPoints.GetSendSignUpVerificationEmail
+      )
+      .then((res: mdCallResponse) => {
+        if (res) {
+          if (!res.isSuccess) {
+            this.errorNotification(res.message);
+          } else {
+            // let newState = {
+            //   ...this.state
+            // };
+            // if (ev) {
+            //   newState = {
+            //     ...newState,
+            //     disableResendEmailButton: true
+            //   };
+            // }
+            // newState = {
+            //   ...newState,
+            //   verificationEmailHeader: this.lang.VerificationEmailSentAgain
+            // };
+            // this.setState(newState);
+            this.successNotification(res.message);
+            this.props.history.push(
+              this.getLink(this.constants.RoutePaths.EmailConfirmation)
+            );
+          }
+        }
+        this.updateState({
+          showLoadingOnResetButton: false
+        });
+      })
+      .catch(error => {
+        this.log.debug(error);
+        this.updateState({
+          showLoadingOnResetButton: false
+        });
+      });
+  };
 }
 
 export default LoginComponent;

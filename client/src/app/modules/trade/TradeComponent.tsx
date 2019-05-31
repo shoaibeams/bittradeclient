@@ -121,15 +121,27 @@ export default class TradeComponent extends BaseComponent {
       lastTradeId: 0,
       recentTrades: []
     };
-    this.loadBalanceAndFee(this.state.selectedCurrencyPair);
+    if (this.state.selectedCurrencyPair) {
+      this.loadBalanceAndFee(this.state.selectedCurrencyPair);
+    }
   }
+
+  afterReceivingProps = () => {
+    if (
+      this.isNullOrEmpty(this.state.selectedCurrencyPair) &&
+      this.g.selectedCurrencyPair
+    ) {
+      this.updateStatePromise({
+        selectedCurrencyPair: this.g.selectedCurrencyPair
+      }).then(_ => {
+        this.loadBalanceAndFee(this.state.selectedCurrencyPair);
+      });
+    }
+  };
 
   newOrderCreated = () => {
     this.loadBalanceAndFee(this.state.selectedCurrencyPair);
-    this.orderHistoryRef.current.recievedNewChanges(
-      this.state.selectedCurrencyPair,
-      true
-    );
+    this.notifyCPChangeToOrderHistory(this.state.selectedCurrencyPair);
   };
 
   loadBalanceAndFee = (cp: mdCurrencyPair) => {
@@ -159,6 +171,13 @@ export default class TradeComponent extends BaseComponent {
             showSpinner: false
           });
         });
+      this.notifyCPChangeToOrderHistory(cp);
+    }
+  };
+
+  notifyCPChangeToOrderHistory = cp => {
+    if (this.orderHistoryRef.current) {
+      this.orderHistoryRef.current.recievedNewChanges(cp, true);
     }
   };
 }

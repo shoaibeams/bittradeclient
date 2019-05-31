@@ -150,6 +150,11 @@ export default class OrderHistoryComponent extends BaseComponent {
             if (orders.length > 0) {
               last = orders[0].id;
             }
+            orders = [...this.state.orders, ...orders].filter(
+              (m, index, array) => {
+                return array.filter(a => a.id == m.id).length == 1;
+              }
+            );
             this.updateState({
               orders: [...this.state.orders, ...orders],
               last: last
