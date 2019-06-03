@@ -58,7 +58,7 @@ header .signup-header.navbar-nav > li.lang .dropdown-menu li a { margin: 0px; fo
 header .signup-header.navbar-nav > li > a { background: #f5675d; color: #fff; text-transform: uppercase; font-size: 20px; font-weight: 600; box-shadow: none; border: 0px; padding: 12px 15px; margin-left: 7px; border-radius:4px;}
 header .signup-header.navbar-nav > li.lang .dropdown-menu li a:hover { background: rgba(8, 45, 62, 0.90); color: #fff; border-radius: 4px; border:1px solid #40b9cd; }
 /* Banner css */
-.banner { background: url("../images/bannerbg.png") center top no-repeat; background-size: cover; width: 100%; padding: 45px 0; }
+.banner { background: url("../images/bannerbg.webp") center top no-repeat; background-size: cover; width: 100%; padding: 45px 0; }
 .banner p { margin:.67em 0; line-height: 1; color: #fff; font-size: 32px; text-align: center; font-weight: 600; margin-bottom: 25px; }
 .bannerb { 
     padding: 0 15px; 
@@ -106,7 +106,7 @@ header .signup-header.navbar-nav > li.lang .dropdown-menu li a:hover { backgroun
 .howbox p { font-size: 14px; color: #666; text-align: center; line-height: 20px; }
 .howitwork .arrow-how { position: absolute; top: -100px; right: -140px; }
 /* Trading css */ 
-.tradingwrap { width: 100%; padding: 45px 0; background: url(/assets/images/tradebg.jpg) center top no-repeat; background-size: cover; }
+.tradingwrap { width: 100%; padding: 45px 0; background: url(/assets/images/tradebg.webp) center top no-repeat; background-size: cover; }
 .tradingwrap .nav-tabs { text-align: center; border: 0px; }
 .tradingwrap.dashboad .nav-tabs { background: #033554 }
 .tradingwrap .nav-tabs > li { position: relative }

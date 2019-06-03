@@ -1832,6 +1832,92 @@ below to re-send`;
 
   SupportEmail = "support@bitvelocity.io";
 
-  /////////////////////////////////////----STO------/////////////////////////////////////////////
-  
+  //////////////////---------------------STO-----------------/////////////////////////////////////
+  STOIntroHeading = `What is BitVelocity?`;
+  STOintroPara = `BitVelocity provides tokenized platform services for Security Token
+            Offerings (STOs) on a global stock exchange. We aim to become an
+            alternative to investments banks, giving companies and startups a
+            cost-effective way to get access to global financing.`;
+  STOFeature1 = `On BitVelocity, you can instantly deposit your funds without
+                any hassle during any time of the day.`;
+  STOFeature2 = `There is no hour of the day and no day of the week when your
+  investments cannot be approved.`;
+  STOFeature3 = `We strive to make sure that our application process is as easy
+  as it can be for investors.`;
+  STOHeading2 = "Problems We Solve";
+  STOPara2 = `BitVelocity strives to solve problems raised by institutional,
+  centeralized paradigm with the crypto investing paradigm, and is
+  seeking partnerships with digital financial platforms and security,
+  compliance, and risk-management service providers to work with the
+  concerns of institutional investors, on its path to reinvent capital
+  markets and giving an alternative to wallstreet for the first
+  time—developed in accordance with most countries of the world.`;
+
+  STOPlatformsHeading = "Types of Tokenization Platforms";
+  Equity = "Equity";
+  Crowdfunding = "Crowdfunding";
+  ICO = "ICO";
+  Shareholding = "Shareholding";
+  STOPlatformPara1 = `ICO tokens are utility tokens that are built as a way to raise
+  funds. These tokens can be build upon any blockchain platform
+  such as Hyperledger, EOS or stellar.`;
+  STOPlatformPara2 = `These tokens are regulated and are bound by federal law and
+  securities. They derive their value from external, tradable
+  assets. These tokens can be built on existing blockchain, or
+  can also be built on a custom-made blockchain platform.`;
+  STOPlatformPara3 = `Backed up by real world assets such as real estate, gold, or
+  art, anything can be converted into tokens. The token either
+  live on existing blockchain or on tailor-made blockchain
+  platform.`;
+  STOAssetsHeadingPara = `Tokenization is a modern way of securing assets with blockchain. We can tokenize almost anything`;
+  STOAssetsHeading = `Assets That Can Be Tokenized`;
+  STOAssetsSubHeading1 = "For Financial Technology Startups";
+  STOAssetsSubHeading2 = "For Established Companies";
+  STOAssetsSubHeadingPara1 = `
+  We partner up with Fintech companies for STO only after
+  assessing their business with due diligence.`;
+  STOAssetsSubHeadingPara2 = `We provide our tokenization service for established companies
+  that are looking to go public through Initial Public Offering
+  (IPO).`;
+  STOHowWorksHeading = "How Tokenization For Real Estate Works";
+  Automated = "Automated";
+  STOAIPara = `BitVelocity provides investors to create their own shares and bonds
+  and instantly raise money through an investment platform that uses
+  automated, smart contract algorithms. In future, we expect to
+  implement machine learning and artificial intelligence features in
+  our platform.`;
+  Process = "Process";
+  The = "The";
+  Unverified = "Unverified";
+
+  //////////////////---------------------MessageBox-----------------/////////////////////////////////////
+  NoPhoneHeading = `No Phone Number Added`;
+  NoPhonePara1 = `You have not added a phone number to your account.`;
+  NoPhonePara2 = `To add a phone number, you need to complete the following steps:`;
+
+  NoPhoneLi11 = `1. On top right, find your display picture`;
+  NoPhoneLi12 = ` and click on 'My Account' submenu.`;
+  NoPhoneLi21 = `2. A new window will open, and there you will find a 'Phone
+  Number'`;
+  NoPhoneLi22 = ` section. Click on 'Add Phone Number' button.`;
+  NoPhoneLi3 = `3. Add your country and phone number in the respective fields and
+  click on the next button.`;
+
+  TwoFAIncompleteHeading = `2F Auth Incomplete`;
+  TwoFAIncompletePara1 = `You need to complete 2-Factor Authentication.`;
+  TwoFAIncompletePara2 = `To complete 2FA, you need to follow these steps:`;
+
+  TwoFAIncompleteLi11 = `1. Click on your profile picture`;
+  TwoFAIncompleteLi12 = `at the top right and click on My Account.`;
+
+  TwoFAIncompleteLi21 = `2. A new window will open, and there you will see a Google
+  Authenticator`;
+  TwoFAIncompleteLi22 = `section. Right below the heading text, click on 'Not Enabled'
+  button.`;
+
+  KYCUnverifiedPara1 = `You are not KYC verified. KYC verification can be completed by
+  following any of these three procedures:`;
+  KYCUnverifiedLi1 = `Proof of Identity`;
+  KYCUnverifiedLi2 = `Proof of Income`;
+  KYCUnverifiedLi3 = `Proof of Address`;
 }

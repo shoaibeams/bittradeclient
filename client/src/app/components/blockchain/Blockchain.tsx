@@ -80,7 +80,7 @@ class Blockchain extends BaseComponent {
 
               <div className="col-right">
                 <div className="paper-container image scale-in-center">
-                  <ImageAndCaption src={"/assets/images/coins.png"} />
+                  <ImageAndCaption src={"/assets/images/coins.webp"} />
                 </div>
               </div>
             </div>
@@ -115,14 +115,14 @@ class Blockchain extends BaseComponent {
 
               <div className="col-right">
                 <ImageAndCaption
-                  src={"/assets/images/scotland-edinburgh.jpg"}
+                  src={"/assets/images/scotland-edinburgh.webp"}
                   caption={BlockChainPageCaption}
                 />
               </div>
             </div>
             <div className="row">
               <div className="col-right">
-                <ImageAndCaption src={"/assets/images/scotland-edinburgh-city-centre.jpg"} />
+                <ImageAndCaption src={"/assets/images/scotland-edinburgh-city-centre.webp"} />
               </div>
 
               <div className="col-left">
@@ -153,7 +153,7 @@ class Blockchain extends BaseComponent {
             <div className="row">
               <div className="col-right">
                 <div className="paper-container image scale-in-center">
-                  <ImageAndCaption src={"/assets/images/emergence.jpg"} />
+                  <ImageAndCaption src={"/assets/images/emergence.webp"} />
                 </div>
               </div>
 
@@ -179,7 +179,7 @@ class Blockchain extends BaseComponent {
               <div className="col-right">
                 <div className="paper-container">
                   <div className="paper-container image scale-in-center">
-                    <ImageAndCaption src={"/assets/images/outside-london-office.png"} />
+                    <ImageAndCaption src={"/assets/images/outside-london-office.webp"} />
                   </div>
                 </div>
               </div>

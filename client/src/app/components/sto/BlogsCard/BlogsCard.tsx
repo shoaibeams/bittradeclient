@@ -25,7 +25,7 @@ export default class BlogsCard extends BaseComponent {
                   cover={
                     <img
                       alt="RealEstate"
-                      src="/assets/images/scotland-edinburgh.jpg"
+                      src="/assets/images/scotland-edinburgh.webp"
                     />
                   }
                 >

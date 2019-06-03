@@ -29,12 +29,7 @@ export default class STO extends BaseComponent {
             What is BitVelocity?
           </h1>
           <hr className="heading-bottom-line gx-text-center" />
-          <p className="gx-text-center text-medium">
-            BitVelocity provides tokenized platform services for Security Token
-            Offerings (STOs) on a global stock exchange. We aim to become an
-            alternative to investments banks, giving companies and startups a
-            cost-effective way to get access to global financing.
-          </p>
+          <p className="gx-text-center text-medium">{this.lang.STOintroPara}</p>
         </Card>
         <Card className="gx-card">
           <h1 className="logo-text heading-big gx-text-center">
@@ -48,10 +43,7 @@ export default class STO extends BaseComponent {
                 <h1 className="heading-medium">
                   {this.lang.Instant} {this.lang.Funding}
                 </h1>
-                <p className="text-medium">
-                  On BitVelocity, you can instantly deposit your funds without
-                  any hassle during any time of the day.
-                </p>
+                <p className="text-medium">{this.lang.STOFeature1}</p>
               </Card>
             )}
 
@@ -61,10 +53,7 @@ export default class STO extends BaseComponent {
                 <h1 className="heading-medium">
                   {this.lang.TwentyFourHours} {this.lang.Approval}
                 </h1>
-                <p className="text-medium">
-                  There is no hour of the day and no day of the week when your
-                  investments cannot be approved.
-                </p>
+                <p className="text-medium">{this.lang.STOFeature2}</p>
               </Card>
             )}
 
@@ -74,10 +63,7 @@ export default class STO extends BaseComponent {
                 <h1 className="heading-medium">
                   {this.lang.Easy} {this.lang.Application}
                 </h1>
-                <p className="text-medium">
-                  We strive to make sure that our application process is as easy
-                  as it can be for investors.
-                </p>
+                <p className="text-medium">{this.lang.STOFeature3}</p>
               </Card>
             )}
           </Row>
@@ -87,60 +73,44 @@ export default class STO extends BaseComponent {
             className="gx-text-center heading-big"
             style={{ marginBottom: "30px" }}
           >
-            Problems We Solve
+            {this.lang.STOHeading2}
           </h1>
           <hr className="heading-bottom-line gx-text-center" />
-          <p className="gx-text-center text-medium">
-            BitVelocity strives to solve problems raised by institutional,
-            centeralized paradigm with the crypto investing paradigm, and is
-            seeking partnerships with digital financial platforms and security,
-            compliance, and risk-management service providers to work with the
-            concerns of institutional investors, on its path to reinvent capital
-            markets and giving an alternative to wallstreet for the first
-            time—developed in accordance with most countries of the world.
-          </p>
+          <p className="gx-text-center text-medium">{this.lang.STOPara2}</p>
         </Card>
         <Card className="gx-card">
           <h1 className="logo-text heading-big gx-text-center">
-            Types of Tokenization Platforms
+            {this.lang.STOPlatformsHeading}
           </h1>
           <hr className="heading-bottom-line gx-text-center" />
           <Row className="sto-row gx-text-center fade-in-bottom">
             {this.antd.colmd8(
               <Card>
                 <img src="/assets/images/ico-coin.svg" alt="Secured" />
-                <h1 className="heading-medium">ICO Token</h1>
-                <p className="text-medium">
-                  ICO tokens are utility tokens that are built as a way to raise
-                  funds. These tokens can be build upon any blockchain platform
-                  such as Hyperledger, EOS or stellar.
-                </p>
+                <h1 className="heading-medium">
+                  {this.lang.ICO} {this.lang.Token}
+                </h1>
+                <p className="text-medium">{this.lang.STOPlatformPara1}</p>
               </Card>
             )}
 
             {this.antd.colmd8(
               <Card className="security-feature-card">
                 <img src="/assets/images/security.svg" alt="DDOS Protection" />
-                <h1 className="heading-medium">Security Token</h1>
-                <p className="text-medium">
-                  These tokens are regulated and are bound by federal law and
-                  securities. They derive their value from external, tradable
-                  assets. These tokens can be built on existing blockchain, or
-                  can also be built on a custom-made blockchain platform.
-                </p>
+                <h1 className="heading-medium">
+                  {this.lang.Security} {this.lang.Token}
+                </h1>
+                <p className="text-medium">{this.lang.STOPlatformPara2}</p>
               </Card>
             )}
 
             {this.antd.colmd8(
               <Card className="security-feature-card">
                 <img src="/assets/images/asset.svg" alt="Application" />
-                <h1 className="heading-medium">Asset Tokenization</h1>
-                <p className="text-medium">
-                  Backed up by real world assets such as real estate, gold, or
-                  art, anything can be converted into tokens. The token either
-                  live on existing blockchain or on tailor-made blockchain
-                  platform.
-                </p>
+                <h1 className="heading-medium">
+                  {this.lang.Asset} {this.lang.Tokenization}
+                </h1>
+                <p className="text-medium">{this.lang.STOPlatformPara3}</p>
               </Card>
             )}
           </Row>
@@ -150,11 +120,10 @@ export default class STO extends BaseComponent {
             className="gx-text-center heading-big"
             style={{ marginBottom: "30px" }}
           >
-            Assets That Can Be Tokenized
+            {this.lang.STOAssetsHeading}
           </h1>
           <p className="gx-text-center text-medium">
-            Tokenization is a modern way of securing assets with blockchain. We
-            can tokenize almost anything.
+            {this.lang.STOAssetsHeadingPara}
           </p>
           <hr className="heading-bottom-line gx-text-center" />
 
@@ -166,7 +135,7 @@ export default class STO extends BaseComponent {
                     src="/assets/images/shareholder.svg"
                     alt={this.lang.Loans}
                   />
-                  <h1 className="heading-big">Shareholding</h1>
+                  <h1 className="heading-big">{this.lang.Shareholding}</h1>
                 </div>
               </Card>
             )}
@@ -177,7 +146,9 @@ export default class STO extends BaseComponent {
                   src="/assets/images/crowdfunding.svg"
                   alt={this.lang.Shares}
                 />
-                <h1 className="heading-big">Equity Crowdfunding</h1>
+                <h1 className="heading-big">
+                  {this.lang.Equity} {this.lang.Crowdfunding}
+                </h1>
               </Card>
             )}
 
@@ -204,11 +175,10 @@ export default class STO extends BaseComponent {
                 <div>
                   <img src="/assets/images/startup.svg" alt={this.lang.Loans} />
                   <h1 className="heading-big">
-                    For Financial Technology Startups
+                    {this.lang.STOAssetsSubHeading1}
                   </h1>
                   <p className="text-medium">
-                    We partner up with Fintech companies for STO only after
-                    assessing their business with due diligence.
+                    {this.lang.STOAssetsSubHeadingPara1}
                   </p>
                 </div>
               </Card>
@@ -217,20 +187,18 @@ export default class STO extends BaseComponent {
             {this.antd.colmd12(
               <Card>
                 <img src="/assets/images/ipo.svg" alt={this.lang.Shares} />
-                <h1 className="heading-big">For Established Companies</h1>
+                <h1 className="heading-big">
+                  {this.lang.STOAssetsSubHeading2}
+                </h1>
                 <p className="text-medium">
-                  We provide our tokenization service for established companies
-                  that are looking to go public through Initial Public Offering
-                  (IPO).
+                  {this.lang.STOAssetsSubHeadingPara2}
                 </p>
               </Card>
             )}
           </Row>
         </Card>
         <Card className="gx-card">
-          <h1 className="gx-text-center">
-            How Tokenization For Real Estate Works
-          </h1>
+          <h1 className="gx-text-center">{this.lang.STOHowWorksHeading}</h1>
           <hr className="heading-bottom-line gx-text-center" />
           <Row className="usecase">
             <img
@@ -240,14 +208,10 @@ export default class STO extends BaseComponent {
           </Row>
         </Card>
         <BigCard params={{ image: "/assets/images/automation.svg" }}>
-          <h1 className="heading-huge">Automated Investment</h1>
-          <p className="list-big">
-            BitVelocity provides investors to create their own shares and bonds
-            and instantly raise money through an investment platform that uses
-            automated, smart contract algorithms. In future, we expect to
-            implement machine learning and artificial intelligence features in
-            our platform.
-          </p>
+          <h1 className="heading-huge">
+            {this.lang.Automated} {this.lang.Investment}
+          </h1>
+          <p className="list-big">{this.lang.STOAIPara}</p>
         </BigCard>
         <BlogsCard />
         <ContactUs params={{ title: "Interested? Contact us today!" }} />

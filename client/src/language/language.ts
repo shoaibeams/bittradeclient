@@ -1228,6 +1228,61 @@ export interface LanguageBase {
   SupportEmail: string;
 
   /////////////////////////////////////----STO------/////////////////////////////////////////////
+  STOIntroHeading:string;
+  STOintroPara: string;  
+  STOFeature1: string;
+  STOFeature2: string;
+  STOFeature3: string;
+  STOPara2: string;
+  STOHeading2: string;
+  STOPlatformPara1:string;
+  STOPlatformPara2:string;
+  STOPlatformPara3:string;
   
+  STOAssetsHeading: string;
+  STOAssetsHeadingPara: string;
+  STOAssetsSubHeading1:string;
+  STOAssetsSubHeading2:string;
+  STOAssetsSubHeadingPara1:string;
+  STOAssetsSubHeadingPara2:string;
 
+  STOHowWorksHeading: string;
+  STOAIPara: string;
+
+  Shareholding: string
+  STOPlatformsHeading: string;
+  ICO: string;
+  Equity: string;
+  Crowdfunding: string;
+  Automated: string;
+  Investment: string;
+  Process: string;
+  The: string;
+  Unverified: string;
+
+  //////////////////---------------------MessageBox-----------------/////////////////////////////////////
+  NoPhoneHeading: string;
+  NoPhonePara1: string;
+  NoPhonePara2: string;
+
+  NoPhoneLi11: string;
+  NoPhoneLi12: string;
+  NoPhoneLi21: string;
+  NoPhoneLi22: string;
+  NoPhoneLi3: string;
+
+  TwoFAIncompleteHeading: string;
+  TwoFAIncompletePara1: string;
+  TwoFAIncompletePara2: string;
+  
+  TwoFAIncompleteLi11: string;
+  TwoFAIncompleteLi12: string;
+
+  TwoFAIncompleteLi21: string;
+  TwoFAIncompleteLi22: string;
+
+  KYCUnverifiedPara1: string;
+  KYCUnverifiedLi1: string;
+  KYCUnverifiedLi2: string;
+  KYCUnverifiedLi3: string;
 }

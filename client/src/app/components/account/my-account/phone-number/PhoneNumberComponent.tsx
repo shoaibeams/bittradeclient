@@ -1,15 +1,13 @@
 import React from "react";
 import { BaseComponent } from "../../../base/BaseComponent";
-import { Tabs, Col, Button, Row, Card, Tag, Modal } from "antd";
+import { Button, Row, Card, Tag, Modal } from "antd";
 import { mdCallResponse } from "../../../../../models/call-response";
 import { StaticHelper } from "../../../../../shared/static-helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { mdUserPhoneNumber } from "../../../../../models/user-phone-number";
 import { UserPhoneNumberStatuses } from "../../../../../enums/general";
 import SavePhoneNumberComponent from "./SavePhoneNumberComponent";
-import { mdUserAccounts } from "../../../../../models/user-accounts";
 import { mdAuthUsers } from "../../../../../models/auth-users";
-const TabPane = Tabs.TabPane;
 
 export default class PhoneNumberComponent extends BaseComponent {
   render() {
@@ -62,7 +60,7 @@ export default class PhoneNumberComponent extends BaseComponent {
                 <Button
                   type="primary"
                   style={{ marginBottom: 0 }}
-                  loading={this.state.loadingPhoneNumber}
+                  // loading={this.state.loadingPhoneNumber}
                   onClick={e => {
                     e.preventDefault();
                     if (phoneNumber) {

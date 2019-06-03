@@ -1,42 +1,19 @@
 import React from "react";
-import {
-  Tabs,
-  Col,
-  Button,
-  Row,
-  Input,
-  Tag,
-  Steps,
-  Icon,
-  Form,
-  InputNumber
-} from "antd";
+import { Col, Button, Row, Form } from "antd";
 import { BaseComponent } from "../../../base/BaseComponent";
 import { StaticHelper } from "../../../../../shared/static-helper";
 import { mdCallResponse } from "../../../../../models/call-response";
-import { mdUserAccounts } from "../../../../../models/user-accounts";
 import {
-  TwoFactorAuthTypes,
   UserPhoneNumberStatuses,
   InputTypes
 } from "../../../../../enums/general";
-import { mdSignUp, SignUpMetaData } from "../../../../../models/sign-up";
 import { mdFormControl } from "../../../../../shared/form-control";
-import {
-  RequiredValidator,
-  MaxLengthValidator
-} from "../../../../../shared/validation-attributes";
-import { mdAuthUsers } from "../../../../../models/auth-users";
-import * as QRCode from "qrcode";
-import * as speakeasy from "speakeasy";
+import { RequiredValidator } from "../../../../../shared/validation-attributes";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { mdUserPhoneNumber } from "../../../../../models/user-phone-number";
 import { mdCountry } from "../../../../../models/country";
 import { mdKeyValue } from "../../../../../models/key-value";
-import FormItem from "antd/lib/form/FormItem";
-const TabPane = Tabs.TabPane;
-const Step = Steps.Step;
-const InputGroup = Input.Group;
 
 export default class SavePhoneNumberComponent extends BaseComponent {
   render() {
@@ -119,24 +96,10 @@ export default class SavePhoneNumberComponent extends BaseComponent {
         if (m.iso_code2) {
           code2 = m.iso_code2.toLowerCase();
         }
-        return new mdKeyValue(
-          (
-            <>
-              <img
-                src={"/assets/images/countries/4x3/" + code2 + ".svg"}
-                width={50}
-                height={25}
-              />
-              &nbsp;
-              {m.name}
-              &nbsp;
-              {m.calling_code}
-            </>
-          ),
-          m.id
-        );
+        return new mdKeyValue(m.name);
       });
     }
+    
     const { phone_number, country_id, code } = state.form;
     let selectedCountry = this.isNullOrEmpty(country_id.value)
       ? null
@@ -153,6 +116,7 @@ export default class SavePhoneNumberComponent extends BaseComponent {
         {this.antd.selectFormItem(
           country_id,
           countriesSource,
+          // countriesFlags,
           true,
           false,
           null,

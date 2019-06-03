@@ -59,6 +59,11 @@ class App extends BaseComponent {
     this.detectLanguage();
     this.checkUser();
     this.loadCurrencyPairs();
+
+ 
+      if (this.props.history.location.pathname === "/account/login") {
+      }
+    
   }
 
   componentDidMount = () => {
@@ -214,8 +219,11 @@ class App extends BaseComponent {
             propValues.push(cpList[0]);
           }
           this.props.updateGlobalProperty(propKeys, propValues);
-          setTimeout(() => {
-            this.loadBriefHistory();
+          setTimeout(() => {      
+            if (this.props.history.location.pathname === "/help/about") {
+              this.loadBriefHistory();
+              debugger;
+            }      
             this.loadCountries();
           }, 200);
         }
@@ -298,6 +306,7 @@ class App extends BaseComponent {
             );
           }
         }
+
         setTimeout(() => {
           this.loadBriefHistory();
         }, this.constants.LoadBriefHistoryTimeout);

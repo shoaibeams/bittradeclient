@@ -141,7 +141,7 @@ export default class ANTDControls {
         >
           {ctrlSrc.map((s: mdKeyValue, i) => {
             return (
-              <Option key={i} value={s.value}>
+              <Option key={i} value={s.key}>
                 {s.key}
               </Option>
             );

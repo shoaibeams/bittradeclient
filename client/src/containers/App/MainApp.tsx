@@ -29,15 +29,15 @@ import NoHeaderNotification from "../Topbar/NoHeaderNotification/index";
 import { BaseComponent } from "../../app/components/base/BaseComponent";
 import { Redirect } from "react-router";
 import MainFooter from "../../app/components/main-footer/MainFooterHTML";
+import MessageBox from "../../app/components/message-box/MessageBox";
 
 const { Content, Footer } = Layout;
 
 export class MainApp extends BaseComponent {
-
   constructor(props) {
     super(props);
   }
-  getContainerClass = (navStyle) => {
+  getContainerClass = navStyle => {
     switch (navStyle) {
       case NAV_STYLE_DARK_HORIZONTAL:
         return "gx-container-wrap";
@@ -50,10 +50,10 @@ export class MainApp extends BaseComponent {
       case NAV_STYLE_ABOVE_HEADER:
         return "gx-container-wrap";
       default:
-        return '';
+        return "";
     }
   };
-  getNavStyles = (navStyle) => {
+  getNavStyles = navStyle => {
     switch (navStyle) {
       case NAV_STYLE_DEFAULT_HORIZONTAL:
         return <HorizontalDefault {...this.props} />;
@@ -113,8 +113,11 @@ export class MainApp extends BaseComponent {
         {this.getSidebar(navStyle, width)}
         <Layout>
           {this.getNavStyles(navStyle)}
-          <Content className={`gx-layout-content ${this.getContainerClass(navStyle)} `}>
+          <Content
+            className={`gx-layout-content ${this.getContainerClass(navStyle)} `}
+          >
             <ThemeImplementedRoutes {...this.props} />
+            {this.g.isLoggedIn ? <MessageBox {...this.props} /> : null}
             <MainFooter {...this.props} />
             {/* <Footer>
               <div className="gx-layout-footer-content">
@@ -125,13 +128,12 @@ export class MainApp extends BaseComponent {
         </Layout>
         {/* <Customizer /> */}
       </Layout>
-    )
+    );
   }
 }
 
 const mapStateToProps = ({ settings }) => {
   const { width, navStyle } = settings;
-  return { width, navStyle }
+  return { width, navStyle };
 };
 export default connect(mapStateToProps)(MainApp);
-

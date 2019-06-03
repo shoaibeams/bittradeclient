@@ -39,7 +39,7 @@ export default class MainFooter extends BaseComponent {
                   <p className="h2">{this.lang.Social}</p>
                   <ul>
                     <li>
-                      <a href="#" className="fb">
+                      <a href="https://www.facebook.com/bitvelocityio/" className="fb">
                         <FontAwesomeIcon icon={["fab", "facebook-f"]} />
                       </a>
                     </li>
@@ -49,12 +49,12 @@ export default class MainFooter extends BaseComponent {
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="yt">
+                      <a href="https://www.youtube.com/channel/UC0xlAuIbAfTO5XZq8mfh3aA" className="yt">
                         <FontAwesomeIcon icon={["fab", "youtube"]} />
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="insta">
+                      <a href="https://www.instagram.com/bitvelocityio/" className="insta">
                         <FontAwesomeIcon icon={["fab", "instagram"]} />
                       </a>
                     </li>
