@@ -1,7 +1,7 @@
 import React from "react";
 
 import Widget from "../../components/Widget/index";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const LivePriceWidget = ({ cardColor, icon, title, subTitle, iconColor }) => {
   return (

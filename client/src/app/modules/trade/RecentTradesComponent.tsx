@@ -17,6 +17,17 @@ export default class RecentTradesComponent extends BaseComponent {
     this.SubscribeToTrades();
   }
 
+  init() {
+    if (this.g.selectedCurrencyPair) {
+      this.cpId = this.g.selectedCurrencyPair.id;
+    }
+    this.state = {
+      lastTradeId: 0,
+      recentTrades: []
+    };
+    // this.loadRecentTrades();
+  }
+
   render() {
     this.initShorts();
     return (
@@ -74,17 +85,6 @@ export default class RecentTradesComponent extends BaseComponent {
     }
     this.SubscribeToTrades();
   };
-
-  init() {
-    if (this.g.selectedCurrencyPair) {
-      this.cpId = this.g.selectedCurrencyPair.id;
-    }
-    this.state = {
-      lastTradeId: 0,
-      recentTrades: []
-    };
-    // // this.loadRecentTrades();
-  }
 
   onTrades = newTrades => {
     this.log.error("newTrades", newTrades);

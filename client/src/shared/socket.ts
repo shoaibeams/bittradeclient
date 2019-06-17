@@ -21,7 +21,10 @@ export default class Socket {
   connect(callback?) {
     this.io = io(Constants.Instance.BaseURL, {
       forcenew: true,
-      path: Constants.Instance.EndPoints.GetStreamSocket
+      path: Constants.Instance.EndPoints.GetStreamSocket,
+      reconnection: true,
+      reconnectionDelay: 3000,
+      reconnectionAttempts: 20,
     });
 
     this.io.on(SocketEvents.CONNECT, e => {
