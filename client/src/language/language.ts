@@ -847,9 +847,11 @@ export interface LanguageBase {
   GSQuestion1: string;
   GSQuestion2: string;
   GSQuestion3: string;
+  GSQuestion4: string;
   GSAnswer1: string;
   GSAnswer2: string;
   GSAnswer3: string;
+  GSAnswer4: string;
   AMQuestion1: string;
   AMQuestion2: string;
   AMQuestion3: string;

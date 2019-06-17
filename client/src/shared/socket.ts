@@ -15,12 +15,11 @@ export default class Socket {
   }
   private io;
   RegisterEvent = "register_event";
-  SubscribeToTimer = "subscribeToTimer";
   log: LoggerService = LoggerService.getInstance();
 
   connect(callback?) {
     this.io = io(Constants.Instance.BaseURL, {
-      forcenew: true,
+      forcenew: false,
       path: Constants.Instance.EndPoints.GetStreamSocket,
       reconnection: true,
       reconnectionDelay: 3000,
@@ -31,6 +30,11 @@ export default class Socket {
       this.log.debug("socket connected");
       callback();
     });
+
+    this.io.on(SocketEvents.DISCONNECT, e => {
+      this.log.debug("socket disconnected");
+      callback();
+    });    
   }
 
   emitEvent(event: SocketCustomEvents, payload?: any) {

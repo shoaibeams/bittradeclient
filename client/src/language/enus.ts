@@ -1255,12 +1255,14 @@ If you didn't find the email, please check your spam folder or click the link be
   GSQuestion2 = "How do I get started?";
   GSQuestion3 =
     "Which countries are currently where BitVelocity is operational?";
+  GSQuestion4 = "Is BitVelocity a regulated exchange?";
   GSAnswer1 =
     "BitVelocity is a secure, real-time, social, crypto trading solution for digital assets.";
   GSAnswer2 = "To get started, you can start sign up process";
   GSAnswer3 =
     "BitVelocity is currently functional in UK, Euro, and US. Soon our platform will go in many other countries.";
-
+  GSAnswer4 =
+    "We are working closely with  UK's FCA (Financial Conduct Authority) to understand the relevant regulation in crypto space. We are also working towards getting a sandbox membership of FCA for which current openings are closed.  Also we are working internally to become ready for filing e-money licence at FCA. Relevant news to the members of public will be announced on our social media channels. Users are requested to keep and eye for news and updates on these channels.";
   AMQuestion1 = "How to create an account?";
   AMQuestion2 = "How to retrieve a lost password?";
   AMQuestion3 = "How to setup two-factor authentication?";
@@ -1924,5 +1926,4 @@ If you didn't find the email, please check your spam folder or click the link be
   Lead = `Lead`;
   David = "David";
   Watkins = "Watkins";
-
 }

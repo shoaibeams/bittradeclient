@@ -15,9 +15,11 @@ export default class Faq extends BaseComponent {
       GSQuestion1,
       GSQuestion2,
       GSQuestion3,
+      GSQuestion4,
       GSAnswer1,
       GSAnswer2,
       GSAnswer3,
+      GSAnswer4,
       Account,
       Managment,
       AMQuestion1,
@@ -85,6 +87,9 @@ export default class Faq extends BaseComponent {
               </Panel>
               <Panel header={GSQuestion3} key="3">
                 <p>{GSAnswer3}</p>
+              </Panel>
+              <Panel header={GSQuestion4} key="4">
+                <p>{GSAnswer4}</p>
               </Panel>
             </Collapse>
           )}
