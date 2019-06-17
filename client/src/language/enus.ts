@@ -1920,4 +1920,10 @@ below to re-send`;
   KYCUnverifiedLi1 = `Proof of Identity`;
   KYCUnverifiedLi2 = `Proof of Income`;
   KYCUnverifiedLi3 = `Proof of Address`;
+
+  About = `About`;
+  Lead = `Lead`;
+  David = "David";
+  Watkins = "Watkins";
+
 }

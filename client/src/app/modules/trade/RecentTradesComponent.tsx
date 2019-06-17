@@ -4,8 +4,19 @@ import { StaticHelper } from "../../../shared/static-helper";
 import { mdCallResponse } from "../../../models/call-response";
 import { OrderActions } from "../../../enums/order";
 import { Table, Card } from "antd";
+import { SocketCustomEvents } from "../../../enums/socket";
+import { debug } from "util";
 
 export default class RecentTradesComponent extends BaseComponent {
+  recentTradesWorker;
+  SubscribeToTradesFlag = false;
+  cpId: number;
+  constructor(props) {
+    super(props);
+    this.init();
+    this.SubscribeToTrades();
+  }
+
   render() {
     this.initShorts();
     return (
@@ -24,19 +35,76 @@ export default class RecentTradesComponent extends BaseComponent {
     );
   }
 
-  recentTradesWorker;
-  constructor(props) {
-    super(props);
-    this.init();
-  }
+  SubscribeToTrades = () => {
+    if (
+      this.isNullOrEmpty(this.g.selectedCurrencyPair) ||
+      this.SubscribeToTradesFlag
+    ) {
+      this.log.error(
+        "SubscribeToTrades",
+        this.isNullOrEmpty(this.g.selectedCurrencyPair),
+        this.SubscribeToTradesFlag
+      );
+      return;
+    }
+
+    this.log.error("SubscribeToTrades", "subscribed");
+    this.log.debug("registerEvent " + SocketCustomEvents.SubscribeToTrades);
+    this.socket.registerEvent(
+      SocketCustomEvents.SubscribeToTrades,
+      this.onTrades
+    );
+    this.socket.emitEvent(
+      SocketCustomEvents.SubscribeToTrades,
+      this.g.selectedCurrencyPair.id
+    );
+    this.SubscribeToTradesFlag = true;
+  };
+
+  afterReceivingProps = () => {
+    if (this.g.selectedCurrencyPair) {
+      if (this.cpId) {
+        if (this.cpId != this.g.selectedCurrencyPair.id) {
+          this.log.error("SubscribeToTrades", "unsubscribed");
+          this.socket.unregisterEvent(SocketCustomEvents.SubscribeToTrades);
+          this.SubscribeToTradesFlag = false;
+        }
+      }
+      this.cpId = this.g.selectedCurrencyPair.id;
+    }
+    this.SubscribeToTrades();
+  };
 
   init() {
+    if (this.g.selectedCurrencyPair) {
+      this.cpId = this.g.selectedCurrencyPair.id;
+    }
     this.state = {
       lastTradeId: 0,
       recentTrades: []
     };
-    this.loadRecentTrades();
+    // // this.loadRecentTrades();
   }
+
+  onTrades = newTrades => {
+    this.log.error(newTrades);
+    let lastTradeId = this.state.lastTradeId;
+    if (newTrades.length > 0) {
+      lastTradeId = newTrades[0].id;
+    }
+    let trades = [...newTrades, ...this.state.recentTrades];
+    trades = trades.map(m => {
+      m["key"] = m.id;
+      return m;
+    });
+    if (trades.length > 250) {
+      trades.splice(249);
+    }
+    this.updateState({
+      recentTrades: trades,
+      lastTradeId
+    });
+  };
 
   loadRecentTrades = () => {
     if (this.g.selectedCurrencyPair) {
@@ -47,25 +115,7 @@ export default class RecentTradesComponent extends BaseComponent {
           recordsPerPage: 250
         })
         .then((res: mdCallResponse) => {
-          if (res.isSuccess) {
-            let lastTradeId = this.state.lastTradeId;
-            if (res.extras.length > 0) {
-              lastTradeId = res.extras[0].id;
-            }
-            let trades = [...res.extras, ...this.state.recentTrades];
-            trades = trades.map(m => {
-              m["key"] = m.id;
-              return m;
-            });
-            if (trades.length > 250) {
-              trades.splice(249);
-            }
-            this.updateState({
-              recentTrades: trades,
-              lastTradeId
-            });
-          }
-          this.startSyncingRecentTraded();
+          // this.startSyncingRecentTraded();
         })
         .catch(error => {
           this.log.debug(error);
@@ -80,11 +130,12 @@ export default class RecentTradesComponent extends BaseComponent {
     timeout: number = this.constants.LoadBriefHistoryTimeout
   ) => {
     this.recentTradesWorker = setTimeout(() => {
-      this.loadRecentTrades();
+      // this.loadRecentTrades();
     }, timeout);
   };
 
   componentWillUnmount = () => {
+    this.socket.unregisterEvent(SocketCustomEvents.SubscribeToTrades);
     if (this.recentTradesWorker) {
       clearTimeout(this.recentTradesWorker);
       this.recentTradesWorker = null;

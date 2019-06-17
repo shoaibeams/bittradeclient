@@ -8,8 +8,18 @@ import { Row } from "antd";
 import LivePriceWidget from "../../t-components/LivePriceCard";
 import { OrderActions } from "../../../enums/order";
 import RecentTradesComponent from "./RecentTradesComponent";
+import { SocketCustomEvents } from "../../../enums/socket";
+
 
 export default class TradingViewComponent extends BaseComponent {
+  subscribedToBriefHistory = false;
+
+  orderHistoryRef = React.createRef<OrderHistoryComponent>();
+  constructor(props) {
+    super(props);
+    this.init();
+  }
+
   render() {
     this.initShorts();
     let currencyPairs = [];
@@ -100,13 +110,7 @@ export default class TradingViewComponent extends BaseComponent {
         </Row>
       </>
     );
-  }
-
-  orderHistoryRef = React.createRef<OrderHistoryComponent>();
-  constructor(props) {
-    super(props);
-    this.init();
-  }
+  } 
 
   init() {
     this.state = {
@@ -116,6 +120,11 @@ export default class TradingViewComponent extends BaseComponent {
       recentTrades: []
     };
     this.loadBalanceAndFee(this.state.selectedCurrencyPair);
+    this.subscribedToBriefHistory = this.SubscribeToBriefRecentHistory(this.subscribedToBriefHistory);
+  }
+
+  afterReceivingProps = () => {
+    this.subscribedToBriefHistory = this.SubscribeToBriefRecentHistory(this.subscribedToBriefHistory);    
   }
 
   newOrderCreated = () => {

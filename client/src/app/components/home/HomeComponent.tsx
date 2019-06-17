@@ -5,11 +5,11 @@ import WalletComponent from "./wallet/WalletComponent";
 import ServicesComponent from "./services/ServicesComponent";
 import HowItWorksComponent from "./howitworks/HowItWorksComponent";
 import TradeBriefHistoryComponent from "./tradebriefhistory/TradeBriefHistoryComponent";
-// import TrackRateComponent from "./TrackRateComponent";z
 import MapComponent from "./map/MapComponent";
+import { StaticHelper } from "../../../shared/static-helper";
+import { SocketCustomEvents } from "../../../enums/socket";
 
 export default class HomeComponent extends BaseComponent {
-
   render() {
     return (
       <>
@@ -18,20 +18,24 @@ export default class HomeComponent extends BaseComponent {
         <ServicesComponent {...this.props} />
         <HowItWorksComponent {...this.props} />
         <TradeBriefHistoryComponent {...this.props} />
-        {/* <TrackRateComponent {...this.props} /> */}
         <MapComponent {...this.props} />
       </>
     );
   }
 
+  componentWillUnmount = () => {
+    this.socket.unregisterEvent(
+      SocketCustomEvents.SubscribeToBriefRecentHistory
+    );
+  };
 
+  subscribedToBriefHistory = false;
   constructor(props) {
     super(props);
-    this.init();
+    this.subscribedToBriefHistory = this.SubscribeToBriefRecentHistory(this.subscribedToBriefHistory);
   }
 
-  init() {
-    // this.loadCurrencies();
-  }
-
+  afterReceivingProps = () => {
+    this.subscribedToBriefHistory = this.SubscribeToBriefRecentHistory(this.subscribedToBriefHistory);
+  };
 }

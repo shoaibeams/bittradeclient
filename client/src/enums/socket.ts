@@ -5,7 +5,9 @@ export enum SocketActions {
 }
 export enum SocketEvents {
   CONNECT = "connect",
-  DISCONNECT = "disconnect"
+  DISCONNECT = "disconnect",
+  RegisterEvent = "register_event",
+  UnRegisterEvent = "unregister_event"
 }
 export enum SocketMessageTypes {
   CHAT = "chat",
@@ -16,5 +18,8 @@ export enum SocketCustomEvents {
   EmailVerified = "EmailVerified",
   AwaitingPasswordRecovery = "AwaitingPasswordRecovery",
   PasswordRecovered = "PasswordRecovered",
-  ReceivedBalance = "AwaitNewBalance"
+  ReceivedBalance = "AwaitNewBalance",
+
+  SubscribeToBriefRecentHistory = "SubscribeToBriefRecentHistory",
+  SubscribeToTrades = "SubscribeToTrades"
 }

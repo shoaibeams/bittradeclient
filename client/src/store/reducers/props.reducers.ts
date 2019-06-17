@@ -11,6 +11,7 @@ initialState.user = new mdAuthUsers();
 initialState.headerHeight = 0;
 initialState.countries = [];
 initialState.currencies = [];
+initialState.currencyPairs = [];
 initialState.selectedBriefHistory = [];
 initialState.preferences = mdPreferences.defaultPreferences();
 

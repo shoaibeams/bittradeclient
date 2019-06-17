@@ -17,6 +17,7 @@ export default class OrderComponent extends BaseComponent {
   render() {
     this.initShorts();
     let cp = this.p.selectedCurrencyPair;
+    
     let OrderCurrencyTypesource: mdKeyValue[] = [];
     if (!cp) {
       cp = {

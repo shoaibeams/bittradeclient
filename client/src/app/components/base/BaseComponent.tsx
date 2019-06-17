@@ -20,6 +20,7 @@ import { mdKeyValue } from "../../../models/key-value";
 import { mdAnimControl } from "../../../models/anim-control";
 import { Link } from "react-router-dom";
 import { Select, Tag } from "antd";
+import { SocketCustomEvents } from "../../../enums/socket";
 const Option = Select.Option;
 
 export class BaseComponent extends BasicBaseComponent {
@@ -727,6 +728,53 @@ export class BaseComponent extends BasicBaseComponent {
   getLink(path: string) {
     return StaticHelper.getLink(path);
   }
+
+  SubscribeToBriefRecentHistory = (alreadySubscribed: boolean) => {
+    if (
+      this.props.globals.currencyPairs.length < 1 ||
+      alreadySubscribed
+    ) {
+      return alreadySubscribed;
+    }
+    this.log.debug("registerEvent " + SocketCustomEvents.SubscribeToTrades);
+    this.socket.registerEvent(
+      SocketCustomEvents.SubscribeToBriefRecentHistory,
+      briefHistory => {
+        if (briefHistory) {
+          console.error("New History:", briefHistory);
+          let history = briefHistory.briefHistory;
+
+          for (let i = 0; i < history.length; i++) {
+            let cp = this.props.globals.currencyPairs.filter(
+              m => m.id == history[i].id
+            )[0];
+            history[i].current_buy = StaticHelper.roundNumber(
+              history[i].last + history[i].last * (cp.buy_fee / 100),
+              cp.tcd_scale
+            );
+            history[i].current_sell = StaticHelper.roundNumber(
+              history[i].last - history[i].last * (cp.sell_fee / 100),
+              cp.tcd_scale
+            );
+            history[i] = StaticHelper.copyProp(cp, history[i]);
+          }
+
+          let selectedBriefHistory = history.filter(
+            m => m.id == this.props.globals.selectedCurrencyPair.id
+          )[0];
+          this.props.updateGlobalProperty(
+            [
+              global.propKeys.briefHistory,
+              global.propKeys.selectedBriefHistory
+            ],
+            [history, selectedBriefHistory]
+          );
+        }
+      }
+    );
+    this.socket.emitEvent(SocketCustomEvents.SubscribeToBriefRecentHistory);
+    return true;
+  };
 
   redirectToLogin = (timeout?: number) => {
     if (!timeout) {

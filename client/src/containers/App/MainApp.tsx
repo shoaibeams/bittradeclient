@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Layout } from "antd";
 
 import Sidebar from "../Sidebar/index";
@@ -10,7 +10,6 @@ import BelowHeader from "../Topbar/BelowHeader/index";
 
 import Topbar from "../Topbar/index";
 import { ThemeImplementedRoutes } from "../../routes/index";
-import Customizer from "../Customizer";
 import { connect } from "react-redux";
 import {
   NAV_STYLE_ABOVE_HEADER,
@@ -27,11 +26,10 @@ import {
 } from "../../constants/ThemeSetting";
 import NoHeaderNotification from "../Topbar/NoHeaderNotification/index";
 import { BaseComponent } from "../../app/components/base/BaseComponent";
-import { Redirect } from "react-router";
 import MainFooter from "../../app/components/main-footer/MainFooterHTML";
 import MessageBox from "../../app/components/message-box/MessageBox";
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 export class MainApp extends BaseComponent {
   constructor(props) {
@@ -105,9 +103,8 @@ export class MainApp extends BaseComponent {
     if (!this.g.isLoggedIn) {
       // return (<Redirect to={`${this.props.match.url}${this.constants.RoutePaths.Login}`} />);
     }
-    const { match, width, navStyle } = this.props as any;
-    let footerText = "Copyright " + this.lang.SiteCompanyName + " © 2019";
 
+    const { width, navStyle } = this.props as any;
     return (
       <Layout className="gx-app-layout">
         {this.getSidebar(navStyle, width)}

@@ -1228,28 +1228,28 @@ export interface LanguageBase {
   SupportEmail: string;
 
   /////////////////////////////////////----STO------/////////////////////////////////////////////
-  STOIntroHeading:string;
-  STOintroPara: string;  
+  STOIntroHeading: string;
+  STOintroPara: string;
   STOFeature1: string;
   STOFeature2: string;
   STOFeature3: string;
   STOPara2: string;
   STOHeading2: string;
-  STOPlatformPara1:string;
-  STOPlatformPara2:string;
-  STOPlatformPara3:string;
-  
+  STOPlatformPara1: string;
+  STOPlatformPara2: string;
+  STOPlatformPara3: string;
+
   STOAssetsHeading: string;
   STOAssetsHeadingPara: string;
-  STOAssetsSubHeading1:string;
-  STOAssetsSubHeading2:string;
-  STOAssetsSubHeadingPara1:string;
-  STOAssetsSubHeadingPara2:string;
+  STOAssetsSubHeading1: string;
+  STOAssetsSubHeading2: string;
+  STOAssetsSubHeadingPara1: string;
+  STOAssetsSubHeadingPara2: string;
 
   STOHowWorksHeading: string;
   STOAIPara: string;
 
-  Shareholding: string
+  Shareholding: string;
   STOPlatformsHeading: string;
   ICO: string;
   Equity: string;
@@ -1274,7 +1274,7 @@ export interface LanguageBase {
   TwoFAIncompleteHeading: string;
   TwoFAIncompletePara1: string;
   TwoFAIncompletePara2: string;
-  
+
   TwoFAIncompleteLi11: string;
   TwoFAIncompleteLi12: string;
 
@@ -1285,4 +1285,10 @@ export interface LanguageBase {
   KYCUnverifiedLi1: string;
   KYCUnverifiedLi2: string;
   KYCUnverifiedLi3: string;
+
+  About: string;
+  Lead: string;
+  David: string;
+  Watkins: string;
+
 }

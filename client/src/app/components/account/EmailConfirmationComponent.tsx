@@ -1,16 +1,13 @@
 import { BaseComponent } from "../base/BaseComponent";
 import React from "react";
 import { mdCallResponse } from "../../../models/call-response";
-import { mdFormControl } from "../../../shared/form-control";
-import { Transitions, mdTransition } from "../../../models/transitions";
+import { Transitions } from "../../../models/transitions";
 import { TransitionState } from "../../../enums/transition";
 import { mdAnimControl } from "../../../models/anim-control";
 import { Button } from "antd";
 import { SocketCustomEvents } from "../../../enums/socket";
-import { mdRegisterSocketEvent } from "../../../models/register-socket-event";
-import FontAwesome from "../base/FontAwesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Redirect } from "react-router";
+
 
 export default class EmailConfirmationComponent extends BaseComponent {
   render() {
@@ -104,7 +101,6 @@ export default class EmailConfirmationComponent extends BaseComponent {
       SocketCustomEvents.AwaitingEmailVerification,
       this.g.user.username
     );
-    // this.socket.emitEvent(this.constants.SocketEvents.WaitEmailVerification, this.g.username);
   };
 
   componentWillUnmount = () => {

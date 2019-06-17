@@ -25,6 +25,23 @@ export default class Team extends BaseComponent {
           </h1>
           <p className="text-medium">{this.lang.TeamPara}</p>
 
+          <figure>
+            <img
+              src="/assets/images/watkins.jpg"
+              width={250}
+              className="founder-img"
+              alt={this.lang.FahadSheikh}
+            />
+            <h1>
+              {this.lang.David} {this.lang.Watkins}
+            </h1>
+            <figcaption>
+              {this.lang.Technical}&nbsp;
+              {this.lang.Team}&nbsp;
+              {this.lang.Lead}
+            </figcaption>
+          </figure>
+
           <div className="dev-container">
             <figure>
               <img
@@ -34,7 +51,7 @@ export default class Team extends BaseComponent {
                 id="inaam"
               />
               <h1>{this.lang.Inaam}</h1>
-              <figcaption>{this.lang.TeamDescription1}</figcaption>
+              <figcaption className="text-small">{this.lang.TeamDescription1}</figcaption>
             </figure>
             <figure>
               <img
@@ -43,7 +60,7 @@ export default class Team extends BaseComponent {
                 alt={this.lang.Shoaib}
               />
               <h1>{this.lang.Shoaib}</h1>
-              <figcaption>{this.lang.TeamDescription2}</figcaption>
+              <figcaption className="text-small">{this.lang.TeamDescription2}</figcaption>
             </figure>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row, Col } from "antd";
+import { Card, Row } from "antd";
 import { BaseComponent } from "../base/BaseComponent";
 import SaveMoneyCard from "./SaveMoneyCard/SaveMoneyCard";
 import Team from "./team/Team";
@@ -35,14 +35,17 @@ export default class About extends BaseComponent {
           <Row className="about-row gx-text-center">
             {this.antd.colmd8(
               <div>
-                <img src="/assets/images/shield.svg" alt="Secured" />
+                <img src="/assets/images/shield.svg" alt={this.lang.Secure} />
                 <h1 className="heading-big">{this.lang.Secure}</h1>
                 <p className="text-medium">{this.lang.AboutPara1}</p>
               </div>
             )}
             {this.antd.colmd8(
               <div>
-                <img src="/assets/images/folder.svg" alt="Offline Storage" />
+                <img
+                  src="/assets/images/folder.svg"
+                  alt={`${this.lang.Offline} ${this.lang.Storage}`}
+                />
                 <h1 className="heading-big">
                   {this.lang.Offline} {this.lang.Storage}
                 </h1>

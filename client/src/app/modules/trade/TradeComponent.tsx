@@ -9,9 +9,18 @@ import LivePriceWidget from "../../t-components/LivePriceCard";
 import { OrderActions } from "../../../enums/order";
 import { mdCallResponse } from "../../../models/call-response";
 import RecentTradesComponent from "./RecentTradesComponent";
+import { SocketCustomEvents } from "../../../enums/socket";
 
 export default class TradeComponent extends BaseComponent {
-  render() {
+  subscribedToBriefHistory = false;
+
+  orderHistoryRef = React.createRef<OrderHistoryComponent>();
+  constructor(props) {
+    super(props);
+    this.init();
+  }
+
+  render() {    
     this.initShorts();
     let currencyPairs = [];
     let sbh = this.g.selectedBriefHistory;
@@ -108,11 +117,7 @@ export default class TradeComponent extends BaseComponent {
     );
   }
 
-  orderHistoryRef = React.createRef<OrderHistoryComponent>();
-  constructor(props) {
-    super(props);
-    this.init();
-  }
+ 
 
   init() {
     this.state = {
@@ -124,7 +129,16 @@ export default class TradeComponent extends BaseComponent {
     if (this.state.selectedCurrencyPair) {
       this.loadBalanceAndFee(this.state.selectedCurrencyPair);
     }
+    this.subscribedToBriefHistory = this.SubscribeToBriefRecentHistory(this.subscribedToBriefHistory);
   }
+
+  componentWillUnmount = () => {
+    this.socket.unregisterEvent(
+      SocketCustomEvents.SubscribeToBriefRecentHistory
+    );
+  };
+
+  
 
   afterReceivingProps = () => {
     if (
@@ -137,6 +151,8 @@ export default class TradeComponent extends BaseComponent {
         this.loadBalanceAndFee(this.state.selectedCurrencyPair);
       });
     }
+    this.subscribedToBriefHistory = this.SubscribeToBriefRecentHistory(this.subscribedToBriefHistory);
+    
   };
 
   newOrderCreated = () => {

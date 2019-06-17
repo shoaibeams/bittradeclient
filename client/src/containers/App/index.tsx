@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import URLSearchParams from "url-search-params";
-import { Redirect, Route, Switch, Router } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
-import AppLocale from "../../lngProvider";
 import { setInitUrl } from "../../appRedux/actions/Auth";
 import { updateWindowWidth } from "../../appRedux/actions/Setting";
 import {
@@ -34,12 +33,10 @@ import {
   updateGlobalInstance,
   updateGlobalProperty
 } from "../../store/actions/globals.actions";
-import { ClipLoaderComponent } from "../../thirdparty/ClipLoaderComponent";
 import NoMatchComponent from "../../app/components/base/NoMatchComponent";
 import "../../assets/css/animate.css";
 import "../../assets/css/general.less";
 import { OpenRoutes } from "../../routes";
-import { BasicBaseComponent } from "../../app/components/base/BasicBaseComponent";
 import { SocketCustomEvents } from "../../enums/socket";
 import { mdAuthUsers } from "../../models/auth-users";
 import { UserRecordStatuses } from "../../enums/auth-users";
@@ -55,15 +52,14 @@ class App extends BaseComponent {
     };
     this.langKeys = StaticHelper.objectToValuesArray(
       Constants.Instance.LanguageKey
-    );
-    this.detectLanguage();
-    this.checkUser();
-    this.loadCurrencyPairs();
+      );
+      this.detectLanguage();
+      this.loadCurrencyPairs();
+      this.checkUser();
 
  
       if (this.props.history.location.pathname === "/account/login") {
-      }
-    
+      }    
   }
 
   componentDidMount = () => {
@@ -71,8 +67,6 @@ class App extends BaseComponent {
     this.isComponentMounted = true;
     window.addEventListener("resize", this.updateWidth);
   };
-
-  componentUnMount() {}
 
   componentWillUnmount = () => {
     this.socket.unregisterEvent(SocketCustomEvents.ReceivedBalance);
@@ -130,7 +124,7 @@ class App extends BaseComponent {
             }
           } else {
             isLoggedIn = false;
-          }
+          }    
           this.initSocket();
           this.log.info("isLoggedIn: " + isLoggedIn, res);
           let propKeys = [
@@ -220,10 +214,9 @@ class App extends BaseComponent {
           }
           this.props.updateGlobalProperty(propKeys, propValues);
           setTimeout(() => {      
-            if (this.props.history.location.pathname === "/help/about") {
-              this.loadBriefHistory();
-              debugger;
-            }      
+            // if (this.props.history.location.pathname === "/help/about") {
+            //   this.loadBriefHistory();
+            // }      
             this.loadCountries();
           }, 200);
         }
@@ -307,15 +300,15 @@ class App extends BaseComponent {
           }
         }
 
-        setTimeout(() => {
-          this.loadBriefHistory();
-        }, this.constants.LoadBriefHistoryTimeout);
+        // setTimeout(() => {
+        //   this.loadBriefHistory();
+        // }, this.constants.LoadBriefHistoryTimeout);
       })
       .catch(error => {
         this.log.debug(error);
-        setTimeout(() => {
-          this.loadBriefHistory();
-        }, this.constants.LoadBriefHistoryTimeout);
+        // setTimeout(() => {
+        //   this.loadBriefHistory();
+        // }, this.constants.LoadBriefHistoryTimeout);
       });
   }
 
