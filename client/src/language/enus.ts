@@ -78,8 +78,7 @@ export class LangENUS implements LanguageBase {
   InvalidValueFormat = "Invalid value for {0}";
   VerificationEmailSent = "We've Sent You a Verification Email";
   VerificationEmailSentDetail = `Click the link in your email to verify your account
-If you didn't find the email, please check your spam folder or click the link
-below to re-send`;
+If you didn't find the email, please check your spam folder or click the link below to re-send`;
   Resend = "Resend";
   ResendEmail = this.Resend + " " + this.Email;
   CouldNotVerifyClient = "Could not verify client";

@@ -53,9 +53,6 @@ class NavMenuComponent extends BaseComponent {
   }
 
   FirstContainer = (navMenuType: NavMenuTypes, navStyle, item, children) => {
-    if (item.name == "exchange") {
-      this.log.debug(item);
-    }
     if (navMenuType == NavMenuTypes.Topbar) {
       let titleInner = () => (
         <>

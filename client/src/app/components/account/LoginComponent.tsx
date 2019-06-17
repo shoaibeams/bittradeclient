@@ -132,7 +132,7 @@ export class LoginComponent extends BaseComponent {
         username: new mdFormControl(
           this.model.username,
           "username",
-          this.lang.UserName,
+          this.lang.Email,
           [
             new RequiredValidator(this.lang.RequiredFormat),
             new MaxLengthValidator(

@@ -87,7 +87,7 @@ export default class RecentTradesComponent extends BaseComponent {
   }
 
   onTrades = newTrades => {
-    this.log.error(newTrades);
+    this.log.error("newTrades", newTrades);
     let lastTradeId = this.state.lastTradeId;
     if (newTrades.length > 0) {
       lastTradeId = newTrades[0].id;
