@@ -130,15 +130,20 @@ export class ForgotPasswordComponent extends BaseComponent {
   }
 
   registerPasswordRecoveredEvent = (email: string) => {
-    this.log.debug("registerEvent " + SocketCustomEvents.PasswordRecovered);
-    this.socket.registerEvent(SocketCustomEvents.PasswordRecovered, () => {
-      this.redirectToLogin(2000);
-    });
-    this.socket.emitEvent(SocketCustomEvents.AwaitingPasswordRecovery, email);
+    this.log.debug(
+      "registerEvent " + SocketCustomEvents.AwaitingPasswordRecovery
+    );
+    this.socket.registerEvent(
+      SocketCustomEvents.AwaitingPasswordRecovery,
+      email,
+      () => {
+        this.redirectToLogin(2000);
+      }
+    );
   };
 
   componentWillUnmount = () => {
-    this.socket.unregisterEvent(SocketCustomEvents.PasswordRecovered);
+    this.socket.unregisterEvent(SocketCustomEvents.AwaitingPasswordRecovery);
   };
 
   onSubmit = e => {

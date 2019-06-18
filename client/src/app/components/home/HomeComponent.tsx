@@ -6,7 +6,6 @@ import ServicesComponent from "./services/ServicesComponent";
 import HowItWorksComponent from "./howitworks/HowItWorksComponent";
 import TradeBriefHistoryComponent from "./tradebriefhistory/TradeBriefHistoryComponent";
 import MapComponent from "./map/MapComponent";
-import { StaticHelper } from "../../../shared/static-helper";
 import { SocketCustomEvents } from "../../../enums/socket";
 
 export default class HomeComponent extends BaseComponent {

@@ -15,6 +15,7 @@ export default class Socket {
   }
   private io;
   RegisterEvent = "register_event";
+  private prevRegisteredEvents: any[] = [];
   log: LoggerService = LoggerService.getInstance();
 
   connect(callback?) {
@@ -23,7 +24,11 @@ export default class Socket {
       path: Constants.Instance.EndPoints.GetStreamSocket,
       reconnection: true,
       reconnectionDelay: 3000,
-      reconnectionAttempts: 20,
+      reconnectionAttempts: 20
+    });
+    
+    this.prevRegisteredEvents.forEach(({ event, payload }) => {
+      this.emitEvent(event, payload);
     });
 
     this.io.on(SocketEvents.CONNECT, e => {
@@ -34,22 +39,38 @@ export default class Socket {
     this.io.on(SocketEvents.DISCONNECT, e => {
       this.log.debug("socket disconnected");
       callback();
-    });    
+    });
+  }
+
+  registerEvent(event: SocketCustomEvents, callback, payload?) {
+    const filteredEvent = this.prevRegisteredEvents.filter(
+      m => m.event === event
+    )[0];
+    if (filteredEvent) {
+      const index = this.prevRegisteredEvents.indexOf(filteredEvent);
+      this.prevRegisteredEvents[index] = { event, callback, payload };
+    } else {
+      this.prevRegisteredEvents.push({ event, callback, payload });
+    }
+
+    this.log.error(
+      "Previously registered events are: ",
+      this.prevRegisteredEvents
+    );
+
+    if (this.io) {
+      this.io.on(event, callback);
+      this.emitEvent(event, payload);
+    }
   }
 
   emitEvent(event: SocketCustomEvents, payload?: any) {
-    if (this.io) {
+   this.log.error("Emitting event:", event)
       this.io.emit(
-        this.RegisterEvent,
+        this.registerEvent,
         new mdRegisterSocketEvent(event, payload)
       );
-    }
-  }
-
-  registerEvent(event: SocketCustomEvents, callback) {
-    if (this.io) {
-      this.io.on(event, callback);
-    }
+   
   }
 
   unregisterEvent(event: SocketCustomEvents) {

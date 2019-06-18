@@ -772,7 +772,6 @@ export class BaseComponent extends BasicBaseComponent {
         }
       }
     );
-    this.socket.emitEvent(SocketCustomEvents.SubscribeToBriefRecentHistory);
     return true;
   };
 

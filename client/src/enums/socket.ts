@@ -15,9 +15,7 @@ export enum SocketMessageTypes {
 }
 export enum SocketCustomEvents {
   AwaitingEmailVerification = "AwaitingEmailVerification",
-  EmailVerified = "EmailVerified",
   AwaitingPasswordRecovery = "AwaitingPasswordRecovery",
-  PasswordRecovered = "PasswordRecovered",
   ReceivedBalance = "AwaitNewBalance",
 
   SubscribeToBriefRecentHistory = "SubscribeToBriefRecentHistory",

@@ -61,14 +61,23 @@ export default class RecentTradesComponent extends BaseComponent {
 
     this.log.error("SubscribeToTrades", "subscribed");
     this.log.debug("registerEvent " + SocketCustomEvents.SubscribeToTrades);
+
+    
+    // this.socket.registerEvent(
+    //   SocketCustomEvents.SubscribeToTrades,
+    //   this.onTrades
+    // );
+    // this.socket.emitEvent(
+    //   SocketCustomEvents.SubscribeToTrades,
+    //   this.g.selectedCurrencyPair.id
+    // );
     this.socket.registerEvent(
       SocketCustomEvents.SubscribeToTrades,
-      this.onTrades
-    );
-    this.socket.emitEvent(
-      SocketCustomEvents.SubscribeToTrades,
+      this.onTrades,
       this.g.selectedCurrencyPair.id
     );
+
+3
     this.SubscribeToTradesFlag = true;
   };
 

@@ -8,7 +8,6 @@ import { Button } from "antd";
 import { SocketCustomEvents } from "../../../enums/socket";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 export default class EmailConfirmationComponent extends BaseComponent {
   render() {
     this.initShorts();
@@ -93,18 +92,19 @@ export default class EmailConfirmationComponent extends BaseComponent {
   }
 
   componentWillMount = () => {
-    this.log.debug("registerEvent " + SocketCustomEvents.EmailVerified);
-    this.socket.registerEvent(SocketCustomEvents.EmailVerified, () => {
-      this.redirectToLogin(2000);
-    });
-    this.socket.emitEvent(
+    debugger;
+    this.log.debug("registerEvent " + SocketCustomEvents.AwaitingEmailVerification);
+    this.socket.registerEvent(
       SocketCustomEvents.AwaitingEmailVerification,
-      this.g.user.username
+      this.g.user.username,
+      () => {
+        this.redirectToLogin(2000);
+      }
     );
   };
 
   componentWillUnmount = () => {
-    this.socket.unregisterEvent(SocketCustomEvents.EmailVerified);
+    this.socket.unregisterEvent(SocketCustomEvents.AwaitingEmailVerification);
   };
 
   sendSignUpVerificationEmail = ev => {
